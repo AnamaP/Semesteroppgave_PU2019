@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 
 public class FXMLController {
 
-
     @FXML
     private void btnJobbsoker(ActionEvent event) {
         System.out.println("You clicked Jobbsøker!");
@@ -17,6 +16,7 @@ public class FXMLController {
         System.out.println("You clicked Arbeidsgiver!");
         //Her skal den gå videre til Arbeidsgiver-registrering.
     }
+
 
     public void initialize() {
         // TODO
