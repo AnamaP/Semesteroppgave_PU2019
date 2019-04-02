@@ -5,8 +5,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.FXMLController">
    <children>
       <Text layoutX="102.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen til Flaskehalsen Vikarbyrå!" textAlignment="CENTER" wrappingWidth="381.55517578125">
          <font>
@@ -18,7 +17,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button layoutX="180.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnVikar" prefHeight="36.0" prefWidth="105.0" text="Vikar" textAlignment="CENTER" />
+      <Button layoutX="180.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnJobbsoker" prefHeight="36.0" prefWidth="105.0" text="Jobbsøker" textAlignment="CENTER" />
       <Button layoutX="307.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnArbeidsgiver" prefHeight="36.0" prefWidth="105.0" text="Arbeidsgiver" textAlignment="CENTER" />
    </children>
 </Pane>

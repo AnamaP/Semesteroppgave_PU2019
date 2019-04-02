@@ -2,17 +2,20 @@ package org.openjfx;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
 public class FXMLController {
 
-    @FXML
-    private Label label;
 
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private void btnJobbsoker(ActionEvent event) {
+        System.out.println("You clicked Jobbsøker!");
+        //Her skal den gå videre til Jobbsøker-registrering.
+    }
+
+    @FXML
+    private void btnArbeidsgiver(ActionEvent event) {
+        System.out.println("You clicked Arbeidsgiver!");
+        //Her skal den gå videre til Arbeidsgiver-registrering.
     }
 
     public void initialize() {
