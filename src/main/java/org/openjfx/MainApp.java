@@ -18,7 +18,8 @@ public class MainApp extends Application {
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         stage.setTitle("Semesteroppgave 2019");
-        // Test test
+        // Test test, hallooo... ???
+
         stage.setScene(scene);
         stage.show();
     }
