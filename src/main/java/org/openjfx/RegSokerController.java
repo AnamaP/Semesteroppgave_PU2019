@@ -4,11 +4,17 @@ import filbehandling.LagreTilCsv;
 import filbehandling.LagreTilFil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import klasser.Jobbsoker;
 import klasser.Utdannelse;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class RegSokerController {
@@ -41,39 +47,35 @@ public class RegSokerController {
         String alder = txtAlder.getText();
 
         //Lage liste over utdaninger:
-            Utdannelse utdanning1 = new Utdannelse(txtStud1.getText(), txtSkole1.getText(), txtAar1A.getText(), txtAar1B.getText());
-            Utdannelse utdanning2 = new Utdannelse(txtStud2.getText(), txtSkole2.getText(), txtAar2A.getText(), txtAar2B.getText());
+        Utdannelse utdanning1 = new Utdannelse(txtStud1.getText(), txtSkole1.getText(), txtAar1A.getText(), txtAar1B.getText());
+        Utdannelse utdanning2 = new Utdannelse(txtStud2.getText(), txtSkole2.getText(), txtAar2A.getText(), txtAar2B.getText());
 
-            String [] utdannelser = {utdanning1.toString(), utdanning2.toString()};
+        String[] utdannelser = {utdanning1.toString(), utdanning2.toString()};
 
-        String [] erfaring = {txtStilling1.getText(), txtDato1A.getText()+" - "+txtDato1B.getText(), txtStilling2.getText(), txtDato2A.getText()+" - "+txtDato2B.getText()};
-        String [] referanser = {txtReferanse1.getText(), txtReferanse2.getText()};
+        String[] erfaring = {txtStilling1.getText(), txtDato1A.getText() + " - " + txtDato1B.getText(), txtStilling2.getText(), txtDato2A.getText() + " - " + txtDato2B.getText()};
+        String[] referanser = {txtReferanse1.getText(), txtReferanse2.getText()};
         String lonnskrav = txtLonnskrav.getText();
 
         //Hente ut valgte kategorier:
         ArrayList<String> kategorier = new ArrayList<>();
-        if(cbxSalg.isSelected()){
+        if (cbxSalg.isSelected()) {
             kategorier.add("Salg");
-        }
-        else{
+        } else {
             kategorier.add("NULL");
         }
-        if(cbxService.isSelected()){
+        if (cbxService.isSelected()) {
             kategorier.add("Service");
-        }
-        else{
+        } else {
             kategorier.add("NULL");
         }
-        if(cbxIt.isSelected()){
+        if (cbxIt.isSelected()) {
             kategorier.add("It");
-        }
-        else{
+        } else {
             kategorier.add("NULL");
         }
-        if(cbxOkonomi.isSelected()){
+        if (cbxOkonomi.isSelected()) {
             kategorier.add("Okonomi");
-        }
-        else{
+        } else {
             kategorier.add("NULL");
         }
 
@@ -83,7 +85,7 @@ public class RegSokerController {
         // Kode for å lagre til fil
         LagreTilFil lagre = new LagreTilCsv();
         try {
-            lagre.skrivPersonTilFil(soker, "./text.csv");
+            lagre.skrivPersonTilFil(soker, "./jobbsoker.csv");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -96,4 +98,21 @@ public class RegSokerController {
         System.out.println("Du har registrert deg til jobj-fil!");
     }
 
+    @FXML
+    private void btnTilbake(ActionEvent event) {
+        System.out.println("Du har klikket deg tilbake!");
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            URL url = getClass().getResource("/org/openjfx/index.fxml");
+            loader.setLocation(url);
+
+            Parent parent = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
 }
