@@ -5,8 +5,6 @@ package filbehandling;
    - hver datakolonne separeres med et tegn, f.eks. semikolon. */
 
 
-import klasser.Person;
-
 import java.nio.file.Path;
 
 public class LagreTilCsv extends LagreTilFil {
