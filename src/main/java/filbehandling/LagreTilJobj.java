@@ -4,16 +4,16 @@ package filbehandling;
    - I denne filtypen lagres data i et binært dataformat somm er kompatibelt med Java sine serialiseringsklasser.
    - */
 
-import klasser.Person;
+
+import klasser.Jobbsoker;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
 
 public class LagreTilJobj extends LagreTilFil {
 
     @Override
-    public void skrivPersonTilFil(List<Person> personer, String path) throws IOException {
+    public void skrivPersonTilFil(List<Jobbsoker> personer, String path) throws IOException {
 
     }
 }

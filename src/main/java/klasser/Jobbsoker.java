@@ -1,6 +1,13 @@
 package klasser;
 
-public class Jobbsoker extends Person {
+public class Jobbsoker{
+    private String fornavn;
+    private String etternavn;
+    private String adresse;
+    private String postNr;
+    private String poststed;
+    private String tlf;
+    private String epost;
     private String alder;
     private Utdannelse [] utdannelse;
     private String[] erfaring;
@@ -11,7 +18,27 @@ public class Jobbsoker extends Person {
     public Jobbsoker(String fornavn, String etternavn, String adresse, String postNr, String poststed, String tlf,
                      String epost, String alder, Utdannelse [] utdannelse, String[] erfaring, String[] referanser,
                      String lonnskrav) {  //, String[] kategori
-        super(fornavn, etternavn, adresse, postNr, poststed, tlf, epost);
+        if(fornavn != null){
+            this.fornavn = fornavn;
+        }
+        if(etternavn != null){
+            this.etternavn = etternavn;
+        }
+        if(adresse != null){
+            this.adresse = adresse;
+        }
+        if(postNr != null){
+            this.postNr = postNr;
+        }
+        if(poststed != null){
+            this.poststed = poststed;
+        }
+        if(tlf != null){
+            this.tlf = tlf;
+        }
+        if(epost != null){
+            this.epost = epost;
+        }
         this.alder = alder;
         this.utdannelse = utdannelse;
         this.erfaring = erfaring;

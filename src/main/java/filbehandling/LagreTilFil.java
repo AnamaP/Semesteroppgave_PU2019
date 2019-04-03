@@ -8,16 +8,15 @@ package filbehandling;
   - slike avvik skal deretter fanges i controller-klassen eller tilsvarende, som er koblet opp mot bgs.
   - hvis feil oppstår skal controller klassen påse at feilinformasjonen blir på en naturlig måte fremstilt til bruker */
 
-import klasser.Person;
 
+import klasser.Jobbsoker;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
 
 abstract class LagreTilFil {
 
 
-    public abstract void skrivPersonTilFil(List<Person> personer, String path) throws IOException;
+    public abstract void skrivPersonTilFil(List<Jobbsoker> personer, String path) throws IOException;
 
 }
 

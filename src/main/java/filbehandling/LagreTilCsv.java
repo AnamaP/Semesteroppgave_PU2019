@@ -5,7 +5,7 @@ package filbehandling;
    - hver datakolonne separeres med et tegn, f.eks. semikolon. */
 
 
-import klasser.Person;
+import klasser.Jobbsoker;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,13 +14,13 @@ import java.util.List;
 public class LagreTilCsv extends LagreTilFil {
 
     @Override
-    public void skrivPersonTilFil(List<Person> personer, String path) throws IOException {
+    public void skrivPersonTilFil(List<Jobbsoker> personer, String path) throws IOException {
         PrintWriter skriv = null;
 
         try{
             skriv = new PrintWriter(path, "UTF-8");
 
-            for(Person person : personer){
+            for(Jobbsoker person : personer){
                 skriv.println(person);
             }
         }
