@@ -14,15 +14,15 @@ public class LagreTilCsv extends LagreTilFil {
 
     @Override
     public void skrivPersonTilFil(Jobbsoker person, String path) throws IOException {
-        PrintWriter skriv = null;
+        PrintWriter writer = null;
 
         try{
-            skriv = new PrintWriter(path, "UTF-8");
-                skriv.println(person);
+            writer = new PrintWriter(path, "UTF-8");
+                writer.println(person);
         }
         finally{
-            if(skriv != null){
-                skriv.close();
+            if(writer != null){
+                writer.close();
             }
         }
 

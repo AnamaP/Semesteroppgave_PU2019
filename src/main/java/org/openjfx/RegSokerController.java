@@ -86,9 +86,11 @@ public class RegSokerController {
         LagreTilFil lagre = new LagreTilCsv();
         try {
             lagre.skrivPersonTilFil(soker, "./jobbsoker.csv");
-        } catch (IOException e) {
+        } catch (IOException e) { // Endres til FileNotFoundException ??
+            // bør legge til en feilmeldingen i sysOut
             e.printStackTrace();
         }
+
 
         //Planlegger å Deretter vise på et nytt GUI hva som er skrevet inn.
     }
