@@ -55,17 +55,27 @@ public class RegSokerController {
         if(cbxSalg.isSelected()){
             kategorier.add("Salg");
         }
+        else{
+            kategorier.add("NULL");
+        }
         if(cbxService.isSelected()){
             kategorier.add("Service");
+        }
+        else{
+            kategorier.add("NULL");
         }
         if(cbxIt.isSelected()){
             kategorier.add("It");
         }
+        else{
+            kategorier.add("NULL");
+        }
         if(cbxOkonomi.isSelected()){
             kategorier.add("Okonomi");
         }
-
-        System.out.println(kategorier.toString());
+        else{
+            kategorier.add("NULL");
+        }
 
         Jobbsoker soker = new Jobbsoker(fornavn, etternavn, adresse, postnr, poststed, tlf, epost, alder, utdannelser, erfaring, referanser, lonnskrav, kategorier);
         System.out.println(soker.toString());
