@@ -21,7 +21,7 @@ public class FXMLController {
     @FXML
     private TextField txtBrukernavn;
     // feilhåndtering for brukernavn??
-    
+
     @FXML
     private TextField txtPassord;
     // feilhåndtering for passord??
