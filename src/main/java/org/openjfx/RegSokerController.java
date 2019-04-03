@@ -54,6 +54,7 @@ public class RegSokerController {
         Jobbsoker soker = new Jobbsoker(fornavn, etternavn, adresse, postnr, poststed, tlf, epost, alder, utdannelser, erfaring, referanser, lonnskrav);
         System.out.println(soker.toString());
 
+        // Kode for å lagre til fil
         LagreTilFil lagre = new LagreTilCsv();
         try {
             lagre.skrivPersonTilFil(soker, "./text.csv");
