@@ -7,12 +7,28 @@ package filbehandling;
 
 import klasser.Person;
 
-import java.nio.file.Path;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 public class LagreTilCsv extends LagreTilFil {
 
     @Override
-    public void skrivPersonTilFil(Person person, Path path) {
+    public void skrivPersonTilFil(List<Person> personer, String path) throws IOException {
+        PrintWriter skriv = null;
+
+        try{
+            skriv = new PrintWriter(path, "UTF-8");
+
+            for(Person person : personer){
+                skriv.println(person);
+            }
+        }
+        finally{
+            if(skriv != null){
+                skriv.close();
+            }
+        }
 
 
 

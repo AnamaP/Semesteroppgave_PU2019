@@ -6,12 +6,14 @@ package filbehandling;
 
 import klasser.Person;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 public class LagreTilJobj extends LagreTilFil {
 
     @Override
-    public void skrivPersonTilFil(Person person, Path path) {
+    public void skrivPersonTilFil(List<Person> personer, String path) throws IOException {
 
     }
 }
