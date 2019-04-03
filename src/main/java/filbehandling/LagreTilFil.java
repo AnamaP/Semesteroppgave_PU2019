@@ -11,12 +11,11 @@ package filbehandling;
 
 import klasser.Jobbsoker;
 import java.io.IOException;
-import java.util.List;
 
-abstract class LagreTilFil {
+public abstract class LagreTilFil {
 
 
-    public abstract void skrivPersonTilFil(List<Jobbsoker> personer, String path) throws IOException;
+    public abstract void skrivPersonTilFil(Jobbsoker person, String path) throws IOException;
 
 }
 

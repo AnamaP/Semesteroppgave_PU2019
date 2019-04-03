@@ -13,7 +13,7 @@ import java.util.List;
 public class LagreTilJobj extends LagreTilFil {
 
     @Override
-    public void skrivPersonTilFil(List<Jobbsoker> personer, String path) throws IOException {
+    public void skrivPersonTilFil(Jobbsoker person, String path) throws IOException {
 
     }
 }

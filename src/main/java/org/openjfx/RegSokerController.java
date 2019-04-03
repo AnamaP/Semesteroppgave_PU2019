@@ -1,11 +1,15 @@
 package org.openjfx;
 
+import filbehandling.LagreTilCsv;
+import filbehandling.LagreTilFil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import klasser.Jobbsoker;
 import klasser.Utdannelse;
+
+import java.io.IOException;
 
 
 public class RegSokerController {
@@ -49,6 +53,13 @@ public class RegSokerController {
 
         Jobbsoker soker = new Jobbsoker(fornavn, etternavn, adresse, postnr, poststed, tlf, epost, alder, utdannelser, erfaring, referanser, lonnskrav);
         System.out.println(soker.toString());
+
+        LagreTilFil lagre = new LagreTilCsv();
+        try {
+            lagre.skrivPersonTilFil(soker, "./text.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //Hente ut valgte kategorier:
         String [] kategorier = {};
