@@ -17,6 +17,4 @@ public class Jobbsoker extends Person {
         this.lønnskrav = lønnskrav;
         this.kategori = kategori;
     }
-
-
 }

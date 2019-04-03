@@ -32,4 +32,11 @@ public class Person {
             this.epost = epost;
         }
     }
+
+    public String toString(){
+        String ut = "";
+        ut += "Navn: "+fornavn+" "+etternavn+"\nAdresse: "+adresse+" "+postNr+" "+poststed+"\n";
+        ut += "Tlf: "+tlf+"\nEpost: "+epost;
+        return ut;
+    }
 }
