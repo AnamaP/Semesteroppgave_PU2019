@@ -49,7 +49,7 @@
             <TextField fx:id="txtEpost" prefHeight="0.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
-      <Button fx:id="btnRegistrerSoker" layoutX="495.0" layoutY="505.0" mnemonicParsing="false" onAction="#btnRegistrer" text="Registrer" />
+      <Button fx:id="btnRegistrerSoker" layoutX="296.0" layoutY="505.0" mnemonicParsing="false" onAction="#btnRegSokerJobj" text="Registrer til jobj-fil" />
       <Text fill="#000000cf" layoutX="336.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder:">
          <font>
             <Font name="Ayuthaya" size="16.0" />
@@ -90,5 +90,6 @@
       <TextField fx:id="txtDato2B" layoutX="495.0" layoutY="462.0" prefHeight="27.0" prefWidth="71.0" promptText="mm.åå" />
       <Text layoutX="487.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="6.1318359375" />
       <Text layoutX="487.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="6.1318359375" />
+      <Button layoutX="159.0" layoutY="505.0" mnemonicParsing="false" onAction="#btnRegSokerCsv" prefHeight="27.0" prefWidth="132.0" text="Registrer til csv-fil" />
    </children>
 </Pane>
