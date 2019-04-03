@@ -67,7 +67,7 @@ public class RegSokerController {
 
         System.out.println(kategorier.toString());
 
-        Jobbsoker soker = new Jobbsoker(fornavn, etternavn, adresse, postnr, poststed, tlf, epost, alder, utdannelser, erfaring, referanser, lonnskrav);
+        Jobbsoker soker = new Jobbsoker(fornavn, etternavn, adresse, postnr, poststed, tlf, epost, alder, utdannelser, erfaring, referanser, lonnskrav, kategorier);
         System.out.println(soker.toString());
 
         // Kode for å lagre til fil

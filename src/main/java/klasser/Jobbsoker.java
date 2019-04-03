@@ -1,5 +1,7 @@
 package klasser;
 
+import java.util.ArrayList;
+
 public class Jobbsoker{
     private String fornavn;
     private String etternavn;
@@ -13,11 +15,11 @@ public class Jobbsoker{
     private String[] erfaring;
     private String[] referanser;
     private String lonnskrav;
-    //private String[] kategori;
+    private ArrayList<String> kategorier;
 
     public Jobbsoker(String fornavn, String etternavn, String adresse, String postNr, String poststed, String tlf,
                      String epost, String alder, String[] utdannelse, String[] erfaring, String[] referanser,
-                     String lonnskrav) {  //, String[] kategori
+                     String lonnskrav, ArrayList<String> kategorier) {  //
         if(fornavn != null){
             this.fornavn = fornavn;
         }
@@ -44,7 +46,7 @@ public class Jobbsoker{
         this.erfaring = erfaring;
         this.referanser = referanser;
         this.lonnskrav = lonnskrav;
-        //this.kategori = kategori;
+        this.kategorier = kategorier;
     }
 
     @Override
@@ -52,7 +54,8 @@ public class Jobbsoker{
         String ut = "";
         ut += fornavn+";"+etternavn+";"+adresse+";"+postNr+";"+poststed+";"+tlf+";"+epost+";"+alder+";"+lonnskrav+";";
         ut += utdannelse[0]+";"+utdannelse[1]+";";
-        ut += erfaring[0]+";"+erfaring[1]+";"+erfaring[2]+";"+erfaring[3]+";"+referanser[0]+";"+referanser[1]+";\n";
+        ut += erfaring[0]+";"+erfaring[1]+";"+erfaring[2]+";"+erfaring[3]+";"+referanser[0]+";"+referanser[1]+";";
+        ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";\n";
         return ut;
 
     }
