@@ -9,14 +9,14 @@ public class Jobbsoker{
     private String tlf;
     private String epost;
     private String alder;
-    private Utdannelse [] utdannelse;
+    private Utdannelse[] utdannelse;
     private String[] erfaring;
     private String[] referanser;
     private String lonnskrav;
     //private String[] kategori;
 
     public Jobbsoker(String fornavn, String etternavn, String adresse, String postNr, String poststed, String tlf,
-                     String epost, String alder, Utdannelse [] utdannelse, String[] erfaring, String[] referanser,
+                     String epost, String alder, Utdannelse[] utdannelse, String[] erfaring, String[] referanser,
                      String lonnskrav) {  //, String[] kategori
         if(fornavn != null){
             this.fornavn = fornavn;
@@ -50,8 +50,10 @@ public class Jobbsoker{
     @Override
     public String toString(){
         String ut = "";
-        ut += "Navn: "+fornavn+" "+etternavn+"\nAdresse: "+adresse+" "+postNr+" "+poststed+"\n";
-        ut += "Tlf: "+tlf+"\nEpost: "+epost+"\nAlder: "+alder;
+        ut += fornavn+";"+etternavn+";"+adresse+";"+postNr+";"+poststed+";"+tlf+";"+epost+";"+alder+";";
+        ut += utdannelse.toString();
+        ut += erfaring[0]+";"+erfaring[1]+";"+erfaring[2]+";"+erfaring[3]+";"+referanser[0]+";"+referanser[1]+";"+lonnskrav+"; \n";
         return ut;
+
     }
 }

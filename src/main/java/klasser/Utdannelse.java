@@ -12,4 +12,10 @@ public class Utdannelse {
         this.start = start;
         this.slutt = slutt;
     }
+
+    @Override
+    public String toString(){
+        String ut = studieretning+";"+skole+";"+start+";"+slutt+";";
+        return ut;
+    }
 }
