@@ -11,7 +11,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("index.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("registrerPerson.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("regSoker.fxml"));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
