@@ -1,5 +1,6 @@
 package klasser;
 
+// skal ikke arve fra person
 public class Arbeidsgiver extends Person{
     private String orgNr;
     private String sektor;

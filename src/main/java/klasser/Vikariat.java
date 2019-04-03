@@ -1,5 +1,6 @@
 package klasser;
 
+// skal ikke arve fra person
 public class Vikariat extends Person {
     private int lønn;
     private String stillingsstype;
