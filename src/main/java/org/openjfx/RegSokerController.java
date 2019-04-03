@@ -8,9 +8,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import klasser.Jobbsoker;
 import klasser.Utdannelse;
-
 import java.io.IOException;
-
+import java.util.ArrayList;
 
 public class RegSokerController {
 
@@ -45,11 +44,28 @@ public class RegSokerController {
             Utdannelse utdanning1 = new Utdannelse(txtStud1.getText(), txtSkole1.getText(), txtAar1A.getText(), txtAar1B.getText());
             Utdannelse utdanning2 = new Utdannelse(txtStud2.getText(), txtSkole2.getText(), txtAar2A.getText(), txtAar2B.getText());
 
-            Utdannelse [] utdannelser = {utdanning1, utdanning2};
+            String [] utdannelser = {utdanning1.toString(), utdanning2.toString()};
 
         String [] erfaring = {txtStilling1.getText(), txtDato1A.getText()+" - "+txtDato1B.getText(), txtStilling2.getText(), txtDato2A.getText()+" - "+txtDato2B.getText()};
         String [] referanser = {txtReferanse1.getText(), txtReferanse2.getText()};
         String lonnskrav = txtLonnskrav.getText();
+
+        //Hente ut valgte kategorier:
+        ArrayList<String> kategorier = new ArrayList<>();
+        if(cbxSalg.isSelected()){
+            kategorier.add("Salg");
+        }
+        if(cbxService.isSelected()){
+            kategorier.add("Service");
+        }
+        if(cbxIt.isSelected()){
+            kategorier.add("It");
+        }
+        if(cbxOkonomi.isSelected()){
+            kategorier.add("Okonomi");
+        }
+
+        System.out.println(kategorier.toString());
 
         Jobbsoker soker = new Jobbsoker(fornavn, etternavn, adresse, postnr, poststed, tlf, epost, alder, utdannelser, erfaring, referanser, lonnskrav);
         System.out.println(soker.toString());
@@ -61,10 +77,6 @@ public class RegSokerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //Hente ut valgte kategorier:
-        String [] kategorier = {};
-
 
         //Planlegger å Deretter vise på et nytt GUI hva som er skrevet inn.
     }
