@@ -9,6 +9,7 @@ import klasser.Jobbsoker;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.StandardOpenOption;
 
 public class LagreTilCsv extends LagreTilFil {
 
