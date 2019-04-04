@@ -11,15 +11,32 @@ public class Jobbsoker{
     private String tlf;
     private String epost;
     private String alder;
-    private String[] utdannelse;
-    private String[] erfaring;
-    private String[] referanser;
     private String lonnskrav;
+    private ArrayList<String> utdannelse;
+    private ArrayList<String> erfaring;
+    private ArrayList<String> referanser;
     private ArrayList<String> kategorier;
 
-    public Jobbsoker(String fornavn, String etternavn, String adresse, String postNr, String poststed, String tlf,
-                     String epost, String alder, String[] utdannelse, String[] erfaring, String[] referanser,
-                     String lonnskrav, ArrayList<String> kategorier) {  //
+    public Jobbsoker(ArrayList<String> personalia, ArrayList<String> utdannelse, ArrayList<String> erfaring,
+                     ArrayList<String> referanser, ArrayList<String> kategorier) {
+
+        this.fornavn = personalia.get(0);
+        this.etternavn = personalia.get(1);
+        this.adresse = personalia.get(2);
+        this.postNr = personalia.get(3);
+        this.poststed = personalia.get(4);
+        this.tlf = personalia.get(5);
+        this.epost = personalia.get(6);
+        this.alder = personalia.get(7);
+        this.lonnskrav = personalia.get(8);
+
+        this.utdannelse = utdannelse;
+        this.erfaring = erfaring;
+        this.referanser = referanser;
+        this.kategorier = kategorier;
+
+
+        // Feilhåndtering - sjekk heller her om variabelen er null og kaste en feilmelding
         if(fornavn != null){
             this.fornavn = fornavn;
         }
@@ -41,22 +58,19 @@ public class Jobbsoker{
         if(epost != null){
             this.epost = epost;
         }
-        this.alder = alder;
-        this.utdannelse = utdannelse;
-        this.erfaring = erfaring;
-        this.referanser = referanser;
-        this.lonnskrav = lonnskrav;
-        this.kategorier = kategorier;
+
     }
 
     @Override
     public String toString(){
         String ut = "";
         ut += fornavn+";"+etternavn+";"+adresse+";"+postNr+";"+poststed+";"+tlf+";"+epost+";"+alder+";"+lonnskrav+";";
-        ut += utdannelse[0]+";"+utdannelse[1]+";";
-        ut += erfaring[0]+";"+erfaring[1]+";"+erfaring[2]+";"+erfaring[3]+";"+referanser[0]+";"+referanser[1]+";";
+        ut += utdannelse.get(0)+";"+utdannelse.get(1)+";"+utdannelse.get(2)+";"+utdannelse.get(3)+";"+utdannelse.get(4)+
+                ";"+utdannelse.get(5)+";"+utdannelse.get(6)+";"+utdannelse.get(7)+";";
+        ut += erfaring.get(0)+";"+erfaring.get(1)+";"+erfaring.get(2)+";"+erfaring.get(3)+";"+";"+erfaring.get(4)+";"+erfaring.get(5)+";";
+        ut += referanser.get(0)+";"+referanser.get(1)+";";
         ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";";
-        return ut;
 
+        return ut;
     }
 }

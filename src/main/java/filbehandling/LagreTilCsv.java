@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.nio.file.StandardOpenOption;
 
 public class LagreTilCsv extends LagreTilFil {
+    //writern - få den til å appende et semikolon etter hvert felt i elementet
 
     @Override
     public void skrivPersonTilFil(Jobbsoker person, String path) throws IOException {
