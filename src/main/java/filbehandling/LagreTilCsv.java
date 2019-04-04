@@ -7,6 +7,8 @@ package filbehandling;
 
 import klasser.Jobbsoker;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.StandardOpenOption;
@@ -18,14 +20,15 @@ public class LagreTilCsv extends LagreTilFil {
         PrintWriter writer = null;
 
         try{
-            writer = new PrintWriter(path, "UTF-8");
-                writer.println(person);
+            FileWriter fileWriter = new FileWriter(path, true); //Set true for append mode
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.println(person);  //New line
+            printWriter.close();
         }
         finally{
             if(writer != null){
                 writer.close();
             }
         }
-
     }
 }

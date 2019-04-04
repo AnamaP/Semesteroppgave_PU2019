@@ -55,7 +55,7 @@ public class Jobbsoker{
         ut += fornavn+";"+etternavn+";"+adresse+";"+postNr+";"+poststed+";"+tlf+";"+epost+";"+alder+";"+lonnskrav+";";
         ut += utdannelse[0]+";"+utdannelse[1]+";";
         ut += erfaring[0]+";"+erfaring[1]+";"+erfaring[2]+";"+erfaring[3]+";"+referanser[0]+";"+referanser[1]+";";
-        ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";\n";
+        ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";";
         return ut;
 
     }
