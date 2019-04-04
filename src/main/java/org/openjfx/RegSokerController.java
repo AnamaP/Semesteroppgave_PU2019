@@ -12,12 +12,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import klasser.Jobbsoker;
-import klasser.Utdannelse;
 import logikk.RegistrerSoker;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class RegSokerController {
 
@@ -64,6 +61,8 @@ public class RegSokerController {
                 txtEpost,txtAlder,txtLonnskrav, txtStud1,txtStud2,txtSkole1,txtSkole2,txtAar1A,txtAar1B,txtAar2A,txtAar2B,
                 txtStilling1,txtStilling2,txtDato1A,txtDato1B,txtDato2A,txtDato2B, txtReferanse1, txtReferanse2,
                 cbxSalg,cbxService,cbxIt,cbxOkonomi);
+
+        String filepath = "sokerJobj.jobj";
     }
 
     @FXML
