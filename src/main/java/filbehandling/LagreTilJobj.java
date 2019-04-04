@@ -13,7 +13,7 @@ public class LagreTilJobj extends LagreTilFil implements Serializable {
 
     @Override
     public void skrivPersonTilFil(Jobbsoker person, String path) throws IOException{
-
+        /*
        try(FileOutputStream fos = new FileOutputStream(filepath);
             ObjectOutputStream out = new ObjectOutputStream(fos);){
             out.writeObject(sokerJobj);
@@ -21,7 +21,7 @@ public class LagreTilJobj extends LagreTilFil implements Serializable {
         catch(IOException e){
             e.printStackTrace();
         }
-
+*/
 
 
     }
