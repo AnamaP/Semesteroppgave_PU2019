@@ -1,8 +1,6 @@
 package org.openjfx;
 
-import filbehandling.LagreTilCsv;
-import filbehandling.LagreTilFil;
-import filbehandling.LagreTilJobj;
+import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +40,7 @@ public class RegSokerController {
 
         System.out.println(nySoker.toString());
 
-        // Lagrer til .csv
+        // Lagrer til .csv - - må linkes til FileChooser ?
         LagreTilFil lagre = new LagreTilCsv();
         try {
             lagre.skrivPersonTilFil(nySoker, "./jobbsoker.csv");
@@ -51,6 +49,9 @@ public class RegSokerController {
             e.printStackTrace();
         }
 
+        // Henter fra .csv - må linkes til FileChooser ?
+        HenteFraCsv hentCsv = new HenteFraCsv();
+        hentCsv.henteFraFil("jobbsoker.csv");
 
         //Planlegger å Deretter vise på et nytt GUI hva som er skrevet inn.
     }
@@ -58,16 +59,21 @@ public class RegSokerController {
     @FXML
     private void btnRegSokerJobj(ActionEvent event) {
         System.out.println("Du har registrert deg til jobj-fil!");
-        Jobbsoker person = RegistrerSoker.lagJobssoker(txtFornavn,txtEtternavn,txtAdresse,txtPostnr,txtPoststed,txtTlf,
-                txtEpost,txtAlder,txtLonnskrav, txtStud1,txtStud2,txtSkole1,txtSkole2,txtAar1A,txtAar1B,txtAar2A,txtAar2B,
-                txtStilling1,txtStilling2,txtDato1A,txtDato1B,txtDato2A,txtDato2B, txtReferanse1, txtReferanse2,
-                cbxSalg,cbxService,cbxIt,cbxOkonomi);
+        Jobbsoker person = RegistrerSoker.lagJobssoker(txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed, txtTlf,
+                txtEpost, txtAlder, txtLonnskrav, txtStud1, txtStud2, txtSkole1, txtSkole2, txtAar1A, txtAar1B, txtAar2A, txtAar2B,
+                txtStilling1, txtStilling2, txtDato1A, txtDato1B, txtDato2A, txtDato2B, txtReferanse1, txtReferanse2,
+                cbxSalg, cbxService, cbxIt, cbxOkonomi);
 
-        // Lagrer til .jobj
+        // Lagrer til .jobj - må linkes til FileChooser ?
         String path = "jobbsoker.jobj";
         LagreTilJobj lagre = new LagreTilJobj();
-        lagre.skrivPersonTilFil(person,path);
+        lagre.skrivPersonTilFil(person, path);
+
+        // Henter fra .jobj - må linkes til FileChooser ?
+        HenteFraJobj hentJobj = new HenteFraJobj();
+        hentJobj.henteFraFil("jobbsoker.jobj");
     }
+
 
     @FXML
     private void btnTilbake(ActionEvent event) {
