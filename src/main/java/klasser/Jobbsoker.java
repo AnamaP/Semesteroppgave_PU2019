@@ -1,8 +1,9 @@
 package klasser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Jobbsoker{
+public class Jobbsoker implements Serializable {
     private String fornavn;
     private String etternavn;
     private String adresse;

@@ -2,6 +2,7 @@ package org.openjfx;
 
 import filbehandling.LagreTilCsv;
 import filbehandling.LagreTilFil;
+import filbehandling.LagreTilJobj;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +42,7 @@ public class RegSokerController {
 
         System.out.println(nySoker.toString());
 
-        //Kode for å lagre til fil
+        // Lagrer til .csv
         LagreTilFil lagre = new LagreTilCsv();
         try {
             lagre.skrivPersonTilFil(nySoker, "./jobbsoker.csv");
@@ -57,12 +58,15 @@ public class RegSokerController {
     @FXML
     private void btnRegSokerJobj(ActionEvent event) {
         System.out.println("Du har registrert deg til jobj-fil!");
-        Jobbsoker sokerJobj = RegistrerSoker.lagJobssoker(txtFornavn,txtEtternavn,txtAdresse,txtPostnr,txtPoststed,txtTlf,
+        Jobbsoker person = RegistrerSoker.lagJobssoker(txtFornavn,txtEtternavn,txtAdresse,txtPostnr,txtPoststed,txtTlf,
                 txtEpost,txtAlder,txtLonnskrav, txtStud1,txtStud2,txtSkole1,txtSkole2,txtAar1A,txtAar1B,txtAar2A,txtAar2B,
                 txtStilling1,txtStilling2,txtDato1A,txtDato1B,txtDato2A,txtDato2B, txtReferanse1, txtReferanse2,
                 cbxSalg,cbxService,cbxIt,cbxOkonomi);
 
-        String filepath = "sokerJobj.jobj";
+        // Lagrer til .jobj
+        String path = "jobbsoker.jobj";
+        LagreTilJobj lagre = new LagreTilJobj();
+        lagre.skrivPersonTilFil(person,path);
     }
 
     @FXML
