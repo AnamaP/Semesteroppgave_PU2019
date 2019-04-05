@@ -6,6 +6,7 @@ package filbehandling;
 
 
 import klasser.Jobbsoker;
+import klasser.Vikariat;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -24,6 +25,23 @@ public class LagreTilCsv extends LagreTilFil {
             FileWriter fileWriter = new FileWriter(path, true); //Set true for append mode
             PrintWriter printWriter = new PrintWriter(fileWriter);
             printWriter.println(person);  //New line
+            printWriter.close();
+        }
+        finally{
+            if(writer != null){
+                writer.close();
+            }
+        }
+    }
+
+    @Override
+    public void skrivVikariatTilFil(Vikariat nyVikariat, String path) throws IOException {
+        PrintWriter writer = null;
+
+        try{
+            FileWriter fileWriter = new FileWriter(path, true); //Set true for append mode
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.println(nyVikariat);  //New line
             printWriter.close();
         }
         finally{

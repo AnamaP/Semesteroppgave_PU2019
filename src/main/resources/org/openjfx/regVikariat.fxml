@@ -86,7 +86,7 @@
             <CheckBox fx:id="cbxSalg" mnemonicParsing="false" text="Salg" />
             <CheckBox fx:id="cbxService" mnemonicParsing="false" text="Service" GridPane.columnIndex="1" />
             <CheckBox fx:id="cbxIt" mnemonicParsing="false" text="It" GridPane.columnIndex="2" />
-            <CheckBox fx:id="cbxAdmin" mnemonicParsing="false" text="Admin" GridPane.columnIndex="3" />
+            <CheckBox fx:id="cbxOkonomi" mnemonicParsing="false" text="Okonomi" GridPane.columnIndex="3" />
          </children>
       </GridPane>
       <Text layoutX="49.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori:" />

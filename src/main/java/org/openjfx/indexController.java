@@ -35,8 +35,8 @@ public class indexController {
 
     @FXML
     private void btnArbeidsgiver(ActionEvent event) {
-        System.out.println("You clicked Arbeidsgiver!");
-        //Her skal den gå videre til Arbeidsgiver-registrering.
+        System.out.println("You clicked Vikariat!");
+        //Her skal den gå videre til Vikariat-registrering.
     }
 
     @FXML

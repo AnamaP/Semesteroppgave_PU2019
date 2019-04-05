@@ -1,24 +1,55 @@
 package klasser;
 
-// skal ikke arve fra person
-public class Vikariat{
-    private int lønn;
-    private String stillingsstype;
-    private String beskrivelse;
-    private int stillingsbrøk;
-    private String kvalifikasjoner;
-    private String varighet;
-    private String arbeidsstid;
-    private String[] søkere;
+import java.util.ArrayList;
 
-    public Vikariat(int lønn, String stillingsstype, String beskrivelse, int stillingsbrøk, String kvalifikasjoner, String varighet, String arbeidsstid, String[] søkere) {
-        this.lønn = lønn;
-        this.stillingsstype = stillingsstype;
-        this.beskrivelse = beskrivelse;
-        this.stillingsbrøk = stillingsbrøk;
-        this.kvalifikasjoner = kvalifikasjoner;
-        this.varighet = varighet;
-        this.arbeidsstid = arbeidsstid;
-        this.søkere = søkere;
+public class Vikariat {
+
+    //Kontaktperson:
+    private String fornavn;
+    private String etternavn;
+    private String epost;
+    private String tlf;
+
+    //Info om firma:
+    private String firmaNavn;
+    private String orgNr;
+    private String bransje;
+    private String sektor;
+
+    //Info om vikariatet:
+    private String tittel;
+    private String type;
+    private String lonn;
+    private String kvalifikasjoner;
+    private String beskrivelse;
+
+    private String arbeidstid;
+    private ArrayList<String> kategorier;
+
+    public Vikariat(ArrayList<String> nyVikariat, String sektor, String arbeidstid, ArrayList<String> kategorier) {
+        this.fornavn = nyVikariat.get(0);
+        this.etternavn = nyVikariat.get(1);
+        this.epost = nyVikariat.get(2);
+        this.tlf = nyVikariat.get(3);
+        this.firmaNavn = nyVikariat.get(4);
+        this.orgNr = nyVikariat.get(5);
+        this.bransje = nyVikariat.get(6);
+        this.tittel = nyVikariat.get(7);
+        this.type = nyVikariat.get(8);
+        this.lonn = nyVikariat.get(9);
+        this.kvalifikasjoner = nyVikariat.get(10);
+        this.beskrivelse = nyVikariat.get(11);
+
+        this.sektor = sektor;
+        this.arbeidstid = arbeidstid;
+        this.kategorier = kategorier;
+    }
+
+    public String toString(){
+        String ut = "";
+        ut += fornavn+";"+etternavn+";"+epost+";"+tlf+";"+firmaNavn+";"+orgNr+";"+bransje+";"+sektor+";"+tittel+";"+type+";";
+        ut += lonn+";"+kvalifikasjoner+";"+beskrivelse+";"+arbeidstid+";";
+        ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";";
+        return ut;
     }
 }

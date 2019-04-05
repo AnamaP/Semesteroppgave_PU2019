@@ -1,5 +1,6 @@
 package org.openjfx;
 
+import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.stage.Stage;
+import klasser.Vikariat;
+import logikk.RegistrerVikariat;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,16 +34,48 @@ public class RegVikariatController {
     private ColumnConstraints gridSektor, gridHelDel;
 
     @FXML
-    private CheckBox cbxSalg, cbxService, cbxIt, cbxAdmin;
+    private CheckBox cbxSalg, cbxService, cbxIt, cbxOkonomi;
 
 
-    @FXML
-    private void btnRegArbeidJobj(ActionEvent event) {
-
-    }
 
     @FXML
     private void btnRegArbeidCsv(ActionEvent event) {
+
+         Vikariat nyVikariat = RegistrerVikariat.lagVikariat(txtFornavn, txtEtternavn, txtEpost, txtTlf, txtFirmaNavn, txtOrgNr,
+                 txtBransje, txtTittel, txtType, txtLonn, txtKvalifikasjoner, txtBeskrivelse, radioHeltid,
+                 radioDeltid, radioOffentlig, radioPrivat, cbxSalg, cbxService, cbxIt, cbxOkonomi);
+
+        System.out.println(nyVikariat.toString());
+
+        // Lagrer til .csv - - må linkes til FileChooser ?
+        LagreTilFil lagre = new LagreTilCsv();
+        try {
+            lagre.skrivVikariatTilFil(nyVikariat, "./vikariat.csv");
+        } catch (IOException e) { // Endres til FileNotFoundException ??
+            // bør legge til en feilmeldingen i sysOut
+            e.printStackTrace();
+        }
+
+        // Henter fra .csv - må linkes til FileChooser ?
+        HenteFraCsv hentCsv = new HenteFraCsv();
+        hentCsv.henteFraFil("vikariat.csv");
+
+        //Planlegger å Deretter vise på et nytt GUI hva som er skrevet inn.
+    }
+
+    @FXML
+    private void btnRegArbeidJobj(ActionEvent event) {
+        Vikariat nyVikariat = RegistrerVikariat.lagVikariat(txtFornavn, txtEtternavn, txtEpost, txtTlf, txtFirmaNavn, txtOrgNr,
+                txtBransje, txtTittel, txtType, txtLonn, txtKvalifikasjoner, txtBeskrivelse, radioHeltid,
+                radioDeltid, radioOffentlig, radioPrivat, cbxSalg, cbxService, cbxIt, cbxOkonomi);
+
+        String path = "vikariat.jobj";
+        LagreTilJobj lagre = new LagreTilJobj();
+        lagre.skrivVikariatTilFil(nyVikariat, path);
+
+        // Henter fra .jobj - må linkes til FileChooser ?
+        HenteFraJobj hentJobj = new HenteFraJobj();
+        hentJobj.henteFraFil("vikariat.jobj");
 
     }
 
@@ -61,5 +96,4 @@ public class RegVikariatController {
             io.printStackTrace();
         }
     }
-
 }

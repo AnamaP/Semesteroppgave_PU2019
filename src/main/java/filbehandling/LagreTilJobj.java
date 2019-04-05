@@ -5,6 +5,8 @@ package filbehandling;
    - */
 
 import klasser.Jobbsoker;
+import klasser.Vikariat;
+
 import java.io.*;
 
 public class LagreTilJobj extends LagreTilFil{
@@ -20,13 +22,19 @@ public class LagreTilJobj extends LagreTilFil{
         catch(IOException e){
             e.printStackTrace();
         }
-
-
-
     }
 
+    @Override
+    public void skrivVikariatTilFil(Vikariat nyVikariat, String path){
 
-
+        try(FileOutputStream fos = new FileOutputStream(path);
+            ObjectOutputStream out = new ObjectOutputStream(fos)){
+            out.writeObject(nyVikariat);
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 }
 
 
