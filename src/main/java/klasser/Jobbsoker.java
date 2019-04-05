@@ -12,7 +12,11 @@ public class Jobbsoker extends Person {
                      String epost, String alder, Cv cv) {
         super(fornavn, etternavn, adresse, postnr, poststed, tlf, epost, alder);
         this.cv = cv;
-        this.lonnskrav = "";  // Lag setter da lokhue..!!!
+        this.lonnskrav = "";
+    }
+
+    public void setLonnskrav(String lonnskrav){
+        this.lonnskrav = lonnskrav;
     }
 
     @Override

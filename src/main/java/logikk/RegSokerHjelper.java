@@ -12,10 +12,10 @@ public class RegSokerHjelper {
         if(valgUtdanning.getValue().equals("Vgs")){
             utdanning = "Vgs";
         }
-        else if (valgUtdanning.getValue() == "Bachelor"){
+        else if (valgUtdanning.getValue().equals("Bachelor")){
             utdanning = "Bachelor";
         }
-        else if (valgUtdanning.getValue() == "Master"){
+        else if (valgUtdanning.getValue().equals("Master")){
             utdanning = "Master";
         }
         else{
@@ -28,16 +28,16 @@ public class RegSokerHjelper {
 
     public static String studieretning(ComboBox valgRetning) {
         String studieretning = "";
-        if(valgRetning.equals("It")){
+        if(valgRetning.getValue().equals("It")){
             studieretning = "It";
         }
-        else if (valgRetning.equals("Salg")){
+        else if (valgRetning.getValue().equals("Salg")){
             studieretning = "Salg";
         }
-        else if (valgRetning.equals("Økonomi")){
+        else if (valgRetning.getValue().equals("Økonomi")){
             studieretning = "Økonomi";
         }
-        else if (valgRetning.equals("Ledelse")){
+        else if (valgRetning.getValue().equals("Ledelse")){
             studieretning = "Ledelse";
         }
         else{
