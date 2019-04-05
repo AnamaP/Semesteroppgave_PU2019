@@ -5,14 +5,10 @@ package filbehandling;
    - hver datakolonne separeres med et tegn, f.eks. semikolon. */
 
 
-import klasser.Jobbsoker;
 import klasser.Vikariat;
-
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.StandardOpenOption;
 
 public class LagreTilCsv extends LagreTilFil {
     //writern - få den til å appende et semikolon etter hvert felt i elementet

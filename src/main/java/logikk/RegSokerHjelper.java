@@ -21,8 +21,6 @@ public class RegSokerHjelper {
         else{
             utdanning = "Ikke valgt.";
         }
-
-        //Her skal man kunne hente ut utdanning. DENNE FUNKER IKKE ENDA..!
         return utdanning;
     }
 

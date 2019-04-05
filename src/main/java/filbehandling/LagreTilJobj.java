@@ -4,7 +4,6 @@ package filbehandling;
    - I denne filtypen lagres data i et binært dataformat somm er kompatibelt med Java sine serialiseringsklasser.
    - */
 
-import klasser.Jobbsoker;
 import klasser.Vikariat;
 
 import java.io.*;
@@ -15,9 +14,9 @@ public class LagreTilJobj extends LagreTilFil{
     @Override
     public void skrivPersonTilFil(String person, String path){
 
-       try(FileOutputStream fos = new FileOutputStream(path);
-            ObjectOutputStream out = new ObjectOutputStream(fos)){
-            out.writeObject(person);
+       try(FileOutputStream fileOutput = new FileOutputStream(path);
+            ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput)){
+            objectOutput.writeObject(person);
         }
         catch(IOException e){
             e.printStackTrace();
@@ -27,9 +26,9 @@ public class LagreTilJobj extends LagreTilFil{
     @Override
     public void skrivVikariatTilFil(Vikariat nyVikariat, String path){
 
-        try(FileOutputStream fos = new FileOutputStream(path);
-            ObjectOutputStream out = new ObjectOutputStream(fos)){
-            out.writeObject(nyVikariat);
+        try(FileOutputStream fileOutput = new FileOutputStream(path);
+            ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput)){
+            objectOutput.writeObject(nyVikariat);
         }
         catch(IOException e){
             e.printStackTrace();

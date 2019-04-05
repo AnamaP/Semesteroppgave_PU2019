@@ -52,19 +52,4 @@ public class IndexController {
         //Her skal den gå videre til Vikariat-registrering.
     }
 
-    @FXML
-    private TextField txtBrukernavn;
-    // feilhåndtering for brukernavn??
-
-    @FXML
-    private TextField txtPassord;
-    // feilhåndtering for passord??
-
-    @FXML
-    private void btnLoggInn(ActionEvent event){
-        System.out.println("You clicked Logg inn!");
-        // Her skal den gå videre til enten "Rediger jobbsøker" eller "Rediger arbeidsgiver" basert
-        // på brukernavnet (eks. J001 / A001)
-    }
-
 }

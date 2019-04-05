@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import klasser.Cv;
 import klasser.Jobbsoker;
 import logikk.RegSokerHjelper;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -41,12 +40,11 @@ public class RegSokerController {
         String studieretning = RegSokerHjelper.studieretning(valgRetning);
         String utdanning = RegSokerHjelper.utdanning(valgUtdanning);
         Cv cv = new Cv(utdanning, studieretning, txtErfaring.getText(), kategorier);
+
         // hvis referanse så...
         if(txtReferanse.getText() != ""){
             cv.setReferanse(txtReferanse.getText());
         }
-
-
 
         Jobbsoker nySoker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
                                          txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), cv);

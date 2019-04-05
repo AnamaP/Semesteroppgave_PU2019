@@ -8,8 +8,6 @@ package filbehandling;
   - slike avvik skal deretter fanges i controller-klassen eller tilsvarende, som er koblet opp mot bgs.
   - hvis feil oppstår skal controller klassen påse at feilinformasjonen blir på en naturlig måte fremstilt til bruker */
 
-
-import klasser.Jobbsoker;
 import klasser.Vikariat;
 
 import java.io.IOException;

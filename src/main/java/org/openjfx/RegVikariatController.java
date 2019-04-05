@@ -15,7 +15,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.stage.Stage;
 import klasser.Vikariat;
 import logikk.RegVikariatHjelper;
-
 import java.io.IOException;
 import java.net.URL;
 
