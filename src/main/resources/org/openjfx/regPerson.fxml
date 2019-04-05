@@ -50,7 +50,7 @@
             <TextField fx:id="txtAlder" prefHeight="41.0" prefWidth="117.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
-      <Button layoutX="373.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnRegSokerCsv" prefHeight="27.0" prefWidth="132.0" text="Gå videre" />
+      <Button layoutX="373.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnGaaVidere" prefHeight="27.0" prefWidth="132.0" text="Gå videre" />
       <Button fx:id="btnTilbake" layoutX="31.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
    </children>
 </Pane>

@@ -21,8 +21,7 @@ public class RegistrerSoker {
 
             CheckBox cbxSalg, CheckBox cbxService, CheckBox cbxIt, CheckBox cbxOkonomi) {
 
-        ArrayList<String> personalia = regPersonalia(txtFornavn,txtEtternavn,txtAdresse,txtPostnr,txtPoststed,txtTlf,
-                txtEpost,txtAlder,txtLonnskrav);
+
 
         ArrayList<String> utdannelse = regUtdannelse(txtStud1,txtStud2,txtSkole1,txtSkole2,txtAar1A,txtAar1B,txtAar2A,txtAar2B);
 
@@ -36,24 +35,7 @@ public class RegistrerSoker {
         return new Jobbsoker(personalia,utdannelse,erfaring,referanser,kategorier);
     }
 
-    private static ArrayList<String> regPersonalia(
-            TextField txtFornavn, TextField txtEtternavn, TextField txtAdresse,TextField txtPostnr,
-            TextField txtPoststed, TextField txtTlf, TextField txtEpost, TextField txtAlder,TextField txtLonnskrav){
 
-        ArrayList<String> personalia = new ArrayList<>();
-
-        personalia.add(txtFornavn.getText());
-        personalia.add(txtEtternavn.getText());
-        personalia.add(txtAdresse.getText());
-        personalia.add(txtPostnr.getText());
-        personalia.add(txtPoststed.getText());
-        personalia.add(txtTlf.getText());
-        personalia.add(txtEpost.getText());
-        personalia.add(txtLonnskrav.getText());
-        personalia.add(txtAlder.getText());
-
-        return personalia;
-    }
 
     private static ArrayList<String> regUtdannelse(
             TextField txtStud1,TextField txtStud2, TextField txtSkole1, TextField txtSkole2, TextField txtAar1A,

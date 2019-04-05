@@ -3,24 +3,19 @@ package klasser;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Jobbsoker implements Serializable {
-    private String fornavn;
-    private String etternavn;
-    private String adresse;
-    private String postNr;
-    private String poststed;
-    private String tlf;
-    private String epost;
-    private String alder;
-    private String lonnskrav;
-    private ArrayList<String> utdannelse;
-    private ArrayList<String> erfaring;
-    private ArrayList<String> referanser;
-    private ArrayList<String> kategorier;
+public class Jobbsoker extends Person {
+    private Cv cv;
 
-    public Jobbsoker(ArrayList<String> personalia, ArrayList<String> utdannelse, ArrayList<String> erfaring,
-                     ArrayList<String> referanser, ArrayList<String> kategorier) {
 
+    public Jobbsoker(String fornavn, String etternavn, String adresse, String postnr, String poststed, String tlf,
+                     String epost, String alder, Cv cv) {
+        super(fornavn, etternavn, adresse, postnr, poststed, tlf, epost, alder);
+        this.cv = cv;
+    }
+
+
+
+    /*
         this.fornavn = personalia.get(0);
         this.etternavn = personalia.get(1);
         this.adresse = personalia.get(2);
@@ -73,5 +68,5 @@ public class Jobbsoker implements Serializable {
         ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";";
 
         return ut;
-    }
+    }*/
 }

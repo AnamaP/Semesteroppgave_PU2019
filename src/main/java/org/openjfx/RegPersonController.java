@@ -11,6 +11,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import klasser.Jobbsoker;
+import klasser.Person;
 import logikk.RegistrerSoker;
 import java.io.IOException;
 import java.net.URL;
@@ -20,12 +21,29 @@ public class RegPersonController {
     @FXML
     private TextField txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed, txtTlf, txtEpost, txtAlder;
 
-    public void btnRegSokerCsv(ActionEvent actionEvent) {
-        
-    }
 
     public void btnTilbake(ActionEvent actionEvent) {
     }
+
+    public void btnGaaVidere(ActionEvent event) {
+        Person nyPerson = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
+                txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(),);
+
+        // Lagrer til .csv - - må linkes til FileChooser ?
+        LagreTilFil lagre = new LagreTilCsv();
+        try {
+            lagre.skrivPersonTilFil(nyPerson, "./jobbsoker.csv");
+        } catch (IOException e) { // Endres til FileNotFoundException ??
+            // bør legge til en feilmeldingen i sysOut
+            e.printStackTrace();
+        }
+
+        // Henter fra .csv - må linkes til FileChooser ?
+        HenteFraCsv hentCsv = new HenteFraCsv();
+        hentCsv.henteFraFil("jobbsoker.csv");
+
+    }
+
 
 
 /*
@@ -40,18 +58,6 @@ public class RegPersonController {
 
         System.out.println(nySoker.toString());
 
-        // Lagrer til .csv - - må linkes til FileChooser ?
-        LagreTilFil lagre = new LagreTilCsv();
-        try {
-            lagre.skrivPersonTilFil(nySoker, "./jobbsoker.csv");
-        } catch (IOException e) { // Endres til FileNotFoundException ??
-            // bør legge til en feilmeldingen i sysOut
-            e.printStackTrace();
-        }
-
-        // Henter fra .csv - må linkes til FileChooser ?
-        HenteFraCsv hentCsv = new HenteFraCsv();
-        hentCsv.henteFraFil("jobbsoker.csv");
 
         //Planlegger å Deretter vise på et nytt GUI hva som er skrevet inn.
     }
