@@ -12,20 +12,12 @@ public class Jobbsoker extends Person {
                      String epost, String alder, Cv cv) {
         super(fornavn, etternavn, adresse, postnr, poststed, tlf, epost, alder);
         this.cv = cv;
-        this.lonnskrav = "";
+        this.lonnskrav = "";  // Lag setter da lokhue..!!!
     }
 
-/*
     @Override
     public String toString(){
-        String ut = "";
-        ut += fornavn+";"+etternavn+";"+adresse+";"+postNr+";"+poststed+";"+tlf+";"+epost+";"+alder+";"+lonnskrav+";";
-        ut += utdannelse.get(0)+";"+utdannelse.get(1)+";"+utdannelse.get(2)+";"+utdannelse.get(3)+";"+utdannelse.get(4)+
-                ";"+utdannelse.get(5)+";"+utdannelse.get(6)+";"+utdannelse.get(7)+";";
-        ut += erfaring.get(0)+";"+erfaring.get(1)+";"+erfaring.get(2)+";"+erfaring.get(3)+";"+";"+erfaring.get(4)+";"+erfaring.get(5)+";";
-        ut += referanser.get(0)+";"+referanser.get(1)+";";
-        ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";";
-
+        String ut = super.toString() +";"+lonnskrav+";";
         return ut;
-    } */
+    }
 }

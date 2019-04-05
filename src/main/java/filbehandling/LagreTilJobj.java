@@ -13,7 +13,7 @@ public class LagreTilJobj extends LagreTilFil{
     //private static final long serialVersionUID = 1; // trenger vi denne? hvis klassen endres på i ettertid med nytt datafelt feks..
 
     @Override
-    public void skrivPersonTilFil(Jobbsoker person, String path){
+    public void skrivPersonTilFil(String person, String path){
 
        try(FileOutputStream fos = new FileOutputStream(path);
             ObjectOutputStream out = new ObjectOutputStream(fos)){

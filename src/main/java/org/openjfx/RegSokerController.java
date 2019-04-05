@@ -44,11 +44,12 @@ public class RegSokerController {
 
         Jobbsoker nySoker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
                                          txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), nyCv);
+        String test = "";
 
         // Lagrer til .jobj - må linkes til FileChooser ?
         String path = "jobbsoker.jobj";
         LagreTilJobj lagre = new LagreTilJobj();
-        lagre.skrivPersonTilFil(nySoker, path);
+        lagre.skrivPersonTilFil(test, path);
 
         // Henter fra .jobj - må linkes til FileChooser ?
         HenteFraJobj hentJobj = new HenteFraJobj();
@@ -66,10 +67,12 @@ public class RegSokerController {
         Jobbsoker nySoker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
                 txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), nyCv);
 
+        String ut = nySoker.toString() + nyCv.toString();
+
         // Lagrer til .csv - - må linkes til FileChooser ?
         LagreTilFil lagre = new LagreTilCsv();
         try {
-            lagre.skrivPersonTilFil(nySoker, "./jobbsoker.csv");
+            lagre.skrivPersonTilFil(ut, "./jobbsoker.csv");
         } catch (IOException e) { // Endres til FileNotFoundException ??
             // bør legge til en feilmeldingen i sysOut
             e.printStackTrace();

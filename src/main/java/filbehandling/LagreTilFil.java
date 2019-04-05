@@ -17,7 +17,7 @@ import java.io.IOException;
 public abstract class LagreTilFil {
 
 
-    public abstract void skrivPersonTilFil(Jobbsoker person, String path) throws IOException;
+    public abstract void skrivPersonTilFil(String person, String path) throws IOException;
 
     public abstract void skrivVikariatTilFil(Vikariat nyVikariat, String path) throws IOException;
 

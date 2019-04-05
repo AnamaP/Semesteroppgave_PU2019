@@ -38,4 +38,8 @@ public class Person implements Serializable {
         }
         this.alder = alder;
     }
+
+    public String toString() {
+        return fornavn+";"+etternavn+";"+adresse+";"+postnr+";"+poststed+";"+tlf+";"+epost+";"+alder;
+    }
 }

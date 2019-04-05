@@ -13,7 +13,14 @@ public class Cv {
         this.utdanning = utdanning;
         this.studieretning = studieretning;
         this.erfaring = erfaring;
-        this.referanse = ""; //Lag settere for disse
+        this.referanse = ""; //Lag settere for denne
         this.kategorier = kategorier;
+    }
+
+    public String toString(){
+        String ut = "";
+        ut += utdanning+";"+studieretning+";"+erfaring+";"+referanse+";";
+        ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";";
+        return ut;
     }
 }
