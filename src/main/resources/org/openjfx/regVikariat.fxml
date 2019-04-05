@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegVikariatController">
    <children>
       <Text fill="#084d3e" layoutX="192.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arbeidsgiverregistrering">
@@ -64,7 +63,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bransje:" GridPane.rowIndex="2" />
             <TextField fx:id="txtFirmaNavn" promptText="ex: Tine SA" GridPane.columnIndex="1" />
             <TextField fx:id="txtOrgNr" prefHeight="27.0" prefWidth="154.0" promptText="ex: 12345 67 8899" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField promptText="ex: Produksjon" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtBransje" promptText="ex: Produksjon" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Line endX="-16.0" endY="-116.5" layoutX="352.0" layoutY="349.0" startX="-16.0" startY="-273.5" />
@@ -121,9 +120,31 @@
       </Text>
       <Line endX="485.0" layoutX="150.0" layoutY="256.0" startX="-100.0" />
       <Text layoutX="381.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sektor:" />
-      <RadioButton fx:id="radioOffentlig" layoutX="483.0" layoutY="211.0" mnemonicParsing="false" text="Offentlig" />
-      <RadioButton fx:id="radioPrivat" layoutX="576.0" layoutY="212.0" mnemonicParsing="false" text="Privat" />
-      <RadioButton fx:id="radioHeltid" layoutX="483.0" layoutY="308.0" mnemonicParsing="false" text="Heltid" />
-      <RadioButton fx:id="radioDeltid" layoutX="574.0" layoutY="308.0" mnemonicParsing="false" text="Deltid" />
+      <GridPane layoutX="484.0" layoutY="213.0" prefHeight="19.0" prefWidth="174.0">
+        <columnConstraints>
+          <ColumnConstraints fx:id="gridSektor" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <RadioButton fx:id="radioOffentlig" mnemonicParsing="false" text="Offentlig" />
+            <RadioButton fx:id="radioPrivat" mnemonicParsing="false" text="Privat" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="484.0" layoutY="304.0" prefHeight="27.0" prefWidth="174.0">
+        <columnConstraints>
+          <ColumnConstraints fx:id="gridHelDel" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <RadioButton fx:id="radioHeltid" mnemonicParsing="false" text="Heltid" />
+            <RadioButton fx:id="radioDeltid" mnemonicParsing="false" text="Deltid" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
    </children>
 </Pane>
