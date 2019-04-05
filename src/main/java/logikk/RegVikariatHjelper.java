@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import klasser.Vikariat;
 import java.util.ArrayList;
 
-public class RegistrerVikariat {
+public class RegVikariatHjelper {
 
     public static Vikariat lagVikariat(
             TextField txtFornavn, TextField txtEtternavn, TextField txtEpost, TextField txtTlf, TextField txtFirmaNavn, TextField txtOrgNr,

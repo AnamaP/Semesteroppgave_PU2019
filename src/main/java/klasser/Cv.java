@@ -7,15 +7,13 @@ public class Cv {
     private String studieretning;
     private String erfaring;
     private String referanse;
-    private String lonnskrav;
     private ArrayList<String> kategorier;
 
-    public Cv(String utdanning, String studieretning, String erfaring, String referanse, String lonnskrav, ArrayList<String> kategorier) {
+    public Cv(String utdanning, String studieretning, String erfaring, ArrayList<String> kategorier) {
         this.utdanning = utdanning;
         this.studieretning = studieretning;
         this.erfaring = erfaring;
-        this.referanse = referanse;
-        this.lonnskrav = lonnskrav;
+        this.referanse = ""; //Lag settere for disse
         this.kategorier = kategorier;
     }
 }

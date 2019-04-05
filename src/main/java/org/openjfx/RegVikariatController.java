@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.stage.Stage;
 import klasser.Vikariat;
-import logikk.RegistrerVikariat;
+import logikk.RegVikariatHjelper;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,7 +41,7 @@ public class RegVikariatController {
     @FXML
     private void btnRegArbeidCsv(ActionEvent event) {
 
-         Vikariat nyVikariat = RegistrerVikariat.lagVikariat(txtFornavn, txtEtternavn, txtEpost, txtTlf, txtFirmaNavn, txtOrgNr,
+         Vikariat nyVikariat = RegVikariatHjelper.lagVikariat(txtFornavn, txtEtternavn, txtEpost, txtTlf, txtFirmaNavn, txtOrgNr,
                  txtBransje, txtTittel, txtType, txtLonn, txtKvalifikasjoner, txtBeskrivelse, radioHeltid,
                  radioDeltid, radioOffentlig, radioPrivat, cbxSalg, cbxService, cbxIt, cbxOkonomi);
 
@@ -65,7 +65,7 @@ public class RegVikariatController {
 
     @FXML
     private void btnRegArbeidJobj(ActionEvent event) {
-        Vikariat nyVikariat = RegistrerVikariat.lagVikariat(txtFornavn, txtEtternavn, txtEpost, txtTlf, txtFirmaNavn, txtOrgNr,
+        Vikariat nyVikariat = RegVikariatHjelper.lagVikariat(txtFornavn, txtEtternavn, txtEpost, txtTlf, txtFirmaNavn, txtOrgNr,
                 txtBransje, txtTittel, txtType, txtLonn, txtKvalifikasjoner, txtBeskrivelse, radioHeltid,
                 radioDeltid, radioOffentlig, radioPrivat, cbxSalg, cbxService, cbxIt, cbxOkonomi);
 
