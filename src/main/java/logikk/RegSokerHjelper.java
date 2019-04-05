@@ -2,21 +2,49 @@ package logikk;
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import klasser.Jobbsoker;
 import java.util.ArrayList;
 
 public class RegSokerHjelper {
 
     public static String utdanning(ComboBox valgUtdanning){
         String utdanning = "";
-        //Her skal man hente ut valg av utdanningstype.
+
+        if(valgUtdanning.getValue().equals("Vgs")){
+            utdanning = "Vgs";
+        }
+        else if (valgUtdanning.getValue() == "Bachelor"){
+            utdanning = "Bachelor";
+        }
+        else if (valgUtdanning.getValue() == "Master"){
+            utdanning = "Master";
+        }
+        else{
+            utdanning = "Ikke valgt.";
+        }
+
+        //Her skal man kunne hente ut utdanning. DENNE FUNKER IKKE ENDA..!
         return utdanning;
     }
 
     public static String studieretning(ComboBox valgRetning) {
         String studieretning = "";
-        //Her skal man kunne hente ut studieretning.
+        if(valgRetning.equals("It")){
+            studieretning = "It";
+        }
+        else if (valgRetning.equals("Salg")){
+            studieretning = "Salg";
+        }
+        else if (valgRetning.equals("Økonomi")){
+            studieretning = "Økonomi";
+        }
+        else if (valgRetning.equals("Ledelse")){
+            studieretning = "Ledelse";
+        }
+        else{
+            studieretning = "Ikke valgt.";
+        }
+
+        //Her skal man kunne hente ut studieretning. DENNE FUNKER IKKE ENDA..!
         return studieretning;
     }
 
