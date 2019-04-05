@@ -13,8 +13,12 @@ public class Cv {
         this.utdanning = utdanning;
         this.studieretning = studieretning;
         this.erfaring = erfaring;
-        this.referanse = ""; //Lag settere for denne
+        this.referanse = "";
         this.kategorier = kategorier;
+    }
+
+    public void setReferanse(String referanse){
+        this.referanse = referanse;
     }
 
     public String toString(){

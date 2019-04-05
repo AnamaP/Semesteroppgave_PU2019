@@ -40,10 +40,16 @@ public class RegSokerController {
 
         String studieretning = RegSokerHjelper.studieretning(valgRetning);
         String utdanning = RegSokerHjelper.utdanning(valgUtdanning);
-        Cv nyCv = new Cv(utdanning, studieretning, txtErfaring.getText(), kategorier);
+        Cv cv = new Cv(utdanning, studieretning, txtErfaring.getText(), kategorier);
+        // hvis referanse så...
+        if(txtReferanse.getText() != ""){
+            cv.setReferanse(txtReferanse.getText());
+        }
+
+
 
         Jobbsoker nySoker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
-                                         txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), nyCv);
+                                         txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), cv);
         String test = "";
 
         // Lagrer til .jobj - må linkes til FileChooser ?
@@ -64,10 +70,10 @@ public class RegSokerController {
         String utdanning = RegSokerHjelper.utdanning(valgUtdanning);
         Cv nyCv = new Cv(utdanning, studieretning, txtErfaring.getText(), kategorier);
 
-        Jobbsoker nySoker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
+        Jobbsoker soker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
                 txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), nyCv);
 
-        String ut = nySoker.toString() + nyCv.toString();
+        String ut = soker.toString() + nyCv.toString();
 
         // Lagrer til .csv - - må linkes til FileChooser ?
         LagreTilFil lagre = new LagreTilCsv();
@@ -82,7 +88,7 @@ public class RegSokerController {
         HenteFraCsv hentCsv = new HenteFraCsv();
         hentCsv.henteFraFil("jobbsoker.csv");
 
-        //Planlegger å Deretter vise på et nytt GUI hva som er skrevet inn.
+        //Planlegger å deretter vise på et nytt GUI hva som er skrevet inn.
     }
 
     public void btnTilbake(ActionEvent event) {
