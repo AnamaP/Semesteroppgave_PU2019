@@ -15,20 +15,20 @@ import logikk.RegistrerSoker;
 import java.io.IOException;
 import java.net.URL;
 
-public class RegSokerController {
+public class RegPersonController {
 
     @FXML
-    private TextField txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed, txtTlf, txtEpost, txtAlder, txtLonnskrav;
+    private TextField txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed, txtTlf, txtEpost, txtAlder;
 
-    @FXML
-    private TextField txtStud1, txtStud2, txtSkole1, txtSkole2, txtAar1A, txtAar1B, txtAar2A, txtAar2B;
+    public void btnRegSokerCsv(ActionEvent actionEvent) {
+        
+    }
 
-    @FXML
-    private TextField txtStilling1, txtStilling2, txtReferanse1, txtReferanse2, txtDato1A, txtDato1B, txtDato2A, txtDato2B;
+    public void btnTilbake(ActionEvent actionEvent) {
+    }
 
-    @FXML
-    private CheckBox cbxSalg, cbxService, cbxIt, cbxOkonomi;
 
+/*
 
     @FXML
     private void btnRegSokerCsv(ActionEvent event) {
@@ -91,5 +91,5 @@ public class RegSokerController {
         } catch (IOException io) {
             io.printStackTrace();
         }
-    }
+    }*/
 }
