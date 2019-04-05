@@ -13,13 +13,29 @@ public class Person implements Serializable {
     private String alder;
 
     public Person(String fornavn, String etternavn, String adresse, String postnr, String poststed, String tlf, String epost, String alder) {
-        this.fornavn = fornavn;
-        this.etternavn = etternavn;
-        this.adresse = adresse;
-        this.postnr = postnr;
-        this.poststed = poststed;
-        this.tlf = tlf;
-        this.epost = epost;
+
+        // Feilhåndtering - sjekk heller her om variabelen er null og kaste en feilmelding
+        if(fornavn != null){
+            this.fornavn = fornavn;
+        }
+        if(etternavn != null){
+            this.etternavn = etternavn;
+        }
+        if(adresse != null){
+            this.adresse = adresse;
+        }
+        if(postnr != null){
+            this.postnr = postnr;
+        }
+        if(poststed != null){
+            this.poststed = poststed;
+        }
+        if(tlf != null){
+            this.tlf = tlf;
+        }
+        if(epost != null){
+            this.epost = epost;
+        }
         this.alder = alder;
     }
 }

@@ -15,50 +15,7 @@ public class Jobbsoker extends Person {
         this.lonnskrav = "";
     }
 
-
-
-    /*
-        this.fornavn = personalia.get(0);
-        this.etternavn = personalia.get(1);
-        this.adresse = personalia.get(2);
-        this.postNr = personalia.get(3);
-        this.poststed = personalia.get(4);
-        this.tlf = personalia.get(5);
-        this.epost = personalia.get(6);
-        this.alder = personalia.get(7);
-        this.lonnskrav = personalia.get(8);
-
-        this.utdannelse = utdannelse;
-        this.erfaring = erfaring;
-        this.referanser = referanser;
-        this.kategorier = kategorier;
-
-
-        // Feilhåndtering - sjekk heller her om variabelen er null og kaste en feilmelding
-        if(fornavn != null){
-            this.fornavn = fornavn;
-        }
-        if(etternavn != null){
-            this.etternavn = etternavn;
-        }
-        if(adresse != null){
-            this.adresse = adresse;
-        }
-        if(postNr != null){
-            this.postNr = postNr;
-        }
-        if(poststed != null){
-            this.poststed = poststed;
-        }
-        if(tlf != null){
-            this.tlf = tlf;
-        }
-        if(epost != null){
-            this.epost = epost;
-        }
-
-    }
-
+/*
     @Override
     public String toString(){
         String ut = "";
@@ -70,5 +27,5 @@ public class Jobbsoker extends Person {
         ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";";
 
         return ut;
-    }*/
+    } */
 }

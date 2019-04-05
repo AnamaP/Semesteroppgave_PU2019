@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public class indexController {
+public class IndexController {
 
     @FXML
     private void btnJobbsoker(ActionEvent event) {

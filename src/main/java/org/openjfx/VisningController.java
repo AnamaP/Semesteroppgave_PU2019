@@ -2,7 +2,7 @@ package org.openjfx;
 
 import javafx.fxml.FXML;
 
-public class visningController {
+public class VisningController {
 
     //@FXML
     //public void textField txtVisning;
