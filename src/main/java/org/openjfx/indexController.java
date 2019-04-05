@@ -35,6 +35,19 @@ public class indexController {
 
     @FXML
     private void btnArbeidsgiver(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            URL url = getClass().getResource("/org/openjfx/regVikariat.fxml");
+            loader.setLocation(url);
+
+            Parent parent = loader.load();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
+        }catch (IOException io) {
+            io.printStackTrace();
+        }
         System.out.println("You clicked Vikariat!");
         //Her skal den gå videre til Vikariat-registrering.
     }
