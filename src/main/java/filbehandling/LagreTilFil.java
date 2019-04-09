@@ -17,7 +17,7 @@ public abstract class LagreTilFil {
 
     public abstract void skrivPersonTilFil(String person, String path) throws IOException;
 
-    public abstract void skrivVikariatTilFil(Vikariat nyVikariat, String path) throws IOException;
+    public abstract void skrivVikariatTilFil(String nyUtlysning, String path) throws IOException;
 
 }
 

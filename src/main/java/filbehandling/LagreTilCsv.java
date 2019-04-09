@@ -31,13 +31,13 @@ public class LagreTilCsv extends LagreTilFil {
     }
 
     @Override
-    public void skrivVikariatTilFil(Vikariat nyVikariat, String path) throws IOException {
+    public void skrivVikariatTilFil(String nyUtlysning, String path) throws IOException {
         PrintWriter writer = null;
 
         try{
             FileWriter fileWriter = new FileWriter(path, true); //Set true for append mode
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println(nyVikariat);  //New line
+            printWriter.println(nyUtlysning);  //New line
             printWriter.close();
         }
         finally{

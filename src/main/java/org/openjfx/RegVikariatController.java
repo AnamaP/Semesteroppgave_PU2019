@@ -3,55 +3,49 @@ package org.openjfx;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.stage.Stage;
+import klasser.Arbeidsgiver;
 import klasser.Vikariat;
 import logikk.RegVikariatHjelper;
 import logikk.navigeringsHjelper;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class RegVikariatController {
 
     @FXML
-    private TextField txtFornavn, txtEtternavn, txtEpost, txtTlf, txtFirmaNavn, txtOrgNr, txtBransje, txtTittel, txtType, txtLonn;
+    private TextField txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje;
+
+    @FXML
+    private TextField  txtTittel, txtStillingstittel, txtLonn;
+
+    @FXML
+    private RadioButton radioHeltid, radioDeltid;
 
     @FXML
     private TextArea txtKvalifikasjoner, txtBeskrivelse;
 
     @FXML
-    private RadioButton radioHeltid, radioDeltid, radioOffentlig, radioPrivat;
-
-    @FXML
-    private ColumnConstraints gridSektor, gridHelDel;
-
-    @FXML
-    private CheckBox cbxSalg, cbxService, cbxIt, cbxOkonomi;
+    private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
 
 
     @FXML
     private void btnRegArbeidCsv(ActionEvent event) {
 
-         Vikariat nyVikariat = RegVikariatHjelper.lagVikariat(txtFornavn, txtEtternavn, txtEpost, txtTlf, txtFirmaNavn, txtOrgNr,
-                 txtBransje, txtTittel, txtType, txtLonn, txtKvalifikasjoner, txtBeskrivelse, radioHeltid,
-                 radioDeltid, radioOffentlig, radioPrivat, cbxSalg, cbxService, cbxIt, cbxOkonomi);
+         Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
+                 txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje, txtTittel, txtStillingstittel,
+                 txtLonn, radioHeltid, radioDeltid, txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
-        System.out.println(nyVikariat.toString());
+        String ut = nyUtlysning.toString();
 
         // Lagrer til .csv - - må linkes til FileChooser ?
         LagreTilFil lagre = new LagreTilCsv();
         try {
-            lagre.skrivVikariatTilFil(nyVikariat, "./vikariat.csv");
+            lagre.skrivVikariatTilFil(ut, "./vikariat.csv");
         } catch (IOException e) { // Endres til FileNotFoundException ??
             // bør legge til en feilmeldingen i sysOut
             e.printStackTrace();
@@ -66,13 +60,15 @@ public class RegVikariatController {
 
     @FXML
     private void btnRegArbeidJobj(ActionEvent event) {
-        Vikariat nyVikariat = RegVikariatHjelper.lagVikariat(txtFornavn, txtEtternavn, txtEpost, txtTlf, txtFirmaNavn, txtOrgNr,
-                txtBransje, txtTittel, txtType, txtLonn, txtKvalifikasjoner, txtBeskrivelse, radioHeltid,
-                radioDeltid, radioOffentlig, radioPrivat, cbxSalg, cbxService, cbxIt, cbxOkonomi);
+        Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
+                txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje, txtTittel, txtStillingstittel,
+                txtLonn, radioHeltid, radioDeltid, txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
+
+        String ut = nyUtlysning.toString();
 
         String path = "vikariat.jobj";
         LagreTilJobj lagre = new LagreTilJobj();
-        lagre.skrivVikariatTilFil(nyVikariat, path);
+        lagre.skrivVikariatTilFil(ut, path);
 
         // Henter fra .jobj - må linkes til FileChooser ?
         HenteFraJobj hentJobj = new HenteFraJobj();
