@@ -1,9 +1,12 @@
 package org.openjfx;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 public class VisningController {
 
-    //@FXML
-    //public void textField txtVisning;
+    @FXML
+    public TextField txtVisning;
+
+
 }

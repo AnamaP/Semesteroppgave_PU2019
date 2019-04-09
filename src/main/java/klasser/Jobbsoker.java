@@ -1,8 +1,5 @@
 package klasser;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 public class Jobbsoker extends Person {
     private Cv cv;
     private String lonnskrav;
@@ -21,7 +18,7 @@ public class Jobbsoker extends Person {
 
     @Override
     public String toString(){
-        String ut = super.toString() +";"+lonnskrav+";";
+        String ut = super.toString() +";"+lonnskrav+";"+cv.toString();
         return ut;
     }
 }

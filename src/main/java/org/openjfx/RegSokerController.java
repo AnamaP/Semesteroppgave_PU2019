@@ -3,19 +3,15 @@ package org.openjfx;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import klasser.Cv;
 import klasser.Jobbsoker;
 import logikk.RegSokerHjelper;
+import logikk.navigeringsHjelper;
+
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class RegSokerController {
@@ -35,19 +31,8 @@ public class RegSokerController {
 
     public void btnRegSokerJobj(ActionEvent event) {
 
-        ArrayList<String> kategorier = RegSokerHjelper.regKategori(cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
-
-        String studieretning = RegSokerHjelper.studieretning(valgRetning);
-        String utdanning = RegSokerHjelper.utdanning(valgUtdanning);
-        Cv cv = new Cv(utdanning, studieretning, txtErfaring.getText(), kategorier);
-
-        // hvis referanse så...
-        if(txtReferanse.getText() != ""){
-            cv.setReferanse(txtReferanse.getText());
-        }
-
-        Jobbsoker nySoker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
-                                         txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), cv);
+        Jobbsoker nySoker = RegSokerHjelper.nySoker(txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed, txtTlf, txtEpost, txtAlder,
+                valgUtdanning, valgRetning, txtErfaring,  txtReferanse, txtLonnskrav, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
         String test = "";
 
@@ -59,30 +44,17 @@ public class RegSokerController {
         // Henter fra .jobj - må linkes til FileChooser ?
         HenteFraJobj hentJobj = new HenteFraJobj();
         hentJobj.henteFraFil("jobbsoker.jobj");
+
+        //Tar brukeren med til neste side:
+        //navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
     }
 
     public void btnRegSokerCsv(ActionEvent event) {
 
-        ArrayList<String> kategorier = RegSokerHjelper.regKategori(cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
+        Jobbsoker nySoker = RegSokerHjelper.nySoker(txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed, txtTlf, txtEpost, txtAlder,
+                valgUtdanning, valgRetning, txtErfaring,  txtReferanse, txtLonnskrav, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
-        String studieretning = RegSokerHjelper.studieretning(valgRetning);
-        String utdanning = RegSokerHjelper.utdanning(valgUtdanning);
-        Cv cv = new Cv(utdanning, studieretning, txtErfaring.getText(), kategorier);
-
-        // hvis referanse så...
-        if(txtReferanse.getText() != ""){
-            cv.setReferanse(txtReferanse.getText());
-        }
-
-        Jobbsoker soker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
-                txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), cv);
-
-        //Hvis lonnskrav så..
-        if(txtLonnskrav.getText() != ""){
-            soker.setLonnskrav(txtLonnskrav.getText());
-        }
-
-        String ut = soker.toString() + cv.toString();
+        String ut = nySoker.toString();
 
         // Lagrer til .csv - - må linkes til FileChooser ?
         LagreTilFil lagre = new LagreTilCsv();
@@ -97,23 +69,14 @@ public class RegSokerController {
         HenteFraCsv hentCsv = new HenteFraCsv();
         hentCsv.henteFraFil("jobbsoker.csv");
 
-        //Planlegger å deretter vise på et nytt GUI hva som er skrevet inn.
+
+        //Tar brukeren med til neste side:
+        //navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
     }
 
     public void btnTilbake(ActionEvent event) {
-        System.out.println("Du har klikket deg tilbake!");
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            URL url = getClass().getResource("/org/openjfx/index.fxml");
-            loader.setLocation(url);
+        //Tar brukeren tilbake til index:
+        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
 
-            Parent parent = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
     }
 }

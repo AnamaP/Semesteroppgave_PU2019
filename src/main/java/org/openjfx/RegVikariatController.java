@@ -15,6 +15,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.stage.Stage;
 import klasser.Vikariat;
 import logikk.RegVikariatHjelper;
+import logikk.navigeringsHjelper;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -80,19 +82,8 @@ public class RegVikariatController {
 
     @FXML
     private void btnTilbake(ActionEvent event) {
-        System.out.println("Du har klikket deg tilbake!");
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            URL url = getClass().getResource("/org/openjfx/index.fxml");
-            loader.setLocation(url);
+        //Tar brukeren tilbake til index:
+        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
 
-            Parent parent = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
     }
 }
