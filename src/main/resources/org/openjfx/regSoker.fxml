@@ -58,7 +58,6 @@
             <TextField fx:id="txtLonnskrav" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <Button fx:id="btnRegistrerSoker" layoutX="434.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnRegSokerJobj" text="Registrer til jobj-fil" />
       <Text fill="#000000cf" layoutX="336.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder:">
          <font>
             <Font name="Ayuthaya" size="16.0" />
@@ -100,7 +99,7 @@
       <Text layoutX="295.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referanser:" />
       <TextField fx:id="txtErfaring" layoutX="32.0" layoutY="429.0" prefHeight="27.0" prefWidth="252.0" promptText="Firma, stilling" />
       <TextField fx:id="txtReferanse" layoutX="294.0" layoutY="429.0" prefHeight="27.0" prefWidth="252.0" promptText="Fullt navn, tlf" />
-      <Button layoutX="294.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnRegSokerCsv" prefHeight="27.0" prefWidth="132.0" text="Registrer til csv-fil" />
+      <Button layoutX="499.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnRegSoker" prefHeight="27.0" prefWidth="62.0" text="Lagre" />
       <Button fx:id="btnTilbake" layoutX="21.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
    </children>
 </Pane>
