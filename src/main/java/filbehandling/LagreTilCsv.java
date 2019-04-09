@@ -4,8 +4,6 @@ package filbehandling;
    - denne filtypen lagrer data som tekst, der hvert element er skrevet ut for hver linke i tekstfilen.
    - hver datakolonne separeres med et tegn, f.eks. semikolon. */
 
-
-import klasser.Vikariat;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
