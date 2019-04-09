@@ -4,8 +4,6 @@ import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import klasser.Jobbsoker;
@@ -32,7 +30,7 @@ public class RegSokerController {
 
     public void btnRegSoker(ActionEvent event) {
 
-        // FileChooser
+        // FileChooser, kan denne legges utenfor Controlleren? samme metode for RegVikariatController
         Stage chooserStage = new Stage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Lagre som");
@@ -62,13 +60,13 @@ public class RegSokerController {
         hentCsv.henteFraFil(chosenpath); // her var "jobbsoker.csv" tidligere
 
         // Lagrer til .jobj
-        String path = "jobbsoker.jobj";
-        LagreTilJobj lagre1 = new LagreTilJobj();
-        lagre1.skrivPersonTilFil(ut, path);
+        String path = chosenpath; // her var "jobbsoker.jobj" tidligere
+        LagreTilJobj lagreJobj = new LagreTilJobj();
+        lagreJobj.skrivPersonTilFil(ut, path);
 
         // Henter fra .jobj
         HenteFraJobj hentJobj = new HenteFraJobj();
-        hentJobj.henteFraFil("jobbsoker.jobj");
+        hentJobj.henteFraFil(chosenpath);// her var "jobbsoker.jobj" tidligere
 
         //Tar brukeren med til neste side:
         //navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);

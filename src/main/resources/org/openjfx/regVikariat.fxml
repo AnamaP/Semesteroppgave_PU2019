@@ -15,7 +15,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegVikariatController">
    <children>
-      <Text fill="#084d3e" layoutX="192.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arbeidsgiverregistrering">
+      <Text fill="#084d3e" layoutX="230.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arbeidsgiverregistrering">
          <font>
             <Font name="Ayuthaya" size="20.0" />
          </font>
@@ -68,23 +68,22 @@
          </children>
       </GridPane>
       <Text layoutX="48.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori:" />
-      <Text fill="#084d3e" layoutX="222.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsutlysning">
+      <Text fill="#084d3e" layoutX="262.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsutlysning">
          <font>
             <Font name="Ayuthaya" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="btnRegArbeidJobj" layoutX="347.0" layoutY="637.0" mnemonicParsing="false" onAction="#btnRegArbeidJobj" text="Registrer til .jobj-fil" />
       <Button fx:id="btnRegArbeidCsv" layoutX="494.0" layoutY="637.0" mnemonicParsing="false" onAction="#btnRegArbeidCsv" text="Registrer til .csv-fil" />
       <Button fx:id="btnTilbake" layoutX="44.0" layoutY="637.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
       <Text layoutX="51.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsbeskrivelse:" />
-      <Text layoutX="52.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overskrift:" />
-      <TextField fx:id="txtTittel" layoutX="175.0" layoutY="300.0" prefHeight="27.0" prefWidth="271.0" promptText="ex: Ser etter Salgsmedarbeider" />
+      <Text layoutX="52.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingstittel:" />
+      <TextField fx:id="txtStillingstittel" layoutX="176.0" layoutY="300.0" prefHeight="27.0" prefWidth="271.0" promptText="ex: Salgsmedarbeider" />
       <Text layoutX="376.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antatt årslønn:" />
-      <Text layoutX="51.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingstittel:" />
-      <TextField fx:id="txtStillingstittel" layoutX="176.0" layoutY="473.0" prefHeight="27.0" prefWidth="151.0" promptText="ex: Salgsmedarbeider" />
+      <Text layoutX="51.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varighet:" wrappingWidth="78.22851562500006" />
+      <TextField fx:id="txtVarighet" layoutX="176.0" layoutY="473.0" prefHeight="27.0" prefWidth="151.0" promptText="ex: 6mnd" />
       <TextField fx:id="txtLonn" layoutX="480.0" layoutY="473.0" prefHeight="27.0" prefWidth="151.0" promptText="ex: 250 000" />
       <Text layoutX="49.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kvalifikasjoner:" />
-      <TextArea fx:id="txtBeskrivelse" layoutX="176.0" layoutY="335.0" prefHeight="116.0" prefWidth="454.0" promptText="Skriv inn litt info om hva stillingen går ut på..." />
+      <TextArea fx:id="txtBeskrivelse" layoutX="176.0" layoutY="335.0" prefHeight="116.0" prefWidth="454.0" promptText="Skriv inn litt informasjon om hva stillingen går ut på, arbeidstid m.m." />
       <Text layoutX="564.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="max 200 ord">
          <font>
             <Font size="11.0" />

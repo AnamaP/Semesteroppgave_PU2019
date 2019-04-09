@@ -12,15 +12,20 @@ public class RegVikariatHjelper {
 
     public static Arbeidsgiver lagVikariat(
             TextField txtKontaktperson, TextField txtTlf, TextField txtSektor, TextField txtFirmaNavn, TextField txtOrgNr, TextField txtBransje,
-            TextField txtTittel, TextField txtStillingstittel, TextField txtLonn, RadioButton radioHeltid, RadioButton radioDeltid,
+            TextField txtStillingstittel, TextField txtVarighet, TextField txtLonn, RadioButton radioHeltid, RadioButton radioDeltid,
             TextArea txtKvalifikasjoner,  TextArea txtBeskrivelse, CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi) {
 
         ArrayList<String> kategorier = regKategori.regKategori(cbxSalg,cbxAdmin,cbxIt,cbxOkonomi);
 
         String stillingsType = regArbeidsTid(radioHeltid, radioDeltid);
 
-        Vikariat nyttVikariat = new Vikariat(txtTittel.getText(), txtStillingstittel.getText(), txtLonn.getText(), txtBeskrivelse.getText(),
+        Vikariat nyttVikariat = new Vikariat(txtStillingstittel.getText(), txtVarighet.getText(), txtBeskrivelse.getText(),
                                              txtKvalifikasjoner.getText(), stillingsType, kategorier);
+
+        // hvis "antatt årslønn" er satt så...
+        if(txtLonn.getText() != ""){
+            nyttVikariat.setLonn(txtLonn.getText());
+        }
 
         Arbeidsgiver nyArbeidsgiver = new Arbeidsgiver(txtKontaktperson.getText(),txtTlf.getText(),txtSektor.getText(),txtFirmaNavn.getText(),
                                                        txtOrgNr.getText(), txtBransje.getText(), nyttVikariat);
