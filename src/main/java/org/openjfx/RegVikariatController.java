@@ -45,7 +45,7 @@ public class RegVikariatController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter(".csv", "*.csv"),
                 new FileChooser.ExtensionFilter(".jobj", "*.jobj"));
-        File selectedFile = fileChooser.showSaveDialog(chooserStage);
+        File selectedFile = fileChooser.showOpenDialog(chooserStage); //showSaveDialog
         String chosenpath = selectedFile.toString();
 
          Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
