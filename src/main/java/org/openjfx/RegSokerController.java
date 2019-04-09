@@ -6,13 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import klasser.Cv;
 import klasser.Jobbsoker;
 import logikk.RegSokerHjelper;
 import logikk.navigeringsHjelper;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class RegSokerController {
 
@@ -34,12 +32,12 @@ public class RegSokerController {
         Jobbsoker nySoker = RegSokerHjelper.nySoker(txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed, txtTlf, txtEpost, txtAlder,
                 valgUtdanning, valgRetning, txtErfaring,  txtReferanse, txtLonnskrav, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
-        String test = "";
+        String ut = nySoker.toString();
 
         // Lagrer til .jobj - må linkes til FileChooser ?
         String path = "jobbsoker.jobj";
         LagreTilJobj lagre = new LagreTilJobj();
-        lagre.skrivPersonTilFil(test, path);
+        lagre.skrivPersonTilFil(ut, path);
 
         // Henter fra .jobj - må linkes til FileChooser ?
         HenteFraJobj hentJobj = new HenteFraJobj();
@@ -68,7 +66,6 @@ public class RegSokerController {
         // Henter fra .csv - må linkes til FileChooser ?
         HenteFraCsv hentCsv = new HenteFraCsv();
         hentCsv.henteFraFil("jobbsoker.csv");
-
 
         //Tar brukeren med til neste side:
         //navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
