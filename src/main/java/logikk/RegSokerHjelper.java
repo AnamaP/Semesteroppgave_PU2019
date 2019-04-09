@@ -15,7 +15,7 @@ public class RegSokerHjelper {
                             ComboBox valgUtdanning, ComboBox valgRetning, TextField txtErfaring, TextField txtReferanse,
                             TextField txtLonnskrav, CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi){
 
-        ArrayList<String> kategorier = RegSokerHjelper.regKategori(cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
+        ArrayList<String> kategorier = regKategori.regKategori(cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
         String studieretning = RegSokerHjelper.studieretning(valgRetning);
         String utdanning = RegSokerHjelper.utdanning(valgUtdanning);
@@ -74,38 +74,6 @@ public class RegSokerHjelper {
 
         //Her skal man kunne hente ut studieretning. DENNE FUNKER IKKE ENDA..!
         return studieretning;
-    }
-
-    public static ArrayList<String> regKategori(CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi){
-
-        ArrayList<String> kategorier = new ArrayList<>();
-
-        // Alternativ : lage en forløkke, hente ut med [i]+1
-        if (cbxSalg.isSelected()) {
-            kategorier.add("Salg"); // 0
-        } else {
-            kategorier.add("NULL");
-        }
-
-        if (cbxAdmin.isSelected()) {
-            kategorier.add("Service"); // 1
-        } else {
-            kategorier.add("NULL");
-        }
-
-        if (cbxIt.isSelected()) {
-            kategorier.add("It"); // 2
-        } else {
-            kategorier.add("NULL");
-        }
-
-        if (cbxOkonomi.isSelected()) {
-            kategorier.add("Okonomi"); // 3
-        } else {
-            kategorier.add("NULL");
-        }
-
-        return kategorier;
     }
 
 }
