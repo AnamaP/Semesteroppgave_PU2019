@@ -13,7 +13,7 @@ public class RegVikariatHjelper {
     public static Arbeidsgiver lagVikariat(
             TextField txtKontaktperson, TextField txtTlf, TextField txtSektor, TextField txtFirmaNavn, TextField txtOrgNr, TextField txtBransje,
             TextField txtStillingstittel, TextField txtVarighet, TextField txtLonn, RadioButton radioHeltid, RadioButton radioDeltid,
-            TextArea txtKvalifikasjoner,  TextArea txtBeskrivelse, CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi) {
+            TextField txtKvalifikasjoner,  TextArea txtBeskrivelse, CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi) {
 
         ArrayList<String> kategorier = regKategori.regKategori(cbxSalg,cbxAdmin,cbxIt,cbxOkonomi);
 

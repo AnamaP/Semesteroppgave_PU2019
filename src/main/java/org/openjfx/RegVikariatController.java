@@ -13,8 +13,7 @@ import klasser.Arbeidsgiver;
 import logikk.RegVikariatHjelper;
 import logikk.navigeringsHjelper;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class RegVikariatController {
 
@@ -22,13 +21,13 @@ public class RegVikariatController {
     private TextField txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje;
 
     @FXML
-    private TextField  txtStillingstittel, txtVarighet, txtLonn;
+    private TextField  txtStillingstittel, txtVarighet, txtLonn,txtKvalifikasjoner;
 
     @FXML
     private RadioButton radioHeltid, radioDeltid;
 
     @FXML
-    private TextArea txtKvalifikasjoner, txtBeskrivelse;
+    private TextArea txtBeskrivelse;
 
     @FXML
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
@@ -36,7 +35,7 @@ public class RegVikariatController {
 
 
     @FXML
-    private void btnRegArbeidCsv(ActionEvent event) {
+    private void btnRegVikariat(ActionEvent event) {
 
         // FileChooser
         Stage chooserStage = new Stage();
@@ -48,11 +47,36 @@ public class RegVikariatController {
         File selectedFile = fileChooser.showOpenDialog(chooserStage); //showSaveDialog
         String chosenpath = selectedFile.toString();
 
-         Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
-                 txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje,txtStillingstittel, txtVarighet,
-                 txtLonn, radioHeltid, radioDeltid, txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
+
+        Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
+                txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje, txtStillingstittel, txtVarighet,
+                txtLonn,radioHeltid, radioDeltid, txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
         String ut = nyUtlysning.toString();
+
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        PrintWriter pw = null;
+
+        try {
+            fw = new FileWriter(chosenpath, true);
+            bw = new BufferedWriter(fw);
+            pw = new PrintWriter(bw);
+            pw.println(ut);
+            System.out.println("Data Successfully appended into file");
+            pw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pw.close();
+                bw.close();
+                fw.close();
+            } catch (IOException io) {
+
+            }
+        }
+
 
         // Lagrer til .csv
         LagreTilFil lagreCsv = new LagreTilCsv();

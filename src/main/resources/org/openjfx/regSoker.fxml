@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegSokerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegSokerController">
    <children>
-      <Text fill="#084d3e" layoutX="168.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jobbsøkerregistrering">
+      <Text fill="#084d3e" layoutX="197.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jobbsøkerregistrering" wrappingWidth="196.0">
          <font>
             <Font name="Ayuthaya" size="20.0" />
          </font>
@@ -90,7 +90,7 @@
       <CheckBox fx:id="cbxIt" layoutX="345.0" layoutY="138.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="IT" />
       <CheckBox fx:id="cbxOkonomi" layoutX="345.0" layoutY="166.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Økonomi" />
       <Line endX="435.5" layoutX="125.0" layoutY="310.0" startX="-100.0" />
-      <Text fill="#084d3e" layoutX="269.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- CV -">
+      <Text fill="#084d3e" layoutX="269.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- CV -">
          <font>
             <Font name="Ayuthaya" size="14.0" />
          </font>
