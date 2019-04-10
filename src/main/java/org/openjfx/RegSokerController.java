@@ -36,7 +36,7 @@ public class RegSokerController {
         // Lagrer til .csv
         LagreTilFil lagre = new LagreTilCsv();
         try {
-            lagre.skrivPersonTilFil(ut, "jobbsoker.csv");
+            lagre.skrivTilFil(ut, "jobbsoker.csv");
         }
         catch (IOException e) { // Endres til FileNotFoundException ??
             // bør legge til en feilmeldingen i sysOut
@@ -46,7 +46,7 @@ public class RegSokerController {
         // Lagrer til .jobj
         String path = "jobbsoker.jobj";
         LagreTilJobj lagreJobj = new LagreTilJobj();
-        lagreJobj.skrivPersonTilFil(ut, "jobbsoker.jobj");
+        lagreJobj.skrivTilFil(ut, "jobbsoker.jobj");
 
         //Tar brukeren med til neste side:
         navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);

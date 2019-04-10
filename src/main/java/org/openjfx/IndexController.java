@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import klasser.Arbeidsgiver;
+import logikk.lastNedHjelper;
 import logikk.navigeringsHjelper;
 
 import java.io.File;
@@ -27,35 +28,12 @@ public class IndexController {
     @FXML
     private void btnArbeidsgiver(ActionEvent event) {
         navigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            URL url = getClass().getResource("/org/openjfx/regVikariat.fxml");
-            loader.setLocation(url);
-
-            Parent parent = loader.load();
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
-        }catch (IOException io) {
-            io.printStackTrace();
-        }
-        System.out.println("You clicked Vikariat!");
-        //Her skal den gå videre til Vikariat-registrering.
     }
 
 
     public void btnLastNedSokere(ActionEvent actionEvent) {
 
-        // FileChooser
-        Stage chooserStage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Lagre som");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter(".csv", "*.csv"),
-                new FileChooser.ExtensionFilter(".jobj", "*.jobj"));
-        File selectedFile = fileChooser.showSaveDialog(chooserStage); //showSaveDialog
-        String chosenpath = selectedFile.toString();
+        String chosenpath = lastNedHjelper.fileChooser();
 
         // Henter fra .csv
         HenteFraCsv hentCsvVikariat = new HenteFraCsv();
@@ -63,26 +41,24 @@ public class IndexController {
 
         LagreTilCsv ltc = new LagreTilCsv();
         try {
-            ltc.skrivPersonTilFil(sb, chosenpath);
+            ltc.skrivTilFil(sb, chosenpath);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Henter fra .jobj
+        HenteFraJobj hentJobjVikariat = new HenteFraJobj();
+        String innholdJobj = hentJobjVikariat.henteFraFil("jobbsoker.jobj");
+
+        LagreTilJobj lagreTilJobj = new LagreTilJobj();
+        lagreTilJobj.skrivTilFil(innholdJobj, chosenpath);
     }
 
 
     public void btnLastNedVikariater(ActionEvent actionEvent) {
 
-        // FileChooser - samle denne i en metode !!
-        Stage chooserStage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Lagre som");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter(".csv", "*.csv"),
-                new FileChooser.ExtensionFilter(".jobj", "*.jobj"));
-        File selectedFile = fileChooser.showSaveDialog(chooserStage);
-        //file.separator sjekk ut for formatering
-        String chosenpath = selectedFile.toString();
+        String chosenpath = lastNedHjelper.fileChooser();
 
         // Henter fra .csv
         HenteFraCsv hentCsvVikariat = new HenteFraCsv();
@@ -90,7 +66,7 @@ public class IndexController {
 
         LagreTilCsv lagreTilCsv = new LagreTilCsv();
         try {
-            lagreTilCsv.skrivPersonTilFil(innholdCsv, chosenpath);
+            lagreTilCsv.skrivTilFil(innholdCsv, chosenpath);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -101,7 +77,7 @@ public class IndexController {
         String innholdJobj = hentJobjVikariat.henteFraFil("vikariat.jobj");
 
         LagreTilJobj lagreTilJobj = new LagreTilJobj();
-        lagreTilJobj.skrivPersonTilFil(innholdJobj, chosenpath);
+        lagreTilJobj.skrivTilFil(innholdJobj, chosenpath);
 
     }
 }

@@ -44,7 +44,7 @@ public class RegVikariatController {
         // Lagrer til .csv
         LagreTilFil lagreCsv = new LagreTilCsv();
         try {
-            lagreCsv.skrivVikariatTilFil(ut, "vikariat.csv");
+            lagreCsv.skrivTilFil(ut, "vikariat.csv");
         } catch (IOException e) { // Endres til FileNotFoundException ??
             // bør legge til en feilmeldingen i sysOut
             e.printStackTrace();
@@ -53,7 +53,7 @@ public class RegVikariatController {
         // Lagrer til .jobj
         String path = "vikariat.jobj";
         LagreTilJobj lagreJobj = new LagreTilJobj();
-        lagreJobj.skrivVikariatTilFil(ut, path);
+        lagreJobj.skrivTilFil(ut, path);
 
 
         //Tar brukeren til visning:

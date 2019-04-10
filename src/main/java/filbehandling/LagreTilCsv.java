@@ -10,30 +10,13 @@ public class LagreTilCsv extends LagreTilFil {
     //writern - få den til å appende et semikolon etter hvert felt i elementet
 
     @Override
-    public void skrivPersonTilFil(String person, String path) throws IOException {
+    public void skrivTilFil(String person, String path) throws IOException {
         PrintWriter writer = null;
 
         try{
             FileWriter fileWriter = new FileWriter(path, true); //Set true for append mode
             PrintWriter printWriter = new PrintWriter(fileWriter);
             printWriter.println(person);  //New line
-            printWriter.close();
-        }
-        finally{
-            if(writer != null){
-                writer.close();
-            }
-        }
-    }
-
-    @Override
-    public void skrivVikariatTilFil(String nyUtlysning, String path) throws IOException {
-        PrintWriter writer = null;
-
-        try{
-            FileWriter fileWriter = new FileWriter(path, true); //Set true for append mode
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println(nyUtlysning);  //New line
             printWriter.close();
         }
         finally{
