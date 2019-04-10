@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import klasser.Arbeidsgiver;
+import logikk.navigeringsHjelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,25 +21,12 @@ public class IndexController {
 
     @FXML
     private void btnJobbsoker(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            URL url = getClass().getResource("/org/openjfx/regSoker.fxml");
-            loader.setLocation(url);
-
-            Parent parent = loader.load();
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
-        }catch (IOException io){
-            io.printStackTrace();
-        }
-        System.out.println("You clicked Jobbsøker!");
-        //Her skal den gå videre til Jobbsøker-registrering.
+        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/regSoker.fxml", event);
     }
 
     @FXML
     private void btnArbeidsgiver(ActionEvent event) {
+        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
         try {
             FXMLLoader loader = new FXMLLoader();
             URL url = getClass().getResource("/org/openjfx/regVikariat.fxml");
@@ -97,20 +86,22 @@ public class IndexController {
 
         // Henter fra .csv
         HenteFraCsv hentCsvVikariat = new HenteFraCsv();
-        String sb = hentCsvVikariat.henteFraFil("vikariat.csv");
+        String innholdCsv = hentCsvVikariat.henteFraFil("vikariat.csv");
 
-        LagreTilCsv ltc = new LagreTilCsv();
+        LagreTilCsv lagreTilCsv = new LagreTilCsv();
         try {
-            ltc.skrivPersonTilFil(sb, chosenpath);
+            lagreTilCsv.skrivPersonTilFil(innholdCsv, chosenpath);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
-
         // Henter fra .jobj
         HenteFraJobj hentJobjVikariat = new HenteFraJobj();
-        hentJobjVikariat.henteFraFil("vikariat.jobj");
+        String innholdJobj = hentJobjVikariat.henteFraFil("vikariat.jobj");
+
+        LagreTilJobj lagreTilJobj = new LagreTilJobj();
+        lagreTilJobj.skrivPersonTilFil(innholdJobj, chosenpath);
 
     }
 }

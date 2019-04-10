@@ -115,6 +115,5 @@
       <TextField fx:id="txtTlf" layoutX="157.0" layoutY="144.0" promptText="12345678" />
       <TextField fx:id="txtSektor" layoutX="157.0" layoutY="178.0" promptText="Offentlig / privat" />
       <TextField fx:id="txtKvalifikasjoner" layoutX="175.0" layoutY="475.0" prefHeight="25.0" prefWidth="507.0" promptText="ex: Strukturert, punktlig, gode sammarbeidsevner ..." />
-      <Button layoutX="324.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnVisInfo" prefHeight="27.0" prefWidth="76.0" text="Vis info" />
    </children>
 </Pane>

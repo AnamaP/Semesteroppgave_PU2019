@@ -8,14 +8,14 @@ import java.io.RandomAccessFile;
 public class HenteFraCsv extends HenteFraFil {
 
     public String henteFraFil(String path){
-        String sb = "";
+        String innhold = "";
 
         try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
 
             // leser kun nå de 30 første linjene
             for(int i = 0; i < 30; i++){
-                sb += lesFil.readLine();
-                sb += "\n";
+                innhold += lesFil.readLine();
+                innhold += "\n";
             }
         }
         catch(FileNotFoundException e){
@@ -25,7 +25,7 @@ public class HenteFraCsv extends HenteFraFil {
             System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
 
-        System.out.println(sb);
-        return sb;
+        System.out.println(innhold);
+        return innhold;
     }
 }

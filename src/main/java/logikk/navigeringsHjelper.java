@@ -13,7 +13,6 @@ import java.net.URL;
 public class navigeringsHjelper {
 
     public static void gåTilAnnenSide(String path, ActionEvent event){
-        System.out.println("Du har klikket deg tilbake!");
         try {
             FXMLLoader loader = new FXMLLoader();
             URL url = navigeringsHjelper.class.getResource(path);
