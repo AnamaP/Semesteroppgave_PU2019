@@ -30,7 +30,7 @@ public class RegSokerController {
 
     public void btnRegSoker(ActionEvent event) {
 
-        // FileChooser, kan denne legges utenfor Controlleren? samme metode for RegVikariatController
+        // FileChooser - samle denne i en metode !!
         Stage chooserStage = new Stage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Lagre som");
@@ -40,15 +40,16 @@ public class RegSokerController {
         File selectedFile = fileChooser.showSaveDialog(chooserStage);
         String chosenpath = selectedFile.toString();
 
-        Jobbsoker nySoker = RegSokerHjelper.nySoker(txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed, txtTlf, txtEpost, txtAlder,
-                valgUtdanning, valgRetning, txtErfaring, txtReferanse, txtLonnskrav, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
+        Jobbsoker nySoker = RegSokerHjelper.nySoker(txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed,
+                txtTlf, txtEpost, txtAlder,valgUtdanning, valgRetning, txtErfaring, txtReferanse, txtLonnskrav, cbxSalg,
+                cbxAdmin, cbxIt, cbxOkonomi);
 
         String ut = nySoker.toString();
 
-        // Lagrer til .csv
+        // Lagrer til .csv (byttet ut chosenpath med "jobbsoker.csv"
         LagreTilFil lagre = new LagreTilCsv();
         try {
-            lagre.skrivPersonTilFil(ut, chosenpath); // her var "jobbsoker.csv" tidligere
+            lagre.skrivPersonTilFil(ut, "jobbsoker.csv");
         }
         catch (IOException e) { // Endres til FileNotFoundException ??
             // bør legge til en feilmeldingen i sysOut
@@ -57,16 +58,16 @@ public class RegSokerController {
 
         // Henter fra .csv
         HenteFraCsv hentCsv = new HenteFraCsv();
-        hentCsv.henteFraFil(chosenpath); // her var "jobbsoker.csv" tidligere
+        hentCsv.henteFraFil("jobbsoker.csv");
 
         // Lagrer til .jobj
-        String path = chosenpath; // her var "jobbsoker.jobj" tidligere
+        String path = "jobbsoker.jobj";
         LagreTilJobj lagreJobj = new LagreTilJobj();
-        lagreJobj.skrivPersonTilFil(ut, path);
+        lagreJobj.skrivPersonTilFil(ut, "jobbsoker.jobj");
 
         // Henter fra .jobj
         HenteFraJobj hentJobj = new HenteFraJobj();
-        hentJobj.henteFraFil(chosenpath);// her var "jobbsoker.jobj" tidligere
+        hentJobj.henteFraFil("jobbsoker.jobj");
 
         //Tar brukeren med til neste side:
         //navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
