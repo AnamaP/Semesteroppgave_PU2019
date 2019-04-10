@@ -7,8 +7,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import klasser.Arbeidsgiver;
 import logikk.RegVikariatHjelper;
 import logikk.navigeringsHjelper;
@@ -33,51 +31,33 @@ public class RegVikariatController {
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
 
-
     @FXML
     private void btnRegVikariat(ActionEvent event) {
 
-        // FileChooser
-        Stage chooserStage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Lagre som");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter(".csv", "*.csv"),
-                new FileChooser.ExtensionFilter(".jobj", "*.jobj"));
-        File selectedFile = fileChooser.showOpenDialog(chooserStage); //showSaveDialog
-        String chosenpath = selectedFile.toString();
-
-
         Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
-                txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje, txtStillingstittel, txtVarighet,
-                txtLonn,radioHeltid, radioDeltid, txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
+                txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje,
+                txtStillingstittel, txtVarighet, txtLonn,radioHeltid, radioDeltid,
+                txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
         String ut = nyUtlysning.toString();
-
 
         // Lagrer til .csv
         LagreTilFil lagreCsv = new LagreTilCsv();
         try {
-            lagreCsv.skrivVikariatTilFil(ut, chosenpath); // "vikariat.csv" tidligere
+            lagreCsv.skrivVikariatTilFil(ut, "vikariat.csv");
         } catch (IOException e) { // Endres til FileNotFoundException ??
             // bør legge til en feilmeldingen i sysOut
             e.printStackTrace();
         }
 
-        // Henter fra .csv
-        HenteFraCsv hentCsv = new HenteFraCsv();
-        hentCsv.henteFraFil(chosenpath); // "vikariat.csv" tidligere
-
         // Lagrer til .jobj
-        String path = chosenpath; // "vikariat.jobj" tidligere
+        String path = "vikariat.jobj";
         LagreTilJobj lagreJobj = new LagreTilJobj();
         lagreJobj.skrivVikariatTilFil(ut, path);
 
-        // Henter fra .jobj
-        HenteFraJobj hentJobj = new HenteFraJobj();
-        hentJobj.henteFraFil(chosenpath); // "vikariat.jobj" tidligere
 
-        //Planlegger å Deretter vise på et nytt GUI hva som er skrevet inn.
+        //Tar brukeren til visning:
+        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
     }
 
     @FXML

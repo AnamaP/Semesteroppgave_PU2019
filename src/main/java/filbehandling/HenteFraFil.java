@@ -3,5 +3,5 @@ package filbehandling;
 
 abstract class HenteFraFil {
 
-    public abstract void henteFraFil(String path);
+    public abstract String henteFraFil(String path);
 }

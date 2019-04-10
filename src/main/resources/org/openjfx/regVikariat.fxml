@@ -44,13 +44,13 @@
             <TextField fx:id="txtBransje" prefHeight="22.0" prefWidth="165.0" promptText="ex: Produksjon" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Line endX="-16.0" endY="-141.0" layoutX="364.0" layoutY="349.0" startX="-16.0" startY="-273.5" />
+      <Line endX="-16.0" endY="-141.0" layoutX="378.0" layoutY="351.0" startX="-16.0" startY="-273.5" />
       <Text layoutX="375.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firma:" textAlignment="CENTER" wrappingWidth="280.60001373291016">
          <font>
             <Font name="Ayuthaya" size="14.0" />
          </font>
       </Text>
-      <GridPane layoutX="172.0" layoutY="525.0" prefHeight="19.0" prefWidth="380.0">
+      <GridPane layoutX="172.0" layoutY="518.0" prefHeight="19.0" prefWidth="380.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -67,14 +67,14 @@
             <CheckBox fx:id="cbxSalg" mnemonicParsing="false" text="Salg" />
          </children>
       </GridPane>
-      <Text layoutX="47.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori:" />
+      <Text layoutX="47.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori:" />
       <Text fill="#084d3e" layoutX="262.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsutlysning">
          <font>
             <Font name="Ayuthaya" size="20.0" />
          </font>
       </Text>
       <Button fx:id="btnRegVikariat" layoutX="606.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnRegVikariat" prefHeight="21.0" prefWidth="76.0" text="Lagre" />
-      <Button fx:id="btnTilbake" layoutX="47.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="28.0" prefWidth="76.0" text="Tilbake" />
+      <Button fx:id="btnTilbake" layoutX="47.0" layoutY="565.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="27.0" prefWidth="76.0" text="Tilbake" />
       <Text layoutX="51.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsbeskrivelse:" />
       <Text layoutX="52.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingstittel:" />
       <TextField fx:id="txtStillingstittel" layoutX="176.0" layoutY="300.0" prefHeight="27.0" prefWidth="271.0" promptText="ex: Salgsmedarbeider" />
@@ -115,5 +115,6 @@
       <TextField fx:id="txtTlf" layoutX="157.0" layoutY="144.0" promptText="12345678" />
       <TextField fx:id="txtSektor" layoutX="157.0" layoutY="178.0" promptText="Offentlig / privat" />
       <TextField fx:id="txtKvalifikasjoner" layoutX="175.0" layoutY="475.0" prefHeight="25.0" prefWidth="507.0" promptText="ex: Strukturert, punktlig, gode sammarbeidsevner ..." />
+      <Button layoutX="324.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnVisInfo" prefHeight="27.0" prefWidth="76.0" text="Vis info" />
    </children>
 </Pane>

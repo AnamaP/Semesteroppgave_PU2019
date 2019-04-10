@@ -6,7 +6,7 @@ import java.io.ObjectInputStream;
 
 public class HenteFraJobj extends HenteFraFil{ // kan senere endre til "Jobbsoker" istedet for void for å kunne bruke objektet
 
-    public void henteFraFil(String path){ // lag en egen exception som kastes ut av denne metoden og gir beskjed til bruker, med en try/catch i controlleren
+    public String henteFraFil(String path){ // lag en egen exception som kastes ut av denne metoden og gir beskjed til bruker, med en try/catch i controlleren
         try(FileInputStream fileInput = new FileInputStream(path);
         ObjectInputStream objectInput = new ObjectInputStream(fileInput)){
             Object hentPerson = objectInput.readObject();
@@ -18,6 +18,7 @@ public class HenteFraJobj extends HenteFraFil{ // kan senere endre til "Jobbsoke
         catch(ClassNotFoundException e){
             System.err.println("Kunne ikke konvertere objektet");
         }
+        return "Test";
 
         //return (Jobbsoker)hentPerson;
     }

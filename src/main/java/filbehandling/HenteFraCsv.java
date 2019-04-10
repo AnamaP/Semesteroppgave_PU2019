@@ -7,15 +7,15 @@ import java.io.RandomAccessFile;
 
 public class HenteFraCsv extends HenteFraFil {
 
-    public void henteFraFil(String path){
-        StringBuffer sb = new StringBuffer();
+    public String henteFraFil(String path){
+        String sb = "";
 
         try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
 
             // leser kun nå de 30 første linjene
             for(int i = 0; i < 30; i++){
-                sb.append(lesFil.readLine());
-                sb.append("\n");
+                sb += lesFil.readLine();
+                sb += "\n";
             }
         }
         catch(FileNotFoundException e){
@@ -26,5 +26,6 @@ public class HenteFraCsv extends HenteFraFil {
         }
 
         System.out.println(sb);
+        return sb;
     }
 }
