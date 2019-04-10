@@ -34,7 +34,9 @@ public class JobjFilhandterer extends FilHandterer{
     }
 
     @Override
-    public void lagreFilLokalt(String toPath) {
-
+    public void lagreFilLokalt(String toPath, String fromPath) throws IOException {
+        String innholdJobj = henteFraFil(fromPath);
+        skrivTilFil(innholdJobj, toPath);
     }
+
 }

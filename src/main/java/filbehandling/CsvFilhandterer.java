@@ -1,5 +1,7 @@
 package filbehandling;
 
+import logikk.Paths;
+
 import java.io.*;
 
 public class CsvFilhandterer extends FilHandterer{
@@ -45,7 +47,15 @@ public class CsvFilhandterer extends FilHandterer{
     }
 
     @Override
-    public void lagreFilLokalt(String toPath) {
+    public void lagreFilLokalt(String toPath, String fromPath) {
+        String databaseFil = henteFraFil(fromPath);
+
+        try {
+            skrivTilFil(databaseFil, toPath);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

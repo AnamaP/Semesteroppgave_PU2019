@@ -8,6 +8,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import klasser.Arbeidsgiver;
+import logikk.Paths;
 import logikk.RegVikariatHjelper;
 import logikk.navigeringsHjelper;
 import java.io.*;
@@ -42,18 +43,21 @@ public class RegVikariatController {
 
 
         // Lagrer til .csv
-        LagreTilFil lagreCsv = new LagreTilCsv();
+        FilHandterer csvFilhandterer = new CsvFilhandterer();
         try {
-            lagreCsv.skrivTilFil(ut, "vikariat.csv");
+            csvFilhandterer.skrivTilFil(ut, Paths.VIKARIAT_CSV);
         } catch (IOException e) { // Endres til FileNotFoundException ??
             // bør legge til en feilmeldingen i sysOut
             e.printStackTrace();
         }
 
         // Lagrer til .jobj
-        String path = "vikariat.jobj";
-        LagreTilJobj lagreJobj = new LagreTilJobj();
-        lagreJobj.skrivTilFil(ut, path);
+        FilHandterer jobjFilhandterer = new JobjFilhandterer();
+        try {
+            jobjFilhandterer.skrivTilFil(ut, Paths.VIKARIAT_JOBJ);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         //Tar brukeren til visning:

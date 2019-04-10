@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import klasser.Jobbsoker;
+import logikk.Paths;
 import logikk.RegSokerHjelper;
 import logikk.navigeringsHjelper;
 
@@ -34,9 +35,9 @@ public class RegSokerController {
         String ut = nySoker.toString();
 
         // Lagrer til .csv
-        LagreTilFil lagre = new LagreTilCsv();
+        FilHandterer csvFilhandterer = new CsvFilhandterer();
         try {
-            lagre.skrivTilFil(ut, "jobbsoker.csv");
+            csvFilhandterer.skrivTilFil(ut, Paths.JOBBSOKER_CSV);
         }
         catch (IOException e) { // Endres til FileNotFoundException ??
             // bør legge til en feilmeldingen i sysOut
@@ -44,9 +45,12 @@ public class RegSokerController {
         }
 
         // Lagrer til .jobj
-        String path = "jobbsoker.jobj";
-        LagreTilJobj lagreJobj = new LagreTilJobj();
-        lagreJobj.skrivTilFil(ut, "jobbsoker.jobj");
+        FilHandterer jobjFilhantderer = new JobjFilhandterer();
+        try {
+            jobjFilhantderer.skrivTilFil(ut, Paths.JOBBSOKER_JOBJ);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //Tar brukeren med til neste side:
         navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);

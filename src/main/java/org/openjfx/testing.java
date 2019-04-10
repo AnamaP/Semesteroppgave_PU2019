@@ -1,13 +1,10 @@
 package org.openjfx;
 
-import filbehandling.LagreTilCsv;
+import filbehandling.CsvFilhandterer;
+import filbehandling.FilHandterer;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import klasser.Person;
 
 import java.io.File;
 
@@ -27,8 +24,7 @@ public class testing extends Application {
         File selectedFile = fileChooser.showSaveDialog(chooserStage);
 
         String path = selectedFile.toString();
-
-        LagreTilCsv lagring = new LagreTilCsv();
+        FilHandterer filHandterer = new CsvFilhandterer();
     }
 
     public static void main(String[] args) {

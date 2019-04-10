@@ -21,64 +21,33 @@ public class IndexController {
         navigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
     }
 
-
-    public void btnLastNedSokere(ActionEvent actionEvent) {
-        FilHandterer filHandterer
-
+    private void lastNed(String csvPath, String jobjPath) {
+        FilHandterer filHandterer;
         String chosenpath = LastNedHjelper.fileChooser();
-        String extension = chosenpath.substring(chosenpath.lastIndexOf("."),chosenpath.length());
+        String extension = FilHandterer.getExtention(chosenpath);
 
         if(extension.equals(".csv")) {
             filHandterer = new CsvFilhandterer();
-            filHandterer.lagreFilLokalt(chosenpath);
+            try {
+                filHandterer.lagreFilLokalt(chosenpath, csvPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             filHandterer = new JobjFilhandterer();
+            try {
+                filHandterer.lagreFilLokalt(chosenpath, jobjPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
-        // Henter fra .csv
-        HenteFraCsv hentCsvVikariat = new HenteFraCsv();
-        String sb = hentCsvVikariat.henteFraFil("jobbsoker.csv");
-
-        LagreTilCsv ltc = new LagreTilCsv();
-        try {
-            ltc.skrivTilFil(sb, chosenpath);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Henter fra .jobj
-        HenteFraJobj hentJobjVikariat = new HenteFraJobj();
-        String innholdJobj = hentJobjVikariat.henteFraFil("jobbsoker.jobj");
-
-        LagreTilJobj lagreTilJobj = new LagreTilJobj();
-        lagreTilJobj.skrivTilFil(innholdJobj, chosenpath);
     }
 
+    public void btnLastNedSokere(ActionEvent actionEvent){
+        lastNed(Paths.JOBBSOKER_CSV, Paths.JOBBSOKER_JOBJ);
+    }
 
     public void btnLastNedVikariater(ActionEvent actionEvent) {
-
-        String chosenpath = LastNedHjelper.fileChooser();
-
-        // Henter fra .csv
-        HenteFraCsv hentCsvVikariat = new HenteFraCsv();
-        String innholdCsv = hentCsvVikariat.henteFraFil(Paths.VIKARIAT_CSV);
-
-        //Lagre til .csv
-        LagreTilCsv lagreTilCsv = new LagreTilCsv();
-        try {
-            lagreTilCsv.skrivTilFil(innholdCsv, chosenpath);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Henter fra .jobj
-        HenteFraJobj hentJobjVikariat = new HenteFraJobj();
-        String innholdJobj = hentJobjVikariat.henteFraFil(Paths.VIKARIAT_JOBJ);
-
-        // Lagre til .job
-        LagreTilJobj lagreTilJobj = new LagreTilJobj();
-        lagreTilJobj.skrivTilFil(innholdJobj, chosenpath);
+        lastNed(Paths.VIKARIAT_CSV, Paths.VIKARIAT_JOBJ);
     }
 }
