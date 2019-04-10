@@ -54,29 +54,6 @@ public class RegVikariatController {
 
         String ut = nyUtlysning.toString();
 
-        FileWriter fw = null;
-        BufferedWriter bw = null;
-        PrintWriter pw = null;
-
-        try {
-            fw = new FileWriter(chosenpath, true);
-            bw = new BufferedWriter(fw);
-            pw = new PrintWriter(bw);
-            pw.println(ut);
-            System.out.println("Data Successfully appended into file");
-            pw.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                pw.close();
-                bw.close();
-                fw.close();
-            } catch (IOException io) {
-
-            }
-        }
-
 
         // Lagrer til .csv
         LagreTilFil lagreCsv = new LagreTilCsv();
