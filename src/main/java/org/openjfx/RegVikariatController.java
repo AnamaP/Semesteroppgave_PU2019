@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import klasser.Arbeidsgiver;
 import logikk.Paths;
 import logikk.RegVikariatHjelper;
-import logikk.navigeringsHjelper;
+import logikk.NavigeringsHjelper;
 import java.io.*;
 
 public class RegVikariatController {
@@ -43,30 +43,31 @@ public class RegVikariatController {
 
 
         // Lagrer til .csv
-        FilHandterer csvFilhandterer = new CsvFilhandterer();
+        Filhandterer csvFilhandterer = new CsvFilhandterer();
         try {
             csvFilhandterer.skrivTilFil(ut, Paths.VIKARIAT_CSV);
-        } catch (IOException e) { // Endres til FileNotFoundException ??
-            // bør legge til en feilmeldingen i sysOut
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
         // Lagrer til .jobj
-        FilHandterer jobjFilhandterer = new JobjFilhandterer();
+        Filhandterer jobjFilhandterer = new JobjFilhandterer();
         try {
             jobjFilhandterer.skrivTilFil(ut, Paths.VIKARIAT_JOBJ);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
 
         //Tar brukeren til visning:
-        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
     }
 
     @FXML
     private void btnTilbake(ActionEvent event) {
         //Tar brukeren tilbake til index:
-        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
     }
 }

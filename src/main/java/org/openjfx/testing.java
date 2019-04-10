@@ -1,14 +1,15 @@
 package org.openjfx;
 
 import filbehandling.CsvFilhandterer;
-import filbehandling.FilHandterer;
+import filbehandling.Filhandterer;
 import javafx.application.Application;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 
+/*
 public class testing extends Application {
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -24,10 +25,10 @@ public class testing extends Application {
         File selectedFile = fileChooser.showSaveDialog(chooserStage);
 
         String path = selectedFile.toString();
-        FilHandterer filHandterer = new CsvFilhandterer();
+        Filhandterer filHandterer = new CsvFilhandterer();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-}
+}*/

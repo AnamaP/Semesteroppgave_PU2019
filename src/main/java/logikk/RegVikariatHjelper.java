@@ -16,7 +16,7 @@ public class RegVikariatHjelper {
             RadioButton radioHeltid, RadioButton radioDeltid, TextField txtKvalifikasjoner,  TextArea txtBeskrivelse,
             CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi) {
 
-        ArrayList<String> kategorier = regKategori.regKategori(cbxSalg,cbxAdmin,cbxIt,cbxOkonomi);
+        ArrayList<String> kategorier = RegKategoriHjelper.regKategori(cbxSalg,cbxAdmin,cbxIt,cbxOkonomi);
 
         String stillingsType = regArbeidsTid(radioHeltid, radioDeltid);
 

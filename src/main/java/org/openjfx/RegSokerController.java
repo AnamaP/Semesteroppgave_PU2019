@@ -7,8 +7,7 @@ import javafx.scene.control.*;
 import klasser.Jobbsoker;
 import logikk.Paths;
 import logikk.RegSokerHjelper;
-import logikk.navigeringsHjelper;
-
+import logikk.NavigeringsHjelper;
 import java.io.IOException;
 
 public class RegSokerController {
@@ -35,29 +34,29 @@ public class RegSokerController {
         String ut = nySoker.toString();
 
         // Lagrer til .csv
-        FilHandterer csvFilhandterer = new CsvFilhandterer();
+        Filhandterer csvFilhandterer = new CsvFilhandterer();
         try {
             csvFilhandterer.skrivTilFil(ut, Paths.JOBBSOKER_CSV);
         }
-        catch (IOException e) { // Endres til FileNotFoundException ??
-            // bør legge til en feilmeldingen i sysOut
+        catch (IOException e) {
             e.printStackTrace();
         }
 
         // Lagrer til .jobj
-        FilHandterer jobjFilhantderer = new JobjFilhandterer();
+        Filhandterer jobjFilhantderer = new JobjFilhandterer();
         try {
             jobjFilhantderer.skrivTilFil(ut, Paths.JOBBSOKER_JOBJ);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
         //Tar brukeren med til neste side:
-        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
     }
 
     public void btnTilbake(ActionEvent event) {
         //Tar brukeren tilbake til index:
-        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
     }
 }

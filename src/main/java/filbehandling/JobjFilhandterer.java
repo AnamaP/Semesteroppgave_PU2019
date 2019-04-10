@@ -2,7 +2,7 @@ package filbehandling;
 
 import java.io.*;
 
-public class JobjFilhandterer extends FilHandterer{
+public class JobjFilhandterer extends Filhandterer {
     @Override
     public String henteFraFil(String path) {
         String melding = "Person ikke hentet.";

@@ -4,7 +4,7 @@ import javafx.scene.control.CheckBox;
 
 import java.util.ArrayList;
 
-public class regKategori {
+public class RegKategoriHjelper {
     public static ArrayList<String> regKategori(CheckBox cbxSalg, CheckBox cbxService, CheckBox cbxIt, CheckBox cbxOkonomi){
 
         ArrayList<String> kategorier = new ArrayList<>();

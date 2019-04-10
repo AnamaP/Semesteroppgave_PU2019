@@ -15,7 +15,7 @@ public class RegSokerHjelper {
                             ComboBox valgUtdanning, ComboBox valgRetning, TextField txtErfaring, TextField txtReferanse,
                             TextField txtLonnskrav, CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi){
 
-        ArrayList<String> kategorier = regKategori.regKategori(cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
+        ArrayList<String> kategorier = RegKategoriHjelper.regKategori(cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
         String studieretning = RegSokerHjelper.studieretning(valgRetning);
         String utdanning = RegSokerHjelper.utdanning(valgUtdanning);

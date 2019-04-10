@@ -5,49 +5,52 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import logikk.LastNedHjelper;
 import logikk.Paths;
-import logikk.navigeringsHjelper;
+import logikk.NavigeringsHjelper;
 import java.io.IOException;
-import java.nio.file.Files;
 
 public class IndexController {
 
     @FXML
     private void btnJobbsoker(ActionEvent event) {
-        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/regSoker.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regSoker.fxml", event);
     }
 
     @FXML
     private void btnArbeidsgiver(ActionEvent event) {
-        navigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
     }
 
     private void lastNed(String csvPath, String jobjPath) {
-        FilHandterer filHandterer;
+        Filhandterer filHandterer;
         String chosenpath = LastNedHjelper.fileChooser();
-        String extension = FilHandterer.getExtention(chosenpath);
+
+        // Metode som sjekker hvilket filformat bruker har valgt, henter ut riktig fil med innhold
+        String extension = Filhandterer.getExtention(chosenpath);
 
         if(extension.equals(".csv")) {
             filHandterer = new CsvFilhandterer();
             try {
                 filHandterer.lagreFilLokalt(chosenpath, csvPath);
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             filHandterer = new JobjFilhandterer();
             try {
                 filHandterer.lagreFilLokalt(chosenpath, jobjPath);
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void btnLastNedSokere(ActionEvent actionEvent){
+    public void btnLastNedSokere(ActionEvent event){
         lastNed(Paths.JOBBSOKER_CSV, Paths.JOBBSOKER_JOBJ);
     }
 
-    public void btnLastNedVikariater(ActionEvent actionEvent) {
+    public void btnLastNedVikariater(ActionEvent event) {
         lastNed(Paths.VIKARIAT_CSV, Paths.VIKARIAT_JOBJ);
     }
 }

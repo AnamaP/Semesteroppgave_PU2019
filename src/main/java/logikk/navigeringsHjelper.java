@@ -6,16 +6,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 
-public class navigeringsHjelper {
+public class NavigeringsHjelper {
 
     public static void gåTilAnnenSide(String path, ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader();
-            URL url = navigeringsHjelper.class.getResource(path);
+            URL url = NavigeringsHjelper.class.getResource(path);
             loader.setLocation(url);
 
             Parent parent = loader.load();

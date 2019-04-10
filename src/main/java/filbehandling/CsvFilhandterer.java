@@ -1,17 +1,15 @@
 package filbehandling;
 
-import logikk.Paths;
-
 import java.io.*;
 
-public class CsvFilhandterer extends FilHandterer{
+public class CsvFilhandterer extends Filhandterer {
     @Override
     public String henteFraFil(String path) {
         String innhold = "";
 
         try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
 
-            // leser kun nå de 30 første linjene
+            // leser kun nå de 30 første linjene, OBS: bør settes til noe annet
             for(int i = 0; i < 30; i++){
                 innhold += lesFil.readLine();
                 innhold += "\n";
