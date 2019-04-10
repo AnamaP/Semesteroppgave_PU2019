@@ -3,20 +3,11 @@ package org.openjfx;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import klasser.Arbeidsgiver;
-import logikk.lastNedHjelper;
+import logikk.LastNedHjelper;
+import logikk.Paths;
 import logikk.navigeringsHjelper;
-
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Path;
+import java.nio.file.Files;
 
 public class IndexController {
 
@@ -32,8 +23,17 @@ public class IndexController {
 
 
     public void btnLastNedSokere(ActionEvent actionEvent) {
+        FilHandterer filHandterer
 
-        String chosenpath = lastNedHjelper.fileChooser();
+        String chosenpath = LastNedHjelper.fileChooser();
+        String extension = chosenpath.substring(chosenpath.lastIndexOf("."),chosenpath.length());
+
+        if(extension.equals(".csv")) {
+            filHandterer = new CsvFilhandterer();
+            filHandterer.lagreFilLokalt(chosenpath);
+        } else {
+            filHandterer = new JobjFilhandterer();
+        }
 
         // Henter fra .csv
         HenteFraCsv hentCsvVikariat = new HenteFraCsv();
@@ -58,12 +58,13 @@ public class IndexController {
 
     public void btnLastNedVikariater(ActionEvent actionEvent) {
 
-        String chosenpath = lastNedHjelper.fileChooser();
+        String chosenpath = LastNedHjelper.fileChooser();
 
         // Henter fra .csv
         HenteFraCsv hentCsvVikariat = new HenteFraCsv();
-        String innholdCsv = hentCsvVikariat.henteFraFil("vikariat.csv");
+        String innholdCsv = hentCsvVikariat.henteFraFil(Paths.VIKARIAT_CSV);
 
+        //Lagre til .csv
         LagreTilCsv lagreTilCsv = new LagreTilCsv();
         try {
             lagreTilCsv.skrivTilFil(innholdCsv, chosenpath);
@@ -74,10 +75,10 @@ public class IndexController {
 
         // Henter fra .jobj
         HenteFraJobj hentJobjVikariat = new HenteFraJobj();
-        String innholdJobj = hentJobjVikariat.henteFraFil("vikariat.jobj");
+        String innholdJobj = hentJobjVikariat.henteFraFil(Paths.VIKARIAT_JOBJ);
 
+        // Lagre til .job
         LagreTilJobj lagreTilJobj = new LagreTilJobj();
         lagreTilJobj.skrivTilFil(innholdJobj, chosenpath);
-
     }
 }

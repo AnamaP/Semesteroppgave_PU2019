@@ -11,9 +11,10 @@ import java.util.ArrayList;
 public class RegVikariatHjelper {
 
     public static Arbeidsgiver lagVikariat(
-            TextField txtKontaktperson, TextField txtTlf, TextField txtSektor, TextField txtFirmaNavn, TextField txtOrgNr, TextField txtBransje,
-            TextField txtStillingstittel, TextField txtVarighet, TextField txtLonn, RadioButton radioHeltid, RadioButton radioDeltid,
-            TextField txtKvalifikasjoner,  TextArea txtBeskrivelse, CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi) {
+            TextField txtKontaktperson, TextField txtTlf, TextField txtSektor, TextField txtFirmaNavn, TextField txtOrgNr,
+            TextField txtBransje, TextField txtStillingstittel, TextField txtVarighet, TextField txtLonn,
+            RadioButton radioHeltid, RadioButton radioDeltid, TextField txtKvalifikasjoner,  TextArea txtBeskrivelse,
+            CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi) {
 
         ArrayList<String> kategorier = regKategori.regKategori(cbxSalg,cbxAdmin,cbxIt,cbxOkonomi);
 
@@ -27,8 +28,8 @@ public class RegVikariatHjelper {
             nyttVikariat.setLonn(txtLonn.getText());
         }
 
-        Arbeidsgiver nyArbeidsgiver = new Arbeidsgiver(txtKontaktperson.getText(),txtTlf.getText(),txtSektor.getText(),txtFirmaNavn.getText(),
-                                                       txtOrgNr.getText(), txtBransje.getText(), nyttVikariat);
+        Arbeidsgiver nyArbeidsgiver = new Arbeidsgiver(txtKontaktperson.getText(),txtTlf.getText(),txtSektor.getText(),
+                                        txtFirmaNavn.getText(), txtOrgNr.getText(), txtBransje.getText(), nyttVikariat);
 
         return nyArbeidsgiver;
     }

@@ -1,20 +1,19 @@
 package logikk;
 
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 
-public class lastNedHjelper {
+public class LastNedHjelper {
 
     public static String fileChooser(){
         // FileChooser
         Stage chooserStage = new Stage();
-        FileChooser fileChooser = new FileChooser();
+        javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
         fileChooser.setTitle("Lagre som");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter(".csv", "*.csv"),
-                new FileChooser.ExtensionFilter(".jobj", "*.jobj"));
+                new javafx.stage.FileChooser.ExtensionFilter(".csv", "*.csv"),
+                new javafx.stage.FileChooser.ExtensionFilter(".jobj", "*.jobj"));
         File selectedFile = fileChooser.showSaveDialog(chooserStage); //showSaveDialog
         String chosenpath = selectedFile.toString();
         return chosenpath;
