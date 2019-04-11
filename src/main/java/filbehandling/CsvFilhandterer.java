@@ -10,7 +10,7 @@ public class CsvFilhandterer extends Filhandterer {
         try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
 
             // leser kun nå de 30 første linjene, OBS: bør settes til noe annet
-            for(int i = 0; i < 30; i++){
+            for(int i = 0; i < lesFil.length(); i++){
                 innhold += lesFil.readLine();
                 innhold += "\n";
             }
