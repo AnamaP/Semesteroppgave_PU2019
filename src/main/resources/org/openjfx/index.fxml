@@ -23,7 +23,7 @@
             <Cursor fx:constant="E_RESIZE" />
          </cursor>
       </Button>
-      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="308.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnOverisktVikariater" prefHeight="57.0" prefWidth="124.0" text="Oversikt over vikariater" textAlignment="CENTER" wrapText="true">
+      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="308.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnOversiktVikariater" prefHeight="57.0" prefWidth="124.0" text="Oversikt over vikariater" textAlignment="CENTER" wrapText="true">
          <cursor>
             <Cursor fx:constant="E_RESIZE" />
          </cursor>

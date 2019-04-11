@@ -26,7 +26,8 @@ public class IndexController {
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
     }
 
-    public void btnOverisktVikariater(ActionEvent event) {
+    public void btnOversiktVikariater(ActionEvent event) {
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml",event);
 
     }
 

@@ -14,19 +14,10 @@ import java.util.ResourceBundle;
 
 public class VisningController implements Initializable {
     @FXML
-    TableView<Table> tcOversiktSoker;
+    TableView<Table> tvOversiktSoker;
 
     @FXML
-    TableColumn<Table, String> tcNavn;
-
-    @FXML
-    TableColumn<Table, String> tcEpost;
-
-    @FXML
-    TableColumn<Table, String> tcUtdanning;
-
-    @FXML
-    TableColumn<Table, String> tcKategorier;
+    TableColumn<Table, String> tcNavn, tcEpost,tcUtdanning, tcKategorier;
 
 
     @Override
@@ -37,7 +28,7 @@ public class VisningController implements Initializable {
         tcUtdanning.setCellValueFactory(cellData->cellData.getValue().utdanningProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        tcOversiktSoker.setItems(VisningsHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
+        tvOversiktSoker.setItems(VisningsHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
     }
 
     @FXML

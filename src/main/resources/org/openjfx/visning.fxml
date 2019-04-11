@@ -15,7 +15,7 @@
             <Font name="Ayuthaya" size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="tcOversiktSoker" layoutX="27.0" layoutY="50.0" prefHeight="375.0" prefWidth="570.0">
+      <TableView fx:id="tvOversiktSoker" layoutX="27.0" layoutY="50.0" prefHeight="375.0" prefWidth="570.0">
         <columns>
            <TableColumn fx:id="tcNavn" prefWidth="107.0" text="Navn" />
            <TableColumn fx:id="tcEpost" prefWidth="110.0" text="Epost" />
