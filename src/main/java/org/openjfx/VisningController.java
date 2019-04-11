@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import logikk.NavigeringsHjelper;
 import logikk.Paths;
 import logikk.Table;
 import logikk.VisningsHjelper;
@@ -37,26 +38,32 @@ public class VisningController implements Initializable {
     TableColumn<Table, String> tcKategorier;
 
     // CREATE TABLE DATA
-    ObservableList<Table> data = FXCollections.observableArrayList(
+    private ObservableList<Table> data = FXCollections.observableArrayList(
         new Table("Trine", "trine@test.no","OsloMet, It","SALG"),
         new Table("Turid", "turid@test.no","OsloMet, Admin","OKONOMI")
+
     );
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        tcNavn.setCellValueFactory(new PropertyValueFactory<Table, String>("rNavn"));
-        tcEpost.setCellValueFactory(new PropertyValueFactory<Table, String>("rEpost"));
-        tcUtdanning.setCellValueFactory(new PropertyValueFactory<Table, String>("rUtdanning"));
-        tcKategorier.setCellValueFactory(new PropertyValueFactory<Table, String>("rKategorier"));
+        tcNavn.setCellValueFactory(cellData->cellData.getValue().rNavnProperty());
+        tcEpost.setCellValueFactory(cellData->cellData.getValue().rEpostProperty());
+        tcUtdanning.setCellValueFactory(cellData->cellData.getValue().rUtdanningProperty());
+        tcKategorier.setCellValueFactory(cellData->cellData.getValue().rKategorierProperty());
 
+        /*
+        tcNavn.setCellValueFactory(new PropertyValueFactory<>("rNavn"));
+        tcEpost.setCellValueFactory(new PropertyValueFactory<>("rEpost"));
+        tcUtdanning.setCellValueFactory(new PropertyValueFactory<>("rUtdanning"));
+        tcKategorier.setCellValueFactory(new PropertyValueFactory<>("rKategorier"));
+        */
         tcOversiktSoker.setItems(data);
-
     }
 
     @FXML
     public void btnTilbake(ActionEvent event){
-        //NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
     }
 
     public void btnVisSokere(ActionEvent event) {

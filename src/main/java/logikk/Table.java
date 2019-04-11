@@ -20,12 +20,20 @@ public class Table {
         return rNavn.get();
     }
 
+    public SimpleStringProperty rNavnProperty(){
+        return rNavn;
+    }
+
     public void setrNavn(String rNavn) {
         this.rNavn.set(rNavn);
     }
 
     public String getrEpost() {
         return rEpost.get();
+    }
+
+    public SimpleStringProperty rEpostProperty(){
+        return rEpost;
     }
 
     public void setrEpost(String rEpost) {
@@ -36,12 +44,20 @@ public class Table {
         return rUtdanning.get();
     }
 
+    public SimpleStringProperty rUtdanningProperty(){
+        return rUtdanning;
+    }
+
     public void setrUtdanning(String rUtdanning) {
         this.rUtdanning.set(rUtdanning);
     }
 
     public String getrKategorier() {
         return rKategorier.get();
+    }
+
+    public SimpleStringProperty rKategorierProperty(){
+        return rKategorier;
     }
 
     public void setrKategorier(String rKategorier) {
