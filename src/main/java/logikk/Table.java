@@ -4,63 +4,63 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Table {
 
-    private final SimpleStringProperty rNavn;
-    private final SimpleStringProperty rEpost;
-    private final SimpleStringProperty rUtdanning;
-    private final SimpleStringProperty rKategorier;
+    private final SimpleStringProperty navn;
+    private final SimpleStringProperty epost;
+    private final SimpleStringProperty utdanning;
+    private final SimpleStringProperty kategorier;
 
-    public Table(String rNavn, String rEpost, String rUtdanning, String rKategorier) {
-        this.rNavn = new SimpleStringProperty(rNavn);
-        this.rEpost = new SimpleStringProperty(rEpost);
-        this.rUtdanning = new SimpleStringProperty(rUtdanning);
-        this.rKategorier = new SimpleStringProperty(rKategorier);
+    public Table(String navn, String epost, String utdanning, String kategorier) {
+        this.navn = new SimpleStringProperty(navn);
+        this.epost = new SimpleStringProperty(epost);
+        this.utdanning = new SimpleStringProperty(utdanning);
+        this.kategorier = new SimpleStringProperty(kategorier);
     }
 
-    public String getrNavn() {
-        return rNavn.get();
+    public String getNavn() {
+        return navn.get();
     }
 
-    public SimpleStringProperty rNavnProperty(){
-        return rNavn;
+    public SimpleStringProperty navnProperty(){
+        return navn;
     }
 
-    public void setrNavn(String rNavn) {
-        this.rNavn.set(rNavn);
+    public void setNavn(String navn) {
+        this.navn.set(navn);
     }
 
-    public String getrEpost() {
-        return rEpost.get();
+    public String getEpost() {
+        return epost.get();
     }
 
-    public SimpleStringProperty rEpostProperty(){
-        return rEpost;
+    public SimpleStringProperty epostProperty(){
+        return epost;
     }
 
-    public void setrEpost(String rEpost) {
-        this.rEpost.set(rEpost);
+    public void setEpost(String epost) {
+        this.epost.set(epost);
     }
 
-    public String getrUtdanning() {
-        return rUtdanning.get();
+    public String getUtdanning() {
+        return utdanning.get();
     }
 
-    public SimpleStringProperty rUtdanningProperty(){
-        return rUtdanning;
+    public SimpleStringProperty utdanningProperty(){
+        return utdanning;
     }
 
-    public void setrUtdanning(String rUtdanning) {
-        this.rUtdanning.set(rUtdanning);
+    public void setUtdanning(String utdanning) {
+        this.utdanning.set(utdanning);
     }
 
-    public String getrKategorier() {
-        return rKategorier.get();
+    public String getKategorier() {
+        return kategorier.get();
     }
 
-    public SimpleStringProperty rKategorierProperty(){
-        return rKategorier;
+    public SimpleStringProperty kategorierProperty(){
+        return kategorier;
     }
 
-    public void setrKategorier(String rKategorier) {
-        this.rKategorier.set(rKategorier);
+    public void setKategorier(String kategorier) {
+        this.kategorier.set(kategorier);
     }
 }
