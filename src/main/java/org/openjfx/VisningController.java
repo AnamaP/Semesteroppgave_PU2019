@@ -37,12 +37,6 @@ public class VisningController implements Initializable {
     @FXML
     TableColumn<Table, String> tcKategorier;
 
-    // CREATE TABLE DATA
-    private ObservableList<Table> data = FXCollections.observableArrayList(
-        new Table("Trine", "trine@test.no","OsloMet, It","SALG"),
-        new Table("Turid", "turid@test.no","OsloMet, Admin","OKONOMI")
-
-    );
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,16 +52,13 @@ public class VisningController implements Initializable {
         tcUtdanning.setCellValueFactory(new PropertyValueFactory<>("rUtdanning"));
         tcKategorier.setCellValueFactory(new PropertyValueFactory<>("rKategorier"));
         */
-        tcOversiktSoker.setItems(data);
+        //tcOversiktSoker.setItems(data);
+        tcOversiktSoker.setItems(VisningsHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
+
     }
 
     @FXML
     public void btnTilbake(ActionEvent event){
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
-    }
-
-    public void btnVisSokere(ActionEvent event) {
-        String ut = VisningsHjelper.visJobbsokere(Paths.JOBBSOKER_CSV);
-        txtVisning.setText(ut);
     }
 }
