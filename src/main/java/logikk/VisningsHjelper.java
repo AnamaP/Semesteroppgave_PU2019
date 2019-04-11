@@ -1,23 +1,23 @@
 package logikk;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 
 public class VisningsHjelper {
 
-    public static String viserJobbsokere(String path) {
+    public static String visJobbsokere(String path) {
         String innhold = "Navn: \t Epost: \t Utdanning: \t Kategorier: \n";
 
         try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
 
-            for(int i = 0; i < 1; i++){
-                String [] kolonner = lesFil.readLine().split(";");
-
-                innhold += kolonner[1]+","+kolonner[0]+"\t"+kolonner[6]+"\t"+kolonner[9]+","+kolonner[10]+"\t";
-                innhold += kolonner[13]+kolonner[14]+kolonner[15]+kolonner[16];
+            BufferedReader csvreader = new BufferedReader(new FileReader(path));
+            String rad;
+            while ((rad = csvreader.readLine()) != null){
+                String [] kolonner = rad.split(";");
+                innhold += kolonner[1] + "," + kolonner[0] + "\t" + kolonner[6] + "\t" + kolonner[9] + "," + kolonner[10] + "\t";
+                innhold += kolonner[13] + kolonner[14] + kolonner[15] + kolonner[16];
                 innhold += "\n";
             }
+            csvreader.close();
         }
         catch(FileNotFoundException e){
             System.err.println("Finner ikke filen du leter etter");

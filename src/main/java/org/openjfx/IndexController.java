@@ -23,8 +23,6 @@ public class IndexController {
     }
 
     public void btnOversiktSokere(ActionEvent event) {
-        String ut = VisningsHjelper.viserJobbsokere(Paths.JOBBSOKER_CSV);
-        VisningController.txtVisning.setText(ut);
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
     }
 
