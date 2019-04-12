@@ -39,7 +39,7 @@ public class RegVikariatController {
                 txtStillingstittel, txtVarighet, txtLonn,radioHeltid, radioDeltid,
                 txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
-        String ut = nyUtlysning.toString();
+        String ut= nyUtlysning.toString();
 
 
         // Lagrer til .csv
@@ -54,7 +54,7 @@ public class RegVikariatController {
         // Lagrer til .jobj
         Filhandterer jobjFilhandterer = new JobjFilhandterer();
         try {
-            jobjFilhandterer.skrivTilFil(ut, Paths.VIKARIAT_JOBJ);
+            jobjFilhandterer.skrivTilFil(nyUtlysning, Paths.VIKARIAT_JOBJ);
         }
         catch (IOException e) {
             e.printStackTrace();

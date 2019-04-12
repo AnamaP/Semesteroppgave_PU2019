@@ -1,5 +1,7 @@
 package logikk;
 
+import filbehandling.CsvFilhandterer;
+import filbehandling.Filhandterer;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -9,6 +11,15 @@ import klasser.Vikariat;
 import java.util.ArrayList;
 
 public class RegVikariatHjelper {
+
+    // lage en statisk array list med arbeidsgivere - ved kall på "lagVikariat" så legges arb.giver i listen
+    public static ArrayList<Arbeidsgiver> arbeidsgivere = new ArrayList<>();
+
+    public RegVikariatHjelper(ArrayList<Arbeidsgiver> arbeidsgivere){
+        Filhandterer filhandterer = new CsvFilhandterer();
+        Object liste = filhandterer.henteFraFil(Paths.VIKARIAT_CSV);
+
+    }
 
     public static Arbeidsgiver lagVikariat(
             TextField txtKontaktperson, TextField txtTlf, TextField txtSektor, TextField txtFirmaNavn, TextField txtOrgNr,
@@ -31,9 +42,10 @@ public class RegVikariatHjelper {
         Arbeidsgiver nyArbeidsgiver = new Arbeidsgiver(txtKontaktperson.getText(),txtTlf.getText(),txtSektor.getText(),
                                         txtFirmaNavn.getText(), txtOrgNr.getText(), txtBransje.getText(), nyttVikariat);
 
+        RegVikariatHjelper.arbeidsgivere.add(nyArbeidsgiver);
+
         return nyArbeidsgiver;
     }
-
 
     private static String regArbeidsTid(RadioButton radioHeltid, RadioButton radioDeltid) {
 

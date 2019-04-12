@@ -3,12 +3,11 @@ package org.openjfx;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import logikk.LastNedHjelper;
-import logikk.Paths;
-import logikk.NavigeringsHjelper;
-import logikk.VisningsHjelper;
+import klasser.Arbeidsgiver;
+import logikk.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class IndexController {
 
@@ -54,9 +53,11 @@ public class IndexController {
             catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
+        }
+        else {
             filHandterer = new JobjFilhandterer();
             try {
+                ArrayList<Arbeidsgiver> arbeidsgivere = RegVikariatHjelper.arbeidsgivere;
                 filHandterer.lagreFilLokalt(chosenpath, jobjPath);
             }
             catch (IOException e) {

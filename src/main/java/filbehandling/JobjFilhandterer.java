@@ -5,13 +5,10 @@ import java.io.*;
 public class JobjFilhandterer extends Filhandterer {
     @Override
     public Object henteFraFil(String path) {
-        String melding = "Person ikke hentet.";
         try(FileInputStream fileInput = new FileInputStream(path);
             ObjectInputStream objectInput = new ObjectInputStream(fileInput)){
             Object hentPerson = objectInput.readObject();
             return hentPerson;
-            //System.out.println("Her er informasjon om jobbsøker fra .jobj fil:\n"+ hentPerson);
-            //melding = hentPerson.toString();
         }
         catch(IOException e){
             System.err.println("Kunne ikke lese fil. Feilmelding : " + e.getCause());
