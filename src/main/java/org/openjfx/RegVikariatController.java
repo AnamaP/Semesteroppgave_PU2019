@@ -62,7 +62,7 @@ public class RegVikariatController {
 
 
         //Tar brukeren til visning:
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     @FXML

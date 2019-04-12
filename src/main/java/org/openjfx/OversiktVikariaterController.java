@@ -35,6 +35,7 @@ public class OversiktVikariaterController implements Initializable {
         tcStillingstype.setCellValueFactory(cellData->cellData.getValue().stillingstypeProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
+        var items = OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV);
         tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV));
     }
 

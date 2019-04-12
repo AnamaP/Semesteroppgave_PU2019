@@ -1,6 +1,7 @@
 package logikk;
 
 import javafx.beans.property.SimpleStringProperty;
+import klasser.Arbeidsgiver;
 
 public class TabellVikariater {
     private final SimpleStringProperty kontaktperson;
@@ -13,18 +14,19 @@ public class TabellVikariater {
     private final SimpleStringProperty stillingstype;
     private final SimpleStringProperty kategorier;
 
-    public TabellVikariater(String kontaktperson, String tlf, String sektor, String firmanavn, String bransje,
-                            String stillingstittel, String varighet, String stillingstype, String kategorier) {
-        this.kontaktperson = new SimpleStringProperty(kontaktperson);
-        this.tlf = new SimpleStringProperty(tlf);
-        this.sektor = new SimpleStringProperty(sektor);
-        this.firmanavn = new SimpleStringProperty(firmanavn);
-        this.bransje = new SimpleStringProperty(bransje);
-        this.stillingstittel = new SimpleStringProperty(stillingstittel);
-        this.varighet = new SimpleStringProperty(varighet);
-        this.stillingstype = new SimpleStringProperty(stillingstype);
-        this.kategorier = new SimpleStringProperty(kategorier);
+    // en toVikariat metode som koverterer all data her til en Arbeidsgiver
+    public TabellVikariater(Arbeidsgiver arbeidsgiver){
+        this.kontaktperson = new SimpleStringProperty(arbeidsgiver.getKontaktperson());
+        this.tlf = new SimpleStringProperty(arbeidsgiver.getTlf());
+        this.sektor= new SimpleStringProperty(arbeidsgiver.getSektor());
+        this.firmanavn = new SimpleStringProperty(arbeidsgiver.getFirmanavn());
+        this.bransje = new SimpleStringProperty(arbeidsgiver.getBransje());
+        this.stillingstittel = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getTittel());
+        this.varighet = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getVarighet());
+        this.stillingstype = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getArbeidstid());
+        this.kategorier = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getKategorier().toString());
     }
+
 
     public String getKontaktperson() {
         return kontaktperson.get();

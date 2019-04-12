@@ -2,8 +2,11 @@ package logikk;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import klasser.Arbeidsgiver;
+import klasser.Vikariat;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class OversiktVikariaterHjelper {
 
@@ -18,11 +21,20 @@ public class OversiktVikariaterHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 15){
-                    TabellVikariater tabell = new TabellVikariater(kolonner[0],kolonner[1], kolonner[2],kolonner[3],
-                            kolonner[5],kolonner[6],kolonner[7],kolonner[10], kolonner[12]+" "+kolonner[13]
-                            +" "+kolonner[14]+" "+kolonner[15]);
-                    obl.add(tabell);
+                if(kolonner.length > 14){
+                    ArrayList<String> kategorier = new ArrayList<>();
+                    kategorier.add(kolonner[11]);
+                    kategorier.add(kolonner[12]);
+                    kategorier.add(kolonner[13]);
+                    kategorier.add(kolonner[14]);
+
+                    Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],kolonner[10], kategorier);
+
+                    Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2], kolonner[3],kolonner[4],
+                            kolonner[5], vikariat);
+
+                    TabellVikariater test = new TabellVikariater(tabell);
+                    obl.add(test);
                 }
             }
             csvreader.close();

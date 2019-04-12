@@ -72,7 +72,6 @@ public class RegSokerHjelper {
             studieretning = "Ikke valgt.";
         }
 
-        //Her skal man kunne hente ut studieretning. DENNE FUNKER IKKE ENDA..!
         return studieretning;
     }
 

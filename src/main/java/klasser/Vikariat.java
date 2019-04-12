@@ -9,7 +9,6 @@ public class Vikariat {
     private String beskrivelse;
     private String arbeidstid;
     private String kvalifikasjoner;
-
     private ArrayList<String> kategorier;
 
     public Vikariat(String tittel, String varighet, String beskrivelse, String kvalifikasjoner, String arbeidstid, ArrayList<String> kategorier) {
@@ -20,6 +19,34 @@ public class Vikariat {
         this.kvalifikasjoner = kvalifikasjoner;
         this.arbeidstid = arbeidstid;
         this.kategorier = kategorier;
+    }
+
+    public String getTittel() {
+        return tittel;
+    }
+
+    public String getVarighet() {
+        return varighet;
+    }
+
+    public String getLonn() {
+        return lonn;
+    }
+
+    public String getBeskrivelse() {
+        return beskrivelse;
+    }
+
+    public String getArbeidstid() {
+        return arbeidstid;
+    }
+
+    public String getKvalifikasjoner() {
+        return kvalifikasjoner;
+    }
+
+    public ArrayList<String> getKategorier() {
+        return kategorier;
     }
 
     public void setLonn(String lonn){

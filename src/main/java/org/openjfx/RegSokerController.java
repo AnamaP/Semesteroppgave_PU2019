@@ -43,9 +43,9 @@ public class RegSokerController {
         }
 
         // Lagrer til .jobj
-        Filhandterer jobjFilhantderer = new JobjFilhandterer();
+        Filhandterer jobjFilhandterer = new JobjFilhandterer();
         try {
-            jobjFilhantderer.skrivTilFil(ut, Paths.JOBBSOKER_JOBJ);
+            jobjFilhandterer.skrivTilFil(ut, Paths.JOBBSOKER_JOBJ);
         }
         catch (IOException e) {
             e.printStackTrace();
