@@ -2,42 +2,37 @@ package org.openjfx;
 
 import filbehandling.CsvFilhandterer;
 import filbehandling.Filhandterer;
+import filbehandling.JobjFilhandterer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import klasser.Arbeidsgiver;
 import logikk.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class OversiktVikariaterController implements Initializable {
+public class OversiktSokereController implements Initializable {
+    @FXML
+    TableView<TabellSokere> tvOversiktSoker;
 
     @FXML
-    TableView<TabellVikariater> tvOversiktVikariater;
-
-    @FXML
-    TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor,tcFirmanavn, tcBransje,
-            tcStillingstittel, tcVarighet, tcStillingstype, tcKategorier;
+    TableColumn<TabellSokere, String> tcNavn, tcEpost,tcUtdanning, tcKategorier;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        tcKontaktperson.setCellValueFactory(cellData->cellData.getValue().kontaktpersonProperty());
-        tcTlf.setCellValueFactory(cellData->cellData.getValue().tlfProperty());
-        tcSektor.setCellValueFactory(cellData->cellData.getValue().sektorProperty());
-        tcFirmanavn.setCellValueFactory(cellData->cellData.getValue().firmanavnProperty());
-        tcBransje.setCellValueFactory(cellData->cellData.getValue().bransjeProperty());
-        tcStillingstittel.setCellValueFactory(cellData->cellData.getValue().stillingstittelProperty());
-        tcVarighet.setCellValueFactory(cellData->cellData.getValue().varighetProperty());
-        tcStillingstype.setCellValueFactory(cellData->cellData.getValue().stillingstypeProperty());
+        tcNavn.setCellValueFactory(cellData->cellData.getValue().navnProperty());
+        tcEpost.setCellValueFactory(cellData->cellData.getValue().epostProperty());
+        tcUtdanning.setCellValueFactory(cellData->cellData.getValue().utdanningProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        var items = OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV);
-        tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV));
+        tvOversiktSoker.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
     }
 
     @FXML
@@ -45,18 +40,17 @@ public class OversiktVikariaterController implements Initializable {
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
     }
 
-    public void btnRedigerVikariat(ActionEvent event) {
+    public void btnRedigerSoker(ActionEvent event) {
     }
 
-    public void btnSlettVikariat(ActionEvent event) {
+    public void btnSlettSoker(ActionEvent event) {
     }
 
-    public void btnLastNedVikariatr(ActionEvent event) {
-        lastNed(Paths.VIKARIAT_CSV);
+    public void btnLastNedSoker(ActionEvent event) {
+        lastNed(Paths.JOBBSOKER_CSV);
     }
 
-    public void btnLastOppVikariat(ActionEvent event) {
-
+    public void btnLastOppSoker(ActionEvent event) {
     }
 
     private void lastNed(String csvPath) {
@@ -88,4 +82,3 @@ public class OversiktVikariaterController implements Initializable {
         }*/
     }
 }
-

@@ -4,7 +4,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class LastNedHjelper {
+public class FileChooserHjelper {
 
     public static String fileChooser(){
         // FileChooser

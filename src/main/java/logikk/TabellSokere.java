@@ -2,14 +2,14 @@ package logikk;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Table {
+public class TabellSokere {
 
     private final SimpleStringProperty navn;
     private final SimpleStringProperty epost;
     private final SimpleStringProperty utdanning;
     private final SimpleStringProperty kategorier;
 
-    public Table(String navn, String epost, String utdanning, String kategorier) {
+    public TabellSokere(String navn, String epost, String utdanning, String kategorier) {
         this.navn = new SimpleStringProperty(navn);
         this.epost = new SimpleStringProperty(epost);
         this.utdanning = new SimpleStringProperty(utdanning);

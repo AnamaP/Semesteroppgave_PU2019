@@ -5,11 +5,11 @@ import javafx.collections.ObservableList;
 
 import java.io.*;
 
-public class VisningsHjelper {
+public class OversiktSokereHjelper {
 
-    public static ObservableList<Table> visJobbsokere(String path) {
+    public static ObservableList<TabellSokere> visJobbsokere(String path) {
         // Oppretter en tabell
-        ObservableList<Table> obl = FXCollections.observableArrayList();
+        ObservableList<TabellSokere> obl = FXCollections.observableArrayList();
 
         try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
             BufferedReader csvreader = new BufferedReader(new FileReader(path));
@@ -19,8 +19,8 @@ public class VisningsHjelper {
                 String [] kolonner = rad.split(";");
 
                 if(kolonner.length > 12){
-                    Table table = new Table(kolonner[1]+", "+kolonner[0], kolonner[6], kolonner[9], kolonner[10]+", "+kolonner[13]+", "+kolonner[14]);
-                    obl.add(table);
+                    TabellSokere tabellSokere = new TabellSokere(kolonner[1]+", "+kolonner[0], kolonner[6], kolonner[9], kolonner[10]+", "+kolonner[13]+", "+kolonner[14]);
+                    obl.add(tabellSokere);
                 }
             }
             csvreader.close();

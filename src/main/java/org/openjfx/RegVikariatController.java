@@ -51,15 +51,6 @@ public class RegVikariatController {
             e.printStackTrace();
         }
 
-        // Lagrer til .jobj
-        Filhandterer jobjFilhandterer = new JobjFilhandterer();
-        try {
-            jobjFilhandterer.skrivTilFil(nyUtlysning, Paths.VIKARIAT_JOBJ);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
         //Tar brukeren til visning:
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);

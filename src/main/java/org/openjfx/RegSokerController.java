@@ -42,17 +42,8 @@ public class RegSokerController {
             e.printStackTrace();
         }
 
-        // Lagrer til .jobj
-        Filhandterer jobjFilhandterer = new JobjFilhandterer();
-        try {
-            jobjFilhandterer.skrivTilFil(ut, Paths.JOBBSOKER_JOBJ);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
         //Tar brukeren med til neste side:
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/visning.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversitSokere.fxml", event);
     }
 
     public void btnTilbake(ActionEvent event) {

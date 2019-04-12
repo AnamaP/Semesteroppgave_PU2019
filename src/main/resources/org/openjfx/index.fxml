@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="585.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.IndexController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="318.0" prefWidth="585.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.IndexController">
    <children>
       <Text layoutX="102.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flaskehalsen Vikarbyrå" textAlignment="CENTER" wrappingWidth="381.55517578125">
          <font>
@@ -24,16 +24,6 @@
          </cursor>
       </Button>
       <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="308.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnOversiktVikariater" prefHeight="57.0" prefWidth="124.0" text="Oversikt over vikariater" textAlignment="CENTER" wrapText="true">
-         <cursor>
-            <Cursor fx:constant="E_RESIZE" />
-         </cursor>
-      </Button>
-      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="146.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnLastNedSokere" prefHeight="57.0" prefWidth="124.0" text="Last ned liste over søkere" textAlignment="CENTER" wrapText="true">
-         <cursor>
-            <Cursor fx:constant="E_RESIZE" />
-         </cursor>
-      </Button>
-      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="308.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnLastNedVikariater" prefHeight="57.0" prefWidth="124.0" text="Last ned liste over vikariater" textAlignment="CENTER" wrapText="true">
          <cursor>
             <Cursor fx:constant="E_RESIZE" />
          </cursor>
