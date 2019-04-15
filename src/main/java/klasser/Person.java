@@ -39,6 +39,38 @@ public class Person implements Serializable {
         this.alder = alder;
     }
 
+    public String getFornavn() {
+        return fornavn;
+    }
+
+    public String getEtternavn() {
+        return etternavn;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getPostnr() {
+        return postnr;
+    }
+
+    public String getPoststed() {
+        return poststed;
+    }
+
+    public String getTlf() {
+        return tlf;
+    }
+
+    public String getEpost() {
+        return epost;
+    }
+
+    public String getAlder() {
+        return alder;
+    }
+
     public String toString() {
         return fornavn+";"+etternavn+";"+adresse+";"+postnr+";"+poststed+";"+tlf+";"+epost+";"+alder;
     }

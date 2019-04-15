@@ -75,7 +75,7 @@
       </Text>
       <Button fx:id="btnRegVikariat" layoutX="606.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnRegVikariat" prefHeight="21.0" prefWidth="76.0" text="Lagre" />
       <Button fx:id="btnTilbake" layoutX="47.0" layoutY="565.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="27.0" prefWidth="76.0" text="Tilbake" />
-      <Text layoutX="51.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsbeskrivelse:" />
+       <Text layoutX="51.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsbeskrivelse:" />
       <Text layoutX="52.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingstittel:" />
       <TextField fx:id="txtStillingstittel" layoutX="176.0" layoutY="300.0" prefHeight="27.0" prefWidth="271.0" promptText="ex: Salgsmedarbeider" />
       <Text layoutX="428.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antatt årslønn:" />

@@ -2,8 +2,10 @@ package logikk;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import klasser.Cv;
+import klasser.Jobbsoker;
 import java.io.*;
+import java.util.ArrayList;
 
 public class OversiktSokereHjelper {
 
@@ -18,9 +20,22 @@ public class OversiktSokereHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 12){
-                    TabellSokere tabellSokere = new TabellSokere(kolonner[1]+", "+kolonner[0], kolonner[6], kolonner[9], kolonner[10]+", "+kolonner[13]+", "+kolonner[14]);
-                    obl.add(tabellSokere);
+                if(kolonner.length > 16){
+                    ArrayList<String> kategorier = new ArrayList<>();
+                    kategorier.add(kolonner[13]);
+                    kategorier.add(kolonner[14]);
+                    kategorier.add(kolonner[15]);
+                    kategorier.add(kolonner[16]);
+
+                    Cv cv = new Cv(kolonner[9],kolonner[10],kolonner[11],kategorier);
+
+                    Jobbsoker tabell = new Jobbsoker(kolonner[0],kolonner[1],kolonner[2],kolonner[3],kolonner[4],
+                                                     kolonner[5],kolonner[6],kolonner[7],cv);
+
+                    //TODO: finne ut av hvordan vi gjør det med lonnskrav[8] og referanse[12] (valgfritt felt, ikke med i konstruktøren)
+
+                    TabellSokere oversiktSokere = new TabellSokere(tabell);
+                    obl.add(oversiktSokere);
                 }
             }
             csvreader.close();
@@ -34,5 +49,3 @@ public class OversiktSokereHjelper {
         return obl;
     }
 }
-//innhold += kolonner[1] + "," + kolonner[0] + "\t" + kolonner[6] + "\t" + kolonner[9] + "," + kolonner[10] + "\t";
-//innhold += kolonner[13] + kolonner[14] + kolonner[15] + kolonner[16];

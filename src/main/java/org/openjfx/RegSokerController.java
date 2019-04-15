@@ -43,7 +43,7 @@ public class RegSokerController {
         }
 
         //Tar brukeren med til neste side:
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversitSokere.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktSokere.fxml", event);
     }
 
     public void btnTilbake(ActionEvent event) {

@@ -2,18 +2,14 @@ package org.openjfx;
 
 import filbehandling.CsvFilhandterer;
 import filbehandling.Filhandterer;
-import filbehandling.JobjFilhandterer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import klasser.Arbeidsgiver;
 import logikk.*;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class OversiktSokereController implements Initializable {
@@ -21,17 +17,26 @@ public class OversiktSokereController implements Initializable {
     TableView<TabellSokere> tvOversiktSoker;
 
     @FXML
-    TableColumn<TabellSokere, String> tcNavn, tcEpost,tcUtdanning, tcKategorier;
-
+    TableColumn<TabellSokere, String> tcFornavn, tcEtternavn, tcAdresse, tcPostNr, tcPoststed, tcTlf, tcEpost, tcAlder,
+                                      tcUtdanning, tcStudieretning, tcErfaring, tcKategorier;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        tcNavn.setCellValueFactory(cellData->cellData.getValue().navnProperty());
+        tcFornavn.setCellValueFactory(cellData->cellData.getValue().fornavnProperty());
+        tcEtternavn.setCellValueFactory(cellData->cellData.getValue().etternavnProperty());
+        tcAdresse.setCellValueFactory(cellData->cellData.getValue().adresseProperty());
+        tcPostNr.setCellValueFactory(cellData->cellData.getValue().postnrProperty());
+        tcPoststed.setCellValueFactory(cellData->cellData.getValue().poststedProperty());
+        tcTlf.setCellValueFactory(cellData->cellData.getValue().tlfProperty());
         tcEpost.setCellValueFactory(cellData->cellData.getValue().epostProperty());
+        tcAlder.setCellValueFactory(cellData->cellData.getValue().alderProperty());
         tcUtdanning.setCellValueFactory(cellData->cellData.getValue().utdanningProperty());
+        tcStudieretning.setCellValueFactory(cellData->cellData.getValue().studieretningProperty());
+        tcErfaring.setCellValueFactory(cellData->cellData.getValue().erfaringProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
+        var items = OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV);
         tvOversiktSoker.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
     }
 
@@ -41,9 +46,11 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnRedigerSoker(ActionEvent event) {
+        // TODO : her skal det kalles på metode som redigerer jobbsøker
     }
 
     public void btnSlettSoker(ActionEvent event) {
+        // TODO : her skal det kalles på metode som sletter jobbsøker
     }
 
     public void btnLastNedSoker(ActionEvent event) {
@@ -51,6 +58,11 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnLastOppSoker(ActionEvent event) {
+        // TODO : her skal det kalles på FileChooser metode
+    }
+
+    public void btnFinnVikariater(ActionEvent event){
+        // TODO : her skal det kalles på en metode som finner aktuelle vikariater for jobbsøker
     }
 
     private void lastNed(String csvPath) {

@@ -21,6 +21,26 @@ public class Cv {
         this.referanse = referanse;
     }
 
+    public String getUtdanning() {
+        return utdanning;
+    }
+
+    public String getStudieretning() {
+        return studieretning;
+    }
+
+    public String getErfaring() {
+        return erfaring;
+    }
+
+    public String getReferanse() {
+        return referanse;
+    }
+
+    public ArrayList<String> getKategorier() {
+        return kategorier;
+    }
+
     public String toString(){
         String ut = "";
         ut += utdanning+";"+studieretning+";"+erfaring+";"+referanse+";";

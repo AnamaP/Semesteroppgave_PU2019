@@ -18,7 +18,7 @@ public class IndexController {
     }
 
     public void btnOversiktSokere(ActionEvent event) {
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversitSokere.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktSokere.fxml", event);
     }
 
     public void btnOversiktVikariater(ActionEvent event) {

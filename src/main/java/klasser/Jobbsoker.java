@@ -16,6 +16,14 @@ public class Jobbsoker extends Person {
         this.lonnskrav = lonnskrav;
     }
 
+    public Cv getCv() {
+        return cv;
+    }
+
+    public String getLonnskrav() {
+        return lonnskrav;
+    }
+
     @Override
     public String toString(){
         String ut = super.toString() +";"+lonnskrav+";"+cv.toString();
