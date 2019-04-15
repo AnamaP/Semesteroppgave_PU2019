@@ -13,25 +13,25 @@ public class RegKategoriHjelper {
         if (cbxSalg.isSelected()) {
             kategorier.add("Salg"); // 0
         } else {
-            kategorier.add("NULL");
+            kategorier.add("");
         }
 
         if (cbxAdmin.isSelected()) {
             kategorier.add("Admin"); // 1
         } else {
-            kategorier.add("NULL");
+            kategorier.add("");
         }
 
         if (cbxIt.isSelected()) {
             kategorier.add("It"); // 2
         } else {
-            kategorier.add("NULL");
+            kategorier.add("");
         }
 
         if (cbxOkonomi.isSelected()) {
             kategorier.add("Okonomi"); // 3
         } else {
-            kategorier.add("NULL");
+            kategorier.add("");
         }
 
         return kategorier;
