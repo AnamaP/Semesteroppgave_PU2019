@@ -15,10 +15,6 @@ public class OversiktSokereHjelper {
     public OversiktSokereHjelper() {
     }
 
-    public ArrayList<String> getValgteKategorier() {
-        return valgteKategorier;
-    }
-
     public void setValgteKategorier(ArrayList<String> valgteKategorier) {
         this.valgteKategorier = valgteKategorier;
     }
@@ -37,10 +33,9 @@ public class OversiktSokereHjelper {
 
                 if(kolonner.length > 16){
                     ArrayList<String> kategorier = new ArrayList<>();
-                    kategorier.add(kolonner[13]);
-                    kategorier.add(kolonner[14]);
-                    kategorier.add(kolonner[15]);
-                    kategorier.add(kolonner[16]);
+                    for(int i = 13; i < kolonner.length; i++) {
+                        kategorier.add(kolonner[i]);
+                    }
 
                     Cv cv = new Cv(kolonner[9],kolonner[10],kolonner[11],kategorier);
 
@@ -76,27 +71,29 @@ public class OversiktSokereHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                //Tester om noen av kategoriene "matcher":
-                if (
-                        (kolonner[13].equals(valgteKategorier.get(0)) && kolonner[13].equals("Salg")) ||
-                        (kolonner[14].equals(valgteKategorier.get(1)) && kolonner[14].equals("Service")) ||
-                        (kolonner[15].equals(valgteKategorier.get(2)) && kolonner[15].equals("It")) ||
-                        (kolonner[16].equals(valgteKategorier.get(3)) && kolonner[16].equals("Okonomi"))
-                ) {
+                if(kolonner.length > 13) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
-                    kategorier.add(kolonner[13]);
-                    kategorier.add(kolonner[14]);
-                    kategorier.add(kolonner[15]);
-                    kategorier.add(kolonner[16]);
+                    for(int i = 13; i < kolonner.length; i++) {
+                        kategorier.add(kolonner[i]);
+                    }
+                    //Tester om noen av kategoriene "matcher":
+                    if (
+                            (kategorier.contains("Salg") && valgteKategorier.get(0).equals("Salg")) ||
+                                    (kategorier.contains("Admin") && valgteKategorier.get(1).equals("Admin")) ||
+                                    (kategorier.contains("It") && valgteKategorier.get(2).equals("It")) ||
+                                    (kategorier.contains("Okonomi") && valgteKategorier.get(3).equals("Okonomi"))
+                    ) {
 
-                    Cv cv = new Cv(kolonner[9], kolonner[10], kolonner[11], kategorier);
 
-                    Jobbsoker tabell = new Jobbsoker(kolonner[0], kolonner[1], kolonner[2], kolonner[3], kolonner[4],
-                            kolonner[5], kolonner[6], kolonner[7], cv);
+                        Cv cv = new Cv(kolonner[9], kolonner[10], kolonner[11], kategorier);
 
-                    TabellSokere oversiktSokere = new TabellSokere(tabell);
-                    obl.add(oversiktSokere);
+                        Jobbsoker tabell = new Jobbsoker(kolonner[0], kolonner[1], kolonner[2], kolonner[3], kolonner[4],
+                                kolonner[5], kolonner[6], kolonner[7], cv);
+
+                        TabellSokere oversiktSokere = new TabellSokere(tabell);
+                        obl.add(oversiktSokere);
+                    }
                 }
             }
             csvreader.close();

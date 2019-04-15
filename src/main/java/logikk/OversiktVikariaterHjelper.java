@@ -21,12 +21,12 @@ public class OversiktVikariaterHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 14){
+                if(kolonner.length > 11){
+
                     ArrayList<String> kategorier = new ArrayList<>();
-                    kategorier.add(kolonner[11]);
-                    kategorier.add(kolonner[12]);
-                    kategorier.add(kolonner[13]);
-                    kategorier.add(kolonner[14]);
+                    for(int i = 11; i < kolonner.length; i++) {
+                        kategorier.add(kolonner[i]);
+                    }
 
                     Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],kolonner[10], kategorier);
 

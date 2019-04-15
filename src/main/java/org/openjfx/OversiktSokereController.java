@@ -36,7 +36,6 @@ public class OversiktSokereController implements Initializable {
         tcErfaring.setCellValueFactory(cellData->cellData.getValue().erfaringProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        var items = OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV);
         tvOversiktSoker.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
     }
 
@@ -81,16 +80,5 @@ public class OversiktSokereController implements Initializable {
                 e.printStackTrace();
             }
         }
-        /*
-        else {
-            filHandterer = new JobjFilhandterer();
-            try {
-                ArrayList<Arbeidsgiver> arbeidsgivere = RegVikariatHjelper.arbeidsgivere;
-                filHandterer.lagreFilLokalt(chosenpath, jobjPath);
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
     }
 }

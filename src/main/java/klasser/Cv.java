@@ -37,14 +37,11 @@ public class Cv {
         return referanse;
     }
 
-    public ArrayList<String> getKategorier() {
-        return kategorier;
+    public String getKategorier() {
+        return kategorier.toString();
     }
 
     public String toString(){
-        String ut = "";
-        ut += utdanning+";"+studieretning+";"+erfaring+";"+referanse+";";
-        ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";";
-        return ut;
+        return utdanning+";"+studieretning+";"+erfaring+";"+referanse+";"+getKategorier()+";";
     }
 }

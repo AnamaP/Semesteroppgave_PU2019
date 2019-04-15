@@ -50,14 +50,9 @@ public class OversiktVikariaterController implements Initializable {
     }
 
     public void btnSlettVikariat(ActionEvent event) {
-        //ObservableList<TabellVikariater> valgtVikariat, alleVikariater;
-        //alleVikariater = tvOversiktVikariater.getItems();
-        //valgtVikariat = tvOversiktVikariater.getSelectionModel().getSelectedItems();
         String nokkel = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
 
         System.out.println(nokkel);
-
-        //valgtVikariat.forEach(alleVikariater::remove);
 
         Boolean test = RegVikariatHjelper.slettValgtVikariat(nokkel);
         System.out.println(test);
