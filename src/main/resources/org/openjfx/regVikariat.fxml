@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -36,9 +37,9 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Firmanavn:" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Orgnr:" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bransje:" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Firmanavn:*" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Orgnr:*" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bransje:*" GridPane.rowIndex="2" />
             <TextField fx:id="txtFirmaNavn" prefHeight="25.0" prefWidth="175.0" promptText="ex: Tine SA" GridPane.columnIndex="1" />
             <TextField fx:id="txtOrgNr" prefHeight="27.0" prefWidth="154.0" promptText="ex: 12345 67 8899" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtBransje" prefHeight="22.0" prefWidth="165.0" promptText="ex: Produksjon" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -67,7 +68,7 @@
             <CheckBox fx:id="cbxSalg" mnemonicParsing="false" text="Salg" />
          </children>
       </GridPane>
-      <Text layoutX="47.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori:" />
+      <Text layoutX="47.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategori:*" />
       <Text fill="#084d3e" layoutX="262.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsutlysning">
          <font>
             <Font name="Ayuthaya" size="20.0" />
@@ -75,14 +76,14 @@
       </Text>
       <Button fx:id="btnRegVikariat" layoutX="606.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnRegVikariat" prefHeight="21.0" prefWidth="76.0" text="Lagre" />
       <Button fx:id="btnTilbake" layoutX="47.0" layoutY="565.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="27.0" prefWidth="76.0" text="Tilbake" />
-       <Text layoutX="51.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsbeskrivelse:" />
-      <Text layoutX="52.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingstittel:" />
+      <Text layoutX="51.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsbeskrivelse:*" />
+      <Text layoutX="52.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingstittel:*" />
       <TextField fx:id="txtStillingstittel" layoutX="176.0" layoutY="300.0" prefHeight="27.0" prefWidth="271.0" promptText="ex: Salgsmedarbeider" />
       <Text layoutX="428.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antatt årslønn:" />
-      <Text layoutX="46.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varighet:" wrappingWidth="78.22851562500006" />
+      <Text layoutX="46.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varighet:*" wrappingWidth="78.22851562500006" />
       <TextField fx:id="txtVarighet" layoutX="175.0" layoutY="429.0" prefHeight="27.0" prefWidth="151.0" promptText="ex: 6mnd" />
       <TextField fx:id="txtLonn" layoutX="522.0" layoutY="429.0" prefHeight="27.0" prefWidth="158.0" promptText="ex: 250 000" />
-      <Text layoutX="46.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kvalifikasjoner:" />
+      <Text layoutX="46.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kvalifikasjoner:*" />
       <TextArea fx:id="txtBeskrivelse" layoutX="176.0" layoutY="335.0" prefHeight="68.0" prefWidth="503.0" promptText="Skriv inn litt informasjon om hva stillingen går ut på, arbeidstid m.m." />
       <Text layoutX="617.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="max 200 ord">
          <font>
@@ -95,7 +96,7 @@
          </font>
       </Text>
       <Line endX="532.0" layoutX="146.0" layoutY="239.0" startX="-100.0" />
-      <Text layoutX="66.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sektor:" />
+      <Text layoutX="66.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sektor:*" />
       <GridPane layoutX="483.0" layoutY="300.0" prefHeight="27.0" prefWidth="174.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -109,11 +110,12 @@
             <RadioButton fx:id="radioDeltid" mnemonicParsing="false" text="Deltid" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Text layoutX="64.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn:" />
+      <Text layoutX="64.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn:*" />
       <TextField fx:id="txtKontaktperson" layoutX="157.0" layoutY="109.0" promptText="Kari" />
-      <Text layoutX="63.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tlf               +47" wrappingWidth="90.27001953125" />
+      <Text layoutX="63.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tlf *              +47" wrappingWidth="90.27001953125" />
       <TextField fx:id="txtTlf" layoutX="157.0" layoutY="144.0" promptText="12345678" />
       <TextField fx:id="txtSektor" layoutX="157.0" layoutY="178.0" promptText="Offentlig / privat" />
       <TextField fx:id="txtKvalifikasjoner" layoutX="175.0" layoutY="475.0" prefHeight="25.0" prefWidth="507.0" promptText="ex: Strukturert, punktlig, gode sammarbeidsevner ..." />
+      <Label layoutX="580.0" layoutY="219.0" prefHeight="17.0" prefWidth="103.0" text="* obligatoriske felt" textFill="#000000c3" />
    </children>
 </Pane>
