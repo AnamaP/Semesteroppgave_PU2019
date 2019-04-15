@@ -5,7 +5,7 @@ import javafx.scene.control.CheckBox;
 import java.util.ArrayList;
 
 public class RegKategoriHjelper {
-    public static ArrayList<String> regKategori(CheckBox cbxSalg, CheckBox cbxService, CheckBox cbxIt, CheckBox cbxOkonomi){
+    public static ArrayList<String> regKategori(CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi){
 
         ArrayList<String> kategorier = new ArrayList<>();
 
@@ -16,8 +16,8 @@ public class RegKategoriHjelper {
             kategorier.add("NULL");
         }
 
-        if (cbxService.isSelected()) {
-            kategorier.add("Service"); // 1
+        if (cbxAdmin.isSelected()) {
+            kategorier.add("Admin"); // 1
         } else {
             kategorier.add("NULL");
         }

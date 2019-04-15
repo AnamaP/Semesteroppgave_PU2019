@@ -24,7 +24,7 @@
                 <TableColumn fx:id="tcBransje" prefWidth="75.0" text="Bransje" />
                 <TableColumn fx:id="tcStillingstittel" prefWidth="83.3333740234375" text="Stillingstittel" />
                 <TableColumn fx:id="tcVarighet" prefWidth="78.0" text="Varighet" />
-                <TableColumn fx:id="tcStillingstype" prefWidth="90.5" text="Stillingstype" />
+                <TableColumn fx:id="tcKvalifikasjoner" prefWidth="90.5" text="Kvalifikasjoner" />
                 <TableColumn fx:id="tcKategorier" prefWidth="148.5" text="Kategorier" />
             </columns>
         </TableView>
@@ -32,6 +32,6 @@
         <Button layoutX="381.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnSlettVikariat" prefHeight="27.0" prefWidth="115.0" text="Slett vikariat" />
         <Button layoutX="260.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLastNedVikariatr" prefHeight="27.0" prefWidth="115.0" text="Last ned vikariat" />
         <Button layoutX="139.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLastOppVikariat" prefHeight="27.0" prefWidth="115.0" text="Last opp vikariat" />
-      <Button layoutX="660.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnRedigerVikariat" prefHeight="27.0" prefWidth="160.0" text="Finn passende vikarer" />
+        <Button layoutX="660.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnFinnSokere" prefHeight="27.0" prefWidth="160.0" text="Finn passende vikarer" />
     </children>
 </Pane>

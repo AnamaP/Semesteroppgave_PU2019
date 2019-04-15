@@ -2,26 +2,26 @@ package org.openjfx;
 
 import filbehandling.CsvFilhandterer;
 import filbehandling.Filhandterer;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import klasser.Arbeidsgiver;
 import logikk.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class OversiktVikariaterController implements Initializable {
 
     @FXML
-    TableView<TabellVikariater> tvOversiktVikariater;
+    private TableView<TabellVikariater> tvOversiktVikariater;
 
     @FXML
-    TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor, tcFirmanavn, tcBransje,
-            tcStillingstittel, tcVarighet, tcStillingstype, tcKategorier;
+    private TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor, tcFirmanavn, tcBransje,
+            tcStillingstittel, tcVarighet, tcKvalifikasjoner, tcKategorier;
 
 
     @Override
@@ -34,7 +34,7 @@ public class OversiktVikariaterController implements Initializable {
         tcBransje.setCellValueFactory(cellData->cellData.getValue().bransjeProperty());
         tcStillingstittel.setCellValueFactory(cellData->cellData.getValue().stillingstittelProperty());
         tcVarighet.setCellValueFactory(cellData->cellData.getValue().varighetProperty());
-        tcStillingstype.setCellValueFactory(cellData->cellData.getValue().stillingstypeProperty());
+        tcKvalifikasjoner.setCellValueFactory(cellData->cellData.getValue().kvalifikasjonerProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
         tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV));
@@ -91,10 +91,31 @@ public class OversiktVikariaterController implements Initializable {
         }
     }
 
+    public void btnFinnSokere(ActionEvent event) {
+
+        String kategoriStr = tvOversiktVikariater.getSelectionModel().getSelectedItem().kategorierProperty().get();
+        System.out.println("kategoriStr:" + kategoriStr);
+        List<String> kategorier = stringToList(kategoriStr);
+        System.out.println("kategorier [] : "+ kategorier.toString());
+
+        ResultatSokereController valgteKategorier = new ResultatSokereController();
+        valgteKategorier.setKategorier(kategorier);
+
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatSokere.fxml", event);
+
+    }
+
     private void setTableEditable() {
         tvOversiktVikariater.setEditable(true);
-        //Denne gjør at man kan velge kun én rute.
-        //tvOversiktVikariater.getSelectionModel().cellSelectionEnabledProperty().set(true);
+    }
+
+    public static List<String> stringToList(final String input) {
+        String[] elements = input.substring(1, input.length() - 1).split(", ");
+        List<String> result = new ArrayList<>(elements.length);
+        for (String item : elements) {
+            result.add(String.valueOf(item));
+        }
+        return result;
     }
 }
 

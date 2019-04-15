@@ -12,7 +12,7 @@ public class TabellVikariater {
     private final SimpleStringProperty bransje;
     private final SimpleStringProperty stillingstittel;
     private final SimpleStringProperty varighet;
-    private final SimpleStringProperty stillingstype;
+    private final SimpleStringProperty kvalifikasjoner;
     private final SimpleStringProperty kategorier;
 
     // en toVikariat metode som koverterer all data her til en Arbeidsgiver
@@ -24,7 +24,7 @@ public class TabellVikariater {
         this.bransje = new SimpleStringProperty(arbeidsgiver.getBransje());
         this.stillingstittel = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getTittel());
         this.varighet = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getVarighet());
-        this.stillingstype = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getArbeidstid());
+        this.kvalifikasjoner = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getKvalifikasjoner());
         this.kategorier = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getKategorier().toString());
     }
 
@@ -113,16 +113,16 @@ public class TabellVikariater {
         this.varighet.set(varighet);
     }
 
-    public String getStillingstype() {
-        return stillingstype.get();
+    public String getKvalifikasjoner() {
+        return kvalifikasjoner.get();
     }
 
-    public SimpleStringProperty stillingstypeProperty() {
-        return stillingstype;
+    public SimpleStringProperty kvalifikasjonerProperty() {
+        return kvalifikasjoner;
     }
 
-    public void setStillingstype(String stillingstype) {
-        this.stillingstype.set(stillingstype);
+    public void setKvalifikasjoner(String kvalifikasjoner) {
+        this.kvalifikasjoner.set(kvalifikasjoner);
     }
 
     public String getKategorier() {
