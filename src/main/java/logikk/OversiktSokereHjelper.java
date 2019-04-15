@@ -10,6 +10,20 @@ import java.util.List;
 
 public class OversiktSokereHjelper {
 
+    private static ArrayList<String> valgteKategorier;
+
+    public OversiktSokereHjelper() {
+    }
+
+    public ArrayList<String> getValgteKategorier() {
+        return valgteKategorier;
+    }
+
+    public void setValgteKategorier(ArrayList<String> valgteKategorier) {
+        this.valgteKategorier = valgteKategorier;
+    }
+
+
     public static ObservableList<TabellSokere> visJobbsokere(String path) {
         // Oppretter en tabell
         ObservableList<TabellSokere> obl = FXCollections.observableArrayList();
@@ -50,7 +64,8 @@ public class OversiktSokereHjelper {
         return obl;
     }
 
-    public static ObservableList<TabellSokere> visResultat(String path, List<String> valgteKategorier){
+
+    public static ObservableList<TabellSokere> visResultat(String path){
         // Oppretter en tabell
         ObservableList<TabellSokere> obl = FXCollections.observableArrayList();
 
@@ -61,10 +76,12 @@ public class OversiktSokereHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
                 System.out.println("Kolonner: "+kolonner[14] +" "+ kolonner[15]);
-                System.out.println("Valgte kategorier" + valgteKategorier.get(1) + " "+valgteKategorier.get(2));
+
+                System.out.println("Valgte kategorier: " + valgteKategorier);
 
                 //Tester om noen av kategoriene "matcher":
-                if (kolonner[14].equals(valgteKategorier.get(1)) || kolonner[15].equals(valgteKategorier.get(2))) {
+                if (kolonner[14].equals(valgteKategorier.get(0)) || kolonner[14].equals(valgteKategorier.get(1))
+                        || kolonner[15].equals(valgteKategorier.get(2)) || kolonner[15].equals(valgteKategorier.get(3))) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
                     kategorier.add(kolonner[13]);
@@ -80,7 +97,7 @@ public class OversiktSokereHjelper {
                     TabellSokere oversiktSokere = new TabellSokere(tabell);
                     obl.add(oversiktSokere);
 
-                    System.out.println("Kommer dette ut mon tro........???");
+                    System.out.println("Blir dette skrevet ut mon tro........???");
                 }
             }
             csvreader.close();

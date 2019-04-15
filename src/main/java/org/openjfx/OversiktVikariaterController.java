@@ -11,7 +11,6 @@ import logikk.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class OversiktVikariaterController implements Initializable {
@@ -95,11 +94,11 @@ public class OversiktVikariaterController implements Initializable {
 
         String kategoriStr = tvOversiktVikariater.getSelectionModel().getSelectedItem().kategorierProperty().get();
         System.out.println("kategoriStr:" + kategoriStr);
-        List<String> kategorier = stringToList(kategoriStr);
-        System.out.println("kategorier [] : "+ kategorier.toString());
+        ArrayList<String> kategorier = stringToList(kategoriStr);
 
-        ResultatSokereController valgteKategorier = new ResultatSokereController();
-        valgteKategorier.setKategorier(kategorier);
+        OversiktSokereHjelper valgteKategorier = new OversiktSokereHjelper();
+        valgteKategorier.setValgteKategorier(kategorier);
+        System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
 
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatSokere.fxml", event);
 
@@ -109,9 +108,9 @@ public class OversiktVikariaterController implements Initializable {
         tvOversiktVikariater.setEditable(true);
     }
 
-    public static List<String> stringToList(final String input) {
+    public static ArrayList<String> stringToList(final String input) {
         String[] elements = input.substring(1, input.length() - 1).split(", ");
-        List<String> result = new ArrayList<>(elements.length);
+        ArrayList<String> result = new ArrayList<>(elements.length);
         for (String item : elements) {
             result.add(String.valueOf(item));
         }

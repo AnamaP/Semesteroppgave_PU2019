@@ -11,12 +11,9 @@ import logikk.Paths;
 import logikk.TabellSokere;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ResultatSokereController implements Initializable {
-
-    private List<String> kategorier;
 
     @FXML
     private TableView<TabellSokere> tvOversiktSoker;
@@ -25,19 +22,10 @@ public class ResultatSokereController implements Initializable {
     private TableColumn<TabellSokere, String> tcFornavn, tcEtternavn, tcAdresse, tcPostNr, tcPoststed, tcTlf, tcEpost, tcAlder,
             tcUtdanning, tcStudieretning, tcErfaring, tcKategorier;
 
-    public List<String> getKategorier() {
-        return kategorier;
-    }
-
-    public void setKategorier(List<String> kategorier) {
-        this.kategorier = kategorier;
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         setTableEditable();
-        //List<String> kategorier = getKategorier();
 
         tcFornavn.setCellValueFactory(cellData->cellData.getValue().fornavnProperty());
         tcEtternavn.setCellValueFactory(cellData->cellData.getValue().etternavnProperty());
@@ -52,11 +40,11 @@ public class ResultatSokereController implements Initializable {
         tcErfaring.setCellValueFactory(cellData->cellData.getValue().erfaringProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        tvOversiktSoker.setItems(OversiktSokereHjelper.visResultat(Paths.JOBBSOKER_CSV, kategorier));
+        tvOversiktSoker.setItems(OversiktSokereHjelper.visResultat(Paths.JOBBSOKER_CSV));
     }
 
     public void btnTilbake(ActionEvent event) {
-        //Tar brukeren tilbake til index:
+        //Tar brukeren tilbake til oversikten:
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
 
     }
