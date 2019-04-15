@@ -57,7 +57,8 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnLastOppSoker(ActionEvent event) {
-        // TODO : her skal det kalles på FileChooser metode
+        // TODO : her skal det kalles på FileChooser metode - ikke ferdig
+        FileChooserHjelper.aapneFil();
     }
 
     public void btnFinnVikariater(ActionEvent event){
