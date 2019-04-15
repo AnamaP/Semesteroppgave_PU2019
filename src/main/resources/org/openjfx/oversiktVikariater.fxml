@@ -9,28 +9,29 @@
 
 <Pane fx:id="testPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.OversiktVikariaterController">
     <children>
-        <Button fx:id="btnTilbake" layoutX="28.0" layoutY="558.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
+        <Button fx:id="btnTilbake" layoutX="13.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
         <Label alignment="CENTER" layoutX="32.0" layoutY="14.0" prefHeight="30.0" prefWidth="775.0" text="Oversikt over vikariater:" textFill="#084d3e">
             <font>
                 <Font name="Ayuthaya" size="20.0" />
             </font>
         </Label>
-        <TableView fx:id="tvOversiktVikariater" layoutX="29.0" layoutY="62.0" prefHeight="487.0" prefWidth="775.0">
+        <TableView fx:id="tvOversiktVikariater" layoutX="12.0" layoutY="51.0" prefHeight="498.0" prefWidth="807.0">
             <columns>
                 <TableColumn fx:id="tcKontaktperson" prefWidth="96.00000190734863" text="Kontaktperson" />
                 <TableColumn fx:id="tcTlf" prefWidth="71.33333587646484" text="Tlf" />
                 <TableColumn fx:id="tcSektor" prefWidth="67.33328247070312" text="Sektor" />
-                <TableColumn fx:id="tcFirmanavn" prefWidth="102.66676330566406" text="Firmanavn" />
-                <TableColumn fx:id="tcBransje" prefWidth="66.66668701171875" text="Bransje" />
+                <TableColumn fx:id="tcFirmanavn" prefWidth="95.0" text="Firmanavn" />
+                <TableColumn fx:id="tcBransje" prefWidth="75.0" text="Bransje" />
                 <TableColumn fx:id="tcStillingstittel" prefWidth="83.3333740234375" text="Stillingstittel" />
-                <TableColumn fx:id="tcVarighet" prefWidth="64.66671752929688" text="Varighet" />
-                <TableColumn fx:id="tcStillingstype" prefWidth="91.33331298828125" text="Stillingstype" />
-                <TableColumn fx:id="tcKategorier" prefWidth="96.0" text="Kategorier" />
+                <TableColumn fx:id="tcVarighet" prefWidth="78.0" text="Varighet" />
+                <TableColumn fx:id="tcStillingstype" prefWidth="90.5" text="Stillingstype" />
+                <TableColumn fx:id="tcKategorier" prefWidth="148.5" text="Kategorier" />
             </columns>
         </TableView>
-        <Button layoutX="148.0" layoutY="558.0" mnemonicParsing="false" onAction="#btnRedigerVikariat" prefHeight="27.0" prefWidth="115.0" text="Rediger søker" />
-        <Button layoutX="276.0" layoutY="558.0" mnemonicParsing="false" onAction="#btnSlettVikariat" prefHeight="27.0" prefWidth="115.0" text="Slett søler" />
-        <Button layoutX="406.0" layoutY="558.0" mnemonicParsing="false" onAction="#btnLastNedVikariatr" prefHeight="27.0" prefWidth="115.0" text="Last ned søker" />
-        <Button layoutX="541.0" layoutY="558.0" mnemonicParsing="false" onAction="#btnLastOppVikariat" prefHeight="27.0" prefWidth="115.0" text="Last opp søker" />
+        <Button layoutX="503.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnRedigerVikariat" prefHeight="27.0" prefWidth="115.0" text="Rediger vikariat" />
+        <Button layoutX="381.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnSlettVikariat" prefHeight="27.0" prefWidth="115.0" text="Slett vikariat" />
+        <Button layoutX="260.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLastNedVikariatr" prefHeight="27.0" prefWidth="115.0" text="Last ned vikariat" />
+        <Button layoutX="139.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLastOppVikariat" prefHeight="27.0" prefWidth="115.0" text="Last opp vikariat" />
+      <Button layoutX="660.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnRedigerVikariat" prefHeight="27.0" prefWidth="160.0" text="Finn passende vikarer" />
     </children>
 </Pane>

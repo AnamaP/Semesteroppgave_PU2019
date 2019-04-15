@@ -1,11 +1,6 @@
 package logikk;
 
-import filbehandling.CsvFilhandterer;
-import filbehandling.Filhandterer;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import klasser.Arbeidsgiver;
 import klasser.Vikariat;
 import java.util.ArrayList;
@@ -14,12 +9,6 @@ public class RegVikariatHjelper {
 
     // lage en statisk array list med arbeidsgivere - ved kall på "lagVikariat" så legges arb.giver i listen
     public static ArrayList<Arbeidsgiver> arbeidsgivere = new ArrayList<>();
-
-    public RegVikariatHjelper(ArrayList<Arbeidsgiver> arbeidsgivere){
-        Filhandterer filhandterer = new CsvFilhandterer();
-        Object liste = filhandterer.henteFraFil(Paths.VIKARIAT_CSV);
-
-    }
 
     public static Arbeidsgiver lagVikariat(
             TextField txtKontaktperson, TextField txtTlf, TextField txtSektor, TextField txtFirmaNavn, TextField txtOrgNr,
@@ -59,6 +48,17 @@ public class RegVikariatHjelper {
         }
 
         return arbeidstid;
+    }
+
+    public static Boolean slettValgtVikariat(String nokkel) {
+        for(int i = 0; i < arbeidsgivere.size(); i++){
+            String tlf = arbeidsgivere.get(i).getTlf();
+            if(tlf.equals(nokkel)){
+                arbeidsgivere.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
 }

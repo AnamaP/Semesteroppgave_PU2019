@@ -2,11 +2,12 @@ package org.openjfx;
 
 import filbehandling.CsvFilhandterer;
 import filbehandling.Filhandterer;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import klasser.Arbeidsgiver;
 import logikk.*;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class OversiktVikariaterController implements Initializable {
     TableView<TabellVikariater> tvOversiktVikariater;
 
     @FXML
-    TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor,tcFirmanavn, tcBransje,
+    TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor, tcFirmanavn, tcBransje,
             tcStillingstittel, tcVarighet, tcStillingstype, tcKategorier;
 
 
@@ -36,8 +37,8 @@ public class OversiktVikariaterController implements Initializable {
         tcStillingstype.setCellValueFactory(cellData->cellData.getValue().stillingstypeProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        var items = OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV);
         tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV));
+        setTableEditable();
     }
 
     @FXML
@@ -46,9 +47,22 @@ public class OversiktVikariaterController implements Initializable {
     }
 
     public void btnRedigerVikariat(ActionEvent event) {
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
     }
 
     public void btnSlettVikariat(ActionEvent event) {
+        //ObservableList<TabellVikariater> valgtVikariat, alleVikariater;
+        //alleVikariater = tvOversiktVikariater.getItems();
+        //valgtVikariat = tvOversiktVikariater.getSelectionModel().getSelectedItems();
+        String nokkel = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
+
+        System.out.println(nokkel);
+
+        //valgtVikariat.forEach(alleVikariater::remove);
+
+        Boolean test = RegVikariatHjelper.slettValgtVikariat(nokkel);
+        System.out.println(test);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     public void btnLastNedVikariatr(ActionEvent event) {
@@ -75,17 +89,12 @@ public class OversiktVikariaterController implements Initializable {
                 e.printStackTrace();
             }
         }
-        /*
-        else {
-            filHandterer = new JobjFilhandterer();
-            try {
-                ArrayList<Arbeidsgiver> arbeidsgivere = RegVikariatHjelper.arbeidsgivere;
-                filHandterer.lagreFilLokalt(chosenpath, jobjPath);
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
+    }
+
+    private void setTableEditable() {
+        tvOversiktVikariater.setEditable(true);
+        //Denne gjør at man kan velge kun én rute.
+        //tvOversiktVikariater.getSelectionModel().cellSelectionEnabledProperty().set(true);
     }
 }
 
