@@ -75,13 +75,14 @@ public class OversiktSokereHjelper {
 
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
-                System.out.println("Kolonner: "+kolonner[14] +" "+ kolonner[15]);
-
-                System.out.println("Valgte kategorier: " + valgteKategorier);
 
                 //Tester om noen av kategoriene "matcher":
-                if (kolonner[14].equals(valgteKategorier.get(0)) || kolonner[14].equals(valgteKategorier.get(1))
-                        || kolonner[15].equals(valgteKategorier.get(2)) || kolonner[15].equals(valgteKategorier.get(3))) {
+                if (
+                        (kolonner[13].equals(valgteKategorier.get(0)) && kolonner[13].equals("Salg")) ||
+                        (kolonner[14].equals(valgteKategorier.get(1)) && kolonner[14].equals("Service")) ||
+                        (kolonner[15].equals(valgteKategorier.get(2)) && kolonner[15].equals("It")) ||
+                        (kolonner[16].equals(valgteKategorier.get(3)) && kolonner[16].equals("Okonomi"))
+                ) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
                     kategorier.add(kolonner[13]);
@@ -96,8 +97,6 @@ public class OversiktSokereHjelper {
 
                     TabellSokere oversiktSokere = new TabellSokere(tabell);
                     obl.add(oversiktSokere);
-
-                    System.out.println("Blir dette skrevet ut mon tro........???");
                 }
             }
             csvreader.close();
