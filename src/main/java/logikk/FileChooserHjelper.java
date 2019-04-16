@@ -7,9 +7,13 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.openjfx.OversiktVikariaterController;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import static org.openjfx.OversiktVikariaterController.stringToList;
 
 public class FileChooserHjelper {
 

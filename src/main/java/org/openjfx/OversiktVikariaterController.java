@@ -2,13 +2,17 @@ package org.openjfx;
 
 import filbehandling.CsvFilhandterer;
 import filbehandling.Filhandterer;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import klasser.Arbeidsgiver;
 import logikk.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.nio.file.FileVisitResult;
 import java.util.ArrayList;
@@ -59,9 +63,29 @@ public class OversiktVikariaterController implements Initializable {
         System.out.println(test);
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
+    /*
+    tvOversiktVikariater.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+        @Override
+        public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+            //Check whether item is selected and set value of selected item to Label
+            if(tvOversiktVikariater.getSelectionModel().getSelectedItem() != null)
+            {
+                tvOversiktVikariaterSelectionModel selectionModel = tvOversiktVikariater.getSelectionModel();
+                ObservableList selectedCells = selectionModel.getSelectedCells();
+                TablePosition tablePosition = (TablePosition) selectedCells.get(0);
+                Object val = tablePosition.getTableColumn().getCellData(newValue);
+                System.out.println("Selected Value" + val);
+            }
+        }
+    }*/
 
     public void btnLastNedVikariatr(ActionEvent event) {
-        FileChooserHjelper.lastNed(Paths.VIKARIAT_CSV);
+
+        Object selectedItems = tvOversiktVikariater.getSelectionModel().getSelectedItems().get(0);
+        String first_Column = selectedItems.toString().split(";")[0].substring(1);
+        System.out.println(first_Column);
+
+        FileChooserHjelper.lastNed(first_Column);
     }
 
     public void btnLastOppVikariat(ActionEvent event) {

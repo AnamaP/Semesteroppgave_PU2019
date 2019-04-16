@@ -9,6 +9,16 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class OversiktVikariaterHjelper {
+    /*
+    private static ArrayList<String> valgtVikariat;
+
+    public OversiktVikariaterHjelper(){
+    }
+
+    public void setValgtVikariat(ArrayList<String> valgtVikariat){
+        this.valgtVikariat = valgtVikariat;
+    }
+    */
 
     public static ObservableList<TabellVikariater> visVikariater(String path) {
         // Oppretter en tabell
