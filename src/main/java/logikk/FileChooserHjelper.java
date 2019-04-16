@@ -13,7 +13,8 @@ import java.io.IOException;
 
 public class FileChooserHjelper {
 
-    public static String fileChooser() {
+    //public static String fileChooser() {
+    public static String saveDialog(){
         // FileChooser
         Stage chooserStage = new Stage();
         javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
@@ -26,8 +27,7 @@ public class FileChooserHjelper {
         return chosenpath;
     }
 
-
-    public static String lastOpp(String csvPath){
+    public static String openDialog(){
         // Denne er ikke ferdig - viser kun last opp mulighet, men utfører ingenting
         Stage chooserStage = new Stage();
         FileChooser fileChooser = new FileChooser();
@@ -41,9 +41,26 @@ public class FileChooserHjelper {
         return chosenpath;
     }
 
+
+    public static void lastOpp(String csvPath){
+        Filhandterer filHandterer = null;
+        String chosenpath = openDialog();
+
+        String extension = Filhandterer.getExtention(chosenpath);
+
+        if(extension.equals(".csv")){
+            filHandterer = new CsvFilhandterer();
+        }
+        try {
+            filHandterer.skrivTilFil(chosenpath, csvPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void lastNed(String csvPath) {
         Filhandterer filHandterer;
-        String chosenpath = fileChooser();
+        String chosenpath = saveDialog();
 
         // Metode som sjekker hvilket filformat bruker har valgt, henter ut riktig fil med innhold
         // TODO : Hva med jobj?
