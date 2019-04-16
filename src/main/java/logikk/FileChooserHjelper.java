@@ -1,6 +1,7 @@
 package logikk;
 
 import filbehandling.CsvFilhandterer;
+import filbehandling.Filhandterer;
 import javafx.event.ActionEvent;
 import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
@@ -8,10 +9,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
+import java.io.IOException;
 
 public class FileChooserHjelper {
 
-    public static String fileChooser(){
+    public static String fileChooser() {
         // FileChooser
         Stage chooserStage = new Stage();
         javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
@@ -19,21 +21,44 @@ public class FileChooserHjelper {
         fileChooser.getExtensionFilters().addAll(
                 new javafx.stage.FileChooser.ExtensionFilter(".csv", "*.csv"),
                 new javafx.stage.FileChooser.ExtensionFilter(".jobj", "*.jobj"));
-        File selectedFile = fileChooser.showSaveDialog(chooserStage); //showSaveDialog
+        File selectedFile = fileChooser.showSaveDialog(chooserStage);
         String chosenpath = selectedFile.toString();
         return chosenpath;
     }
 
-    public static String aapneFil(){
+
+    public static String lastOpp(String csvPath){
+        // Denne er ikke ferdig - viser kun last opp mulighet, men utfører ingenting
         Stage chooserStage = new Stage();
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Last opp fil");
         fileChooser.getExtensionFilters().addAll(
                 new javafx.stage.FileChooser.ExtensionFilter(".csv", "*.csv"),
                 new javafx.stage.FileChooser.ExtensionFilter(".jobj", "*.jobj"));
-        File selectedFile = fileChooser.showOpenDialog(chooserStage);
+        File openFile = fileChooser.showOpenDialog(chooserStage);
 
-        String chosenpath = selectedFile.toString();
+        String chosenpath = openFile.toString();
         return chosenpath;
-
     }
+
+    public static void lastNed(String csvPath) {
+        Filhandterer filHandterer;
+        String chosenpath = fileChooser();
+
+        // Metode som sjekker hvilket filformat bruker har valgt, henter ut riktig fil med innhold
+        // TODO : Hva med jobj?
+        String extension = Filhandterer.getExtention(chosenpath);
+
+        if(extension.equals(".csv")) {
+            filHandterer = new CsvFilhandterer();
+            try {
+                filHandterer.lagreFilLokalt(chosenpath, csvPath);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }

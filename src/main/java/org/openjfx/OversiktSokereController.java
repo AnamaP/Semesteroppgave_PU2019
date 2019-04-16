@@ -53,33 +53,15 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnLastNedSoker(ActionEvent event) {
-        lastNed(Paths.JOBBSOKER_CSV);
+        FileChooserHjelper.lastNed(Paths.JOBBSOKER_CSV);
     }
 
     public void btnLastOppSoker(ActionEvent event) {
-        // TODO : her skal det kalles på FileChooser metode - ikke ferdig
-        FileChooserHjelper.aapneFil();
+        FileChooserHjelper.lastOpp(Paths.JOBBSOKER_CSV);
     }
 
     public void btnFinnVikariater(ActionEvent event){
         // TODO : her skal det kalles på en metode som finner aktuelle vikariater for jobbsøker
     }
 
-    private void lastNed(String csvPath) {
-        Filhandterer filHandterer;
-        String chosenpath = FileChooserHjelper.fileChooser();
-
-        // Metode som sjekker hvilket filformat bruker har valgt, henter ut riktig fil med innhold
-        String extension = Filhandterer.getExtention(chosenpath);
-
-        if(extension.equals(".csv")) {
-            filHandterer = new CsvFilhandterer();
-            try {
-                filHandterer.lagreFilLokalt(chosenpath, csvPath);
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }

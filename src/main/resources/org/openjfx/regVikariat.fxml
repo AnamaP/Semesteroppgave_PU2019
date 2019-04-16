@@ -64,7 +64,7 @@
          <children>
             <CheckBox fx:id="cbxAdmin" mnemonicParsing="false" text="Admin" GridPane.columnIndex="1" />
             <CheckBox fx:id="cbxIt" mnemonicParsing="false" text="It" GridPane.columnIndex="2" />
-            <CheckBox fx:id="cbxOkonomi" mnemonicParsing="false" text="Okonomi" GridPane.columnIndex="3" />
+            <CheckBox fx:id="cbxOkonomi" mnemonicParsing="false" text="Økonomi" GridPane.columnIndex="3" />
             <CheckBox fx:id="cbxSalg" mnemonicParsing="false" text="Salg" />
          </children>
       </GridPane>

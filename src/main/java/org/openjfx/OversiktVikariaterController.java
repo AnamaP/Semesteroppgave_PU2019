@@ -10,6 +10,7 @@ import logikk.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.FileVisitResult;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -60,30 +61,13 @@ public class OversiktVikariaterController implements Initializable {
     }
 
     public void btnLastNedVikariatr(ActionEvent event) {
-        lastNed(Paths.VIKARIAT_CSV);
+        FileChooserHjelper.lastNed(Paths.VIKARIAT_CSV);
     }
 
     public void btnLastOppVikariat(ActionEvent event) {
-
+        FileChooserHjelper.lastOpp(Paths.VIKARIAT_CSV);
     }
 
-    private void lastNed(String csvPath) {
-        Filhandterer filHandterer;
-        String chosenpath = FileChooserHjelper.fileChooser();
-
-        // Metode som sjekker hvilket filformat bruker har valgt, henter ut riktig fil med innhold
-        String extension = Filhandterer.getExtention(chosenpath);
-
-        if(extension.equals(".csv")) {
-            filHandterer = new CsvFilhandterer();
-            try {
-                filHandterer.lagreFilLokalt(chosenpath, csvPath);
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     public void btnFinnSokere(ActionEvent event) {
 

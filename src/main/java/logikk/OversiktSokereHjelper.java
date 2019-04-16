@@ -82,7 +82,7 @@ public class OversiktSokereHjelper {
                             (kategorier.contains("Salg") && valgteKategorier.get(0).equals("Salg")) ||
                                     (kategorier.contains("Admin") && valgteKategorier.get(1).equals("Admin")) ||
                                     (kategorier.contains("It") && valgteKategorier.get(2).equals("It")) ||
-                                    (kategorier.contains("Okonomi") && valgteKategorier.get(3).equals("Okonomi"))
+                                    (kategorier.contains("Økonomi") && valgteKategorier.get(3).equals("Økonomi"))
                     ) {
 
 
