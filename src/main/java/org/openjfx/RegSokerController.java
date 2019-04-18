@@ -1,12 +1,11 @@
 package org.openjfx;
 
-import feilhaandtering.ValideringsHjelper;
+import feilhaandtering.ValidationHelper;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import klasser.Jobbsoker;
-import logikk.FeilhandtererHjelper;
 import logikk.Paths;
 import logikk.RegSokerHjelper;
 import logikk.NavigeringsHjelper;
@@ -37,35 +36,35 @@ public class RegSokerController {
                 txtTlf, txtEpost, txtAlder, valgUtdanning, valgRetning, txtErfaring, txtReferanse, txtLonnskrav, cbxSalg,
                 cbxAdmin, cbxIt, cbxOkonomi);
 
-        String inptFornavn = txtFornavn.getText();
-        String inptEtternavn = txtEtternavn.getText();
-        String inptAdresse = txtAdresse.getText();
-        String inptPostnr = txtPostnr.getText();
-        String inptPoststed = txtPoststed.getText();
-        String inptTlf = txtTlf.getText();
-        String inptEpost = txtEpost.getText();
-        String inptAlder = txtAlder.getText();
-        String inptErfaring = txtErfaring.getText();
-        String inptReferanse = txtReferanse.getText();
-        String inptLonnskrav = txtLonnskrav.getText();
+        String inptFirstname = txtFornavn.getText();
+        String inptLastname = txtEtternavn.getText();
+        String inptAddress = txtAdresse.getText();
+        String inptZipCode = txtPostnr.getText();
+        String inptPostal = txtPoststed.getText();
+        String inptPhoneNmbr = txtTlf.getText();
+        String inptEmail = txtEpost.getText();
+        String inptAge = txtAlder.getText();
+        String inptExperience = txtErfaring.getText();
+        String inptReference = txtReferanse.getText();
+        String inptSalary = txtLonnskrav.getText();
 
-        //String test = FeilhandtererHjelper.getTextAreaData(txtFornavn);
+        //String test = FeilhandtererHjelper.getTextAreaData(txtFirstname);
 
-        ValideringsHjelper validering = new ValideringsHjelper();
-        String ugyldigInputs = validering.sjekkAlleInputs(inptFornavn, inptEtternavn, inptAdresse, inptPostnr, inptPoststed,
-                inptTlf, inptEpost, inptAlder, inptErfaring, inptReferanse, inptLonnskrav);
+        ValidationHelper validation = new ValidationHelper();
+        String invalidInputs = validation.inputCollector(inptFirstname, inptLastname, inptAddress, inptZipCode, inptPostal,
+                inptPhoneNmbr, inptEmail, inptAge, inptExperience, inptReference, inptSalary);
 
-        if (!ugyldigInputs.isEmpty()) {
-            lblFeilmld.setText(ugyldigInputs);
+        if (!invalidInputs.isEmpty()) {
+            lblFeilmld.setText(invalidInputs);
         }
         else{
 
-        String ut = nySoker.toString();
+        String input = nySoker.toString();
 
         // Lagrer til .csv
         Filhandterer csvFilhandterer = new CsvFilhandterer();
         try {
-            csvFilhandterer.skrivTilFil(ut, Paths.JOBBSOKER_CSV);
+            csvFilhandterer.skrivTilFil(input, Paths.JOBBSOKER_CSV);
         } catch (IOException e) {
             e.printStackTrace();
         }
