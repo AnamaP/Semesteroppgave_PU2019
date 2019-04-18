@@ -37,11 +37,20 @@ public class Cv {
         return referanse;
     }
 
-    public String getKategorier() {
-        return kategorier.toString();
+    public String kategorierToString() {
+        String sb = "";
+        for(int i = 0; i < kategorier.size(); i++){
+            if(i == kategorier.size() -1){
+                sb += kategorier.get(i);
+            }
+            else{
+                sb += kategorier.get(i) + ", ";
+            }
+        }
+        return sb;
     }
 
     public String toString(){
-        return utdanning+";"+studieretning+";"+erfaring+";"+referanse+";"+getKategorier()+";";
+        return utdanning+";"+studieretning+";"+erfaring+";"+referanse+";"+kategorierToString()+";";
     }
 }

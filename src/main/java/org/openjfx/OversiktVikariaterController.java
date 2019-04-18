@@ -63,7 +63,6 @@ public class OversiktVikariaterController implements Initializable {
         FileChooserHjelper.lastOpp(Paths.VIKARIAT_CSV);
     }
 
-
     public void btnFinnSokere(ActionEvent event) {
 
         String kategoriStr = tvOversiktVikariater.getSelectionModel().getSelectedItem().kategorierProperty().get();
@@ -83,7 +82,7 @@ public class OversiktVikariaterController implements Initializable {
     }
 
     public static ArrayList<String> stringToList(final String input) {
-        String[] elements = input.substring(1, input.length() - 1).split(", ");
+        String[] elements = input.split(", ");
         ArrayList<String> result = new ArrayList<>(elements.length);
         for (String item : elements) {
             result.add(String.valueOf(item));

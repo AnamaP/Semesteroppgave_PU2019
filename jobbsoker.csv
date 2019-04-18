@@ -1,12 +1,4 @@
-Jan;Steinnes;Stockflethsgate 46;0461;Oslo;22334455;js@test.no;32;800_000;Master;It;Ingeniør tkd, Ingeniørenes hus;Postman Pat;NULL;NULL;It;NULL;
-Martin;Hansen;abcveien 2;8789;Trondheim;88779988;mh@test.no;23;500_000;Bachelor;Salg;Froskefar, froskekompagniet AS;herr Frosk;NULL;Service;NULL;NULL;
-Jan Roar;Steinnes;er kul 2;9890;Oslo;88775599;jr@rest.no;32;12;Vgs;Økonomi;Terminaloperatør, tm AS;Karlson på taket;Salg;NULL;NULL;NULL;
-Kari;Hansen;Osloveien 2;0989;Oslo;22334455;kh@test.no;23;400_000;Bachelor;Økonomi;Økonomisjef, Atea As;Morten Jensen;NULL;NULL;It;Okonomi;
-Signe;Eide;sagveien 9;0459;Oslo;948 99 751;signe.eide@live.no;22;1 000 000 000;Bachelor;Ledelse;Rockestjerne;Moren min;NULL;Service;NULL;NULL;
-Sabria;Grubrandsen;Hasleveien 3;0457;Trondheim;23456789;s.sg@super.no;45;23456;Vgs;Økonomi;Skiløp;Trorbjørn;Salg;Service;It;Okonomi;
-Jo;Nesbø;Her hos deg;3456;Hamar;3847 2889;jo.jegertøff@trikken.no;65;23 000;Bachelor;Ledelse;Bokskriving;De solgte bra da;Salg;Admin;It;Okonomi;
-Stine;Gurkfrid;Hefalumpens sving 7;0567;Oslo;93828190;sting.g@gmail.com;19;120 000;Bachelor;Salg;Rema 1000;Stian Stiansen;[Salg, It, Okonomi];
-kai;hansen;osloveien 2;0989;Oslo;33445566;kh@test.no;33;0;Bachelor;Salg;uttøver;Hilde Miriamsen;[Salg];
-kai;monsen;osloveien;0789;Oslo;33888443;km@test.no;22;0;Master;Økonomi;Økonomisjef;Kjersti Sivertsen;[Okonomi];
-kari;hansen;oslo;8798;oslo;22554466;kh@test.no;33;0;Vgs;It;uttøver;monsen 22;[It];
-Kari;Monsen;Osloveien;0989;Oslo;33445566;km@test.no;33;0;Master;Økonomi;Økonomisjef;Ragna Sivertsen;[Salg, Admin, It, Okonomi];
+Runa;Eide;Sagveien 11;0459;Oslo;94854723;runa.eide@gmail.com;25;230 000;Bachelor;Ledelse;Sykepleier;Sykehus;Salg, It;
+Agnes;Aanderaa;Husebybakken 22B;0379;Oslo;90569415;agmaa@online.no;51;350 000;Master;Økonomi;Sikkerhet, etninsk hacking;Telenor;Admin, It, Okonomi;
+Kjell Erik;Eide;Akersbakken 35C;0348;Oslo;90378249;ke.eide@online.no;61;354 000;Vgs;Ledelse;Kulturavvikling;Oslo kommune;Salg, Admin;
+Signe;Aanderaa Eide;sagveien 9;0459;Oslo;94899751;signe.eide@live.no;22;450 000;Master;It;Rockestjerne;Schnux records;Admin, It;

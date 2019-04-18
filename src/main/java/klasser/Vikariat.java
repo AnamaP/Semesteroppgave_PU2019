@@ -45,18 +45,24 @@ public class Vikariat {
         return kvalifikasjoner;
     }
 
-    public ArrayList<String> getKategorier() {
-        return kategorier;
-    }
-
     public void setLonn(String lonn){
         this.lonn = lonn;
     }
 
+    public String kategorierToString() {
+        String sb = "";
+        for(int i = 0; i < kategorier.size(); i++){
+            if(i == kategorier.size() -1){
+                sb += kategorier.get(i);
+            }
+            else{
+                sb += kategorier.get(i) + ", ";
+            }
+        }
+        return sb;
+    }
+
     public String toString(){
-        String ut = "";
-        ut += tittel+";"+varighet+";"+lonn+";"+beskrivelse+";"+kvalifikasjoner+";";
-        ut += kategorier.get(0)+";"+kategorier.get(1)+";"+kategorier.get(2)+";"+kategorier.get(3)+";";
-        return ut;
+        return tittel+";"+varighet+";"+lonn+";"+beskrivelse+";"+kvalifikasjoner+";"+kategorierToString()+";";
     }
 }

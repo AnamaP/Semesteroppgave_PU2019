@@ -34,7 +34,7 @@ public class TabellSokere {
         this.studieretning = new SimpleStringProperty(jobbsoker.getCv().getStudieretning());
         this.erfaring = new SimpleStringProperty(jobbsoker.getCv().getErfaring());
         this.referanse = new SimpleStringProperty(jobbsoker.getCv().getReferanse());
-        this.kategorier = new SimpleStringProperty(jobbsoker.getCv().getKategorier());
+        this.kategorier = new SimpleStringProperty(jobbsoker.getCv().kategorierToString());
     }
 
     public SimpleStringProperty fornavnProperty() {

@@ -12,12 +12,12 @@ public class OversiktSokereHjelper {
     private static ArrayList<String> valgteKategorier;
 
     public OversiktSokereHjelper() {
+
     }
 
     public void setValgteKategorier(ArrayList<String> valgteKategorier) {
         this.valgteKategorier = valgteKategorier;
     }
-
 
     public static ObservableList<TabellSokere> visJobbsokere(String path) {
         // Oppretter en tabell
@@ -30,7 +30,7 @@ public class OversiktSokereHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 16){
+                if(kolonner.length > 13){
                     ArrayList<String> kategorier = new ArrayList<>();
                     for(int i = 13; i < kolonner.length; i++) {
                         kategorier.add(kolonner[i]);
@@ -58,7 +58,6 @@ public class OversiktSokereHjelper {
         return obl;
     }
 
-
     public static ObservableList<TabellSokere> visResultat(String path){
         // Oppretter en tabell
         ObservableList<TabellSokere> obl = FXCollections.observableArrayList();
@@ -67,24 +66,34 @@ public class OversiktSokereHjelper {
             BufferedReader csvreader = new BufferedReader(new FileReader(path));
             String rad;
 
+            System.out.println("Valgte kategorier: " + valgteKategorier.toString());
+
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
                 if(kolonner.length > 13) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
-                    for(int i = 13; i < kolonner.length; i++) {
+                    for (int i = 13; i < kolonner.length; i++) {
                         kategorier.add(kolonner[i]);
                     }
-                    //Tester om noen av kategoriene "matcher":
+
+                    System.out.println("Kategorier : " + kategorier.toString());
+
+                    for(int i = 0; i < valgteKategorier.size(); i++){
+                        kategorier.equals(valgteKategorier.get(i));
+                    }
+
+                    /*Skrivet ut kun en av kategoriene "matcher":
                     if (
-                            (kategorier.contains("Salg") && valgteKategorier.get(0).equals("Salg")) ||
-                                    (kategorier.contains("Admin") && valgteKategorier.get(1).equals("Admin")) ||
-                                    (kategorier.contains("It") && valgteKategorier.get(2).equals("It")) ||
-                                    (kategorier.contains("Økonomi") && valgteKategorier.get(3).equals("Økonomi"))
-                    ) {
+                            (kategorier.toString().contains("Salg")) && valgteKategorier.contains("Salg") ||
+                                    (kategorier.toString().contains("Admin")) && valgteKategorier.contains("Admin") ||
+                                    (kategorier.toString().contains("It")) && valgteKategorier.contains("It") ||
+                                    (kategorier.toString().contains("Okonomi")) && valgteKategorier.contains("Okonomi")
+                    ) {*/
 
-
+                    //Denne henter kun de som passer til alle kategoriene vikariatet spør om:
+                    if(kategorier.toString().contains(valgteKategorier.toString())){
                         Cv cv = new Cv(kolonner[9], kolonner[10], kolonner[11], kategorier);
 
                         Jobbsoker tabell = new Jobbsoker(kolonner[0], kolonner[1], kolonner[2], kolonner[3], kolonner[4],
@@ -92,6 +101,8 @@ public class OversiktSokereHjelper {
 
                         TabellSokere oversiktSokere = new TabellSokere(tabell);
                         obl.add(oversiktSokere);
+
+                        System.out.println("Blir dette skrevet ut mon tro??");
                     }
                 }
             }

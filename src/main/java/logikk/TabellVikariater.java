@@ -24,7 +24,7 @@ public class TabellVikariater {
         this.stillingstittel = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getTittel());
         this.varighet = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getVarighet());
         this.kvalifikasjoner = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getKvalifikasjoner());
-        this.kategorier = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getKategorier().toString());
+        this.kategorier = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().kategorierToString());
     }
 
     public SimpleStringProperty kontaktpersonProperty() {

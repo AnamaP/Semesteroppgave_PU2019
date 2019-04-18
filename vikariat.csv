@@ -1,8 +1,5 @@
-Morten;45445566;Privat;Hansen As;12345678900;Handtverk;Sekretær;2år;;Mer info på intervju;Strukturert;NULL;Service;NULL;NULL;
-Marie;33445566;Privat;MMHansen As;2345678909;Industri;Økonomisjef;1år;400_000;blablabla;Strukturert;NULL;NULL;NULL;Okonomi;
-Camilla;88445577;Privat;Borresen AS;34557687980;Kunst;Sekretær;1år;;blabla;Detaljorientert;NULL;Service;NULL;NULL;
-Maria Halvorsen;45645778;Privat;Ole Brum As;4444444444;Honningproduksjon;Honningassistent;6mnd;;må være glad i honning;mye kunnskap om Ole Brum og honning;Salg;NULL;NULL;NULL;
-Miriam;928537;Offentlig;Paraply AS;23456789;Produksjon av paraplyer.. duh;Selger;2 dager;40 kr;Du må være tøffere enn trikken..!!!!!!;flink, tøff i pysjamas, glad i farger;Salg;Service;It;Okonomi;
-Trine;34567898;Offentlig;Ballong.fest;238475894;Fest;Ballongoppblåser;3mnd;234 000;Bka lalf feoidm;Gode lunger;Salg;NULL;It;NULL;
-Knut;Nærum;Offentlig;Bøker og sånt;284 928 29 ;Slag;Forfatter;2 år;30 000;uwhlgkdjfs;adsfgh;Salg;Admin;It;Okonomi;
-[TablePosition [ row: 6, column: javafx.scene.control.TableColumn@6ae706f3, tableView: TableView[id=tvOversiktVikariater, styleClass=table-view] ]]
+Truls Tornes;22003928;Privat;Ballong.org;2043921;Festproduksjon;Nettverksforahndler;4mnd;230 000;Hjelpe kunder med bestillinger på nett;Strukturert, flink med word;Salg, Admin;
+Reidar Trondsen;23546730;Offentlig;Aleris;20380134;Helse;Helsefagarbeider;2 år;45 000;Ivareta brukere og pasienter i henhold til retningslinjer;Fagbrev innen helse og omsorg, 2 års erfaring i relevant arbeid;Admin, It;
+Floriss Hansen;13097812;Privat;Ekbo;123 45 134;Humor;Bolleselger;5mnd;650 000;Betjening av haslumsseter kapell;Strukturert, flink til å lage boller;Salg, It, Okonomi;
+Knut;21309871;Offentlig;Tusenfryd;;;Billettsalg i luke;4 mnd;120 000;Sommer 2019;Strukturert, god med tall;Salg, Admin, Okonomi;
+Berthild;23 00 94 57;Offentlig;Tine AS;123 45 234;Matproduksjon;Melkpakker;1,5 år;240 000;Pakke melk i esker;Effektiv, lange dager, sosial;Salg, Admin, It, Okonomi;
