@@ -24,8 +24,8 @@ public class ValidationChecker {
     }
 
     private boolean checkValidName(String firstname, String lastname) throws InvalidNameFormatException {
-        if((!Pattern.matches("[a-zæøåA-ZÆØÅ__\\s]+",firstname) || firstname.isEmpty()) ||
-        (!Pattern.matches("[a-zæøåA-ZÆØÅ__\\s]+",lastname) || lastname.isEmpty())){
+        if((!Pattern.matches("[a-zæøåA-ZÆØÅ_\\s]+",firstname) || firstname.isEmpty()) ||
+        (!Pattern.matches("[a-zæøåA-ZÆØÅ_\\s]+",lastname) || lastname.isEmpty())){
             throw new InvalidNameFormatException("Feil i Fornavn / Etternavn (må bestå av bokstaver A-Å), vennligst se over!");
         }
         return true;
@@ -83,7 +83,7 @@ public class ValidationChecker {
     }
 
     private boolean checkValidPostal(String postal) throws InvalidPostalFormatException {
-        if(!Pattern.matches("[a-zæøåA-ZÆØÅ__\\s]+",postal) || postal.isEmpty()){
+        if(!Pattern.matches("[a-zæøåA-ZÆØÅ_\\s]+",postal) || postal.isEmpty()){
             throw new InvalidPostalFormatException("Feil i poststed (kun bokstaver (A-Å)");
         }
         return true;
@@ -102,7 +102,7 @@ public class ValidationChecker {
     }
 
     private boolean checkValidPhoneNmbr(String phoneNmbr) throws InvalidPhoneNmbrException {
-        if(!Pattern.matches("[0-9__\\s]+",phoneNmbr) || phoneNmbr.length() != 8 || phoneNmbr.isEmpty()){
+        if(!Pattern.matches("[0-9_\\s]+",phoneNmbr) || phoneNmbr.length() != 8 || phoneNmbr.isEmpty()){
             throw new InvalidPhoneNmbrException("Feil i tlfnr, kun tall mellom 0-9 tillat!");
         }
         return true;
@@ -140,10 +140,9 @@ public class ValidationChecker {
         return false;
     }
 
-    private boolean checkValidLength(String experience, String reference) throws InvalidLengthException {
-        if((!Pattern.matches("[a-zæøåA-ZÆØÅ0-9._\\s]{5,40}+",experience) || experience.isEmpty()) ||
-        (!Pattern.matches("[a-zæøåA-ZÆØÅ0-9._ ]{0,30}+",reference))){
-            throw new InvalidLengthException("Ugyldig input i enten erfaring eller referanse, maks tegn er hhv 40 og 30");
+    private boolean checkValidLength(String experience, String reference) throws InvalidTextIfNullException {
+        if(experience.isEmpty() || reference.isEmpty()){
+            throw new InvalidTextIfNullException("Feil i erfaring/referanse, vennligst fyll inn informasjon");
         }
         return true;
     }
@@ -154,8 +153,8 @@ public class ValidationChecker {
                 return true;
             }
         }
-        catch(InvalidLengthException e){
-            invalidInputs += (String.format("%s %s: er ugyldig, maks 40 tegn tillatt \n", experience, reference));
+        catch(InvalidTextIfNullException e){
+            invalidInputs += "Feil i erfaring/referanse, vennligst fyll inn informasjon \n";
         }
         return false;
     }
