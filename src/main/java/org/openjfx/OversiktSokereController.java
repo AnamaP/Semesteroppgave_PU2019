@@ -1,7 +1,5 @@
 package org.openjfx;
 
-import filbehandling.CsvFilhandterer;
-import filbehandling.Filhandterer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +37,7 @@ public class OversiktSokereController implements Initializable {
         tvOversiktSoker.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
     }
 
+
     @FXML
     public void btnTilbake(ActionEvent event){
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
@@ -52,7 +51,7 @@ public class OversiktSokereController implements Initializable {
         // TODO : her skal det kalles på metode som sletter jobbsøker
     }
 
-    public void btnLastNedSoker(ActionEvent event) {
+    public void btnLastNedSoker(ActionEvent event) throws IOException {
         FileChooserHjelper.lastNed(Paths.JOBBSOKER_CSV);
     }
 

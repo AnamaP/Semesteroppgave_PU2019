@@ -5,7 +5,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import klasser.Cv;
 import klasser.Jobbsoker;
-
 import java.util.ArrayList;
 
 public class RegSokerHjelper {
