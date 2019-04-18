@@ -3,7 +3,7 @@ package Exceptions;
 import java.util.regex.Pattern;
 
 public class ValidationChecker {
-    private String ugyldigeVerdier = "";
+    private String invalidInputs = "";
 
     // TODO : Må man legge inn regex for whitespace / ikke tillate whitespace??
 
@@ -20,12 +20,12 @@ public class ValidationChecker {
         checkLength(experience, reference);
         checkSalary(salary);
 
-        return ugyldigeVerdier;
+        return invalidInputs;
     }
 
     private boolean checkValidName(String firstname, String lastname) throws InvalidNameFormatException {
-        if((!Pattern.matches("[a-zæøåA-ZÆØÅ ]+",firstname) || firstname.isEmpty()) ||
-        (!Pattern.matches("[a-zæøåA-ZÆØÅ ]+",lastname) || lastname.isEmpty())){
+        if((!Pattern.matches("[a-zæøåA-ZÆØÅ__\\s]+",firstname) || firstname.isEmpty()) ||
+        (!Pattern.matches("[a-zæøåA-ZÆØÅ__\\s]+",lastname) || lastname.isEmpty())){
             throw new InvalidNameFormatException("Feil i Fornavn / Etternavn (må bestå av bokstaver A-Å), vennligst se over!");
         }
         return true;
@@ -38,13 +38,14 @@ public class ValidationChecker {
             }
         }
         catch(InvalidNameFormatException e){
-            ugyldigeVerdier += "Feil i Fornavn / Etternavn (må bestå av bokstaver A-Å), vennligst se over! \n";
+            invalidInputs += (String.format("%s : er ugyldig, fornavn må bestå av bokstaver A-Å \n", firstname));
+            invalidInputs += (String.format("%s : er ugyldig, etternavn må bestå av bokstaver A-Å \n", lastname));
         }
         return false;
     }
 
     private boolean checkValidAddress(String address)throws InvalidAddressFormatException {
-        if(!Pattern.matches("[a-zæøåA-ZÆØÅ0-9]+",address) || address.isEmpty()){
+        if(!Pattern.matches("[a-zæøåA-ZÆØÅ0-9_\\s]+",address) || address.isEmpty()){
             throw new InvalidAddressFormatException("Feil i adresse (kun bokstaver og tall tillatt");
         }
         return true;
@@ -57,7 +58,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidAddressFormatException e){
-            ugyldigeVerdier += "Feil i adresse (kun bokstaver og tall tillatt! \n";
+            invalidInputs += (String.format("%s : er ugyldig, kun bokstaver og tall tillatt i adresse! \n", address));
         }
         return false;
     }
@@ -76,13 +77,13 @@ public class ValidationChecker {
             }
         }
         catch(InvalidZipCodeFormatException e){
-            ugyldigeVerdier += "Feil i postnr (kun tall mellom 0-9! \n";
+            invalidInputs += (String.format("%s : er ugyldig, kun tall mellom 0-9 tillatt i postnr! \n", zipcode));
         }
         return false;
     }
 
     private boolean checkValidPostal(String postal) throws InvalidPostalFormatException {
-        if(!Pattern.matches("[a-zæøåA-ZÆØÅ]+",postal) || postal.isEmpty()){
+        if(!Pattern.matches("[a-zæøåA-ZÆØÅ__\\s]+",postal) || postal.isEmpty()){
             throw new InvalidPostalFormatException("Feil i poststed (kun bokstaver (A-Å)");
         }
         return true;
@@ -95,13 +96,13 @@ public class ValidationChecker {
             }
         }
         catch(InvalidPostalFormatException e){
-            ugyldigeVerdier += "Feil i poststed (kun bokstaver A-Å tillatt)! \n";
+            invalidInputs += (String.format("%s : er ugyldig, kun bokstaver A-Å tillatt i poststed! \n", postal));
         }
         return false;
     }
 
     private boolean checkValidPhoneNmbr(String phoneNmbr) throws InvalidPhoneNmbrException {
-        if(!Pattern.matches("[0-9]+",phoneNmbr) || phoneNmbr.length() != 8 || phoneNmbr.isEmpty()){
+        if(!Pattern.matches("[0-9__\\s]+",phoneNmbr) || phoneNmbr.length() != 8 || phoneNmbr.isEmpty()){
             throw new InvalidPhoneNmbrException("Feil i tlfnr, kun tall mellom 0-9 tillat!");
         }
         return true;
@@ -114,7 +115,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidPhoneNmbrException e){
-            ugyldigeVerdier += "Feil i tlfnr, kun tall mellom 0-9 tillat! \n";
+            invalidInputs += (String.format("%s : er ugyldig, kun tall mellom 0-9 tillat i tlfnr! \n", phoneNmbr));
         }
         return false;
     }
@@ -134,15 +135,15 @@ public class ValidationChecker {
             }
         }
         catch(InvalidEmailFormatException e){
-            ugyldigeVerdier += "Feil i epost format, riktig ex. kari@test.no \n";
+            invalidInputs += (String.format("%s : er ugyldig, riktig epost format er feks: kari@test.no \n", email));
         }
         return false;
     }
 
     private boolean checkValidLength(String experience, String reference) throws InvalidLengthException {
-        if((!Pattern.matches("[a-zæøåA-ZÆØÅ0-9. ]{5,40}+",experience) || experience.isEmpty()) ||
-        (!Pattern.matches("[a-zæøåA-ZÆØÅ0-9. ]{0,30}+",reference))){
-            throw new InvalidLengthException("Erfaring og Refereanse kan inneholde maks 20 tegn");
+        if((!Pattern.matches("[a-zæøåA-ZÆØÅ0-9._\\s]{5,40}+",experience) || experience.isEmpty()) ||
+        (!Pattern.matches("[a-zæøåA-ZÆØÅ0-9._ ]{0,30}+",reference))){
+            throw new InvalidLengthException("Ugyldig input i enten erfaring eller referanse, maks tegn er hhv 40 og 30");
         }
         return true;
     }
@@ -154,7 +155,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidLengthException e){
-            ugyldigeVerdier += "Maks 20 tegn tillatt i erfaring og referanse";
+            invalidInputs += (String.format("%s %s: er ugyldig, maks 40 tegn tillatt \n", experience, reference));
         }
         return false;
     }
@@ -173,13 +174,13 @@ public class ValidationChecker {
             }
         }
         catch(InvalidAgeFormatException e){
-            ugyldigeVerdier += "Ugyldig alder \n";
+            invalidInputs += (String.format("%s : er ugyldig, alder må bestå av tall \n"));
         }
         return false;
     }
 
     private boolean checkValidSalary(String salary) throws InvalidSalaryFormatException {
-        if(!Pattern.matches("[0-9]{0,7}+",salary)){
+        if(!Pattern.matches("[0-9_\\s]{0,7}+",salary)){
             throw new InvalidSalaryFormatException("Lønnskrav må bestå av tall mellom 0 og 9 (maks input er i mio)");
         }
         return true;
@@ -192,7 +193,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidSalaryFormatException e){
-            ugyldigeVerdier += "Lønnskrav må bestå av tall mellom 0 og 9 (maks input er i mio)";
+            invalidInputs += (String.format("%s : er ugyldig, lønnskrav må bestå av tall mellom 0-9 (maks input er i mio)\n",salary));
         }
         return false;
     }
