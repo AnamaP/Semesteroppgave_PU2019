@@ -15,14 +15,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegSokerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegSokerController">
    <children>
-      <Text fill="#084d3e" layoutX="167.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jobbsøkerregistrering" wrappingWidth="265.0">
+      <Text fill="#084d3e" layoutX="4.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jobbsøkerregistrering" textAlignment="CENTER" wrappingWidth="570.9999694824219">
          <font>
             <Font name="Ayuthaya" size="20.0" />
          </font>
       </Text>
-      <GridPane layoutX="36.0" layoutY="77.0" prefHeight="248.0" prefWidth="233.0">
+      <GridPane layoutX="36.0" layoutY="58.0" prefHeight="248.0" prefWidth="233.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -46,6 +46,8 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Poststed*" GridPane.rowIndex="4" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefonnr*" GridPane.rowIndex="5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Epost*" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alder*" GridPane.rowIndex="7" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lønnskrav:" GridPane.rowIndex="8" />
             <TextField fx:id="txtFornavn" prefHeight="2.0" prefWidth="42.0" GridPane.columnIndex="1" />
             <TextField fx:id="txtEtternavn" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtAdresse" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -53,19 +55,33 @@
             <TextField fx:id="txtPoststed" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txtTlf" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txtEpost" prefHeight="0.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alder*" GridPane.rowIndex="7" />
             <TextField fx:id="txtAlder" prefHeight="41.0" prefWidth="117.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lønnskrav:" GridPane.rowIndex="8" />
             <TextField fx:id="txtLonnskrav" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <Text fill="#000000cf" layoutX="340.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder:">
+      <Text fill="#000000cf" layoutX="340.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder:">
          <font>
             <Font name="Ayuthaya" size="16.0" />
          </font>
       </Text>
 
-       <ComboBox fx:id="valgUtdanning" layoutX="28.0" layoutY="384.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg høyeste utdanning">
+      <CheckBox fx:id="cbxSalg" layoutX="342.0" layoutY="89.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Salg" />
+      <CheckBox fx:id="cbxAdmin" layoutX="341.0" layoutY="114.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Admin" />
+      <CheckBox fx:id="cbxIt" layoutX="341.0" layoutY="140.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="It" />
+      <CheckBox fx:id="cbxOkonomi" layoutX="341.0" layoutY="168.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Økonomi" />
+      <Label layoutX="479.0" layoutY="299.0" prefHeight="17.0" prefWidth="86.0" text="* obligatoriske felt" textFill="#000000b4">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Line endX="435.5" layoutX="129.0" layoutY="320.0" startX="-100.0" />
+      <Text fill="#084d3e" layoutX="28.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- CV -" textAlignment="CENTER" wrappingWidth="536.5">
+         <font>
+            <Font name="Ayuthaya" size="14.0" />
+         </font>
+      </Text>
+
+       <ComboBox fx:id="valgUtdanning" layoutX="28.0" layoutY="349.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg høyeste utdanning">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="Vgs" />
@@ -75,7 +91,7 @@
            </items>
        </ComboBox>
 
-       <ComboBox fx:id="valgRetning" layoutX="298.0" layoutY="384.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg studieretning">
+       <ComboBox fx:id="valgRetning" layoutX="369.0" layoutY="349.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg studieretning">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="It" />
@@ -85,27 +101,12 @@
                </FXCollections>
            </items>
        </ComboBox>
-
-      <CheckBox fx:id="cbxSalg" layoutX="350.0" layoutY="114.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Salg" />
-      <CheckBox fx:id="cbxAdmin" layoutX="349.0" layoutY="139.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Admin" />
-      <CheckBox fx:id="cbxIt" layoutX="349.0" layoutY="165.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="IT" />
-      <CheckBox fx:id="cbxOkonomi" layoutX="349.0" layoutY="193.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Økonomi" />
-      <Line endX="435.5" layoutX="129.0" layoutY="341.0" startX="-100.0" />
-      <Text fill="#084d3e" layoutX="259.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- CV -">
-         <font>
-            <Font name="Ayuthaya" size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="27.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Erfaring:*" />
-      <Text layoutX="299.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referanser:" />
-      <TextField fx:id="txtErfaring" layoutX="25.0" layoutY="464.0" prefHeight="27.0" prefWidth="252.0" promptText="Firma, stilling" />
-      <TextField fx:id="txtReferanse" layoutX="298.0" layoutY="464.0" prefHeight="27.0" prefWidth="252.0" promptText="Fullt navn, tlf" />
-      <Button layoutX="490.0" layoutY="505.0" mnemonicParsing="false" onAction="#btnRegSoker" prefHeight="27.0" prefWidth="62.0" text="Lagre" />
-      <Button fx:id="btnTilbake" layoutX="24.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
-      <Label layoutX="479.0" layoutY="317.0" prefHeight="17.0" prefWidth="86.0" text="* obligatoriske felt" textFill="#000000b4">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
+      <Text layoutX="27.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Erfaring:*" />
+      <TextField fx:id="txtErfaring" layoutX="26.0" layoutY="428.0" prefHeight="27.0" prefWidth="263.0" promptText="Firma, stilling" />
+      <Text layoutX="305.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referanser:" />
+      <TextField fx:id="txtReferanse" layoutX="304.0" layoutY="428.0" prefHeight="27.0" prefWidth="263.0" promptText="Fullt navn, tlf" />
+      <Label fx:id="lblFeilmld" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="27.0" layoutY="464.0" prefHeight="85.0" prefWidth="537.0" />
+      <Button fx:id="btnTilbake" layoutX="26.0" layoutY="552.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
+      <Button layoutX="504.0" layoutY="552.0" mnemonicParsing="false" onAction="#btnRegSoker" prefHeight="27.0" prefWidth="62.0" text="Lagre" />
    </children>
 </Pane>

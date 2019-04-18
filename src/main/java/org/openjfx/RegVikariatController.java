@@ -3,10 +3,7 @@ package org.openjfx;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import klasser.Arbeidsgiver;
 import logikk.Paths;
 import logikk.RegVikariatHjelper;
@@ -30,6 +27,8 @@ public class RegVikariatController {
     @FXML
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
+    @FXML
+    private Label lblFeilmld;
 
     @FXML
     private void btnRegVikariat(ActionEvent event) {
