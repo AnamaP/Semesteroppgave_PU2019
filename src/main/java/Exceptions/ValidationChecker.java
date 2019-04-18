@@ -1,8 +1,8 @@
-package feilhaandtering;
+package Exceptions;
 
 import java.util.regex.Pattern;
 
-public class ValidationHelper {
+public class ValidationChecker {
     private String ugyldigeVerdier = "";
 
     // TODO : Må man legge inn regex for whitespace / ikke tillate whitespace??

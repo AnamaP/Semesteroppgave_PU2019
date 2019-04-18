@@ -1,6 +1,6 @@
 package org.openjfx;
 
-import feilhaandtering.ValidationHelper;
+import Exceptions.ValidationChecker;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,7 +50,7 @@ public class RegSokerController {
 
         //String test = FeilhandtererHjelper.getTextAreaData(txtFirstname);
 
-        ValidationHelper validation = new ValidationHelper();
+        ValidationChecker validation = new ValidationChecker();
         String invalidInputs = validation.inputCollector(inptFirstname, inptLastname, inptAddress, inptZipCode, inptPostal,
                 inptPhoneNmbr, inptEmail, inptAge, inptExperience, inptReference, inptSalary);
 

@@ -6,7 +6,7 @@ import klasser.Jobbsoker;
 
 import java.util.ArrayList;
 
-public class FeilhandtererHjelper {
+public class ValidationHelper {
 
 // TODO : Flytte koden for kall på regex hit ?
 }

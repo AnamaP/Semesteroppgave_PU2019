@@ -1,4 +1,4 @@
-package feilhaandtering;
+package Exceptions;
 
 public class InvalidLengthException extends Exception{
     public InvalidLengthException(String msg) {
