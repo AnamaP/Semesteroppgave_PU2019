@@ -1,5 +1,6 @@
 package org.openjfx;
 
+import Exceptions.ValidationChecker;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +25,9 @@ public class RegVikariatController {
     @FXML
     private TextArea txtBeskrivelse;
 
+    /* @FXML
+    private VBox vbxWorkfields;*/
+
     @FXML
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
@@ -35,24 +39,46 @@ public class RegVikariatController {
 
         Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
                 txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje,
-                txtStillingstittel, txtVarighet, txtLonn,radioHeltid, radioDeltid,
+                txtStillingstittel, txtVarighet, txtLonn, radioHeltid, radioDeltid,
                 txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
-        String ut= nyUtlysning.toString();
+        // TODO: flytte kode for validering i en egen metode utenfor controller
+        String inptContactPerson = txtKontaktperson.getText();
+        String inptPhoneNmbr = txtTlf.getText();
+        String inptSector = txtSektor.getText();
+        String inptCompanyName = txtFirmaNavn.getText();
+        String inptOrgNmbr = txtOrgNr.getText();
+        String inptIndustry = txtBransje.getText();
+        String inptJobTitle = txtStillingstittel.getText();
+        String inptQualif = txtKvalifikasjoner.getText();
+        String inptDuration = txtVarighet.getText();
+        String inptSalary = txtLonn.getText();
+        String inptJobDescription = txtBeskrivelse.getText();
+        //String inptJobType =
+        //String inptWorkfields = String.valueOf(vbxWorkfields.getChildren().toString());
+
+        ValidationChecker validation = new ValidationChecker();
+        String invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNmbr, inptSector, inptCompanyName,
+                inptOrgNmbr, inptIndustry, inptJobTitle, inptJobDescription, inptDuration, inptSalary, inptQualif);
+
+        if (!invalidInputs.isEmpty()) {
+            lblFeilmld.setText(invalidInputs);
+        } else {
+
+            String ut = nyUtlysning.toString();
+
+            // Lagrer til .csv
+            Filhandterer csvFilhandterer = new CsvFilhandterer();
+            try {
+                csvFilhandterer.skrivTilFil(ut, Paths.VIKARIAT_CSV);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
-        // Lagrer til .csv
-        Filhandterer csvFilhandterer = new CsvFilhandterer();
-        try {
-            csvFilhandterer.skrivTilFil(ut, Paths.VIKARIAT_CSV);
+            //Tar brukeren til visning:
+            NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        //Tar brukeren til visning:
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     @FXML

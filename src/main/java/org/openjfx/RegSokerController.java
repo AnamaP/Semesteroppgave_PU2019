@@ -39,6 +39,7 @@ public class RegSokerController {
                 txtTlf, txtEpost, txtAlder, valgUtdanning, valgRetning, txtErfaring, txtReferanse, txtLonnskrav, cbxSalg,
                 cbxAdmin, cbxIt, cbxOkonomi);
 
+        // TODO: flytte kode for validering i en egen metode utenfor controller
         String inptFirstname = txtFornavn.getText();
         String inptLastname = txtEtternavn.getText();
         String inptAddress = txtAdresse.getText();
@@ -57,7 +58,7 @@ public class RegSokerController {
         //String test = FeilhandtererHjelper.getTextAreaData(txtFirstname);
 
         ValidationChecker validation = new ValidationChecker();
-        String invalidInputs = validation.inputCollector(inptFirstname, inptLastname, inptAddress, inptZipCode,
+        String invalidInputs = validation.inputJobseekerCollector(inptFirstname, inptLastname, inptAddress, inptZipCode,
                 inptPostal,inptPhoneNmbr, inptEmail, inptAge, inptExperience, inptReference, inptSalary);
 
         if (!invalidInputs.isEmpty()) {

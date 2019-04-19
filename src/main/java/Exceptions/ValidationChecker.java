@@ -10,9 +10,9 @@ public class ValidationChecker {
 
     // TODO : Må man legge inn regex for whitespace / ikke tillate whitespace??
 
-    public String inputCollector(String firstname, String lastname, String address, String zipcode, String postal,
-                                 String phoneNmbr, String email, String age, String experience, String reference,
-                                 String salary){
+    public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
+                                          String phoneNmbr, String email, String age, String experience, String reference,
+                                          String salary){
 
         checkName(firstname, lastname);
         checkAddress(address);
@@ -21,10 +21,28 @@ public class ValidationChecker {
         checkPhoneNmbr(phoneNmbr);
         checkEmail(email);
         checkAge(age);
-        checkLength(experience, reference);
+        checkLengthJobseeker(experience, reference);
         checkSalary(salary);
         //checkValueSelected(education,study);
        // checkWorkfields(workfields);
+
+        return invalidInputs;
+    }
+
+    public String inputJobAdvertCollector(String contactP, String phoneNmbr, String sector, String companyName,
+                                                 String orgNmbr, String industry, String jobTitle, String jobDescription,
+                                                 String duration, String salary, String qualif){
+        checkContactP(contactP);
+        checkPhoneNmbr(phoneNmbr);
+        checkSector(sector);
+        checkCompanyName(companyName);
+        checkOrgNmbr(orgNmbr);
+        checkIndustry(industry);
+        checkLengthJobadvert(jobTitle,jobDescription,qualif);
+        checkDuration(duration);
+        checkSalary(salary);
+        //checkValueJobType;
+        //checkWorkfields(workfields);
 
         return invalidInputs;
     }
@@ -107,7 +125,7 @@ public class ValidationChecker {
     }
 
     private boolean checkValidPhoneNmbr(String phoneNmbr) throws InvalidPhoneNmbrException {
-        if(!Pattern.matches("[0-9_\\s]+",phoneNmbr) || phoneNmbr.length() != 8 || phoneNmbr.isEmpty()){
+        if(!Pattern.matches("[0-9_\\p{Space}]+",phoneNmbr) || phoneNmbr.length() != 8 || phoneNmbr.isEmpty()){
             throw new InvalidPhoneNmbrException("Feil i tlfnr, må bestå av 8 tall mellom 0-9 tillatt!");
         }
         return true;
@@ -145,21 +163,21 @@ public class ValidationChecker {
         return false;
     }
 
-    private boolean checkValidLength(String experience, String reference) throws InvalidTextIfNullException {
+    private boolean checkValidLengthJobseeker(String experience, String reference) throws InvalidTextIfNullException {
         if(experience.isEmpty() || reference.isEmpty()){
-            throw new InvalidTextIfNullException("Erfaring/referanse må fylles ut!");
+            throw new InvalidTextIfNullException("Mangler informasjon, vennligst se over at alle obligatoriske felter er fylt ut!");
         }
         return true;
     }
 
-    private boolean checkLength(String experience, String reference){
+    private boolean checkLengthJobseeker(String experience, String reference){
         try{
-            if(checkValidLength(experience,reference)){
+            if(checkValidLengthJobseeker(experience,reference)){
                 return true;
             }
         }
         catch(InvalidTextIfNullException e){
-            invalidInputs += "Erfaring/referanse må fylles ut! \n";
+            invalidInputs += "Mangler informasjon, vennligst se over at alle obligatoriske felter er fylt ut! \n";
         }
         return false;
     }
@@ -197,7 +215,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidSalaryFormatException e){
-            invalidInputs += (String.format("%s : er et ugyldig lønnskrav, tillatt: tall 0-9 (maks input er i mio)\n",salary));
+            invalidInputs += (String.format("%s : er en ugyldig lønn, tillatt: tall 0-9 (maks input er i mio)\n",salary));
         }
         return false;
     }
@@ -220,9 +238,143 @@ public class ValidationChecker {
         }
         return false;
     }*/
+    private boolean checkValidContactP(String contactP) throws InvalidNameFormatException{
+        if(!Pattern.matches("[a-zæøåA-ZÆØÅ_\\p{Space}\\-]+",contactP) || contactP.isEmpty()){
+            throw new InvalidNameFormatException("Feil i kontaktperson, Feil i kontaktperson, tillatt: Aa-åÅ og bindestrek(-)");
+        }
+        return true;
+    }
+
+    private boolean checkContactP(String contactP){
+        try{
+            if(checkValidContactP(contactP)){
+                return true;
+            }
+        }
+        catch(InvalidNameFormatException e){
+            invalidInputs += String.format("%s er ugyldig, tillatt: Feil i kontaktperson, tillatt: Aa-åÅ og bindestrek(-)\n",contactP);
+        }
+        return false;
+    }
+
+    private boolean checkValidSector(String sector) throws InvalidSectorFormatException{
+        if(Pattern.matches("[\\p{Upper}\\p{Lower}]+",sector) && (sector.equals("offentlig") || sector.equals("privat"))
+        && (!sector.isEmpty())){
+            throw new InvalidSectorFormatException("Feil i sektor, må enten stå privat eller offentlig");
+        }
+        return true;
+    }
+
+    private boolean checkSector(String sector){
+        try{
+            if(checkValidSector(sector)){
+                return true;
+            }
+        }
+        catch(InvalidSectorFormatException e){
+            invalidInputs += String.format("%s er ugyldig sektor, tillatt: Offentlig eller Privat \n", sector);
+        }
+        return false;
+    }
+
+    private boolean checkValidCompanyName(String companyName) throws InvalidCompanyNameFormatException{
+        if(!Pattern.matches("[a-zæøåA-ZÆØÅ0-9_ \\p{P}\\p{Space}]+", companyName) || companyName.isEmpty()){
+            throw new InvalidCompanyNameFormatException("Feil i firmanavn, tillatt: Aa-åÅ, tall 0-9 og punktum");
+        }
+        return true;
+
+    }
+
+    private boolean checkCompanyName(String companyName){
+        try{
+            if(checkValidCompanyName(companyName)){
+                return true;
+            }
+        }
+        catch(InvalidCompanyNameFormatException e){
+            invalidInputs += String.format("%s er et ugyldig firmanavn, tillatt: Aa-åÅ, tall 0-9 og punktum \n", companyName);
+        }
+        return false;
+    }
+
+    private boolean checkValidOrgNmbr(String orgNmbr) throws InvalidOrgNmbrFormatException{
+        if(!Pattern.matches("[0-9{9}\\p{Space}]+", orgNmbr) || orgNmbr.isEmpty()){
+            throw new InvalidOrgNmbrFormatException("Feil i organisasjonsnr, må bestå av 9 tall");
+        }
+        return true;
+
+    }
+
+    private boolean checkOrgNmbr(String orgNmbr){
+        try{
+            if(checkValidOrgNmbr(orgNmbr)){
+                return true;
+            }
+        }
+        catch(InvalidOrgNmbrFormatException e){
+            invalidInputs += String.format("%s er et ugyldig organisasjonsnr, må bestå av 9 tall \n", orgNmbr);
+        }
+        return false;
+    }
+
+    private boolean checkValidIndustry(String industry) throws InvalidIndustryFormatException{
+        if(!Pattern.matches("[a-zæøåA-ZÆØÅ]+",industry) || industry.isEmpty()){
+            throw new InvalidIndustryFormatException("Feil formatering i 'industri', tillat: Aa-åÅ");
+        }
+        return true;
+    }
+
+    private boolean checkIndustry(String industry) {
+        try {
+            if (checkValidIndustry(industry)) {
+                return true;
+            }
+        } catch (InvalidIndustryFormatException e) {
+            invalidInputs += String.format("%s er en ugyldig, tillatt: Aa-åÅ \n", industry);
+        }
+        return false;
+    }
+
+    private boolean checkValidJobadvertLength(String jobTitle, String jobDescription, String qualif)
+            throws InvalidTextIfNullException{
+        if(jobTitle.isEmpty() || jobDescription.isEmpty() || qualif.isEmpty()){
+            throw new InvalidTextIfNullException("Mangler informasjon i enten stillinstittel/stillingsbeskrivelse/kvalifikasjoner");
+        }
+        return true;
+    }
+
+    private boolean checkLengthJobadvert(String jobTitle, String jobDescription, String qualif){
+        try{
+            if(checkValidJobadvertLength(jobTitle,jobDescription,qualif)){
+                return true;
+            }
+        }
+        catch(InvalidTextIfNullException e){
+            invalidInputs += "Mangler informasjon, vennligst se over at alle obligatoriske felter er fylt ut! \n";
+        }
+        return false;
+    }
+
+    private boolean checkValidDuration(String duration) throws InvalidDurationFormatException{
+        if(!Pattern.matches("[a-zæøåA-ZÆØÅ0-9\\p{Space}]+",duration) || duration.isEmpty()){
+            throw new InvalidDurationFormatException("Feil i 'varighet', tillatt: Aa-åÅ og tall 0-9");
+        }
+        return true;
+    }
+
+    private boolean checkDuration(String duration){
+        try{
+            if(checkValidDuration(duration)){
+                return true;
+            }
+        }
+        catch(InvalidDurationFormatException e){
+            invalidInputs += String.format("%s er ugyldig, tillatt: Aa-åÅ og tall 0-9 \n", duration);
+        }
+        return false;
+    }
 
     // TODO : checkWorkfield metoden
-    // TODO : metoder for registrering av vikariat sjekk
     // TODO : Metode som sjekker for om stillingstype er valgt(heltid/deltid)
 
 }
