@@ -94,8 +94,6 @@ public class OversiktVikariaterHjelper {
 
                         TabellVikariater test = new TabellVikariater(tabell);
                         obl.add(test);
-
-                        System.out.println("Blir dette skrevet ut mon tro??");
                     }
                 }
             }

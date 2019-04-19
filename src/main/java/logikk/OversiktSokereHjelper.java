@@ -11,10 +11,6 @@ public class OversiktSokereHjelper {
 
     private static ArrayList<String> valgteKategorier;
 
-    public OversiktSokereHjelper() {
-
-    }
-
     public void setValgteKategorier(ArrayList<String> valgteKategorier) {
         this.valgteKategorier = valgteKategorier;
     }
@@ -101,8 +97,6 @@ public class OversiktSokereHjelper {
 
                         TabellSokere oversiktSokere = new TabellSokere(tabell);
                         obl.add(oversiktSokere);
-
-                        System.out.println("Blir dette skrevet ut mon tro??");
                     }
                 }
             }

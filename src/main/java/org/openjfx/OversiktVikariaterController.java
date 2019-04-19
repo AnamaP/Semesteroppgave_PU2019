@@ -69,7 +69,7 @@ public class OversiktVikariaterController implements Initializable {
         System.out.println("kategoriStr:" + kategoriStr);
         ArrayList<String> kategorier = stringToList(kategoriStr);
 
-        OversiktSokereHjelper valgteKategorier = new OversiktSokereHjelper();
+        OversiktVikariaterHjelper valgteKategorier = new OversiktVikariaterHjelper();
         valgteKategorier.setValgteKategorier(kategorier);
         System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
 
