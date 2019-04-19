@@ -80,7 +80,7 @@
          </children>
       </GridPane>
       <Text layoutX="51.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsbeskrivelse:*" />
-      <Text layoutX="617.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="max 200 ord">
+      <Text layoutX="613.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="maks 200 ord">
          <font>
             <Font size="11.0" />
          </font>
@@ -92,7 +92,7 @@
       <TextField fx:id="txtLonn" layoutX="522.0" layoutY="429.0" prefHeight="27.0" prefWidth="158.0" promptText="ex: 250 000" />
       <Text layoutX="46.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kvalifikasjoner:*" />
       <TextField fx:id="txtKvalifikasjoner" layoutX="175.0" layoutY="475.0" prefHeight="25.0" prefWidth="507.0" promptText="ex: Strukturert, punktlig, gode sammarbeidsevner ..." />
-      <Text layoutX="619.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="max 100 ord">
+      <Text layoutX="615.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="maks 100 ord">
          <font>
             <Font size="11.0" />
          </font>

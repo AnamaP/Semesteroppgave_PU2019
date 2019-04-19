@@ -8,8 +8,6 @@ import java.util.regex.Pattern;
 public class ValidationChecker {
     private String invalidInputs = "";
 
-    // TODO : Må man legge inn regex for whitespace / ikke tillate whitespace??
-
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
                                           String phoneNmbr, String email, String age, String experience, String reference,
                                           String salary){
@@ -338,7 +336,7 @@ public class ValidationChecker {
     private boolean checkValidJobadvertLength(String jobTitle, String jobDescription, String qualif)
             throws InvalidTextIfNullException{
         if(jobTitle.isEmpty() || jobDescription.isEmpty() || qualif.isEmpty()){
-            throw new InvalidTextIfNullException("Mangler informasjon i enten stillinstittel/stillingsbeskrivelse/kvalifikasjoner");
+            throw new InvalidTextIfNullException("Mangler informasjon i enten stillingstittel/stillingsbeskrivelse/kvalifikasjoner");
         }
         return true;
     }
