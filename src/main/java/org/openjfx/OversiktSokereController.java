@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import logikk.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class OversiktSokereController implements Initializable {
@@ -35,6 +36,7 @@ public class OversiktSokereController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
         tvOversiktSoker.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
+        setTableEditable();
     }
 
 
@@ -60,7 +62,30 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnFinnVikariater(ActionEvent event){
-        // TODO : her skal det kalles på en metode som finner aktuelle vikariater for jobbsøker
+
+        String kategoriStr = tvOversiktSoker.getSelectionModel().getSelectedItem().kategorierProperty().get();
+        System.out.println("kategoriStr:" + kategoriStr);
+        ArrayList<String> kategorier = stringToList(kategoriStr);
+
+        OversiktSokereHjelper valgteKategorier = new OversiktSokereHjelper();
+        valgteKategorier.setValgteKategorier(kategorier);
+        System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
+
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatSokere.fxml", event);
+
+    }
+
+    private void setTableEditable() {
+        tvOversiktSoker.setEditable(true);
+    }
+
+    public static ArrayList<String> stringToList(final String input) {
+        String[] elements = input.split(", ");
+        ArrayList<String> result = new ArrayList<>(elements.length);
+        for (String item : elements) {
+            result.add(String.valueOf(item));
+        }
+        return result;
     }
 
 }
