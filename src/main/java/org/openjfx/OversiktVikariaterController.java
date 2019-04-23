@@ -44,17 +44,20 @@ public class OversiktVikariaterController implements Initializable {
     }
 
     public void btnRedigerVikariat(ActionEvent event) {
+        String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
+        System.out.println(key);
+
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
     }
 
     public void btnSlettVikariat(ActionEvent event) {
-        String nokkel = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
+        String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
 
-        System.out.println(nokkel);
+        System.out.println(key);
 
-        Boolean test = RegVikariatHjelper.slettValgtVikariat(nokkel);
-        System.out.println(test);
-        if(test){
+        Boolean slett = RegVikariatHjelper.slettValgtVikariat(key);
+        System.out.println(slett);
+        if(slett){
             MainAppHelper run = new MainAppHelper();
             run.reloadVikariaterDatabase();
         }

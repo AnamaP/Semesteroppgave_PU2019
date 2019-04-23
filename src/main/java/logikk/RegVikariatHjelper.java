@@ -49,15 +49,14 @@ public class RegVikariatHjelper {
         return arbeidstid;
     }
 
-    public static Boolean slettValgtVikariat(String nokkel) {
+    public static Boolean slettValgtVikariat(String key) {
         for(int i = 0; i < arbeidsgivere.size(); i++){
             String tlf = arbeidsgivere.get(i).getTlf();
-            if(tlf.equals(nokkel)){
+            if(tlf.equals(key)){
                 arbeidsgivere.remove(i);
                 return true;
             }
         }
         return false;
     }
-
 }
