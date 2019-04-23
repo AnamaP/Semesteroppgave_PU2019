@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class RegSokerHjelper {
 
+    public static ArrayList<Jobbsoker> jobbsokere = new ArrayList<>();
+
     public static Jobbsoker nySoker(TextField txtFornavn, TextField txtEtternavn, TextField txtAdresse, TextField txtPostnr,
                             TextField txtPoststed, TextField txtTlf, TextField txtEpost, TextField txtAlder,
                             ComboBox valgUtdanning, ComboBox valgRetning, TextField txtErfaring, TextField txtReferanse,
@@ -32,6 +34,9 @@ public class RegSokerHjelper {
         if(txtLonnskrav.getText() != ""){
             nySoker.setLonnskrav(txtLonnskrav.getText());
         }
+
+        RegSokerHjelper.jobbsokere.add(nySoker);
+
         return nySoker;
     }
 

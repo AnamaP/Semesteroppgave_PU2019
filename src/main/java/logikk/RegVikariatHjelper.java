@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class RegVikariatHjelper {
 
-    // lage en statisk array list med arbeidsgivere - ved kall på "lagVikariat" så legges arb.giver i listen
     public static ArrayList<Arbeidsgiver> arbeidsgivere = new ArrayList<>();
 
     public static Arbeidsgiver lagVikariat(
