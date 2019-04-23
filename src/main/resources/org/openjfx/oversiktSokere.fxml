@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="testPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1285.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.OversiktSokereController">
+<Pane fx:id="testPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1375.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.OversiktSokereController">
    <children>
       <Button fx:id="btnTilbake" layoutX="22.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="24.0" prefWidth="112.0" text="Tilbake" />
       <Label alignment="CENTER" layoutX="20.0" layoutY="14.0" prefHeight="47.0" prefWidth="1177.0" text="Oversikt over jobbsøkere:" textFill="#084d3e">
@@ -15,7 +15,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TableView fx:id="tvOversiktSoker" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="1241.0">
+      <TableView fx:id="tvOversiktSoker" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="1269.0">
         <columns>
            <TableColumn fx:id="tcFornavn" prefWidth="100.0" text="Fornavn" />
            <TableColumn fx:id="tcEtternavn" prefWidth="100.0" text="Etternavn" />
@@ -28,13 +28,14 @@
            <TableColumn fx:id="tcUtdanning" text="Utdanning" />
            <TableColumn fx:id="tcStudieretning" prefWidth="90.0" text="Studieretning" />
            <TableColumn fx:id="tcErfaring" prefWidth="170.0" text="Erfaring" />
-           <TableColumn fx:id="tcKategorier" prefWidth="204.666748046875" text="Kategorier" />
+           <TableColumn fx:id="tcKategorier" prefWidth="151.3333740234375" text="Kategorier" />
+            <TableColumn fx:id="tcStatus" maxWidth="74.6666259765625" prefWidth="65.6666259765625" text="Status" />
         </columns>
       </TableView>
       <Button layoutX="298.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnRedigerSoker" prefHeight="24.0" prefWidth="115.0" text="Rediger søker" />
       <Button layoutX="454.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnSlettSoker" prefHeight="24.0" prefWidth="115.0" text="Slett søker" />
       <Button layoutX="608.0" layoutY="565.0" mnemonicParsing="false" onAction="#btnLastNedSoker" prefHeight="24.0" prefWidth="115.0" text="Last ned søker" />
       <Button layoutX="760.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnLastOppSoker" prefHeight="24.0" prefWidth="115.0" text="Last opp søker" />
-      <Button layoutX="1111.0" layoutY="560.0" mnemonicParsing="false" onAction="#btnFinnVikariater" prefHeight="24.0" prefWidth="153.0" text="Finn passende vikariater" />
+      <Button layoutX="1137.0" layoutY="560.0" mnemonicParsing="false" onAction="#btnFinnVikariater" prefHeight="24.0" prefWidth="153.0" text="Finn passende vikariater" />
    </children>
 </Pane>

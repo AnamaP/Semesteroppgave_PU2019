@@ -15,8 +15,8 @@ public class OversiktVikariaterController implements Initializable {
     private TableView<TabellVikariater> tvOversiktVikariater;
 
     @FXML
-    private TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor, tcFirmanavn, tcBransje,
-            tcStillingstittel, tcVarighet, tcKvalifikasjoner, tcKategorier;
+    private TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor, tcFirmanavn, tcOrgNr, tcBransje,
+            tcStillingstittel, tcStillingstype, tcVarighet, tcLonn, tcKvalifikasjoner, tcKategorier;
 
 
     @Override
@@ -26,9 +26,12 @@ public class OversiktVikariaterController implements Initializable {
         tcTlf.setCellValueFactory(cellData->cellData.getValue().tlfProperty());
         tcSektor.setCellValueFactory(cellData->cellData.getValue().sektorProperty());
         tcFirmanavn.setCellValueFactory(cellData->cellData.getValue().firmanavnProperty());
+        tcOrgNr.setCellValueFactory(cellData->cellData.getValue().orgnrProperty());
         tcBransje.setCellValueFactory(cellData->cellData.getValue().bransjeProperty());
         tcStillingstittel.setCellValueFactory(cellData->cellData.getValue().stillingstittelProperty());
+        tcStillingstype.setCellValueFactory(cellData->cellData.getValue().stillingstypeProperty());
         tcVarighet.setCellValueFactory(cellData->cellData.getValue().varighetProperty());
+        tcLonn.setCellValueFactory(cellData->cellData.getValue().lonnProperty());
         tcKvalifikasjoner.setCellValueFactory(cellData->cellData.getValue().kvalifikasjonerProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
