@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 public class ValidationChecker {
     private String invalidInputs = "";
 
+    // begrunne i rapporten hvorfor vi har kjørt følgende regex (f.eks strenger vil ikke krasje systemet)
+
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
                                           String phoneNmbr, String email, String age, String experience, String reference,
                                           String salary, Object education, Object study, Boolean sales, Boolean admin,

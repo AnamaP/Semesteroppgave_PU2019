@@ -4,10 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import klasser.Arbeidsgiver;
+import klasser.Vikariat;
 import logikk.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class OversiktVikariaterController implements Initializable {
 
@@ -51,6 +55,7 @@ public class OversiktVikariaterController implements Initializable {
     }
 
     public void btnSlettVikariat(ActionEvent event) {
+        // TODO: kontrollsjekke at man ikke kan registreres med duplikate tlf nr
         String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
 
         System.out.println(key);
@@ -64,8 +69,18 @@ public class OversiktVikariaterController implements Initializable {
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
-    public void btnLastNedVikariatr(ActionEvent event) {
-        FileChooserHjelper.lastNed(Paths.VIKARIAT_CSV);
+    public void btnLastNedVikariat(ActionEvent event) {
+        String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
+
+        for(int i = 0; i < arbeidsgivere.size(); i++){
+            String tlf = arbeidsgivere.get(i).getTlf();
+            if(tlf.equals(key)){
+                FileChooserHjelper.lastNed(arbeidsgivere.get(i));
+                break;
+            }
+        }
+        //TODO : Feilmld til bruker om at vikariat ikke er valgt
+
     }
 
     public void btnLastOppVikariat(ActionEvent event) {
