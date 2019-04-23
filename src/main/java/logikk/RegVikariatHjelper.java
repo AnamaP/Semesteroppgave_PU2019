@@ -37,7 +37,7 @@ public class RegVikariatHjelper {
 
     private static String regArbeidsTid(RadioButton radioHeltid, RadioButton radioDeltid) {
 
-        String arbeidstid = "arbeidstid ikke valgt";
+        String arbeidstid = "Arbeidstid ikke valgt";
 
         if(radioHeltid.isSelected()){
             arbeidstid = "Heltid";
