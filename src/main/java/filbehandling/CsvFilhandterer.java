@@ -8,10 +8,9 @@ public class CsvFilhandterer extends Filhandterer {
         String innhold = "";
 
         try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
-
-            for(int i = 0; i < lesFil.length(); i++){
-                innhold += lesFil.readLine();
-                innhold += "\n";
+            String rad;
+            while((rad = lesFil.readLine()) != null){
+                innhold += rad + "\n";
             }
         }
         catch(FileNotFoundException e){
