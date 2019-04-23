@@ -22,6 +22,7 @@ public class NavigeringsHjelper {
 
             Scene scene = new Scene(parent);
             stage.setScene(scene);
+            stage.centerOnScreen();
         }
         catch (IOException io) {
             io.printStackTrace();
