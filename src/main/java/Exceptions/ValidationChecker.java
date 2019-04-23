@@ -1,8 +1,5 @@
 package Exceptions;
 
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.VBox;
-
 import java.util.regex.Pattern;
 
 public class ValidationChecker {
@@ -10,7 +7,8 @@ public class ValidationChecker {
 
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
                                           String phoneNmbr, String email, String age, String experience, String reference,
-                                          String salary, Object education, Object study){
+                                          String salary, Object education, Object study, Boolean sales, Boolean admin,
+                                          Boolean it, Boolean economy){
 
         checkName(firstname, lastname);
         checkAddress(address);
@@ -22,14 +20,15 @@ public class ValidationChecker {
         checkLengthJobseeker(experience, reference);
         checkSalary(salary);
         checkValueSelected(education,study);
-       // checkWorkfields(workfields);
+        checkWorkfields(sales, admin, it, economy);
 
         return invalidInputs;
     }
 
     public String inputJobAdvertCollector(String contactP, String phoneNmbr, String sector, String companyName,
-                                                 String orgNmbr, String industry, String jobTitle, String jobDescription,
-                                                 String duration, String salary, String qualif){
+                                          String orgNmbr, String industry, String jobTitle, String jobDescription,
+                                          String duration, String salary, String qualif,Boolean sales, Boolean admin,
+                                          Boolean it, Boolean economy, Boolean fullTime, Boolean partTime){
         checkContactP(contactP);
         checkPhoneNmbr(phoneNmbr);
         checkSector(sector);
@@ -40,7 +39,8 @@ public class ValidationChecker {
         checkDuration(duration);
         checkSalary(salary);
         //checkValueJobType;
-        //checkWorkfields(workfields);
+        checkWorkfields(sales,admin,it,economy);
+        checkJobTypeSelected(fullTime, partTime);
 
         return invalidInputs;
     }
@@ -218,21 +218,40 @@ public class ValidationChecker {
         return false;
     }
 
-    public boolean checkIfValueSelected(Object education, Object study) throws NullPointerException{
-        if(education.equals("Velg høyeste utdanning") || study.equals("Velg studieretning")){
+    private boolean checkIfValueSelected(Object education, Object study) throws NullPointerException{
+        if(education.equals("null") || study.equals("null")){
             throw new NullPointerException("Utdanning/studieretning er ikke valgt, vennligst velg en");
         }
         return true;
     }
 
-    public boolean checkValueSelected(Object education, Object study){
+    private boolean checkValueSelected(Object education, Object study){
         try{
             if(checkIfValueSelected(education,study)){
                 return true;
             }
         }
         catch(NullPointerException e){
-            invalidInputs += "Utdanning/studieretning er ikke valgt, vennligst velg en";
+            invalidInputs += "Utdanning/studieretning er ikke valgt, vennligst velg en \n";
+        }
+        return false;
+    }
+
+    private boolean checkIfWorkfieldsSelected(Boolean sales, Boolean admin, Boolean it, Boolean economy) throws NullPointerException{
+        if(!sales && !admin && !it && !economy){
+            throw new NullPointerException("Ingen kategorier i 'arbeidsområde' er valgt");
+        }
+        return true;
+    }
+
+    private boolean checkWorkfields(Boolean sales, Boolean admin, Boolean it, Boolean economy){
+        try{
+            if(checkIfWorkfieldsSelected(sales,admin,it,economy)){
+                return true;
+            }
+        }
+        catch(NullPointerException e){
+            invalidInputs += "Ingen kategorier i 'arbeidsområde' er valgt \n";
         }
         return false;
     }
@@ -350,6 +369,25 @@ public class ValidationChecker {
         }
         catch(InvalidTextIfNullException e){
             invalidInputs += "Mangler informasjon, vennligst se over at alle obligatoriske felter er fylt ut! \n";
+        }
+        return false;
+    }
+
+    private boolean checkIfJobTypeSelected(Boolean partTime, Boolean fullTime) throws InvalidValueSelectedIsNullException{
+        if(!partTime && !fullTime){
+            throw new InvalidValueSelectedIsNullException("Stillingstype er ikke valgt, du må velge enten heltid eller deltid");
+        }
+        return true;
+    }
+
+    private boolean checkJobTypeSelected(Boolean partTime, Boolean fullTime){
+        try{
+            if(checkIfJobTypeSelected(partTime,fullTime)){
+                return true;
+            }
+        }
+        catch(InvalidValueSelectedIsNullException e){
+            invalidInputs += "Stillingstype er ikke valgt, du må velge enten heltid eller deltid \n";
         }
         return false;
     }

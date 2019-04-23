@@ -22,9 +22,6 @@ public class RegSokerController {
     @FXML
     private TextField txtErfaring,  txtReferanse, txtLonnskrav;
 
-   /* @FXML
-    private VBox vbxWorkfields;*/
-
     @FXML
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
@@ -53,14 +50,20 @@ public class RegSokerController {
         String inptSalary = txtLonnskrav.getText();
         String inptEducation = String.valueOf(valgUtdanning.getValue());
         String inptStudy = String.valueOf(valgRetning.getValue());
-        //String inptWorkfields = String.valueOf(vbxWorkfields.getChildren().toString());
+        Boolean inptAdmin = cbxAdmin.isSelected();
+        Boolean inptSales = cbxSalg.isSelected();
+        Boolean inptIt = cbxIt.isSelected();
+        Boolean inptEconomy = cbxOkonomi.isSelected();
+
+        System.out.println(valgRetning.getValue());
+        System.out.println(valgUtdanning.getValue());
 
         //String test = FeilhandtererHjelper.getTextAreaData(txtFirstname);
 
         ValidationChecker validation = new ValidationChecker();
         String invalidInputs = validation.inputJobseekerCollector(inptFirstname, inptLastname, inptAddress, inptZipCode,
                 inptPostal,inptPhoneNmbr, inptEmail, inptAge, inptExperience, inptReference, inptSalary, inptEducation,
-                inptStudy);
+                inptStudy,inptSales, inptAdmin, inptIt, inptEconomy);
 
         if (!invalidInputs.isEmpty()) {
             lblFeilmld.setText(invalidInputs);

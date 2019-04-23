@@ -6,6 +6,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
@@ -75,8 +76,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <RadioButton fx:id="radioHeltid" mnemonicParsing="false" text="Heltid" />
-            <RadioButton fx:id="radioDeltid" mnemonicParsing="false" text="Deltid" GridPane.columnIndex="1" />
+            <RadioButton fx:id="radioHeltid" mnemonicParsing="false" text="Heltid">
+               <toggleGroup>
+                  <ToggleGroup fx:id="jobType" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="radioDeltid" mnemonicParsing="false" text="Deltid" toggleGroup="$jobType" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Text layoutX="51.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsbeskrivelse:*" />
@@ -115,7 +120,7 @@
             <CheckBox fx:id="cbxOkonomi" mnemonicParsing="false" text="Økonomi" GridPane.columnIndex="3" />
          </children>
       </GridPane>
-      <Label fx:id="lblFeilmld" alignment="TOP_LEFT" layoutX="43.0" layoutY="551.0" prefHeight="67.0" prefWidth="640.0" />
+      <Label fx:id="lblFeilmld" alignment="TOP_LEFT" layoutX="43.0" layoutY="551.0" prefHeight="67.0" prefWidth="640.0" textFill="#8a0404" />
       <Button fx:id="btnTilbake" layoutX="43.0" layoutY="622.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="27.0" prefWidth="76.0" text="Tilbake" />
       <Button fx:id="btnRegVikariat" layoutX="606.0" layoutY="624.0" mnemonicParsing="false" onAction="#btnRegVikariat" prefHeight="21.0" prefWidth="76.0" text="Lagre" />
    </children>

@@ -25,9 +25,6 @@ public class RegVikariatController {
     @FXML
     private TextArea txtBeskrivelse;
 
-    /* @FXML
-    private VBox vbxWorkfields;*/
-
     @FXML
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
@@ -54,12 +51,17 @@ public class RegVikariatController {
         String inptDuration = txtVarighet.getText();
         String inptSalary = txtLonn.getText();
         String inptJobDescription = txtBeskrivelse.getText();
-        //String inptJobType =
-        //String inptWorkfields = String.valueOf(vbxWorkfields.getChildren().toString());
+        Boolean inptFullTime = radioHeltid.isSelected();
+        Boolean inptPartTime = radioDeltid.isSelected();
+        Boolean inptAdmin = cbxAdmin.isSelected();
+        Boolean inptSales = cbxSalg.isSelected();
+        Boolean inptIt = cbxIt.isSelected();
+        Boolean inptEconomy = cbxOkonomi.isSelected();
 
         ValidationChecker validation = new ValidationChecker();
         String invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNmbr, inptSector, inptCompanyName,
-                inptOrgNmbr, inptIndustry, inptJobTitle, inptJobDescription, inptDuration, inptSalary, inptQualif);
+                inptOrgNmbr, inptIndustry, inptJobTitle, inptJobDescription,inptDuration, inptSalary, inptQualif,
+                inptSales,inptAdmin, inptIt, inptEconomy, inptFullTime, inptPartTime);
 
         if (!invalidInputs.isEmpty()) {
             lblFeilmld.setText(invalidInputs);

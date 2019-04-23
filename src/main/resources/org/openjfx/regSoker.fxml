@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -65,15 +64,11 @@
             <Font name="Ayuthaya" size="16.0" />
          </font>
       </Text>
-      <VBox layoutX="340.0" layoutY="93.0" prefHeight="91.0" prefWidth="182.0" style="-fx-spacing: 10px;">
-         <children>
-      
-                  <CheckBox fx:id="cbxSalg" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Salg" />
-            <CheckBox fx:id="cbxAdmin" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Admin" />
-            <CheckBox fx:id="cbxIt" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="It" />
-            <CheckBox fx:id="cbxOkonomi" lineSpacing="5.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Økonomi" />
-         </children>
-      </VBox>
+
+                  <CheckBox fx:id="cbxSalg" layoutX="342.0" layoutY="85.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Salg" />
+      <CheckBox fx:id="cbxAdmin" layoutX="342.0" layoutY="109.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Admin" />
+      <CheckBox fx:id="cbxIt" layoutX="342.0" layoutY="133.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="It" />
+      <CheckBox fx:id="cbxOkonomi" layoutX="342.0" layoutY="157.0" lineSpacing="5.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Økonomi" />
       <Label layoutX="479.0" layoutY="299.0" prefHeight="17.0" prefWidth="86.0" text="* obligatoriske felt" textFill="#000000b4">
          <font>
             <Font size="10.0" />
