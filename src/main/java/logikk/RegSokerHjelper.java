@@ -79,4 +79,15 @@ public class RegSokerHjelper {
         return studieretning;
     }
 
+    public static Boolean slettValgtSoker(String nokkel) {
+        for(int i = 0; i < jobbsokere.size(); i++){
+            String tlf = jobbsokere.get(i).getTlf();
+            if(tlf.equals(nokkel)){
+                jobbsokere.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

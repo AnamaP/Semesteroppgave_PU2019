@@ -47,7 +47,18 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnSlettSoker(ActionEvent event) {
-        // TODO : her skal det kalles på metode som sletter en jobbsøker
+
+        String nokkel = tvOversiktSoker.getSelectionModel().getSelectedItem().tlfProperty().get();
+
+        System.out.println(nokkel);
+
+        Boolean test = RegSokerHjelper.slettValgtSoker(nokkel);
+        System.out.println(test);
+        if(test){
+            MainAppHelper run = new MainAppHelper();
+            run.reloadJobbsokerDatabase();
+        }
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktSokere.fxml", event);
     }
 
     public void btnLastNedSoker(ActionEvent event){
