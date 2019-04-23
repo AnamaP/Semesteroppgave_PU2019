@@ -8,14 +8,14 @@ public class TabellVikariater {
     private final SimpleStringProperty tlf; //1
     private final SimpleStringProperty sektor; //2
     private final SimpleStringProperty firmanavn; //3
-    private final SimpleStringProperty orgnr;
-    private final SimpleStringProperty bransje; //4
-    private final SimpleStringProperty stillingstittel; //5
-    private final SimpleStringProperty stillingstype;
-    private final SimpleStringProperty varighet; //6
-    private final SimpleStringProperty lonn;
-    private final SimpleStringProperty kvalifikasjoner; //7
-    private final SimpleStringProperty kategorier; // 8,9,10,11
+    private final SimpleStringProperty orgnr; //4
+    private final SimpleStringProperty bransje; //5
+    private final SimpleStringProperty stillingstittel; //6
+    private final SimpleStringProperty stillingstype; //7
+    private final SimpleStringProperty varighet; //8
+    private final SimpleStringProperty lonn; //9
+    private final SimpleStringProperty kvalifikasjoner; // 10
+    private final SimpleStringProperty kategorier; // 11,12,13,14
 
     // en toVikariat metode som koverterer all data her til en Arbeidsgiver
     public TabellVikariater(Arbeidsgiver arbeidsgiver){
