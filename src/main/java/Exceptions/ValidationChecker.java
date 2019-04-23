@@ -10,7 +10,7 @@ public class ValidationChecker {
 
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
                                           String phoneNmbr, String email, String age, String experience, String reference,
-                                          String salary){
+                                          String salary, Object education, Object study){
 
         checkName(firstname, lastname);
         checkAddress(address);
@@ -21,7 +21,7 @@ public class ValidationChecker {
         checkAge(age);
         checkLengthJobseeker(experience, reference);
         checkSalary(salary);
-        //checkValueSelected(education,study);
+        checkValueSelected(education,study);
        // checkWorkfields(workfields);
 
         return invalidInputs;
@@ -217,10 +217,10 @@ public class ValidationChecker {
         }
         return false;
     }
-    /*
-    public boolean checkIfValueSelected(Object education, Object study) throws InvalidValueSelectedIsNullException{
+
+    public boolean checkIfValueSelected(Object education, Object study) throws NullPointerException{
         if(education.equals("Velg høyeste utdanning") || study.equals("Velg studieretning")){
-            throw new InvalidValueSelectedIsNullException("Utdanning/studieretning er ikke valgt, vennligst velg en");
+            throw new NullPointerException("Utdanning/studieretning er ikke valgt, vennligst velg en");
         }
         return true;
     }
@@ -231,11 +231,12 @@ public class ValidationChecker {
                 return true;
             }
         }
-        catch(InvalidValueSelectedIsNullException e){
+        catch(NullPointerException e){
             invalidInputs += "Utdanning/studieretning er ikke valgt, vennligst velg en";
         }
         return false;
-    }*/
+    }
+
     private boolean checkValidContactP(String contactP) throws InvalidNameFormatException{
         if(!Pattern.matches("[a-zæøåA-ZÆØÅ_\\p{Space}\\-]+",contactP) || contactP.isEmpty()){
             throw new InvalidNameFormatException("Feil i kontaktperson, Feil i kontaktperson, tillatt: Aa-åÅ og bindestrek(-)");
