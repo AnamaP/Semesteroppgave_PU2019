@@ -3,9 +3,14 @@ package filbehandling;
 import java.io.*;
 
 public class CsvFilhandterer extends Filhandterer {
+
+    // TODO: Metode for validering
+
     @Override
     public Object henteFraFil(String path) {
         String innhold = "";
+
+        // en metode som kaller på validering av filen man forsøker å laste opp (null, tlf) - at formateringen er tilnærmet riktig (int)
 
         try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
             String rad;

@@ -1,11 +1,19 @@
-package Exceptions;
+package logikk;
+
+import Exceptions.*;
 
 import java.util.regex.Pattern;
 
 public class ValidationChecker {
     private String invalidInputs = "";
 
-    // begrunne i rapporten hvorfor vi har kjørt følgende regex (f.eks strenger vil ikke krasje systemet)
+    // begrunne i rapporten hvorfor vi har kjørt følgende regex (f.eks strenger vil ikke krasje systemet og vi har derfor
+    // valgt å ikke ha spesiell regex validering for dem, men tlf nr er for.eks viktig da det kan krasje programmet)
+    // samle alle strenger i en egen exception klasse - lage en checkStringFormat metode - med indiv. metoder under
+    // samme for NumberFormat - for alt med integer
+    // Felt som er avhengige av et spesielt regex mønster kan ha sine egne metoder
+    // cbx, radiobtn, combobox - alle kan samles under egen NullpointerMetode...
+
 
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
                                           String phoneNmbr, String email, String age, String experience, String reference,

@@ -12,7 +12,7 @@ public class FileChooserHjelper {
     final static int SAVE_FLAG = 1;
     final static int OPEN_FLAG = 2;
 
-    //public static String fileChooser() {
+
     public static String saveDialog(){
         return formatFileChooser("Lagre som", SAVE_FLAG);
     }
@@ -33,7 +33,8 @@ public class FileChooserHjelper {
 
         if(flag == SAVE_FLAG) {
              selectedFile = fileChooser.showSaveDialog(chooserStage);
-        } else {
+        }
+        else {
             selectedFile = fileChooser.showOpenDialog(chooserStage);
         }
 
@@ -43,7 +44,7 @@ public class FileChooserHjelper {
 
 
     public static void lastOpp(String csvPath){
-        Filhandterer filHandterer = null;
+        Filhandterer filHandterer;
         String chosenpath = openDialog();
 
         String extension = Filhandterer.getExtention(chosenpath);
@@ -56,7 +57,8 @@ public class FileChooserHjelper {
         }
         try {
             filHandterer.skrivTilFil(chosenpath, csvPath);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

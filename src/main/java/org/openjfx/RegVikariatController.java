@@ -1,6 +1,6 @@
 package org.openjfx;
 
-import Exceptions.ValidationChecker;
+import logikk.ValidationChecker;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
