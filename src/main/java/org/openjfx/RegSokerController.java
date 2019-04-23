@@ -51,15 +51,16 @@ public class RegSokerController {
         String inptExperience = txtErfaring.getText();
         String inptReference = txtReferanse.getText();
         String inptSalary = txtLonnskrav.getText();
-        //String inptEducation = String.valueOf(valgUtdanning.getValue());
-        //String inptStudy = String.valueOf(valgRetning.getValue());
+        String inptEducation = String.valueOf(valgUtdanning.getValue());
+        String inptStudy = String.valueOf(valgRetning.getValue());
         //String inptWorkfields = String.valueOf(vbxWorkfields.getChildren().toString());
 
         //String test = FeilhandtererHjelper.getTextAreaData(txtFirstname);
 
         ValidationChecker validation = new ValidationChecker();
         String invalidInputs = validation.inputJobseekerCollector(inptFirstname, inptLastname, inptAddress, inptZipCode,
-                inptPostal,inptPhoneNmbr, inptEmail, inptAge, inptExperience, inptReference, inptSalary);
+                inptPostal,inptPhoneNmbr, inptEmail, inptAge, inptExperience, inptReference, inptSalary, inptEducation,
+                inptStudy);
 
         if (!invalidInputs.isEmpty()) {
             lblFeilmld.setText(invalidInputs);

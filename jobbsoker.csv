@@ -1,9 +1,8 @@
-Runa;Eide;Sagveien 11;0459;Oslo;94854723;runa.eide@gmail.com;25;230 000;Bachelor;Ledelse;Sykepleier;Sykehus;Salg, It;
-Agnes;Aanderaa;Husebybakken 22B;0379;Oslo;90569415;agmaa@online.no;51;350 000;Master;Økonomi;Sikkerhet, etninsk hacking;Telenor;Admin, It, Okonomi;
-Kjell Erik;Eide;Akersbakken 35C;0348;Oslo;90378249;ke.eide@online.no;61;354 000;Vgs;Ledelse;Kulturavvikling;Oslo kommune;Salg, Admin;
-Signe;Aanderaa Eide;sagveien 9;0459;Oslo;94899751;signe.eide@live.no;22;450 000;Master;It;Rockestjerne;Schnux records;Admin, It;
-Maria Teresita;Halvorsen;løkka 2;0989;Oslo;45677889;mth@test.no;26;0;Bachelor;It;Flyvertinne, Sas;Morten;It;
-Morten Jensen;Halvorsen;Osloveien 23;0989;Oslo;34567890;mh@test.no;34;600;Master;Økonomi;Fotballspiller, Stabekk;Martin Fredriksen, 22334455;Okonomi;
-Heidi;Halvorsen;osloveien 1;0989;Oslo;88776677;hh@test.no;78;0;Bachelor;Økonomi;Frilanser;Meg selv;Salg, Admin;
-Hans-Jørgen;Nesttun;Groelva 34;8798;Trondheim;76879988;hjn@test.no;45;600 000;Master;Ledelse;Adm.direktør, Coop Sa;Heidi Bentsen;Admin;
-Sissel;Hellesand;Uelandsgata 8;0389;Oslo;22443355;sh@test.no;45;600 000;Master;Økonomi;Økonomiassistent, Ventura As;Mads Kråkebøl, Daglig Leder;Salg, Admin;
+Runa;Eide;Sagveien 11;0459;Oslo;94854723;runa.eide@gmail.com;25;;Bachelor;Ledelse;Sykepleier;;Runa;
+Agnes;Aanderaa;Husebybakken 22B;0379;Oslo;90569415;agmaa@online.no;51;;Master;Ãkonomi;Sikkerhet, etninsk hacking;;Aanderaa;
+Kjell Erik;Eide;Akersbakken 35C;0348;Oslo;90378249;ke.eide@online.no;61;;Vgs;Ledelse;Kulturavvikling;;Akersbakken 35C;
+Signe;Aanderaa Eide;sagveien 9;0459;Oslo;94899751;signe.eide@live.no;22;;Master;It;Rockestjerne;;0459;
+Maria Teresita;Halvorsen;lÃ¸kka 2;0989;Oslo;45677889;mth@test.no;26;;Bachelor;It;Flyvertinne, Sas;;Oslo;
+Morten Jensen;Halvorsen;Osloveien 23;0989;Oslo;34567890;mh@test.no;34;;Master;Ãkonomi;Fotballspiller, Stabekk;;34567890;
+Heidi;Halvorsen;osloveien 1;0989;Oslo;88776677;hh@test.no;78;;Bachelor;Ãkonomi;Frilanser;;hh@test.no;
+Sissel;Hellesand;Uelandsgata 8;0389;Oslo;22443355;sh@test.no;45;;Master;Ãkonomi;Ãkonomiassistent, Ventura As;;600 000;
