@@ -16,7 +16,7 @@ import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class MainAppHelper {
 
-    public void loadDatabase(){
+    public void loadDatabaseFromCsv(){
         loadJobbsokerCsv();
         loadVikariatCsv();
 
@@ -78,8 +78,8 @@ public class MainAppHelper {
         try{
             FileWriter fileWriter = new FileWriter(Paths.JOBBSOKER_CSV, false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            for(int a = 0; a < arbeidsgivere.size(); a++) {
-                printWriter.println(arbeidsgivere.get(a));  //New line
+            for(int a = 0; a < jobbsokere.size(); a++) {
+                printWriter.println(jobbsokere.get(a));  //New line
             }
             printWriter.close();
         } catch (IOException e) {
@@ -91,14 +91,14 @@ public class MainAppHelper {
         }
     }
 
-    public void reloadArbeidsgiverDatabase(){
+    public void reloadVikariaterDatabase(){
 
         PrintWriter writer = null;
         try{
             FileWriter fileWriter = new FileWriter(Paths.VIKARIAT_CSV, false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            for(int a = 0; a < jobbsokere.size(); a++) {
-                printWriter.println(jobbsokere.get(a));  //New line
+            for(int a = 0; a < arbeidsgivere.size(); a++) {
+                printWriter.println(arbeidsgivere.get(a));  //New line
             }
             printWriter.close();
         } catch (IOException e) {

@@ -54,6 +54,10 @@ public class OversiktVikariaterController implements Initializable {
 
         Boolean test = RegVikariatHjelper.slettValgtVikariat(nokkel);
         System.out.println(test);
+        if(test){
+            MainAppHelper run = new MainAppHelper();
+            run.reloadVikariaterDatabase();
+        }
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
