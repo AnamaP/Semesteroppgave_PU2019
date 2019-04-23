@@ -3,6 +3,7 @@ package org.openjfx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import logikk.NavigeringsHjelper;
@@ -21,6 +22,9 @@ public class ResultatSokereController implements Initializable {
     @FXML
     private TableColumn<TabellSokere, String> tcFornavn, tcEtternavn, tcAdresse, tcPostNr, tcPoststed, tcTlf, tcEpost, tcAlder,
             tcUtdanning, tcStudieretning, tcErfaring, tcKategorier;
+
+    @FXML
+    private Label lblMessage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,6 +45,10 @@ public class ResultatSokereController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
         tvOversiktSoker.setItems(OversiktSokereHjelper.visResultat(Paths.JOBBSOKER_CSV));
+
+        if(tvOversiktSoker.getItems().isEmpty()){
+            lblMessage.setText("Du fikk ingen matcher... :/ Gå tilbake og prøv et annet vikariat.");
+        }
     }
 
     public void btnTilbake(ActionEvent event) {

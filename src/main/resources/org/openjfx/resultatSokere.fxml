@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1251.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ResultatSokereController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1251.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ResultatSokereController">
     <children>
         <Button fx:id="btnTilbake" layoutX="22.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="24.0" prefWidth="112.0" text="Tilbake" />
         <Label alignment="CENTER" layoutX="23.0" layoutY="18.0" prefHeight="47.0" prefWidth="1204.0" text="Aktuelle kandidater:" textFill="#084d3e">
@@ -32,5 +32,6 @@
             </columns>
         </TableView>
       <Button layoutX="1125.0" layoutY="563.0" mnemonicParsing="false" onAction="#btnAnsett" text="Ansett person" />
+      <Label fx:id="lblMessage" layoutX="419.0" layoutY="563.0" prefHeight="27.0" prefWidth="413.0" />
     </children>
 </Pane>
