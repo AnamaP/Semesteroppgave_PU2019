@@ -80,16 +80,16 @@ public class OversiktSokereHjelper {
                         kategorier.equals(valgteKategorier.get(i));
                     }
 
-                    //Skrivet ut kun en av kategoriene "matcher":
+                    /*Skrivet ut kun en av kategoriene "matcher":
                     if (
                             (kategorier.toString().contains("Salg")) && valgteKategorier.contains("Salg") ||
                                     (kategorier.toString().contains("Admin")) && valgteKategorier.contains("Admin") ||
                                     (kategorier.toString().contains("It")) && valgteKategorier.contains("It") ||
                                     (kategorier.toString().contains("Okonomi")) && valgteKategorier.contains("Okonomi")
-                    ) {
+                    ) {*/
 
                     //Denne henter kun de som passer til alle kategoriene vikariatet spør om:
-                    //if(kategorier.toString().contains(valgteKategorier.toString())){
+                    if(kategorier.toString().contains(valgteKategorier.toString())){
                         Cv cv = new Cv(kolonner[9], kolonner[10], kolonner[11], kategorier);
 
                         Jobbsoker tabell = new Jobbsoker(kolonner[0], kolonner[1], kolonner[2], kolonner[3], kolonner[4],

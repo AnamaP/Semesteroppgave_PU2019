@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import logikk.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -36,56 +35,40 @@ public class OversiktSokereController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
         tvOversiktSoker.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
-        setTableEditable();
     }
-
 
     @FXML
     public void btnTilbake(ActionEvent event){
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
     }
 
-    public void btnRedigerSoker(ActionEvent event) {
-        // TODO : her skal det kalles på metode som redigerer jobbsøker
+    public void btnRedigerSoker(ActionEvent event){
+        // TODO : her skal det kalles på metode som redigerer en jobbsøker
     }
 
     public void btnSlettSoker(ActionEvent event) {
-        // TODO : her skal det kalles på metode som sletter jobbsøker
+        // TODO : her skal det kalles på metode som sletter en jobbsøker
     }
 
-    public void btnLastNedSoker(ActionEvent event) throws IOException {
+    public void btnLastNedSoker(ActionEvent event){
         FileChooserHjelper.lastNed(Paths.JOBBSOKER_CSV);
     }
 
-    public void btnLastOppSoker(ActionEvent event) {
+    public void btnLastOppSoker(ActionEvent event){
         FileChooserHjelper.lastOpp(Paths.JOBBSOKER_CSV);
     }
 
     public void btnFinnVikariater(ActionEvent event){
 
         String kategoriStr = tvOversiktSoker.getSelectionModel().getSelectedItem().kategorierProperty().get();
-        System.out.println("kategoriStr:" + kategoriStr);
-        ArrayList<String> kategorier = stringToList(kategoriStr);
+        //System.out.println("kategoriStr:" + kategoriStr);
+        ArrayList<String> kategorier = OversiktHjelper.stringToList(kategoriStr);
 
         OversiktSokereHjelper valgteKategorier = new OversiktSokereHjelper();
         valgteKategorier.setValgteKategorier(kategorier);
-        System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
+        //System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
 
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatSokere.fxml", event);
 
     }
-
-    private void setTableEditable() {
-        tvOversiktSoker.setEditable(true);
-    }
-
-    public static ArrayList<String> stringToList(final String input) {
-        String[] elements = input.split(", ");
-        ArrayList<String> result = new ArrayList<>(elements.length);
-        for (String item : elements) {
-            result.add(String.valueOf(item));
-        }
-        return result;
-    }
-
 }

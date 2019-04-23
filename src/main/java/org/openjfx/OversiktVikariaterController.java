@@ -33,7 +33,6 @@ public class OversiktVikariaterController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
         tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV));
-        setTableEditable();
     }
 
     @FXML
@@ -66,28 +65,15 @@ public class OversiktVikariaterController implements Initializable {
     public void btnFinnSokere(ActionEvent event) {
 
         String kategoriStr = tvOversiktVikariater.getSelectionModel().getSelectedItem().kategorierProperty().get();
-        System.out.println("kategoriStr:" + kategoriStr);
-        ArrayList<String> kategorier = stringToList(kategoriStr);
+        //System.out.println("kategoriStr:" + kategoriStr);
+        ArrayList<String> kategorier = OversiktHjelper.stringToList(kategoriStr);
 
         OversiktVikariaterHjelper valgteKategorier = new OversiktVikariaterHjelper();
         valgteKategorier.setValgteKategorier(kategorier);
-        System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
+        //System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
 
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatSokere.fxml", event);
-
     }
 
-    private void setTableEditable() {
-        tvOversiktVikariater.setEditable(true);
-    }
-
-    public static ArrayList<String> stringToList(final String input) {
-        String[] elements = input.split(", ");
-        ArrayList<String> result = new ArrayList<>(elements.length);
-        for (String item : elements) {
-            result.add(String.valueOf(item));
-        }
-        return result;
-    }
 }
 
