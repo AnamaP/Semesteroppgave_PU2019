@@ -84,9 +84,7 @@ public class OversiktVikariaterHjelper {
                                     (kategorier.toString().contains("It")) && valgteKategorier.contains("It") ||
                                     (kategorier.toString().contains("Okonomi")) && valgteKategorier.contains("Okonomi")
                     ) {
-
-                        //Denne henter kun de som passer til alle kategoriene vikariatet spør om:
-                        //if(kategorier.toString().contains(valgteKategorier.toString())){
+                        
                         Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],kolonner[10], kategorier);
 
                         Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2], kolonner[3],kolonner[4],
