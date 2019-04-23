@@ -64,11 +64,11 @@ public class OversiktSokereController implements Initializable {
         //System.out.println("kategoriStr:" + kategoriStr);
         ArrayList<String> kategorier = OversiktHjelper.stringToList(kategoriStr);
 
-        OversiktSokereHjelper valgteKategorier = new OversiktSokereHjelper();
+        OversiktVikariaterHjelper valgteKategorier = new OversiktVikariaterHjelper();
         valgteKategorier.setValgteKategorier(kategorier);
         //System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
 
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatSokere.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatVikariater.fxml", event);
 
     }
 }

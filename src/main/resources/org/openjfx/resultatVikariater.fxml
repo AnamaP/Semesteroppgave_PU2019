@@ -7,25 +7,25 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1251.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ResultatVikariaterController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1251.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ResultatVikariaterController">
     <children>
         <Button fx:id="btnTilbake" layoutX="22.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="24.0" prefWidth="112.0" text="Tilbake" />
-        <Label alignment="CENTER" layoutX="23.0" layoutY="18.0" prefHeight="47.0" prefWidth="1204.0" text="Aktuelle kandidater:" textFill="#084d3e">
+        <Label alignment="CENTER" layoutX="23.0" layoutY="18.0" prefHeight="47.0" prefWidth="1204.0" text="Aktuelle vikariater:" textFill="#084d3e">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
         <TableView fx:id="tvOversiktVikariater" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="1207.0">
             <columns>
-                <TableColumn fx:id="tcKontaktperson" prefWidth="96.00000190734863" text="Kontaktperson" />
-                <TableColumn fx:id="tcTlf" prefWidth="71.33333587646484" text="Tlf" />
-                <TableColumn fx:id="tcSektor" prefWidth="79.5" text="Sektor" />
-                <TableColumn fx:id="tcFirmanavn" prefWidth="92.0" text="Firmanavn" />
-                <TableColumn fx:id="tcBransje" prefWidth="79.0" text="Bransje" />
-                <TableColumn fx:id="tcStillingstittel" prefWidth="88.5" text="Stillingstittel" />
-                <TableColumn fx:id="tcVarighet" prefWidth="77.0" text="Varighet" />
-                <TableColumn fx:id="tcKvalifikasjoner" prefWidth="124.5" text="Kvalifikasjoner" />
-                <TableColumn fx:id="tcKategorier" prefWidth="213.5" text="Kategorier" />
+                <TableColumn fx:id="tcKontaktperson" prefWidth="120.5" text="Kontaktperson" />
+                <TableColumn fx:id="tcTlf" prefWidth="89.5" text="Tlf" />
+                <TableColumn fx:id="tcSektor" prefWidth="59.5" text="Sektor" />
+                <TableColumn fx:id="tcFirmanavn" prefWidth="117.0" text="Firmanavn" />
+                <TableColumn fx:id="tcBransje" prefWidth="95.0" text="Bransje" />
+                <TableColumn fx:id="tcStillingstittel" prefWidth="157.5" text="Stillingstittel" />
+                <TableColumn fx:id="tcVarighet" prefWidth="91.0" text="Varighet" />
+                <TableColumn fx:id="tcKvalifikasjoner" prefWidth="143.5" text="Kvalifikasjoner" />
+                <TableColumn fx:id="tcKategorier" prefWidth="332.5" text="Kategorier" />
             </columns>
         </TableView>
         <Button layoutX="1125.0" layoutY="563.0" mnemonicParsing="false" onAction="#btnAnsett" text="Ansett person" />
