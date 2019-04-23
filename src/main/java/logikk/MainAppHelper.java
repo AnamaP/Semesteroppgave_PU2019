@@ -19,11 +19,9 @@ public class MainAppHelper {
     public void loadDatabaseFromCsv(){
         loadJobbsokerCsv();
         loadVikariatCsv();
-
     }
 
     public void loadJobbsokerCsv(){
-        System.out.println("SOKERE: _______________________________________________");
         CsvFilhandterer test = new CsvFilhandterer();
         String sokereFraDatabase = (String) test.henteFraFil(Paths.JOBBSOKER_CSV);
 
@@ -34,7 +32,7 @@ public class MainAppHelper {
 
             ArrayList<String> kategorier = new ArrayList<>();
             for (int k = 13; k < soker.length; k++){
-                kategorier.add(soker[i]);
+                kategorier.add(soker[k]);
             }
 
             Cv cv = new Cv(soker[9], soker[10], soker[11], kategorier);
@@ -43,12 +41,10 @@ public class MainAppHelper {
                     soker[5], soker[6], soker[7], cv);
 
             jobbsokere.add(jobbsoker);
-            System.out.println(jobbsoker.toString());
         }
     }
 
     public void loadVikariatCsv(){
-        System.out.println("ARBEIDSGIVERE: _______________________________________________");
         CsvFilhandterer test = new CsvFilhandterer();
         String vikariaterFraDatabase = (String) test.henteFraFil(Paths.VIKARIAT_CSV);
 
@@ -59,7 +55,7 @@ public class MainAppHelper {
 
             ArrayList<String> kategorier = new ArrayList<>();
             for (int k = 11; k < vikariat.length; k++){
-                kategorier.add(vikariat[i]);
+                kategorier.add(vikariat[k]);
             }
 
             Vikariat nyttVikariat = new Vikariat(vikariat[6],vikariat[7],vikariat[8],vikariat[9],vikariat[10], kategorier);
@@ -68,7 +64,6 @@ public class MainAppHelper {
                     vikariat[5], nyttVikariat);
 
             arbeidsgivere.add(nyArbeidsgiver);
-            System.out.println("Ny: "+ nyArbeidsgiver.toString());
         }
     }
 
