@@ -12,16 +12,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ResultatVikariaterController implements Initializable {
-
+    // TODO: Legge til ekstra felt som skal vises i guiresultatet
     @FXML
     private TableView<TabellVikariater> tvOversiktVikariater;
 
     @FXML
     private TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor, tcFirmanavn, tcBransje,
             tcStillingstittel, tcVarighet, tcKvalifikasjoner, tcKategorier;
-
-    @FXML
-    private Label lblMessage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

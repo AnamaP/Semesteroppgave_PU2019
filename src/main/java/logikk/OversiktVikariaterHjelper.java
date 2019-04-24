@@ -3,8 +3,6 @@ package logikk;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import klasser.Arbeidsgiver;
-import klasser.Cv;
-import klasser.Jobbsoker;
 import klasser.Vikariat;
 import java.io.*;
 import java.util.ArrayList;

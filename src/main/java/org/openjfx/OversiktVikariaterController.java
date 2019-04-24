@@ -26,7 +26,7 @@ public class OversiktVikariaterController implements Initializable {
         tcTlf.setCellValueFactory(cellData->cellData.getValue().tlfProperty());
         tcSektor.setCellValueFactory(cellData->cellData.getValue().sektorProperty());
         tcFirmanavn.setCellValueFactory(cellData->cellData.getValue().firmanavnProperty());
-        tcOrgNr.setCellValueFactory(cellData->cellData.getValue().orgnrProperty());
+        tcOrgNr.setCellValueFactory(cellData->cellData.getValue().adresseProperty());
         tcBransje.setCellValueFactory(cellData->cellData.getValue().bransjeProperty());
         tcStillingstittel.setCellValueFactory(cellData->cellData.getValue().stillingstittelProperty());
         tcStillingstype.setCellValueFactory(cellData->cellData.getValue().stillingstypeProperty());

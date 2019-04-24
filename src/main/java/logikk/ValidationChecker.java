@@ -28,7 +28,7 @@ public class ValidationChecker {
         checkZipCode(zipcode);
         //checkValidString(); sjekke for om den er empty og ikke større enn 200 ord
         checkPostal(postal);
-        checkPhoneNmbr(phoneNmbr);
+       // checkPhoneNmbr(phoneNmbr);
         checkEmail(email);
         checkAge(age);
         checkExperience(experience);
@@ -40,14 +40,14 @@ public class ValidationChecker {
     }
 
     public String inputJobAdvertCollector(String firstname, String phoneNmbr, String sector, String companyName,
-                                          String orgNmbr, String industry, String jobTitle, String jobDescription,
+                                          String industry, String address, String jobTitle, String jobDescription,
                                           String duration, String salary, String qualif, Boolean sales, Boolean admin,
                                           Boolean it, Boolean economy, Boolean fullTime, Boolean partTime) {
         checkName(firstname);
-        checkPhoneNmbr(phoneNmbr);
+        //checkPhoneNmbr(phoneNmbr);
         checkSector(sector);
         checkCompanyInfo(companyName, industry);
-        checkOrgNmbr(orgNmbr);
+        checkAddress(address);
         checkLengthJobadvert(jobTitle, jobDescription);
         checkLengthJobadvert1(duration,qualif);
         checkSalary(salary);
@@ -151,7 +151,7 @@ public class ValidationChecker {
                 for(int i = 0; i < jobbsokere.size();i++){
                     if(jobbsokere.get(i).getTlf().contains(phoneNmbr)){
                         throw new InvalidDuplicatePhoneNmbrException("Telefonnummeret er registrert fra før!");
-                        return false;
+                       // return false;
                     }
                 }
                 return true;
@@ -316,26 +316,6 @@ public class ValidationChecker {
         }
         catch(NullPointerException e){
             invalidInputs += "Ingen kategorier i 'arbeidsområde' er valgt \n";
-        }
-        return false;
-    }
-
-    private boolean checkValidOrgNmbr(String orgNmbr) throws InvalidNumberFormatException{
-        if(!Pattern.matches("[0-9{9}\\p{Space}]+", orgNmbr) || orgNmbr.isEmpty()){
-            throw new InvalidNumberFormatException("Feil i organisasjonsnr, må bestå av 9 tall");
-        }
-        return true;
-
-    }
-
-    private boolean checkOrgNmbr(String orgNmbr){
-        try{
-            if(checkValidOrgNmbr(orgNmbr)){
-                return true;
-            }
-        }
-        catch(InvalidNumberFormatException e){
-            invalidInputs += String.format("%s er et ugyldig organisasjonsnr, må bestå av 9 tall \n", orgNmbr);
         }
         return false;
     }

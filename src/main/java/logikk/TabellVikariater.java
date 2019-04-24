@@ -8,7 +8,7 @@ public class TabellVikariater {
     private final SimpleStringProperty tlf; //1
     private final SimpleStringProperty sektor; //2
     private final SimpleStringProperty firmanavn; //3
-    private final SimpleStringProperty orgnr; //4
+    private final SimpleStringProperty adresse; //4
     private final SimpleStringProperty bransje; //5
     private final SimpleStringProperty stillingstittel; //6
     private final SimpleStringProperty stillingstype; //7
@@ -23,7 +23,7 @@ public class TabellVikariater {
         this.tlf = new SimpleStringProperty(arbeidsgiver.getTlf());
         this.sektor= new SimpleStringProperty(arbeidsgiver.getSektor());
         this.firmanavn = new SimpleStringProperty(arbeidsgiver.getFirmanavn());
-        this.orgnr = new SimpleStringProperty(arbeidsgiver.getOrgnr());
+        this.adresse = new SimpleStringProperty(arbeidsgiver.getAdresse());
         this.bransje = new SimpleStringProperty(arbeidsgiver.getBransje());
         this.stillingstittel = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getTittel());
         this.stillingstype = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getArbeidstid());
@@ -51,7 +51,7 @@ public class TabellVikariater {
     public SimpleStringProperty firmanavnProperty() {
         return firmanavn;
     }
-    public SimpleStringProperty orgnrProperty() {return orgnr;}
+    public SimpleStringProperty adresseProperty() {return adresse;}
     public SimpleStringProperty bransjeProperty() {
         return bransje;
     }

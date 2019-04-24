@@ -11,7 +11,7 @@ import java.io.*;
 public class RegVikariatController {
 
     @FXML
-    private TextField txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje;
+    private TextField txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtAdresse, txtBransje;
 
     @FXML
     private TextField  txtStillingstittel, txtVarighet, txtLonn,txtKvalifikasjoner;
@@ -26,13 +26,10 @@ public class RegVikariatController {
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
     @FXML
-    private Label lblFeilmld;
-
-    @FXML
     private void btnRegVikariat(ActionEvent event) {
 
         Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
-                txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtOrgNr, txtBransje,
+                txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtAdresse, txtBransje,
                 txtStillingstittel, txtVarighet, txtLonn, radioHeltid, radioDeltid,
                 txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
@@ -41,7 +38,7 @@ public class RegVikariatController {
         String inptPhoneNmbr = txtTlf.getText();
         String inptSector = txtSektor.getText();
         String inptCompanyName = txtFirmaNavn.getText();
-        String inptOrgNmbr = txtOrgNr.getText();
+        String inptAddress = txtAdresse.getText();
         String inptIndustry = txtBransje.getText();
         String inptJobTitle = txtStillingstittel.getText();
         String inptQualif = txtKvalifikasjoner.getText();
@@ -57,7 +54,7 @@ public class RegVikariatController {
 
         ValidationChecker validation = new ValidationChecker();
         String invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNmbr, inptSector, inptCompanyName,
-                inptOrgNmbr, inptIndustry, inptJobTitle, inptJobDescription,inptDuration, inptSalary, inptQualif,
+                inptAddress, inptIndustry, inptJobTitle, inptJobDescription,inptDuration, inptSalary, inptQualif,
                 inptSales,inptAdmin, inptIt, inptEconomy, inptFullTime, inptPartTime);
 
         // Dialogboks som vises dersom feilmeldinger

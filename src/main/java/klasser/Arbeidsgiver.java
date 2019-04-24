@@ -7,16 +7,16 @@ public class Arbeidsgiver implements Serializable {
     private String tlf;
     private String sektor;
     private String firmanavn;
-    private String orgnr;
+    private String adresse;
     private String bransje;
     private Vikariat nyttVikariat;
 
-    public Arbeidsgiver(String kontaktperson, String tlf, String sektor, String firmanavn, String orgnr, String bransje, Vikariat nyttVikariat) {
+    public Arbeidsgiver(String kontaktperson, String tlf, String sektor, String firmanavn, String adresse, String bransje, Vikariat nyttVikariat) {
         this.kontaktperson = kontaktperson;
         this.tlf = tlf;
         this.sektor = sektor;
         this.firmanavn = firmanavn;
-        this.orgnr = orgnr;
+        this.adresse = adresse;
         this.bransje = bransje;
         this.nyttVikariat = nyttVikariat;
     }
@@ -37,8 +37,8 @@ public class Arbeidsgiver implements Serializable {
         return firmanavn;
     }
 
-    public String getOrgnr() {
-        return orgnr;
+    public String getAdresse() {
+        return adresse;
     }
 
     public String getBransje() {
@@ -51,7 +51,7 @@ public class Arbeidsgiver implements Serializable {
 
     public String toString(){
         String ut = "";
-        ut += kontaktperson+";"+tlf+";"+sektor+";"+firmanavn+";"+orgnr+";"+bransje+";"+nyttVikariat.toString();
+        ut += kontaktperson+";"+tlf+";"+sektor+";"+firmanavn+";"+ adresse +";"+bransje+";"+nyttVikariat.toString();
         return ut;
     }
 

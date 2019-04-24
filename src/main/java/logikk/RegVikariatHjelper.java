@@ -10,7 +10,7 @@ public class RegVikariatHjelper {
     public static ArrayList<Arbeidsgiver> arbeidsgivere = new ArrayList<>();
 
     public static Arbeidsgiver lagVikariat(
-            TextField txtKontaktperson, TextField txtTlf, TextField txtSektor, TextField txtFirmaNavn, TextField txtOrgNr,
+            TextField txtKontaktperson, TextField txtTlf, TextField txtSektor, TextField txtFirmaNavn, TextField txtAdresse,
             TextField txtBransje, TextField txtStillingstittel, TextField txtVarighet, TextField txtLonn,
             RadioButton radioHeltid, RadioButton radioDeltid, TextField txtKvalifikasjoner,  TextArea txtBeskrivelse,
             CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi) {
@@ -28,7 +28,7 @@ public class RegVikariatHjelper {
         }
 
         Arbeidsgiver nyArbeidsgiver = new Arbeidsgiver(txtKontaktperson.getText(),txtTlf.getText(),txtSektor.getText(),
-                                        txtFirmaNavn.getText(), txtOrgNr.getText(), txtBransje.getText(), nyttVikariat);
+                                        txtFirmaNavn.getText(), txtAdresse.getText(), txtBransje.getText(), nyttVikariat);
 
         RegVikariatHjelper.arbeidsgivere.add(nyArbeidsgiver);
 
