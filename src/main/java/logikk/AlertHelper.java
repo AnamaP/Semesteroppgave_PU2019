@@ -13,7 +13,7 @@ public class AlertHelper {
     public static void showError(String message) {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setTitle("Feilmelding");
-        error.setHeaderText("Følgende feil er registrert, vennligst se over:");
+        error.setHeaderText("Obs!:");
         error.setContentText(message);
         error.showAndWait();
     }
@@ -24,6 +24,15 @@ public class AlertHelper {
         confirm.setTitle("Bekreftelse");
         confirm.setContentText("Registereringen var vellykket!");
         confirm.showAndWait();
+    }
+
+    // Alert metode for visning av mer info i "OversiktVikariater"
+    public static void showMoreInfo(String title, String message){
+        Alert moreInfo = new Alert(Alert.AlertType.INFORMATION);
+        moreInfo.setTitle("Informasjon om vikariatet: ");
+        moreInfo.setHeaderText(title);
+        moreInfo.setContentText(message);
+        moreInfo.showAndWait();
     }
 
 }
