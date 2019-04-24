@@ -261,7 +261,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er en ugyldig alder, kun tall (ingen mellomrom) \n", age));
+            invalidInputs += (String.format("%s : er en ugyldig alder, kun tall( ingen mellomrom)\n", age));
         }
         return false;
     }
@@ -280,7 +280,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er en ugyldig lønn, tillatt: tall 0-9 (maks input er i mio)\n",salary));
+            invalidInputs += (String.format("%s : er en ugyldig lønn, tillatt: tall 0-9 (maks: mio)\n",salary));
         }
         return false;
     }
@@ -345,7 +345,7 @@ public class ValidationChecker {
 
     private boolean checkIfJobTypeSelected(Boolean partTime, Boolean fullTime) throws InvalidValueSelectedIsNullException{
         if(!partTime && !fullTime){
-            throw new InvalidValueSelectedIsNullException("Stillingstype er ikke valgt, du må velge enten heltid eller deltid");
+            throw new InvalidValueSelectedIsNullException("Stillingstype er ikke valgt");
         }
         return true;
     }
@@ -357,7 +357,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidValueSelectedIsNullException e){
-            invalidInputs += "Stillingstype er ikke valgt, du må velge enten heltid eller deltid \n";
+            invalidInputs += "Stillingstype er ikke valgt, velg enten heltid eller deltid \n";
         }
         return false;
     }

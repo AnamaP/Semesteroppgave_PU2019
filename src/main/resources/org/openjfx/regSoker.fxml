@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="565.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegSokerController">
+<AnchorPane prefHeight="510.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegSokerController">
    <children>
       <Text fill="#084d3e" layoutX="4.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jobbsøkerregistrering" textAlignment="CENTER" wrappingWidth="570.9999694824219">
          <font>
@@ -105,8 +105,7 @@
       <TextField fx:id="txtErfaring" layoutX="26.0" layoutY="428.0" prefHeight="27.0" prefWidth="263.0" promptText="Firma, stilling" />
       <Text layoutX="305.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referanser:" />
       <TextField fx:id="txtReferanse" layoutX="304.0" layoutY="428.0" prefHeight="27.0" prefWidth="263.0" promptText="Fullt navn, tlf" />
-      <Label fx:id="lblFeilmld" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="27.0" layoutY="464.0" prefHeight="65.0" prefWidth="537.0" textFill="#950513" />
-      <Button fx:id="btnTilbake" layoutX="26.0" layoutY="533.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
-      <Button layoutX="510.0" layoutY="533.0" mnemonicParsing="false" onAction="#btnRegSoker" prefWidth="54.0" text="Lagre" />
+      <Button fx:id="btnTilbake" layoutX="26.0" layoutY="473.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
+      <Button layoutX="510.0" layoutY="473.0" mnemonicParsing="false" onAction="#btnRegSoker" prefWidth="54.0" text="Lagre" />
    </children>
 </AnchorPane>

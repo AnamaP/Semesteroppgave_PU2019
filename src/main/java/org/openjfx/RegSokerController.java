@@ -1,14 +1,12 @@
 package org.openjfx;
 
-import logikk.ValidationChecker;
+import logikk.*;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import klasser.Jobbsoker;
-import logikk.Paths;
-import logikk.RegSokerHjelper;
-import logikk.NavigeringsHjelper;
+
 import java.io.IOException;
 
 public class RegSokerController {
@@ -66,9 +64,10 @@ public class RegSokerController {
                 inptStudy,inptSales, inptAdmin, inptIt, inptEconomy);
 
         if (!invalidInputs.isEmpty()) {
-            lblFeilmld.setText(invalidInputs);
+            AlertHelper.showError(invalidInputs);
         }
         else{
+        AlertHelper.showConfirmation();
 
         String input = nySoker.toString();
 

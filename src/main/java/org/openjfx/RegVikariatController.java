@@ -1,14 +1,11 @@
 package org.openjfx;
 
-import logikk.ValidationChecker;
+import logikk.*;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import klasser.Arbeidsgiver;
-import logikk.Paths;
-import logikk.RegVikariatHjelper;
-import logikk.NavigeringsHjelper;
 import java.io.*;
 
 public class RegVikariatController {
@@ -63,9 +60,13 @@ public class RegVikariatController {
                 inptOrgNmbr, inptIndustry, inptJobTitle, inptJobDescription,inptDuration, inptSalary, inptQualif,
                 inptSales,inptAdmin, inptIt, inptEconomy, inptFullTime, inptPartTime);
 
+        // Dialogboks som vises dersom feilmeldinger
         if (!invalidInputs.isEmpty()) {
-            lblFeilmld.setText(invalidInputs);
-        } else {
+            AlertHelper.showError(invalidInputs);
+        }
+        else{
+            // Dialogboks som vises dersom vellykket registrering
+            AlertHelper.showConfirmation();
 
             String ut = nyUtlysning.toString();
 
@@ -76,7 +77,6 @@ public class RegVikariatController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
 
             //Tar brukeren til visning:
             NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
