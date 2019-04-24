@@ -59,4 +59,15 @@ public class RegVikariatHjelper {
         }
         return false;
     }
+
+    public static void saveTempJob(String key){
+        for(int i = 0; i < arbeidsgivere.size(); i++){
+            String tlf = arbeidsgivere.get(i).getTlf();
+            if(tlf.equals(key)){
+                FileChooserHjelper.lastNed(arbeidsgivere.get(i));
+                break;
+            }
+        }
+        //TODO : Feilmld til bruker om at vikariat ikke er valgt
+    }
 }

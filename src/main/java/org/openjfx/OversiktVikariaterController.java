@@ -71,16 +71,7 @@ public class OversiktVikariaterController implements Initializable {
 
     public void btnLastNedVikariat(ActionEvent event) {
         String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
-
-        for(int i = 0; i < arbeidsgivere.size(); i++){
-            String tlf = arbeidsgivere.get(i).getTlf();
-            if(tlf.equals(key)){
-                FileChooserHjelper.lastNed(arbeidsgivere.get(i));
-                break;
-            }
-        }
-        //TODO : Feilmld til bruker om at vikariat ikke er valgt
-
+        RegVikariatHjelper.saveTempJob(key);
     }
 
     public void btnLastOppVikariat(ActionEvent event) {

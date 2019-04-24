@@ -10,9 +10,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static logikk.RegSokerHjelper.jobbsokere;
+
 public class OversiktSokereController implements Initializable {
     @FXML
-    TableView<TabellSokere> tvOversiktSoker;
+    TableView<TabellSokere> tvOversiktSokere;
 
     @FXML
     TableColumn<TabellSokere, String> tcFornavn, tcEtternavn, tcAdresse, tcPostNr, tcPoststed, tcTlf, tcEpost, tcAlder,
@@ -34,7 +36,7 @@ public class OversiktSokereController implements Initializable {
         tcErfaring.setCellValueFactory(cellData->cellData.getValue().erfaringProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        tvOversiktSoker.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
+        tvOversiktSokere.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
     }
 
     @FXML
@@ -48,9 +50,7 @@ public class OversiktSokereController implements Initializable {
 
     public void btnSlettSoker(ActionEvent event) {
 
-        String nokkel = tvOversiktSoker.getSelectionModel().getSelectedItem().tlfProperty().get();
-
-        System.out.println(nokkel);
+        String nokkel = tvOversiktSokere.getSelectionModel().getSelectedItem().tlfProperty().get();
 
         Boolean test = RegSokerHjelper.slettValgtSoker(nokkel);
         System.out.println(test);
@@ -62,7 +62,8 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnLastNedSoker(ActionEvent event){
-        FileChooserHjelper.lastNed(Paths.JOBBSOKER_CSV);
+        String key = tvOversiktSokere.getSelectionModel().getSelectedItem().tlfProperty().get();
+        OversiktSokereHjelper.saveJobseeker(key);
     }
 
     public void btnLastOppSoker(ActionEvent event){
@@ -71,7 +72,7 @@ public class OversiktSokereController implements Initializable {
 
     public void btnFinnVikariater(ActionEvent event){
 
-        String kategoriStr = tvOversiktSoker.getSelectionModel().getSelectedItem().kategorierProperty().get();
+        String kategoriStr = tvOversiktSokere.getSelectionModel().getSelectedItem().kategorierProperty().get();
         //System.out.println("kategoriStr:" + kategoriStr);
         ArrayList<String> kategorier = OversiktHjelper.stringToList(kategoriStr);
 

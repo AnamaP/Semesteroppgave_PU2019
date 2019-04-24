@@ -20,10 +20,11 @@ public class ValidationChecker {
                                           String salary, Object education, Object study, Boolean sales, Boolean admin,
                                           Boolean it, Boolean economy) {
 
-        checkFirstname(firstname);
-        checkLastname(lastname);
+        checkName(firstname);
+        checkName(lastname);
         checkAddress(address);
         checkZipCode(zipcode);
+        //checkValidString(); sjekke for om den er empty og ikke større enn 200 ord
         checkPostal(postal);
         checkPhoneNmbr(phoneNmbr);
         checkEmail(email);
@@ -40,7 +41,7 @@ public class ValidationChecker {
                                           String orgNmbr, String industry, String jobTitle, String jobDescription,
                                           String duration, String salary, String qualif, Boolean sales, Boolean admin,
                                           Boolean it, Boolean economy, Boolean fullTime, Boolean partTime) {
-        checkFirstname(firstname);
+        checkName(firstname);
         checkPhoneNmbr(phoneNmbr);
         checkSector(sector);
         checkCompanyInfo(companyName, industry);
@@ -61,26 +62,14 @@ public class ValidationChecker {
         return true;
     }
 
-    private boolean checkFirstname(String firstname) {
+    private boolean checkName(String name) {
         try {
-            if (checkStringFormat(firstname)) {
+            if (checkStringFormat(name)) {
                 return true;
             }
         }
         catch (InvalidStringFormatException e) {
-            invalidInputs += (String.format("%s er et ugyldig navn\n, kun bokstaver Aa-åÅ tillatt \n", firstname));
-        }
-        return false;
-    }
-
-    private boolean checkLastname(String lastname) {
-        try {
-            if (checkStringFormat(lastname)){
-                return true;
-            }
-        }
-        catch(InvalidStringFormatException e){
-            invalidInputs += String.format("%s er et ugyldig navn, kun bokstaver Aa-åÅ tillatt \n", lastname);
+            invalidInputs += (String.format("%s er et ugyldig navn\n, kun bokstaver Aa-åÅ tillatt \n", name));
         }
         return false;
     }

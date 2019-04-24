@@ -7,6 +7,8 @@ import klasser.Jobbsoker;
 import java.io.*;
 import java.util.ArrayList;
 
+import static logikk.RegSokerHjelper.jobbsokere;
+
 public class OversiktSokereHjelper {
 
     private static ArrayList<String> valgteKategorier;
@@ -107,5 +109,17 @@ public class OversiktSokereHjelper {
             System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
         return obl;
+    }
+
+    public static void saveJobseeker(String key){
+        for(int i = 0; i < jobbsokere.size(); i++){
+            String tlf = jobbsokere.get(i).getTlf();
+            if(tlf.equals(key)){
+                FileChooserHjelper.lastNed(jobbsokere.get(i));
+                break;
+            }
+        }
+        //TODO : Feilmld til bruker om at vikariat ikke er valgt
+
     }
 }

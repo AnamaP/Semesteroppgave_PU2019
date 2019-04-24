@@ -15,7 +15,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TableView fx:id="tvOversiktSoker" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="1269.0">
+      <TableView fx:id="tvOversiktSokere" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="1269.0">
         <columns>
            <TableColumn fx:id="tcFornavn" prefWidth="100.0" text="Fornavn" />
            <TableColumn fx:id="tcEtternavn" prefWidth="100.0" text="Etternavn" />
