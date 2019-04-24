@@ -51,6 +51,6 @@ public class Cv {
     }
 
     public String toString(){
-        return utdanning+";"+studieretning+";"+erfaring+";"+referanse+";"+kategorierToString()+";";
+        return utdanning+";"+studieretning+";"+erfaring+";"+referanse+";"+kategorierToString();
     }
 }

@@ -23,16 +23,12 @@ public class RegSokerController {
     @FXML
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
-    @FXML
-    private Label lblFeilmld;
-
-
 
     public void btnRegSoker(ActionEvent event) {
 
         Jobbsoker nySoker = RegSokerHjelper.nySoker(txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed,
                 txtTlf, txtEpost, txtAlder, valgUtdanning, valgRetning, txtErfaring, txtReferanse, txtLonnskrav, cbxSalg,
-                cbxAdmin, cbxIt, cbxOkonomi);
+                cbxAdmin, cbxIt, cbxOkonomi, "Ledig");
 
         // TODO: flytte kode for validering i en egen metode utenfor controller
         String inptFirstname = txtFornavn.getText();
@@ -44,7 +40,6 @@ public class RegSokerController {
         String inptEmail = txtEpost.getText();
         String inptAge = txtAlder.getText();
         String inptExperience = txtErfaring.getText();
-        String inptReference = txtReferanse.getText();
         String inptSalary = txtLonnskrav.getText();
         String inptEducation = String.valueOf(valgUtdanning.getValue());
         String inptStudy = String.valueOf(valgRetning.getValue());
@@ -60,10 +55,10 @@ public class RegSokerController {
 
         ValidationChecker validation = new ValidationChecker();
         String invalidInputs = validation.inputJobseekerCollector(inptFirstname, inptLastname, inptAddress, inptZipCode,
-                inptPostal,inptPhoneNmbr, inptEmail, inptAge, inptExperience, inptReference, inptSalary, inptEducation,
+                inptPostal,inptPhoneNmbr, inptEmail, inptAge, inptExperience, inptSalary, inptEducation,
                 inptStudy,inptSales, inptAdmin, inptIt, inptEconomy);
 
-        if (!invalidInputs.isEmpty()) {
+        if (!invalidInputs.isEmpty()){
             AlertHelper.showError(invalidInputs);
         }
         else{
@@ -75,14 +70,14 @@ public class RegSokerController {
         Filhandterer csvFilhandterer = new CsvFilhandterer();
         try {
             csvFilhandterer.skrivTilFil(input, Paths.JOBBSOKER_CSV);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
         //Tar brukeren med til neste side:
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktSokere.fxml", event);
-
-    }
+        }
     }
 
     public void btnTilbake(ActionEvent event) {

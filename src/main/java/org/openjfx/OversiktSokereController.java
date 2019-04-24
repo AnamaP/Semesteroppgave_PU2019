@@ -16,7 +16,7 @@ public class OversiktSokereController implements Initializable {
 
     @FXML
     TableColumn<TabellSokere, String> tcFornavn, tcEtternavn, tcAdresse, tcPostNr, tcPoststed, tcTlf, tcEpost, tcAlder,
-                                      tcUtdanning, tcStudieretning, tcErfaring, tcKategorier;
+                                      tcUtdanning, tcStudieretning, tcErfaring, tcKategorier, tcStatus;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,6 +33,7 @@ public class OversiktSokereController implements Initializable {
         tcStudieretning.setCellValueFactory(cellData->cellData.getValue().studieretningProperty());
         tcErfaring.setCellValueFactory(cellData->cellData.getValue().erfaringProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
+        tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
         tvOversiktSokere.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
     }

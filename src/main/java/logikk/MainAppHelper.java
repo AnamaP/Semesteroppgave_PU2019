@@ -38,7 +38,7 @@ public class MainAppHelper {
             Cv cv = new Cv(soker[9], soker[10], soker[11], kategorier);
 
             Jobbsoker jobbsoker = new Jobbsoker(soker[0], soker[1], soker[2], soker[3], soker[4],
-                    soker[5], soker[6], soker[7], cv);
+                    soker[5], soker[6], soker[7], cv, soker[soker.length-1]);
 
             jobbsokere.add(jobbsoker);
         }

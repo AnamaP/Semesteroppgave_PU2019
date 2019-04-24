@@ -14,7 +14,7 @@ public class RegSokerHjelper {
     public static Jobbsoker nySoker(TextField txtFornavn, TextField txtEtternavn, TextField txtAdresse, TextField txtPostnr,
                             TextField txtPoststed, TextField txtTlf, TextField txtEpost, TextField txtAlder,
                             ComboBox valgUtdanning, ComboBox valgRetning, TextField txtErfaring, TextField txtReferanse,
-                            TextField txtLonnskrav, CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi){
+                            TextField txtLonnskrav, CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi, String status){
 
         ArrayList<String> kategorier = RegKategoriHjelper.regKategori(cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
@@ -28,7 +28,7 @@ public class RegSokerHjelper {
         }
 
         Jobbsoker nySoker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
-                txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), cv);
+                txtPoststed.getText(), txtTlf.getText(), txtEpost.getText(), txtAlder.getText(), cv, status);
 
         // hvis lønnskrav er satt så...
         if(txtLonnskrav.getText() != ""){

@@ -30,14 +30,14 @@ public class OversiktSokereHjelper {
 
                 if(kolonner.length > 13){
                     ArrayList<String> kategorier = new ArrayList<>();
-                    for(int i = 13; i < kolonner.length; i++) {
+                    for(int i = 13; i < kolonner.length-1; i++) {
                         kategorier.add(kolonner[i]);
                     }
 
                     Cv cv = new Cv(kolonner[9],kolonner[10],kolonner[11],kategorier);
 
                     Jobbsoker tabell = new Jobbsoker(kolonner[0],kolonner[1],kolonner[2],kolonner[3],kolonner[4],
-                                                     kolonner[5],kolonner[6],kolonner[7],cv);
+                                                     kolonner[5],kolonner[6],kolonner[7],cv, kolonner[kolonner.length-1]);
 
                     //TODO: finne ut av hvordan vi gjør det med lonnskrav[8] og referanse[12] (valgfritt felt, ikke med i konstruktøren)
 
@@ -72,7 +72,7 @@ public class OversiktSokereHjelper {
                 if(kolonner.length > 13) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
-                    for (int i = 13; i < kolonner.length; i++) {
+                    for (int i = 13; i < kolonner.length -1; i++) {
                         kategorier.add(kolonner[i]);
                     }
 
@@ -93,7 +93,7 @@ public class OversiktSokereHjelper {
                         Cv cv = new Cv(kolonner[9], kolonner[10], kolonner[11], kategorier);
 
                         Jobbsoker tabell = new Jobbsoker(kolonner[0], kolonner[1], kolonner[2], kolonner[3], kolonner[4],
-                                kolonner[5], kolonner[6], kolonner[7], cv);
+                                kolonner[5], kolonner[6], kolonner[7], cv, kolonner[kolonner.length-1]);
 
                         TabellSokere oversiktSokere = new TabellSokere(tabell);
                         obl.add(oversiktSokere);

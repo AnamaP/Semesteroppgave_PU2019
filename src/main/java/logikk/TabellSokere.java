@@ -18,7 +18,8 @@ public class TabellSokere {
     private final SimpleStringProperty studieretning;//10
     private final SimpleStringProperty erfaring; //11
     private final SimpleStringProperty referanse; //12
-    private final SimpleStringProperty kategorier;//13, (14, 15, 16)
+    private final SimpleStringProperty kategorier;//13, 14, 15
+    private final SimpleStringProperty status; //16
 
     public TabellSokere(Jobbsoker jobbsoker) {
         this.fornavn = new SimpleStringProperty(jobbsoker.getFornavn());
@@ -35,6 +36,7 @@ public class TabellSokere {
         this.erfaring = new SimpleStringProperty(jobbsoker.getCv().getErfaring());
         this.referanse = new SimpleStringProperty(jobbsoker.getCv().getReferanse());
         this.kategorier = new SimpleStringProperty(jobbsoker.getCv().kategorierToString());
+        this.status = new SimpleStringProperty(jobbsoker.getStatus());
     }
 
     public SimpleStringProperty fornavnProperty() {
@@ -79,4 +81,5 @@ public class TabellSokere {
     public SimpleStringProperty kategorierProperty() {
         return kategorier;
     }
+    public SimpleStringProperty statusProperty(){return status;}
 }
