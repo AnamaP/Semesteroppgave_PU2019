@@ -11,10 +11,8 @@ import java.io.*;
 public class RegVikariatController {
 
     @FXML
-    private TextField txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtAdresse, txtBransje;
-
-    @FXML
-    private TextField  txtStillingstittel, txtVarighet, txtLonn,txtKvalifikasjoner;
+    private TextField txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtAdresse, txtBransje,
+                      txtStillingstittel, txtVarighet, txtLonn,txtKvalifikasjoner;
 
     @FXML
     private RadioButton radioHeltid, radioDeltid;
@@ -31,7 +29,7 @@ public class RegVikariatController {
         Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
                 txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtAdresse, txtBransje,
                 txtStillingstittel, txtVarighet, txtLonn, radioHeltid, radioDeltid,
-                txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
+                txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi, "Ledig");
 
         // TODO: flytte kode for validering i en egen metode utenfor controller
         String inptName = txtKontaktperson.getText();

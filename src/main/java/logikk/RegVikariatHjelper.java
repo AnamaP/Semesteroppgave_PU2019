@@ -13,14 +13,14 @@ public class RegVikariatHjelper {
             TextField txtKontaktperson, TextField txtTlf, TextField txtSektor, TextField txtFirmaNavn, TextField txtAdresse,
             TextField txtBransje, TextField txtStillingstittel, TextField txtVarighet, TextField txtLonn,
             RadioButton radioHeltid, RadioButton radioDeltid, TextField txtKvalifikasjoner,  TextArea txtBeskrivelse,
-            CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi) {
+            CheckBox cbxSalg, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxOkonomi, String status) {
 
         ArrayList<String> kategorier = RegKategoriHjelper.regKategori(cbxSalg,cbxAdmin,cbxIt,cbxOkonomi);
 
         String stillingsType = regArbeidsTid(radioHeltid, radioDeltid);
 
         Vikariat nyttVikariat = new Vikariat(txtStillingstittel.getText(), txtVarighet.getText(), txtBeskrivelse.getText(),
-                                             txtKvalifikasjoner.getText(), stillingsType, kategorier);
+                                             txtKvalifikasjoner.getText(), stillingsType, kategorier, status);
 
         // hvis "antatt årslønn" er satt så...
         if(txtLonn.getText() != ""){

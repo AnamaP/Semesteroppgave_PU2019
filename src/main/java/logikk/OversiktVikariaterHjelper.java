@@ -29,14 +29,15 @@ public class OversiktVikariaterHjelper {
                 if(kolonner.length > 11){
 
                     ArrayList<String> kategorier = new ArrayList<>();
-                    for(int i = 11; i < kolonner.length; i++) {
+                    for(int i = 11; i < kolonner.length-1; i++) {
                         kategorier.add(kolonner[i]);
                     }
 
-                    Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],kolonner[10], kategorier);
+                    Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],
+                                                     kolonner[10], kategorier, kolonner[kolonner.length-1]);
 
-                    Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2], kolonner[3],kolonner[4],
-                            kolonner[5], vikariat);
+                    Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2],
+                                                           kolonner[3],kolonner[4], kolonner[5], vikariat);
 
                     TabellVikariater test = new TabellVikariater(tabell);
                     obl.add(test);
@@ -69,7 +70,7 @@ public class OversiktVikariaterHjelper {
                 if(kolonner.length > 11) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
-                    for (int i = 11; i < kolonner.length; i++) {
+                    for (int i = 11; i < kolonner.length-1; i++) {
                         kategorier.add(kolonner[i]);
                     }
 
@@ -83,10 +84,11 @@ public class OversiktVikariaterHjelper {
                                     (kategorier.toString().contains("Okonomi")) && valgteKategorier.contains("Okonomi")
                     ) {
 
-                        Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],kolonner[10], kategorier);
+                        Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],
+                                                         kolonner[10], kategorier, kolonner[kolonner.length-1]);
 
-                        Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2], kolonner[3],kolonner[4],
-                                kolonner[5], vikariat);
+                        Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2],
+                                                               kolonner[3],kolonner[4], kolonner[5], vikariat);
 
                         TabellVikariater test = new TabellVikariater(tabell);
                         obl.add(test);

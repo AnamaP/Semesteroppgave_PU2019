@@ -31,7 +31,7 @@ public class MainAppHelper {
             String [] soker = rader[i].split(";");
 
             ArrayList<String> kategorier = new ArrayList<>();
-            for (int k = 13; k < soker.length; k++){
+            for (int k = 13; k < soker.length-1; k++){
                 kategorier.add(soker[k]);
             }
 
@@ -54,11 +54,11 @@ public class MainAppHelper {
             String [] vikariat = rader[i].split(";");
 
             ArrayList<String> kategorier = new ArrayList<>();
-            for (int k = 11; k < vikariat.length; k++){
+            for (int k = 11; k < vikariat.length-1; k++){
                 kategorier.add(vikariat[k]);
             }
 
-            Vikariat nyttVikariat = new Vikariat(vikariat[6],vikariat[7],vikariat[8],vikariat[9],vikariat[10], kategorier);
+            Vikariat nyttVikariat = new Vikariat(vikariat[6],vikariat[7],vikariat[8],vikariat[9],vikariat[10], kategorier, vikariat[vikariat.length-1]);
 
             Arbeidsgiver nyArbeidsgiver = new Arbeidsgiver(vikariat[0], vikariat[1],vikariat[2], vikariat[3],vikariat[4],
                     vikariat[5], nyttVikariat);

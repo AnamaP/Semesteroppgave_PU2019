@@ -16,7 +16,7 @@ public class OversiktVikariaterController implements Initializable {
 
     @FXML
     private TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor, tcFirmanavn, tcOrgNr, tcBransje,
-            tcStillingstittel, tcStillingstype, tcVarighet, tcLonn, tcKvalifikasjoner, tcKategorier;
+            tcStillingstittel, tcStillingstype, tcVarighet, tcLonn, tcKvalifikasjoner, tcKategorier, tcStatus;
 
 
     @Override
@@ -34,6 +34,7 @@ public class OversiktVikariaterController implements Initializable {
         tcLonn.setCellValueFactory(cellData->cellData.getValue().lonnProperty());
         tcKvalifikasjoner.setCellValueFactory(cellData->cellData.getValue().kvalifikasjonerProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
+        tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
         tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV));
     }
