@@ -9,13 +9,12 @@ import static logikk.RegSokerHjelper.jobbsokere;
 public class ValidationChecker {
     private String invalidInputs = "";
 
-    // begrunne i rapporten hvorfor vi har kjørt følgende regex (f.eks strenger vil ikke krasje systemet og vi har derfor
-    // valgt å ikke ha spesiell regex validering for dem, men tlf nr er for.eks viktig da det kan krasje programmet)
-    // samle alle strenger i en egen exception klasse - lage en checkStringFormat metode - med indiv. metoder under
-    // samme for NumberFormat - for alt med integer
-    // Felt som er avhengige av et spesielt regex mønster kan ha sine egne metoder
-    // cbx, radiobtn, combobox - alle kan samles under egen NullpointerMetode...
-
+    // Begrunne i rapporten:
+    // - Alle input felter med strenger er plassert i samme "checkString" metode med samme regex mønster,
+    // - vi har valgt å gjøre det slik ettersom strengene ikke vil kransje systemet
+    // - telfnr, postnr og andre int verdier har egne metoder meg individuelle regex mønster da disse brukes for å
+    //   bl.a. validere registreringer, i søkemotor for filtrering o.l. for at det ikke skal krasje programmet.
+    // - har også separert andre metoder som er avhengige av et spesielt regex mønster (f.eks. e-post)
 
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
                                           String phoneNmbr, String email, String age, String experience, String salary,
@@ -28,7 +27,8 @@ public class ValidationChecker {
         checkZipCode(zipcode);// TODO: sjekk at det ikke går an å skrive negative tall
         checkValidString(address);
         checkValidString(experience);
-       // checkPhoneNmbr(phoneNmbr);
+        checkPhoneNmbr(phoneNmbr);
+        checkDuplicatePhoneNmbr(phoneNmbr);
         checkEmail(email);
         checkAge(age); // TODO: sjekk at det ikke går an å skrive negative tall
         checkSalary(salary); // TODO: sjekk at det ikke går an å skrive negative tall
@@ -43,7 +43,8 @@ public class ValidationChecker {
                                           String duration, String salary, String qualif, Boolean sales, Boolean admin,
                                           Boolean it, Boolean economy, Boolean fullTime, Boolean partTime) {
         checkString(name);
-        //checkPhoneNmbr(phoneNmbr);
+        checkPhoneNmbr(phoneNmbr);
+        checkDuplicatePhoneNmbr(phoneNmbr);
         checkString(sector);
         checkValidString(companyName);
         checkValidString(industry);
@@ -77,25 +78,6 @@ public class ValidationChecker {
         }
         return false;
     }
-    /*
-    private boolean checkValidAddress(String address)throws InvalidAddressFormatException {
-        if(!Pattern.matches("[a-zæøåA-ZÆØÅ0-9_\\p{Space}\\-]+",address) || address.isEmpty()){
-            throw new InvalidAddressFormatException("Feil i adresse, tillatt: Aa-åÅ, tall 0-9");
-        }
-        return true;
-    }
-
-    private boolean checkAddress(String address){
-        try{
-            if(checkValidAddress(address)){
-                return true;
-            }
-        }
-        catch(InvalidAddressFormatException e){
-            invalidInputs += (String.format("%s : er en ugyldig adresse, tillatt: Aa-åÅ og tall 0-9 \n", address));
-        }
-        return false;
-    }*/
 
     private boolean ckeckValidZipCode(String zipcode) throws InvalidNumberFormatException {
         if(!Pattern.matches("[0-9]+",zipcode) || zipcode.length() != 4 || zipcode.isEmpty()){
@@ -117,26 +99,42 @@ public class ValidationChecker {
     }
 
     private boolean checkValidPhoneNmbr(String phoneNmbr) throws InvalidNumberFormatException {
-        if(!Pattern.matches("[0-9]+",phoneNmbr) || phoneNmbr.length() != 8 || phoneNmbr.isEmpty()){
+        if(!Pattern.matches("[0-9]{8}+",phoneNmbr) || phoneNmbr.isEmpty() || phoneNmbr.startsWith("0")){
             throw new InvalidNumberFormatException("Feil i tlfnr!");
         }
         return true;
     }
 
-    private boolean checkPhoneNmbr(String phoneNmbr) throws InvalidDuplicatePhoneNmbrException{
+    private boolean checkPhoneNmbr(String phoneNmbr){
         try{
             if(checkValidPhoneNmbr(phoneNmbr)){
-                for(int i = 0; i < jobbsokere.size();i++){
-                    if(jobbsokere.get(i).getTlf().contains(phoneNmbr)){
-                        throw new InvalidDuplicatePhoneNmbrException("Telefonnummeret er registrert fra før!");
-                       // return false;
-                    }
-                }
                 return true;
             }
         }
         catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er et ugyldig tlfnr, må bestå av 8 tall mellom 0-9 og uten mellomrom \n", phoneNmbr));
+            invalidInputs += (String.format("%s : er et ugyldig tlfnr, må bestå av positive tall og uten mellomrom \n", phoneNmbr));
+        }
+        return false;
+    }
+
+    private boolean checkIfDuplicatePhoneNmbr(String phoneNmbr) throws InvalidDuplicatePhoneNmbrException {
+        for (int i = 0; i < jobbsokere.size(); i++) {
+            if (jobbsokere.get(i).getTlf().contains(phoneNmbr)) {
+                throw new InvalidDuplicatePhoneNmbrException("Duplikat telefonnr!");
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkDuplicatePhoneNmbr(String phoneNmbr){
+        try{
+            if(checkIfDuplicatePhoneNmbr(phoneNmbr)){
+                return true;
+            }
+        }
+        catch(InvalidDuplicatePhoneNmbrException e){
+            invalidInputs += "Telefonnummeret er registrert fra før!";
         }
         return false;
     }
@@ -162,7 +160,7 @@ public class ValidationChecker {
 
     private boolean checkIfValidString(String string) throws InvalidTextIfNullException {
         if(string.isEmpty() && string.length() != 200){
-            throw new InvalidTextIfNullException("Ett eller flere obligatoriske felt er ikke fylt ut!");
+            throw new InvalidTextIfNullException("Feil: Enten tomme bligatoriske felt eller oversteget 200 ord");
         }
         return true;
     }
@@ -174,56 +172,13 @@ public class ValidationChecker {
             }
         }
         catch(InvalidTextIfNullException e){
-            invalidInputs += "Ett eller flere obligatoriske felt står tomme, dette må fylles ut!";
+            invalidInputs += "Ett eller flere obligatoriske felt står tomme, eller så har du oversteget 200 ord \n";
         }
         return false;
     }
-/*
-    private boolean checkLengthJobadvert(String jobTitle, String jobDescription){
-        try{
-            if(checkValidLength(jobTitle,jobDescription)){
-                return true;
-            }
-        }
-        catch(InvalidTextIfNullException e){
-            invalidInputs += "Stillingstittel/Stillingsbeskrivelse står tomt, dette må fylles ut! \n";
-        }
-        return false;
-    }
-
-    private boolean checkLengthJobadvert1(String duration, String qualif){
-        try{
-            if(checkValidLength(duration, qualif)){
-                return true;
-            }
-        }
-        catch(InvalidTextIfNullException e){
-            invalidInputs += "Varighet/kvalifikasjoner står tomt, dette må fylles ut! \n";
-        }
-        return false;
-    }
-
-    private boolean checkLengtExperience(String experience) throws InvalidTextIfNullException{
-        if(experience.isEmpty()){
-            throw new InvalidTextIfNullException("Ett eller flere obligatoriske felt står tomme");
-        }
-        return true;
-    }
-
-    private boolean checkExperience(String experience){
-        try{
-            if(checkLengtExperience(experience)){
-                return true;
-            }
-        }
-        catch(InvalidTextIfNullException e){
-            invalidInputs += "Erfaring står tomt, dette må fylles ut! \n";
-        }
-        return false;
-    }*/
 
     private boolean checkValidAge(String age) throws InvalidNumberFormatException {
-        if(!Pattern.matches("[1-9]{2}+",age) || age.isEmpty()){
+        if(!Pattern.matches("[0-9]{2}+",age) || age.isEmpty() || age.startsWith("0")){
             throw new InvalidNumberFormatException("Ugyldig alder");
         }
         return true;
@@ -236,14 +191,14 @@ public class ValidationChecker {
             }
         }
         catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er en ugyldig alder, kun tall( ingen mellomrom)\n", age));
+            invalidInputs += (String.format("%s : er en ugyldig alder, kun positive tall(ingen mellomrom)\n", age));
         }
         return false;
     }
 
     private boolean checkSalaryFormat(String salary) throws InvalidNumberFormatException {
         if(!Pattern.matches("[0-9\\p{Space}]{0,7}+",salary)){
-            throw new InvalidNumberFormatException("Feil nummer format");
+            throw new InvalidNumberFormatException("Feil i lønn");
         }
         return true;
     }
@@ -255,7 +210,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er en ugyldig lønn, tillatt: tall 0-9 (maks: mio)\n",salary));
+            invalidInputs += (String.format("%s : er en ugyldig lønn, tillatt: positive tall (maks: mio)\n",salary));
         }
         return false;
     }
