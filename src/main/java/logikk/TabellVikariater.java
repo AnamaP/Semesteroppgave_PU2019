@@ -12,9 +12,6 @@ public class TabellVikariater {
     private final SimpleStringProperty bransje; //5
     private final SimpleStringProperty stillingstittel; //6
     private final SimpleStringProperty stillingstype; //7
-    private final SimpleStringProperty varighet; //8
-    private final SimpleStringProperty lonn; //9
-    private final SimpleStringProperty kvalifikasjoner; // 10
     private final SimpleStringProperty kategorier; // 11,12,13,14
     private final SimpleStringProperty status; //15
 
@@ -27,10 +24,7 @@ public class TabellVikariater {
         this.adresse = new SimpleStringProperty(arbeidsgiver.getAdresse());
         this.bransje = new SimpleStringProperty(arbeidsgiver.getBransje());
         this.stillingstittel = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getTittel());
-        this.stillingstype = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getArbeidstid());
-        this.varighet = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getVarighet());
-        this.lonn = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getLonn());
-        this.kvalifikasjoner = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getKvalifikasjoner());
+        this.stillingstype = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getStillingstype());
         this.kategorier = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().kategorierToString());
         this.status = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getStatus());
     }
@@ -60,22 +54,7 @@ public class TabellVikariater {
     public SimpleStringProperty stillingstittelProperty() {
         return stillingstittel;
     }
-    public String getStillingstype() { return stillingstype.get();}
     public SimpleStringProperty stillingstypeProperty(){ return stillingstype;}
-    public void setStillingstype(String stillingstype){ this.stillingstype.set(stillingstype);}
-    public SimpleStringProperty varighetProperty() {
-        return varighet;
-    }
-    public SimpleStringProperty lonnProperty(){ return lonn;}
-    public String getKvalifikasjoner() {
-        return kvalifikasjoner.get();
-    }
-    public SimpleStringProperty kvalifikasjonerProperty() {
-        return kvalifikasjoner;
-    }
-    public void setKvalifikasjoner(String kvalifikasjoner) {
-        this.kvalifikasjoner.set(kvalifikasjoner);
-    }
     public String getKategorier() {
         return kategorier.get();
     }

@@ -17,10 +17,10 @@ public class RegVikariatHjelper {
 
         ArrayList<String> kategorier = RegKategoriHjelper.regKategori(cbxSalg,cbxAdmin,cbxIt,cbxOkonomi);
 
-        String stillingsType = regArbeidsTid(radioHeltid, radioDeltid);
+        String stillingstype = regArbeidsTid(radioHeltid, radioDeltid);
 
         Vikariat nyttVikariat = new Vikariat(txtStillingstittel.getText(), txtVarighet.getText(), txtBeskrivelse.getText(),
-                                             txtKvalifikasjoner.getText(), stillingsType, kategorier, status);
+                                             txtKvalifikasjoner.getText(), stillingstype, kategorier, status);
 
         // hvis "antatt årslønn" er satt så...
         if(txtLonn.getText() != ""){

@@ -3,7 +3,6 @@ package org.openjfx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import logikk.*;
@@ -18,7 +17,7 @@ public class ResultatVikariaterController implements Initializable {
 
     @FXML
     private TableColumn<TabellVikariater, String> tcKontaktperson, tcTlf, tcSektor, tcFirmanavn, tcBransje,
-            tcStillingstittel, tcVarighet, tcKvalifikasjoner, tcKategorier;
+            tcStillingstittel, tcKategorier;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -29,8 +28,6 @@ public class ResultatVikariaterController implements Initializable {
         tcFirmanavn.setCellValueFactory(cellData->cellData.getValue().firmanavnProperty());
         tcBransje.setCellValueFactory(cellData->cellData.getValue().bransjeProperty());
         tcStillingstittel.setCellValueFactory(cellData->cellData.getValue().stillingstittelProperty());
-        tcVarighet.setCellValueFactory(cellData->cellData.getValue().varighetProperty());
-        tcKvalifikasjoner.setCellValueFactory(cellData->cellData.getValue().kvalifikasjonerProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
         tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visResultat(Paths.VIKARIAT_CSV));
