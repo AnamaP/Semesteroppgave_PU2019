@@ -44,6 +44,15 @@ public class ResultatVikariaterController implements Initializable {
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktSokere.fxml", event);
     }
 
+    public void btnLesMer(ActionEvent event) {
+        String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
+
+        String title = OversiktVikariaterHjelper.lesMerTittel(key);
+        String message = OversiktVikariaterHjelper.lesMerInnhold(key);
+
+        AlertHelper.showMoreInfo(title,message);
+    }
+
     public void btnAnsett(ActionEvent event) {
 
     }

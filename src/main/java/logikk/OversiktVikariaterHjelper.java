@@ -72,7 +72,7 @@ public class OversiktVikariaterHjelper {
                 if(kolonner.length > 11) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
-                    for (int i = 11; i < kolonner.length-1; i++) {
+                    for (int i = 12; i < kolonner.length-1; i++) {
                         kategorier.add(kolonner[i]);
                     }
 
@@ -144,6 +144,7 @@ public class OversiktVikariaterHjelper {
     public static int findArbeidsgiver(String key){
         for(int i = 0; i < arbeidsgivere.size(); i++){
             String tlf = arbeidsgivere.get(i).getTlf();
+            System.out.println(tlf);
             if(tlf.equals(key)){
                 return i;
             }

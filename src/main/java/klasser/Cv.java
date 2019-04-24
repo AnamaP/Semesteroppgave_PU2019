@@ -20,19 +20,27 @@ public class Cv {
     public void setReferanse(String referanse){
         this.referanse = referanse;
     }
-
+    public void setUtdanning(String utdanning) {
+        this.utdanning = utdanning;
+    }
+    public void setStudieretning(String studieretning) {
+        this.studieretning = studieretning;
+    }
+    public void setErfaring(String erfaring) {
+        this.erfaring = erfaring;
+    }
+    public void setKategorier(ArrayList<String> kategorier) {
+        this.kategorier = kategorier;
+    }
     public String getUtdanning() {
         return utdanning;
     }
-
     public String getStudieretning() {
         return studieretning;
     }
-
     public String getErfaring() {
         return erfaring;
     }
-
     public String getReferanse() {
         return referanse;
     }

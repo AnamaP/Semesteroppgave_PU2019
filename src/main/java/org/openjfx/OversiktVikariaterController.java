@@ -57,7 +57,6 @@ public class OversiktVikariaterController implements Initializable {
         String message = OversiktVikariaterHjelper.lesMerInnhold(key);
 
         AlertHelper.showMoreInfo(title,message);
-
     }
 
     public void btnRedigerVikariat(ActionEvent event) {

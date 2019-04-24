@@ -39,34 +39,51 @@ public class Person implements Serializable {
         this.alder = alder;
     }
 
+    public void setFornavn(String fornavn) {
+        this.fornavn = fornavn;
+    }
+    public void setEtternavn(String etternavn) {
+        this.etternavn = etternavn;
+    }
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+    public void setPostnr(String postnr) {
+        this.postnr = postnr;
+    }
+    public void setPoststed(String poststed) {
+        this.poststed = poststed;
+    }
+    public void setTlf(String tlf) {
+        this.tlf = tlf;
+    }
+    public void setEpost(String epost) {
+        this.epost = epost;
+    }
+    public void setAlder(String alder) {
+        this.alder = alder;
+    }
     public String getFornavn() {
         return fornavn;
     }
-
     public String getEtternavn() {
         return etternavn;
     }
-
     public String getAdresse() {
         return adresse;
     }
-
     public String getPostnr() {
         return postnr;
     }
-
     public String getPoststed() {
         return poststed;
     }
-
     public String getTlf() {
         return tlf;
     }
-
     public String getEpost() {
         return epost;
     }
-
     public String getAlder() {
         return alder;
     }

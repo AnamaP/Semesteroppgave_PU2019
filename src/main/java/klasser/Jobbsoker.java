@@ -14,18 +14,18 @@ public class Jobbsoker extends Person {
         this.status = status;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public void setLonnskrav(String lonnskrav){
         this.lonnskrav = lonnskrav;
     }
-
     public Cv getCv() {
         return cv;
     }
-
     public String getLonnskrav() {
         return lonnskrav;
     }
-
     public String getStatus(){
         return status;
     }

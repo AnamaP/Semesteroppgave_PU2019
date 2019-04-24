@@ -26,12 +26,13 @@ public class MainAppHelper {
         String sokereFraDatabase = (String) test.henteFraFil(Paths.JOBBSOKER_CSV);
 
         String [] rader = sokereFraDatabase.split("\n");
-        if(rader.length > 14) {
-            for (int i = 0; i < rader.length; i++) {
-                String[] soker = rader[i].split(";");
 
+        for (int i = 0; i < rader.length; i++) {
+            String[] soker = rader[i].split(";");
+
+            if(soker.length > 11) {
                 ArrayList<String> kategorier = new ArrayList<>();
-                for (int k = 13; k < soker.length - 1; k++) {
+                for (int k = 12; k < soker.length - 1; k++) {
                     kategorier.add(soker[k]);
                 }
 
@@ -50,10 +51,11 @@ public class MainAppHelper {
         String vikariaterFraDatabase = (String) test.henteFraFil(Paths.VIKARIAT_CSV);
 
         String [] rader = vikariaterFraDatabase.split("\n");
-        if(rader.length > 12) {
-            for (int i = 0; i < rader.length; i++) {
-                String[] vikariat = rader[i].split(";");
 
+        for (int i = 0; i < rader.length; i++) {
+            String[] vikariat = rader[i].split(";");
+
+            if(vikariat.length > 13) {
                 ArrayList<String> kategorier = new ArrayList<>();
                 for (int k = 11; k < vikariat.length - 1; k++) {
                     kategorier.add(vikariat[k]);

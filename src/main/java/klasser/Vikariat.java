@@ -23,34 +23,48 @@ public class Vikariat {
         this.status = status;
     }
 
+    public void setTittel(String tittel) {
+        this.tittel = tittel;
+    }
+    public void setStillingstype(String stillingstype) {
+        this.stillingstype = stillingstype;
+    }
+    public void setBeskrivelse(String beskrivelse) {
+        this.beskrivelse = beskrivelse;
+    }
+    public void setVarighet(String varighet) {
+        this.varighet = varighet;
+    }
+    public void setLonn(String lonn) {
+        this.lonn = lonn;
+    }
+    public void setKvalifikasjoner(String kvalifikasjoner) {
+        this.kvalifikasjoner = kvalifikasjoner;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public String getTittel() {
         return tittel;
     }
-
     public String getStillingstype() {
         return stillingstype;
     }
-
     public String getBeskrivelse() {
         return beskrivelse;
     }
-
     public String getVarighet() {
         return varighet;
     }
-
     public String getLonn() {
         return lonn;
     }
-
     public String getKvalifikasjoner() {
         return kvalifikasjoner;
     }
-
     public ArrayList<String> getKategorier() {
         return kategorier;
     }
-
     public String getStatus() {
         return status;
     }
