@@ -10,8 +10,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static logikk.RegSokerHjelper.jobbsokere;
-
 public class OversiktSokereController implements Initializable {
     @FXML
     TableView<TabellSokere> tvOversiktSokere;

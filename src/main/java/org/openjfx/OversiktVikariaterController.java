@@ -4,14 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import klasser.Arbeidsgiver;
-import klasser.Vikariat;
 import logikk.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class OversiktVikariaterController implements Initializable {
 
