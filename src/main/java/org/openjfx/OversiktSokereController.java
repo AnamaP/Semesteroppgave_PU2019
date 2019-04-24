@@ -1,16 +1,24 @@
 package org.openjfx;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import logikk.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static logikk.OversiktSokereHjelper.visJobbsokere;
+
 public class OversiktSokereController implements Initializable {
+
+    @FXML
+    TextField txtFilterField;
+
     @FXML
     TableView<TabellSokere> tvOversiktSokere;
 
@@ -35,7 +43,21 @@ public class OversiktSokereController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
         tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
-        tvOversiktSokere.setItems(OversiktSokereHjelper.visJobbsokere(Paths.JOBBSOKER_CSV));
+        tvOversiktSokere.setItems(visJobbsokere(Paths.JOBBSOKER_CSV));
+
+        /*
+        //Filtrering av data i tabellen
+        FilteredList<TabellSokere> filteredData = new FilteredList<>(visJobbsokere(Paths.JOBBSOKER_CSV),p-> true);
+        txtFilterField.textProperty().addListener((observable, oldValue, newValue) ->{
+            txtFilterField.setPredicate(sokere -> {
+                if(newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                
+            });
+        });*/
+
     }
 
     @FXML
