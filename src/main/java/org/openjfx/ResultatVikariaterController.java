@@ -40,7 +40,8 @@ public class ResultatVikariaterController implements Initializable {
         setTableEditable();
 
         if(tvOversiktVikariater.getItems().isEmpty()){
-            lblMessage.setText("Du fikk ingen matcher... :/ Gå tilbake og prøv et annet vikariat.");
+            AlertHelper.showError("Det er dessverre ingen aktuelle kandidater for dette vikariatet per nå. \n" +
+                                "Gå tilbake og velg et annet vikariat.");
         }
     }
 

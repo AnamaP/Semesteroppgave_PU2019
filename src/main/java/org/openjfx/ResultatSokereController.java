@@ -6,10 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import logikk.NavigeringsHjelper;
-import logikk.OversiktSokereHjelper;
-import logikk.Paths;
-import logikk.TabellSokere;
+import logikk.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,7 +44,8 @@ public class ResultatSokereController implements Initializable {
         tvOversiktSoker.setItems(OversiktSokereHjelper.visResultat(Paths.JOBBSOKER_CSV));
 
         if(tvOversiktSoker.getItems().isEmpty()){
-            lblMessage.setText("Du fikk ingen matcher... :/ Gå tilbake og prøv et annet vikariat.");
+            AlertHelper.showError("Det er dessverre ingen aktuelle vikariater for denne jobbsøkeren per nå. \n" +
+                    "Forsøk igjen senere eller velg en annen jobbsøker");
         }
     }
 

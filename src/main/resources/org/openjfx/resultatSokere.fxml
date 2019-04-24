@@ -32,6 +32,5 @@
             </columns>
         </TableView>
       <Button layoutX="1125.0" layoutY="563.0" mnemonicParsing="false" onAction="#btnAnsett" text="Ansett person" />
-      <Label fx:id="lblMessage" layoutX="419.0" layoutY="563.0" prefHeight="27.0" prefWidth="413.0" />
     </children>
 </Pane>
