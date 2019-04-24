@@ -34,7 +34,7 @@ public class RegVikariatController {
                 txtKvalifikasjoner, txtBeskrivelse, cbxSalg, cbxAdmin, cbxIt, cbxOkonomi);
 
         // TODO: flytte kode for validering i en egen metode utenfor controller
-        String inptContactPerson = txtKontaktperson.getText();
+        String inptName = txtKontaktperson.getText();
         String inptPhoneNmbr = txtTlf.getText();
         String inptSector = txtSektor.getText();
         String inptCompanyName = txtFirmaNavn.getText();
@@ -53,7 +53,7 @@ public class RegVikariatController {
         Boolean inptEconomy = cbxOkonomi.isSelected();
 
         ValidationChecker validation = new ValidationChecker();
-        String invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNmbr, inptSector, inptCompanyName,
+        String invalidInputs = validation.inputJobAdvertCollector(inptName, inptPhoneNmbr, inptSector, inptCompanyName,
                 inptAddress, inptIndustry, inptJobTitle, inptJobDescription,inptDuration, inptSalary, inptQualif,
                 inptSales,inptAdmin, inptIt, inptEconomy, inptFullTime, inptPartTime);
 

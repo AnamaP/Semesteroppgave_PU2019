@@ -18,38 +18,40 @@ public class ValidationChecker {
 
 
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
-                                          String phoneNmbr, String email, String age, String experience, String reference,
-                                          String salary, Object education, Object study, Boolean sales, Boolean admin,
+                                          String phoneNmbr, String email, String age, String experience, String salary,
+                                          Object education, Object study, Boolean sales, Boolean admin,
                                           Boolean it, Boolean economy) {
 
-        checkName(firstname);
-        checkName(lastname);
-        checkAddress(address);
-        checkZipCode(zipcode);
-        //checkValidString(); sjekke for om den er empty og ikke større enn 200 ord
-        checkPostal(postal);
+        checkString(firstname);
+        checkString(lastname);
+        checkString(postal);
+        checkZipCode(zipcode);// TODO: sjekk at det ikke går an å skrive negative tall
+        checkValidString(address);
+        checkValidString(experience);
        // checkPhoneNmbr(phoneNmbr);
         checkEmail(email);
-        checkAge(age);
-        checkExperience(experience);
-        checkSalary(salary);
+        checkAge(age); // TODO: sjekk at det ikke går an å skrive negative tall
+        checkSalary(salary); // TODO: sjekk at det ikke går an å skrive negative tall
         checkValueSelected(education, study);
         checkWorkfields(sales, admin, it, economy);
 
         return invalidInputs;
     }
 
-    public String inputJobAdvertCollector(String firstname, String phoneNmbr, String sector, String companyName,
+    public String inputJobAdvertCollector(String name, String phoneNmbr, String sector, String companyName,
                                           String industry, String address, String jobTitle, String jobDescription,
                                           String duration, String salary, String qualif, Boolean sales, Boolean admin,
                                           Boolean it, Boolean economy, Boolean fullTime, Boolean partTime) {
-        checkName(firstname);
+        checkString(name);
         //checkPhoneNmbr(phoneNmbr);
-        checkSector(sector);
-        checkCompanyInfo(companyName, industry);
-        checkAddress(address);
-        checkLengthJobadvert(jobTitle, jobDescription);
-        checkLengthJobadvert1(duration,qualif);
+        checkString(sector);
+        checkValidString(companyName);
+        checkValidString(industry);
+        checkValidString(address);
+        checkValidString(jobTitle);
+        checkValidString(jobDescription);
+        checkValidString(duration);
+        checkValidString(qualif);
         checkSalary(salary);
         checkWorkfields(sales, admin, it, economy);
         checkJobTypeSelected(fullTime, partTime);
@@ -64,42 +66,18 @@ public class ValidationChecker {
         return true;
     }
 
-    private boolean checkName(String name) {
+    private boolean checkString(String name) {
         try {
             if (checkStringFormat(name)) {
                 return true;
             }
         }
         catch (InvalidStringFormatException e) {
-            invalidInputs += (String.format("%s er et ugyldig navn\n, kun bokstaver Aa-åÅ tillatt \n", name));
+            invalidInputs += (String.format("%s er et ugyldig, kun bokstaver Aa-åÅ tillatt \n", name));
         }
         return false;
     }
-
-    private boolean checkPostal(String postal){
-        try{
-            if(checkStringFormat(postal)){
-                return true;
-            }
-        }
-        catch(InvalidStringFormatException e){
-            invalidInputs += String.format("%s er et ugyldig poststed, kun bokstaver Aa-åÅ tillatt \n", postal);
-        }
-        return false;
-    }
-
-    private boolean checkSector(String sector){
-        try{
-            if(checkStringFormat(sector)){
-                return true;
-            }
-        }
-        catch(InvalidStringFormatException e){
-            invalidInputs += String.format("%s er en ugydlig sektor, kun bokstaver Aa-åÅ tillatt \n", sector);
-        }
-        return false;
-    }
-
+    /*
     private boolean checkValidAddress(String address)throws InvalidAddressFormatException {
         if(!Pattern.matches("[a-zæøåA-ZÆØÅ0-9_\\p{Space}\\-]+",address) || address.isEmpty()){
             throw new InvalidAddressFormatException("Feil i adresse, tillatt: Aa-åÅ, tall 0-9");
@@ -117,7 +95,7 @@ public class ValidationChecker {
             invalidInputs += (String.format("%s : er en ugyldig adresse, tillatt: Aa-åÅ og tall 0-9 \n", address));
         }
         return false;
-    }
+    }*/
 
     private boolean ckeckValidZipCode(String zipcode) throws InvalidNumberFormatException {
         if(!Pattern.matches("[0-9]+",zipcode) || zipcode.length() != 4 || zipcode.isEmpty()){
@@ -182,25 +160,25 @@ public class ValidationChecker {
         return false;
     }
 
-    private boolean checkValidLength(String string1, String string2) throws InvalidTextIfNullException {
-        if(string1.isEmpty() || string2.isEmpty()){
+    private boolean checkIfValidString(String string) throws InvalidTextIfNullException {
+        if(string.isEmpty() && string.length() != 200){
             throw new InvalidTextIfNullException("Ett eller flere obligatoriske felt er ikke fylt ut!");
         }
         return true;
     }
 
-    private boolean checkCompanyInfo(String companyName, String industry){
+    private boolean checkValidString(String string){
         try{
-            if(checkValidLength(companyName, industry)){
+            if(checkIfValidString(string)){
                 return true;
             }
         }
         catch(InvalidTextIfNullException e){
-            invalidInputs += "Firmanavn eller bransje står tomt, dette må fylles ut!";
+            invalidInputs += "Ett eller flere obligatoriske felt står tomme, dette må fylles ut!";
         }
         return false;
     }
-
+/*
     private boolean checkLengthJobadvert(String jobTitle, String jobDescription){
         try{
             if(checkValidLength(jobTitle,jobDescription)){
@@ -242,7 +220,7 @@ public class ValidationChecker {
             invalidInputs += "Erfaring står tomt, dette må fylles ut! \n";
         }
         return false;
-    }
+    }*/
 
     private boolean checkValidAge(String age) throws InvalidNumberFormatException {
         if(!Pattern.matches("[1-9]{2}+",age) || age.isEmpty()){
