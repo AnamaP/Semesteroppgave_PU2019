@@ -4,6 +4,8 @@ import Exceptions.*;
 
 import java.util.regex.Pattern;
 
+import static logikk.RegSokerHjelper.jobbsokere;
+
 public class ValidationChecker {
     private String invalidInputs = "";
 
@@ -143,9 +145,15 @@ public class ValidationChecker {
         return true;
     }
 
-    private boolean checkPhoneNmbr(String phoneNmbr){
+    private boolean checkPhoneNmbr(String phoneNmbr) throws InvalidDuplicatePhoneNmbrException{
         try{
             if(checkValidPhoneNmbr(phoneNmbr)){
+                for(int i = 0; i < jobbsokere.size();i++){
+                    if(jobbsokere.get(i).getTlf().contains(phoneNmbr)){
+                        throw new InvalidDuplicatePhoneNmbrException("Telefonnummeret er registrert fra før!");
+                        return false;
+                    }
+                }
                 return true;
             }
         }
