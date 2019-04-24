@@ -58,7 +58,7 @@ public class MainAppHelper {
                 kategorier.add(vikariat[k]);
             }
 
-            Vikariat nyttVikariat = new Vikariat(vikariat[6],vikariat[7],vikariat[8],vikariat[9],vikariat[10], kategorier, vikariat[vikariat.length-1]);
+            Vikariat nyttVikariat = new Vikariat(vikariat[6],vikariat[7],vikariat[8],vikariat[9],vikariat[10], vikariat[11], kategorier, vikariat[vikariat.length-1]);
 
             Arbeidsgiver nyArbeidsgiver = new Arbeidsgiver(vikariat[0], vikariat[1],vikariat[2], vikariat[3],vikariat[4],
                     vikariat[5], nyttVikariat);

@@ -4,27 +4,35 @@ import java.util.ArrayList;
 
 public class Vikariat {
     private String tittel;
+    private String stillingstype;
+    private String beskrivelse;
     private String varighet;
     private String lonn;
-    private String beskrivelse;
-    private String stillingstype;
     private String kvalifikasjoner;
     private ArrayList<String> kategorier;
     private String status;
 
-    public Vikariat(String tittel, String varighet, String beskrivelse, String kvalifikasjoner, String stillingstype, ArrayList<String> kategorier, String status) {
+    public Vikariat(String tittel, String stillingstype, String beskrivelse, String varighet, String lonn, String kvalifikasjoner, ArrayList<String> kategorier, String status) {
         this.tittel = tittel;
-        this.varighet = varighet;
-        this.lonn = "";
-        this.beskrivelse = beskrivelse;
-        this.kvalifikasjoner = kvalifikasjoner;
         this.stillingstype = stillingstype;
+        this.beskrivelse = beskrivelse;
+        this.varighet = varighet;
+        this.lonn = lonn;
+        this.kvalifikasjoner = kvalifikasjoner;
         this.kategorier = kategorier;
         this.status = status;
     }
 
     public String getTittel() {
         return tittel;
+    }
+
+    public String getStillingstype() {
+        return stillingstype;
+    }
+
+    public String getBeskrivelse() {
+        return beskrivelse;
     }
 
     public String getVarighet() {
@@ -35,24 +43,16 @@ public class Vikariat {
         return lonn;
     }
 
-    public String getBeskrivelse() {
-        return beskrivelse;
-    }
-
-    public String getStillingstype() {
-        return stillingstype;
-    }
-
     public String getKvalifikasjoner() {
         return kvalifikasjoner;
     }
 
-    public String getStatus(){
-        return status;
+    public ArrayList<String> getKategorier() {
+        return kategorier;
     }
 
-    public void setLonn(String lonn){
-        this.lonn = lonn;
+    public String getStatus() {
+        return status;
     }
 
     public String kategorierToString() {
@@ -69,6 +69,6 @@ public class Vikariat {
     }
 
     public String toString(){
-        return tittel+";"+varighet+";"+lonn+";"+beskrivelse+";"+stillingstype+";"+kvalifikasjoner+";"+kategorierToString()+";"+status;
+        return tittel+";"+stillingstype+";"+beskrivelse+";"+varighet+";"+lonn+";"+kvalifikasjoner+";"+kategorierToString()+";"+status+"\n";
     }
 }

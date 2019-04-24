@@ -23,10 +23,10 @@ public class TabellVikariater {
         this.firmanavn = new SimpleStringProperty(arbeidsgiver.getFirmanavn());
         this.adresse = new SimpleStringProperty(arbeidsgiver.getAdresse());
         this.bransje = new SimpleStringProperty(arbeidsgiver.getBransje());
-        this.stillingstittel = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getTittel());
-        this.stillingstype = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getStillingstype());
-        this.kategorier = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().kategorierToString());
-        this.status = new SimpleStringProperty(arbeidsgiver.getNyttVikariat().getStatus());
+        this.stillingstittel = new SimpleStringProperty(arbeidsgiver.getVikariat().getTittel());
+        this.stillingstype = new SimpleStringProperty(arbeidsgiver.getVikariat().getStillingstype());
+        this.kategorier = new SimpleStringProperty(arbeidsgiver.getVikariat().kategorierToString());
+        this.status = new SimpleStringProperty(arbeidsgiver.getVikariat().getStatus());
     }
 
     public SimpleStringProperty kontaktpersonProperty() {

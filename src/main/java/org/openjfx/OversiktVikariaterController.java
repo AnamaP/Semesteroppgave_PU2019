@@ -43,7 +43,7 @@ public class OversiktVikariaterController implements Initializable {
 
     public void btnLastNedVikariat(ActionEvent event) {
         String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
-        RegVikariatHjelper.saveTempJob(key);
+        OversiktVikariaterHjelper.saveTempJob(key);
     }
 
     public void btnLastOppVikariat(ActionEvent event) {
@@ -51,6 +51,12 @@ public class OversiktVikariaterController implements Initializable {
     }
 
     public void btnLesMerOmVikariat(ActionEvent event) {
+        String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
+
+        String title = OversiktVikariaterHjelper.lesMerTittel(key);
+        String message = OversiktVikariaterHjelper.lesMerInnhold(key);
+
+        AlertHelper.showMoreInfo(title,message);
 
     }
 
@@ -67,7 +73,7 @@ public class OversiktVikariaterController implements Initializable {
 
         System.out.println(key);
 
-        Boolean slett = RegVikariatHjelper.slettValgtVikariat(key);
+        Boolean slett = OversiktVikariaterHjelper.slettValgtVikariat(key);
         System.out.println(slett);
         if(slett){
             MainAppHelper run = new MainAppHelper();

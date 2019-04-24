@@ -19,13 +19,8 @@ public class RegVikariatHjelper {
 
         String stillingstype = regArbeidsTid(radioHeltid, radioDeltid);
 
-        Vikariat nyttVikariat = new Vikariat(txtStillingstittel.getText(), txtVarighet.getText(), txtBeskrivelse.getText(),
-                                             txtKvalifikasjoner.getText(), stillingstype, kategorier, status);
-
-        // hvis "antatt årslønn" er satt så...
-        if(txtLonn.getText() != ""){
-            nyttVikariat.setLonn(txtLonn.getText());
-        }
+        Vikariat nyttVikariat = new Vikariat(txtStillingstittel.getText(), stillingstype, txtBeskrivelse.getText(), txtVarighet.getText(),
+                                             txtLonn.getText(), txtKvalifikasjoner.getText(), kategorier, status);
 
         Arbeidsgiver nyArbeidsgiver = new Arbeidsgiver(txtKontaktperson.getText(),txtTlf.getText(),txtSektor.getText(),
                                         txtFirmaNavn.getText(), txtAdresse.getText(), txtBransje.getText(), nyttVikariat);
@@ -47,27 +42,5 @@ public class RegVikariatHjelper {
         }
 
         return arbeidstid;
-    }
-
-    public static Boolean slettValgtVikariat(String key) {
-        for(int i = 0; i < arbeidsgivere.size(); i++){
-            String tlf = arbeidsgivere.get(i).getTlf();
-            if(tlf.equals(key)){
-                arbeidsgivere.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static void saveTempJob(String key){
-        for(int i = 0; i < arbeidsgivere.size(); i++){
-            String tlf = arbeidsgivere.get(i).getTlf();
-            if(tlf.equals(key)){
-                FileChooserHjelper.lastNed(arbeidsgivere.get(i));
-                break;
-            }
-        }
-        //TODO : Feilmld til bruker om at vikariat ikke er valgt
     }
 }

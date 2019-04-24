@@ -7,6 +7,8 @@ import klasser.Vikariat;
 import java.io.*;
 import java.util.ArrayList;
 
+import static logikk.RegVikariatHjelper.arbeidsgivere;
+
 public class OversiktVikariaterHjelper {
 
     private static ArrayList<String> valgteKategorier;
@@ -34,7 +36,7 @@ public class OversiktVikariaterHjelper {
                     }
 
                     Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],
-                                                     kolonner[10], kategorier, kolonner[kolonner.length-1]);
+                                                     kolonner[10], kolonner[11], kategorier, kolonner[kolonner.length-1]);
 
                     Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2],
                                                            kolonner[3],kolonner[4], kolonner[5], vikariat);
@@ -85,7 +87,7 @@ public class OversiktVikariaterHjelper {
                     ) {
 
                         Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],
-                                                         kolonner[10], kategorier, kolonner[kolonner.length-1]);
+                                                         kolonner[10], kolonner[11], kategorier, kolonner[kolonner.length-1]);
 
                         Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2],
                                                                kolonner[3],kolonner[4], kolonner[5], vikariat);
@@ -106,6 +108,47 @@ public class OversiktVikariaterHjelper {
         return obl;
     }
 
+    public static Boolean slettValgtVikariat(String key) {
+        int chosenArbeidsgiver = findArbeidsgiver(key);
+        if(chosenArbeidsgiver >= 0) {
+            arbeidsgivere.remove(chosenArbeidsgiver);
+            return true;
+        }
+        return false;
+    }
 
+    public static void saveTempJob(String key){
+        int chosenArbeidsgiver = findArbeidsgiver(key);
+        if(chosenArbeidsgiver >= 0){
+            FileChooserHjelper.lastNed(arbeidsgivere.get(chosenArbeidsgiver));
+        }
+        //TODO : Feilmld til bruker om at vikariat ikke er valgt
+    }
+    public static String lesMerTittel(String key){
+        int chosenArbeidsgiver = findArbeidsgiver(key);
+        Arbeidsgiver arbeidsgiver = arbeidsgivere.get(chosenArbeidsgiver);
+        return arbeidsgiver.getVikariat().getTittel();
+    }
+
+    public static String lesMerInnhold(String key){
+        int chosenArbeidsgiver = findArbeidsgiver(key);
+        Arbeidsgiver arbeidsgiver = arbeidsgivere.get(chosenArbeidsgiver);
+        String ut = "";
+        ut += "Beskrivelse: \n" + arbeidsgiver.getVikariat().getBeskrivelse() + "\n";
+        ut += "Kvalifikasjoner: \n" + arbeidsgiver.getVikariat().getKvalifikasjoner() + "\n";
+        ut += "Antatt årslønn: \n" + arbeidsgiver.getVikariat().getLonn() + "\n";
+        ut += "Varighet: \n" + arbeidsgiver.getVikariat().getVarighet() + "\n";
+        return ut;
+    }
+
+    public static int findArbeidsgiver(String key){
+        for(int i = 0; i < arbeidsgivere.size(); i++){
+            String tlf = arbeidsgivere.get(i).getTlf();
+            if(tlf.equals(key)){
+                return i;
+            }
+        }
+        return -1;
+    }
 }
 
