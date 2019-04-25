@@ -29,11 +29,11 @@ public class JobjFilhandterer extends Filhandterer {
             e.printStackTrace();
         }
     }
-
+    /*
     @Override
     public void lagreFilLokalt(String toPath, String fromPath) throws IOException {
         Object innholdJobj = henteFraFil(fromPath);
         skrivTilFil(innholdJobj, toPath);
-    }
+    }*/
 
 }

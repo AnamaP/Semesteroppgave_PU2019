@@ -46,7 +46,7 @@ public class CsvFilhandterer extends Filhandterer {
             }
         }
     }
-
+    /*
     @Override
     public void lagreFilLokalt(String toPath, String fromPath) {
         Object databaseFil = henteFraFil(fromPath);
@@ -57,5 +57,5 @@ public class CsvFilhandterer extends Filhandterer {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }
