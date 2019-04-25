@@ -11,6 +11,12 @@ import logikk.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static logikk.OversiktSokereHjelper.findJobbsoker;
+import static logikk.OversiktSokereHjelper.valgtJobbsoker;
+import static logikk.OversiktVikariaterHjelper.valgtArbeidsgiver;
+import static logikk.RegSokerHjelper.jobbsokere;
+import static logikk.RegVikariatHjelper.arbeidsgivere;
+
 public class ResultatVikariaterController implements Initializable {
     // TODO: Legge til ekstra felt som skal vises i guiresultatet
     @FXML
@@ -53,7 +59,17 @@ public class ResultatVikariaterController implements Initializable {
     }
 
     public void btnAnsett(ActionEvent event) {
+        String tlf = tvOversiktVikariater.getSelectionModel().getSelectedItem().getTlf();
+        findJobbsoker(tlf);
 
+        arbeidsgivere.get(valgtArbeidsgiver).getVikariat().setStatus("Besatt");
+        jobbsokere.get(valgtJobbsoker).setStatus("Ansatt");
+
+        MainAppHelper reload = new MainAppHelper();
+        reload.reloadVikariaterDatabase();
+        reload.reloadJobbsokerDatabase();
+
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     private void setTableEditable() {

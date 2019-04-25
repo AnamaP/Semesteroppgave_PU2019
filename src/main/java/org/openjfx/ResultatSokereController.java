@@ -6,9 +6,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import klasser.Arbeidsgiver;
+import klasser.Jobbsoker;
 import logikk.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static logikk.OversiktSokereHjelper.findJobbsoker;
+import static logikk.OversiktSokereHjelper.valgtJobbsoker;
+import static logikk.OversiktVikariaterHjelper.valgtArbeidsgiver;
+import static logikk.RegSokerHjelper.jobbsokere;
+import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 
 public class ResultatSokereController implements Initializable {
@@ -46,14 +54,19 @@ public class ResultatSokereController implements Initializable {
     public void btnTilbake(ActionEvent event) {
         //Tar brukeren tilbake til oversikten:
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
-
     }
 
     public void btnAnsett(ActionEvent event) {
+        String tlf = tvOversiktSoker.getSelectionModel().getSelectedItem().getTlf();
+        findJobbsoker(tlf);
 
-    }
+        arbeidsgivere.get(valgtArbeidsgiver).getVikariat().setStatus("Besatt");
+        jobbsokere.get(valgtJobbsoker).setStatus("Ansatt");
 
-    private void setTableEditable() {
-        tvOversiktSoker.setEditable(true);
+        MainAppHelper reload = new MainAppHelper();
+        reload.reloadVikariaterDatabase();
+        reload.reloadJobbsokerDatabase();
+
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 }

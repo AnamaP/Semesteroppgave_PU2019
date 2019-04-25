@@ -8,10 +8,12 @@ import java.io.*;
 import java.util.ArrayList;
 
 import static logikk.RegSokerHjelper.jobbsokere;
+import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class OversiktSokereHjelper {
 
     private static ArrayList<String> valgteKategorier;
+    public static int valgtJobbsoker;
 
     public void setValgteKategorier(ArrayList<String> valgteKategorier) {
         this.valgteKategorier = valgteKategorier;
@@ -112,14 +114,19 @@ public class OversiktSokereHjelper {
     }
 
     public static void saveJobseeker(String key){
+        findJobbsoker(key);
+        FileChooserHjelper.lastNed(jobbsokere.get(valgtJobbsoker));
+        //TODO : Feilmld til bruker om at jobbsoker ikke er valgt
+    }
+
+    public static void findJobbsoker(String key){
         for(int i = 0; i < jobbsokere.size(); i++){
-            String tlf = jobbsokere.get(i).getTlf();
-            if(tlf.equals(key)){
-                FileChooserHjelper.lastNed(jobbsokere.get(i));
-                break;
+            String [] row = jobbsokere.get(i).toString().split(";");
+            for(int j = 0; j < row.length; j++){
+                if(row[j].equals(key)){
+                    valgtJobbsoker = i;
+                }
             }
         }
-        //TODO : Feilmld til bruker om at vikariat ikke er valgt
-
     }
 }

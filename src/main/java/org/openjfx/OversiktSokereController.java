@@ -13,7 +13,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static logikk.OversiktSokereHjelper.findJobbsoker;
 import static logikk.OversiktSokereHjelper.visJobbsokere;
+import static logikk.OversiktVikariaterHjelper.findArbeidsgiver;
 
 public class OversiktSokereController implements Initializable {
 
@@ -72,7 +74,6 @@ public class OversiktSokereController implements Initializable {
                 return true;
             }
             return false;
-
         }));
 
         SortedList<TabellSokere> sortedData = new SortedList<>(filteredData);
@@ -115,14 +116,14 @@ public class OversiktSokereController implements Initializable {
     public void btnFinnVikariater(ActionEvent event){
 
         String kategoriStr = tvOversiktSokere.getSelectionModel().getSelectedItem().kategorierProperty().get();
-        //System.out.println("kategoriStr:" + kategoriStr);
         ArrayList<String> kategorier = OversiktHjelper.stringToList(kategoriStr);
 
         OversiktVikariaterHjelper valgteKategorier = new OversiktVikariaterHjelper();
         valgteKategorier.setValgteKategorier(kategorier);
-        //System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
+
+        String tlf = tvOversiktSokere.getSelectionModel().getSelectedItem().getTlf();
+        findJobbsoker(tlf);
 
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatVikariater.fxml", event);
-
     }
 }

@@ -12,6 +12,7 @@ import static logikk.RegVikariatHjelper.arbeidsgivere;
 public class OversiktVikariaterHjelper {
 
     private static ArrayList<String> valgteKategorier;
+    public static int valgtArbeidsgiver;
 
     public void setValgteKategorier(ArrayList<String> valgteKategorier) {
         this.valgteKategorier = valgteKategorier;
@@ -108,37 +109,26 @@ public class OversiktVikariaterHjelper {
         return obl;
     }
 
-    public static Boolean slettValgtVikariat(String key) {
-        int chosenArbeidsgiver = findArbeidsgiver(key);
-        if(chosenArbeidsgiver >= 0) {
-            arbeidsgivere.remove(chosenArbeidsgiver);
-            return true;
-        }
-        return false;
-    }
-
-    public static Boolean redigerValgtVikariat(String key){
-        int chosenArbeidsgiver = findArbeidsgiver(key);
-        return true;
+    public static void slettValgtVikariat(String key) {
+        findArbeidsgiver(key);
+        arbeidsgivere.remove(arbeidsgivere.get(valgtArbeidsgiver));
     }
 
     public static void saveTempJob(String key){
-        int chosenArbeidsgiver = findArbeidsgiver(key);
-        if(chosenArbeidsgiver >= 0){
-            FileChooserHjelper.lastNed(arbeidsgivere.get(chosenArbeidsgiver));
-        }
+        findArbeidsgiver(key);
+        FileChooserHjelper.lastNed(arbeidsgivere.get(valgtArbeidsgiver));
+
         //TODO : Feilmld til bruker om at vikariat ikke er valgt
     }
 
     public static String lesMerTittel(String key){
-        int chosenArbeidsgiver = findArbeidsgiver(key);
-        Arbeidsgiver arbeidsgiver = arbeidsgivere.get(chosenArbeidsgiver);
-        return arbeidsgiver.getVikariat().getTittel();
+        findArbeidsgiver(key);
+        return arbeidsgivere.get(valgtArbeidsgiver).getVikariat().getTittel();
     }
 
     public static String lesMerInnhold(String key){
-        int chosenArbeidsgiver = findArbeidsgiver(key);
-        Arbeidsgiver arbeidsgiver = arbeidsgivere.get(chosenArbeidsgiver);
+        findArbeidsgiver(key);
+        Arbeidsgiver arbeidsgiver = arbeidsgivere.get(valgtArbeidsgiver);
         String ut = "";
         ut += "Beskrivelse: \n" + arbeidsgiver.getVikariat().getBeskrivelse() + "\n";
         ut += "Kvalifikasjoner: \n" + arbeidsgiver.getVikariat().getKvalifikasjoner() + "\n";
@@ -147,16 +137,15 @@ public class OversiktVikariaterHjelper {
         return ut;
     }
 
-    public static int findArbeidsgiver(String key){
+    public static void findArbeidsgiver(String key){
         for(int i = 0; i < arbeidsgivere.size(); i++){
             String [] row = arbeidsgivere.get(i).toString().split(";");
             for(int j = 0; j < row.length; j++){
                 if(row[j].equals(key)){
-                    return i;
+                    valgtArbeidsgiver = i;
                 }
             }
         }
-        return -1;
     }
 }
 

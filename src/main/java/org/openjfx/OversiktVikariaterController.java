@@ -12,8 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static logikk.OversiktVikariaterHjelper.findArbeidsgiver;
-import static logikk.OversiktVikariaterHjelper.visVikariater;
+import static logikk.OversiktVikariaterHjelper.*;
 
 public class OversiktVikariaterController implements Initializable {
 
@@ -111,9 +110,9 @@ public class OversiktVikariaterController implements Initializable {
 
     public void btnLagreEndringer(ActionEvent event) {
         String gammelKontaktperson = tvOversiktVikariater.getSelectionModel().getSelectedItem().getKontaktperson();
-        int chosenArbeidsgiver = findArbeidsgiver(gammelKontaktperson);
+        findArbeidsgiver(gammelKontaktperson);
         tcKontaktperson.setOnEditCommit((TableColumn.CellEditEvent<TabellVikariater, String> t) -> {
-            (t.getTableView().getItems().get(t.getTablePosition().getRow())).setKontaktperson(chosenArbeidsgiver, t.getNewValue());
+            //(t.getTableView().getItems().get(t.getTablePosition().getRow())).setKontaktperson( t.getNewValue());
         });
 
         /*
@@ -131,23 +130,22 @@ public class OversiktVikariaterController implements Initializable {
 
         System.out.println(key);
 
-        Boolean slett = OversiktVikariaterHjelper.slettValgtVikariat(key);
-        System.out.println(slett);
-        if(slett){
-            MainAppHelper run = new MainAppHelper();
-            run.reloadVikariaterDatabase();
-        }
+        OversiktVikariaterHjelper.slettValgtVikariat(key);
+        MainAppHelper run = new MainAppHelper();
+        run.reloadVikariaterDatabase();
+
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     public void btnFinnSokere(ActionEvent event) {
         String kategoriStr = tvOversiktVikariater.getSelectionModel().getSelectedItem().kategorierProperty().get();
-        //System.out.println("kategoriStr:" + kategoriStr);
         ArrayList<String> kategorier = OversiktHjelper.stringToList(kategoriStr);
 
         OversiktSokereHjelper valgteKategorier = new OversiktSokereHjelper();
         valgteKategorier.setValgteKategorier(kategorier);
-        //System.out.println("kategorier ArrayList<> : "+ kategorier.toString());
+
+        String tlf = tvOversiktVikariater.getSelectionModel().getSelectedItem().getTlf();
+        findArbeidsgiver(tlf);
 
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatSokere.fxml", event);
     }
