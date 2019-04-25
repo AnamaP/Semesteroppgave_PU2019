@@ -78,6 +78,10 @@ public class RegVikariatController {
         }
     }
 
+    public void setData(int arbeidsgiver){
+
+    }
+
     @FXML
     private void btnTilbake(ActionEvent event) {
         //Tar brukeren tilbake til index:

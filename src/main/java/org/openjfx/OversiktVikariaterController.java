@@ -4,10 +4,13 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldTableCell;
 import logikk.*;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -41,19 +44,7 @@ public class OversiktVikariaterController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
         tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
-        tcKontaktperson.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcTlf.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcSektor.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcFirmanavn.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcAdresse.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcBransje.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcStillingstittel.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcStillingstype.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcKategorier.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcStatus.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-
         tvOversiktVikariater.setItems(visVikariater(Paths.VIKARIAT_CSV));
-        tvOversiktVikariater.setEditable(true);
 
         // Muliggjør sortering og filtrering av data i tabellen.
         FilteredList<TabellVikariater> filteredData = new FilteredList<>(visVikariater(Paths.VIKARIAT_CSV), p-> true);
@@ -108,20 +99,20 @@ public class OversiktVikariaterController implements Initializable {
         AlertHelper.showMoreInfo(title,message);
     }
 
-    public void btnLagreEndringer(ActionEvent event) {
-        String gammelKontaktperson = tvOversiktVikariater.getSelectionModel().getSelectedItem().getKontaktperson();
-        findArbeidsgiver(gammelKontaktperson);
-        tcKontaktperson.setOnEditCommit((TableColumn.CellEditEvent<TabellVikariater, String> t) -> {
-            //(t.getTableView().getItems().get(t.getTablePosition().getRow())).setKontaktperson( t.getNewValue());
-        });
+    public void btnRedigerVikariat(ActionEvent event) {
+        String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().getTlf();
+        findArbeidsgiver(key);
 
-        /*
-        if(t.getNewValue != null){
-            int chosenArbeidsgiver = findArbeidsgiver(gammelKontaktperson);
-            TabellVikariater setKontakt = new TabellVikariater(arbeidsgivere.get(chosenArbeidsgiver));
-            setKontakt.setKontaktperson(chosenArbeidsgiver, gammelKontaktperson, t.getNewValue);
-        }*/
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("test.fxml"));
+        try {
+            Parent root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        RegVikariatController controller = loader.<RegVikariatController>getController();
+
+        controller.setData(valgtArbeidsgiver);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariater.fxml", event);
     }
 
     public void btnSlettVikariat(ActionEvent event) {
