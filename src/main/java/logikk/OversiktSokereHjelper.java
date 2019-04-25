@@ -8,7 +8,6 @@ import java.io.*;
 import java.util.ArrayList;
 
 import static logikk.RegSokerHjelper.jobbsokere;
-import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class OversiktSokereHjelper {
 
@@ -19,12 +18,13 @@ public class OversiktSokereHjelper {
         this.valgteKategorier = valgteKategorier;
     }
 
-    public static ObservableList<TabellSokere> visJobbsokere(String path) {
-        // Oppretter en tabell
-        ObservableList<TabellSokere> obl = FXCollections.observableArrayList();
+    public static ObservableList<TabellSokere> visJobbsokere() {
 
-        try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
-            BufferedReader csvreader = new BufferedReader(new FileReader(path));
+        // Oppretter en tabell
+        ObservableList<TabellSokere> jobseekerList = FXCollections.observableArrayList();
+
+        try{
+            BufferedReader csvreader = new BufferedReader(new FileReader(Paths.JOBBSOKER_CSV));
             String rad;
 
             while ((rad = csvreader.readLine()) != null){
@@ -44,7 +44,7 @@ public class OversiktSokereHjelper {
                     //TODO: finne ut av hvordan vi gjør det med lonnskrav[8] og referanse[12] (valgfritt felt, ikke med i konstruktøren)
 
                     TabellSokere oversiktSokere = new TabellSokere(tabell);
-                    obl.add(oversiktSokere);
+                    jobseekerList.add(oversiktSokere);
                 }
             }
             csvreader.close();
@@ -55,14 +55,14 @@ public class OversiktSokereHjelper {
         catch(IOException e){
             System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
-        return obl;
+        return jobseekerList;
     }
 
     public static ObservableList<TabellSokere> visResultat(String path){
         // Oppretter en tabell
-        ObservableList<TabellSokere> obl = FXCollections.observableArrayList();
+        ObservableList<TabellSokere> showResults = FXCollections.observableArrayList();
 
-        try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
+        try{
             BufferedReader csvreader = new BufferedReader(new FileReader(path));
             String rad;
 
@@ -98,7 +98,7 @@ public class OversiktSokereHjelper {
                                 kolonner[5], kolonner[6], kolonner[7], cv, kolonner[kolonner.length-1]);
 
                         TabellSokere oversiktSokere = new TabellSokere(tabell);
-                        obl.add(oversiktSokere);
+                        showResults.add(oversiktSokere);
                     }
                 }
             }
@@ -110,7 +110,7 @@ public class OversiktSokereHjelper {
         catch(IOException e){
             System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
-        return obl;
+        return showResults;
     }
 
     public static void saveJobseeker(String key){

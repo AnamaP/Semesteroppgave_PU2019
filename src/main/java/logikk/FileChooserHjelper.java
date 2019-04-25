@@ -3,10 +3,9 @@ package logikk;
 import filbehandling.CsvFilhandterer;
 import filbehandling.Filhandterer;
 import filbehandling.JobjFilhandterer;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import java.io.File;
-import java.io.IOException;
+
+import java.io.*;
 
 public class FileChooserHjelper {
     final static int SAVE_FLAG = 1;
@@ -18,7 +17,6 @@ public class FileChooserHjelper {
     }
 
     public static String openDialog(){
-        // Denne er ikke ferdig - viser kun last opp mulighet, men utfører ingenting
         return formatFileChooser("Last opp fil", OPEN_FLAG);
     }
 
@@ -42,45 +40,40 @@ public class FileChooserHjelper {
         return chosenpath;
     }
 
-
-    public static void lastOpp(String csvPath){
-        Filhandterer filHandterer;
-        String chosenpath = openDialog();
-
-        String extension = Filhandterer.getExtention(chosenpath);
+    // Metode som sjekker hvilket filformat bruker har valgt, henter ut riktig fil med innhold
+    public static Filhandterer getExtensionFilter(String chosenpath){
+        Filhandterer filhandterer;
+        String extension = Filhandterer.getExtension(chosenpath);
 
         if(extension.equals(".csv")){
-            filHandterer = new CsvFilhandterer();
+            filhandterer = new CsvFilhandterer();
         }
         else{
-            filHandterer = new JobjFilhandterer();
+            filhandterer = new JobjFilhandterer();
         }
+        return filhandterer;
+
+    }
+
+    // Skal lese innhold fra lokal fil, sjekke at det stemmer, legge elementet til i arrayet og oppdatere tabellen
+    public static void lastOpp(String path){
+        //Filhandterer filhandterer;
+        String chosenpath = openDialog();
+        // if csv...
+        Filhandterer filhandterer = getExtensionFilter(chosenpath); // new extensionHelper
+        Object object = filhandterer.henteFraFil(chosenpath);
+
         try {
-            filHandterer.skrivTilFil(chosenpath, csvPath);
+            filhandterer.skrivTilFil(object, path);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public static void lastNed(Object object) {
-        Filhandterer filHandterer;
         String chosenpath = saveDialog();
-
-        // Metode som sjekker hvilket filformat bruker har valgt, henter ut riktig fil med innhold
-        // TODO : Hva med jobj?
-        String extension = Filhandterer.getExtention(chosenpath);
-
-        if(extension.equals(".csv")) {
-            filHandterer = new CsvFilhandterer();
-            try {
-                filHandterer.skrivTilFil(object, chosenpath);
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        getExtensionFilter(chosenpath);
     }
-
-
 }

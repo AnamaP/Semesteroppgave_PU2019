@@ -49,15 +49,14 @@ public class OversiktSokereController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
         tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
-        tvOversiktSokere.setItems(visJobbsokere(Paths.JOBBSOKER_CSV));
+        tvOversiktSokere.setItems(visJobbsokere());
 
 
         /* Muliggjør sortering og filtrering av data i tabellen*/
 
-        FilteredList<TabellSokere> filteredData = new FilteredList<>(visJobbsokere(Paths.JOBBSOKER_CSV),p-> true);
+        FilteredList<TabellSokere> filteredData = new FilteredList<>(visJobbsokere(),p-> true);
 
-        // bruker Listener til å fange opp endringer og .....
-        // TODO: fyll ut bedre forklaring
+        // bruker Listener til å fange opp endringer og ..
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(soker -> {
             // hvis det ikke er skrevet noe inn i filteret så skal all informasjon vises
             if(newValue == null || newValue.isEmpty()) {
@@ -111,6 +110,8 @@ public class OversiktSokereController implements Initializable {
 
     public void btnLastOppSoker(ActionEvent event){
         FileChooserHjelper.lastOpp(Paths.JOBBSOKER_CSV);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktSokere.fxml", event);
+
     }
 
     public void btnFinnVikariater(ActionEvent event){
