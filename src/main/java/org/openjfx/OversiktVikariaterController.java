@@ -99,29 +99,23 @@ public class OversiktVikariaterController implements Initializable {
         AlertHelper.showMoreInfo(title,message);
     }
 
-    public void btnRedigerVikariat(ActionEvent event) {
+    public void btnRedigerVikariat(ActionEvent event) throws IOException {
         String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().getTlf();
         findArbeidsgiver(key);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("test.fxml"));
-        try {
-            Parent root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/openjfx/regVikariater.fxml"));
+        Parent root = loader.load();
         RegVikariatController controller = loader.<RegVikariatController>getController();
 
         controller.setData(valgtArbeidsgiver);
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariater.fxml", event);
+        //NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariater.fxml", event);
     }
 
     public void btnSlettVikariat(ActionEvent event) {
         // TODO: kontrollsjekke at man ikke kan registreres med duplikate tlf nr
         String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
-
-        System.out.println(key);
-
         OversiktVikariaterHjelper.slettValgtVikariat(key);
+
         MainAppHelper run = new MainAppHelper();
         run.reloadVikariaterDatabase();
 

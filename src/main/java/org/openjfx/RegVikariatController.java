@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import klasser.Arbeidsgiver;
 import java.io.*;
 
+import static logikk.RegVikariatHjelper.arbeidsgivere;
+
 public class RegVikariatController {
 
     @FXML
@@ -78,8 +80,20 @@ public class RegVikariatController {
         }
     }
 
-    public void setData(int arbeidsgiver){
+    public void setData(int valgtArbeidsgiver){
+        Arbeidsgiver arbeidsgiver = arbeidsgivere.get(valgtArbeidsgiver);
 
+        txtKontaktperson.setText(arbeidsgiver.getKontaktperson());
+        txtTlf.setText(arbeidsgiver.getTlf());
+        txtSektor.setText(arbeidsgiver.getSektor());
+        txtFirmaNavn.setText(arbeidsgiver.getFirmanavn());
+        txtAdresse.setText(arbeidsgiver.getAdresse());
+        txtBransje.setText(arbeidsgiver.getBransje());
+        txtStillingstittel.setText(arbeidsgiver.getBransje());
+        txtKvalifikasjoner.setText(arbeidsgiver.getVikariat().getKvalifikasjoner());
+        txtVarighet.setText(arbeidsgiver.getVikariat().getVarighet());
+        txtLonn.setText(arbeidsgiver.getVikariat().getLonn());
+        txtBeskrivelse.setText(arbeidsgiver.getVikariat().getBeskrivelse());
     }
 
     @FXML
