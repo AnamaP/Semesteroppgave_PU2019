@@ -39,6 +39,126 @@ public class TabellSokere {
         this.status = new SimpleStringProperty(jobbsoker.getStatus());
     }
 
+    public String getFornavn() {
+        return fornavn.get();
+    }
+
+    public void setFornavn(String fornavn) {
+        this.fornavn.set(fornavn);
+    }
+
+    public String getEtternavn() {
+        return etternavn.get();
+    }
+
+    public void setEtternavn(String etternavn) {
+        this.etternavn.set(etternavn);
+    }
+
+    public String getAdresse() {
+        return adresse.get();
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse.set(adresse);
+    }
+
+    public String getPostnr() {
+        return postnr.get();
+    }
+
+    public void setPostnr(String postnr) {
+        this.postnr.set(postnr);
+    }
+
+    public String getPoststed() {
+        return poststed.get();
+    }
+
+    public void setPoststed(String poststed) {
+        this.poststed.set(poststed);
+    }
+
+    public String getTlf() {
+        return tlf.get();
+    }
+
+    public void setTlf(String tlf) {
+        this.tlf.set(tlf);
+    }
+
+    public String getEpost() {
+        return epost.get();
+    }
+
+    public void setEpost(String epost) {
+        this.epost.set(epost);
+    }
+
+    public String getAlder() {
+        return alder.get();
+    }
+
+    public void setAlder(String alder) {
+        this.alder.set(alder);
+    }
+
+    public String getLonnskrav() {
+        return lonnskrav.get();
+    }
+
+    public void setLonnskrav(String lonnskrav) {
+        this.lonnskrav.set(lonnskrav);
+    }
+
+    public String getUtdanning() {
+        return utdanning.get();
+    }
+
+    public void setUtdanning(String utdanning) {
+        this.utdanning.set(utdanning);
+    }
+
+    public String getStudieretning() {
+        return studieretning.get();
+    }
+
+    public void setStudieretning(String studieretning) {
+        this.studieretning.set(studieretning);
+    }
+
+    public String getErfaring() {
+        return erfaring.get();
+    }
+
+    public void setErfaring(String erfaring) {
+        this.erfaring.set(erfaring);
+    }
+
+    public String getReferanse() {
+        return referanse.get();
+    }
+
+    public void setReferanse(String referanse) {
+        this.referanse.set(referanse);
+    }
+
+    public String getKategorier() {
+        return kategorier.get();
+    }
+
+    public void setKategorier(String kategorier) {
+        this.kategorier.set(kategorier);
+    }
+
+    public String getStatus() {
+        return status.get();
+    }
+
+    public void setStatus(String status) {
+        this.status.set(status);
+    }
+
     public SimpleStringProperty fornavnProperty() {
         return fornavn;
     }

@@ -122,4 +122,6 @@ public class OversiktSokereHjelper {
         //TODO : Feilmld til bruker om at vikariat ikke er valgt
 
     }
+
+
 }

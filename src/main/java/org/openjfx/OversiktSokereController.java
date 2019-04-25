@@ -1,6 +1,7 @@
 package org.openjfx;
 
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,18 +46,29 @@ public class OversiktSokereController implements Initializable {
 
         tvOversiktSokere.setItems(visJobbsokere(Paths.JOBBSOKER_CSV));
 
-        /*
+
         //Filtrering av data i tabellen
         FilteredList<TabellSokere> filteredData = new FilteredList<>(visJobbsokere(Paths.JOBBSOKER_CSV),p-> true);
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) ->{
-            txtFilterField.setPredicate(sokere -> {
+            filteredData.setPredicate(soker -> {
                 if(newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
+                String lowerCaseFilter = newValue.toLowerCase();
+                if(soker.getFornavn().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true;
+                }
+                else if(soker.getEtternavn().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true;
+                }
+                return false;
 
             });
-        });*/
+        });
+
+        SortedList<TabellSokere> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tvOversiktSokere.comparatorProperty());
+        tvOversiktSokere.setItems(sortedData);
 
     }
 
