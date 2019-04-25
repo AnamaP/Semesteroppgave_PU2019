@@ -42,41 +42,30 @@ public class TabellSokere {
     public String getFornavn() {
         return fornavn.get();
     }
-
-
     public String getEtternavn() {
         return etternavn.get();
     }
-
-
     public String getPostnr() {
         return postnr.get();
     }
-
     public String getPoststed() {
         return poststed.get();
     }
-
     public String getTlf() {
         return tlf.get();
     }
-
     public void setTlf(String tlf) {
         this.tlf.set(tlf);
     }
-
     public String getKategorier() {
         return kategorier.get();
     }
-
     public void setKategorier(String kategorier) {
         this.kategorier.set(kategorier);
     }
-
     public String getStatus() {
         return status.get();
     }
-
     public void setStatus(String status) {
         this.status.set(status);
     }

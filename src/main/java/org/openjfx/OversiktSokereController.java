@@ -57,6 +57,7 @@ public class OversiktSokereController implements Initializable {
         // bruker Listener til å fange opp endringer og .....
         // TODO: fyll ut bedre forklaring
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(soker -> {
+            // hvis det ikke er skrevet noe inn i filteret så skal all informasjon vises
             if(newValue == null || newValue.isEmpty()) {
                 return true;
             }
