@@ -7,12 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
-import klasser.Arbeidsgiver;
 import logikk.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static logikk.OversiktVikariaterHjelper.findArbeidsgiver;
 import static logikk.OversiktVikariaterHjelper.visVikariater;
 
 public class OversiktVikariaterController implements Initializable {
@@ -43,19 +43,25 @@ public class OversiktVikariaterController implements Initializable {
         tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
         tcKontaktperson.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
-        tcKontaktperson.setOnEditCommit((TableColumn.CellEditEvent<TabellVikariater, String> t) -> {
-            (t.getTableView().getItems().get(t.getTablePosition().getRow())).setKontaktperson(t.getNewValue());
-        });
+        tcTlf.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
+        tcSektor.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
+        tcFirmanavn.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
+        tcAdresse.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
+        tcBransje.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
+        tcStillingstittel.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
+        tcStillingstype.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
+        tcKategorier.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
+        tcStatus.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
 
         tvOversiktVikariater.setItems(visVikariater(Paths.VIKARIAT_CSV));
         tvOversiktVikariater.setEditable(true);
 
-        /* Muliggjør sortering og filtrering av data i tabellen*/
+        // Muliggjør sortering og filtrering av data i tabellen.
         FilteredList<TabellVikariater> filteredData = new FilteredList<>(visVikariater(Paths.VIKARIAT_CSV), p-> true);
 
-        // bruker Listener til å fange opp endringer..
+        // Bruker Listener til å fange opp endringer.
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(soker -> {
-            // hvis det ikke er skrevet noe inn i filteret så skal all informasjon vises
+            // Hvis det ikke er skrevet noe inn i filteret så skal all informasjon vises.
             if(newValue == null || newValue.isEmpty()) {
                 return true;
             }
@@ -103,11 +109,20 @@ public class OversiktVikariaterController implements Initializable {
         AlertHelper.showMoreInfo(title,message);
     }
 
-    public void btnRedigerVikariat(ActionEvent event) {
-        String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
-        System.out.println(key);
+    public void btnLagreEndringer(ActionEvent event) {
+        String gammelKontaktperson = tvOversiktVikariater.getSelectionModel().getSelectedItem().getKontaktperson();
+        int chosenArbeidsgiver = findArbeidsgiver(gammelKontaktperson);
+        tcKontaktperson.setOnEditCommit((TableColumn.CellEditEvent<TabellVikariater, String> t) -> {
+            (t.getTableView().getItems().get(t.getTablePosition().getRow())).setKontaktperson(chosenArbeidsgiver, t.getNewValue());
+        });
 
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
+        /*
+        if(t.getNewValue != null){
+            int chosenArbeidsgiver = findArbeidsgiver(gammelKontaktperson);
+            TabellVikariater setKontakt = new TabellVikariater(arbeidsgivere.get(chosenArbeidsgiver));
+            setKontakt.setKontaktperson(chosenArbeidsgiver, gammelKontaktperson, t.getNewValue);
+        }*/
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     public void btnSlettVikariat(ActionEvent event) {
@@ -126,7 +141,6 @@ public class OversiktVikariaterController implements Initializable {
     }
 
     public void btnFinnSokere(ActionEvent event) {
-
         String kategoriStr = tvOversiktVikariater.getSelectionModel().getSelectedItem().kategorierProperty().get();
         //System.out.println("kategoriStr:" + kategoriStr);
         ArrayList<String> kategorier = OversiktHjelper.stringToList(kategoriStr);
@@ -137,6 +151,5 @@ public class OversiktVikariaterController implements Initializable {
 
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/resultatSokere.fxml", event);
     }
-
 }
 

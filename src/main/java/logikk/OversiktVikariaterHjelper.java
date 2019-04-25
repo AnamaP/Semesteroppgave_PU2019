@@ -149,10 +149,11 @@ public class OversiktVikariaterHjelper {
 
     public static int findArbeidsgiver(String key){
         for(int i = 0; i < arbeidsgivere.size(); i++){
-            String tlf = arbeidsgivere.get(i).getTlf();
-            System.out.println(tlf);
-            if(tlf.equals(key)){
-                return i;
+            String [] row = arbeidsgivere.get(i).toString().split(";");
+            for(int j = 0; j < row.length; j++){
+                if(row[j].equals(key)){
+                    return i;
+                }
             }
         }
         return -1;

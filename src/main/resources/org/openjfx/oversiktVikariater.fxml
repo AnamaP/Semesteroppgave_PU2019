@@ -30,12 +30,12 @@
             <TableColumn fx:id="tcStatus" prefWidth="52.5" text="Status" />
             </columns>
         </TableView>
-        <Button layoutX="535.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnRedigerVikariat" prefHeight="27.0" prefWidth="83.0" text="Rediger" />
-        <Button layoutX="628.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnSlettVikariat" prefHeight="27.0" prefWidth="83.0" text="Slett" />
+        <Button layoutX="628.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLagreEndringer" prefHeight="27.0" prefWidth="118.0" text="Lagre endringer" />
+        <Button layoutX="535.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnSlettVikariat" prefHeight="27.0" prefWidth="83.0" text="Slett" />
         <Button layoutX="347.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLastNedVikariat" prefHeight="27.0" prefWidth="83.0" text="Last ned" />
         <Button layoutX="254.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLastOppVikariat" prefHeight="27.0" prefWidth="83.0" text="Last opp" />
         <Button layoutX="852.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnFinnSokere" prefHeight="27.0" prefWidth="160.0" text="Finn passende vikarer" />
-      <Button layoutX="442.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLesMerOmVikariat" prefHeight="27.0" prefWidth="83.0" text="Les mer" />
+      <Button layoutX="441.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLesMerOmVikariat" prefHeight="27.0" prefWidth="83.0" text="Les mer" />
       <TextField fx:id="txtFilterField" layoutX="13.0" layoutY="17.0" prefHeight="25.0" prefWidth="183.0" promptText="Filtrer her..." />
     </children>
 </Pane>

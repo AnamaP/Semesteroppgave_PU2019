@@ -3,6 +3,9 @@ package logikk;
 import javafx.beans.property.SimpleStringProperty;
 import klasser.Arbeidsgiver;
 
+import static logikk.OversiktVikariaterHjelper.findArbeidsgiver;
+import static logikk.RegVikariatHjelper.arbeidsgivere;
+
 public class TabellVikariater {
     private final SimpleStringProperty kontaktperson; //0
     private final SimpleStringProperty tlf; //1
@@ -61,8 +64,12 @@ public class TabellVikariater {
         return status.get();
     }
 
-    public void setKontaktperson(String kontaktperson) {
-        this.kontaktperson.set(kontaktperson);
+    public void setKontaktperson(int chosenArbeidsgiver, String nyKontaktperson) {
+        arbeidsgivere.get(chosenArbeidsgiver).setKontaktperson(nyKontaktperson);
+        MainAppHelper reload = new MainAppHelper();
+        reload.reloadVikariaterDatabase();
+        System.out.println(arbeidsgivere.get(chosenArbeidsgiver).getKontaktperson());
+        this.kontaktperson.set(nyKontaktperson);
     }
 
     public void setSektor(String sektor) {

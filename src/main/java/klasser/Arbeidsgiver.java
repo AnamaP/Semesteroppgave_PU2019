@@ -63,7 +63,7 @@ public class Arbeidsgiver implements Serializable {
 
     public String toString(){
         String ut = "";
-        ut += kontaktperson+";"+tlf+";"+sektor+";"+firmanavn+";"+ adresse +";"+bransje+";"+vikariat.toString();
+        ut += kontaktperson+";"+tlf+";"+sektor+";"+firmanavn+";"+ adresse +";"+bransje+";"+vikariat.toString()+";";
         return ut;
     }
 
