@@ -54,7 +54,7 @@ public class OversiktSokereController implements Initializable {
                     return true;
                 }
 
-                
+
             });
         });*/
 
