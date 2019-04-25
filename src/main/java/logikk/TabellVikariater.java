@@ -29,6 +29,38 @@ public class TabellVikariater {
         this.status = new SimpleStringProperty(arbeidsgiver.getVikariat().getStatus());
     }
 
+    public void setKontaktperson(String kontaktperson) {
+        this.kontaktperson.set(kontaktperson);
+    }
+
+    public void setSektor(String sektor) {
+        this.sektor.set(sektor);
+    }
+
+    public void setFirmanavn(String firmanavn) {
+        this.firmanavn.set(firmanavn);
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse.set(adresse);
+    }
+
+    public void setBransje(String bransje) {
+        this.bransje.set(bransje);
+    }
+
+    public void setStillingstittel(String stillingstittel) {
+        this.stillingstittel.set(stillingstittel);
+    }
+
+    public void setStillingstype(String stillingstype) {
+        this.stillingstype.set(stillingstype);
+    }
+
+    public void setStatus(String status) {
+        this.status.set(status);
+    }
+
     public SimpleStringProperty kontaktpersonProperty() {
         return kontaktperson;
     }

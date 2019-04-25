@@ -117,6 +117,11 @@ public class OversiktVikariaterHjelper {
         return false;
     }
 
+    public static Boolean redigerValgtVikariat(String key){
+        int chosenArbeidsgiver = findArbeidsgiver(key);
+        return true;
+    }
+
     public static void saveTempJob(String key){
         int chosenArbeidsgiver = findArbeidsgiver(key);
         if(chosenArbeidsgiver >= 0){
@@ -124,6 +129,7 @@ public class OversiktVikariaterHjelper {
         }
         //TODO : Feilmld til bruker om at vikariat ikke er valgt
     }
+
     public static String lesMerTittel(String key){
         int chosenArbeidsgiver = findArbeidsgiver(key);
         Arbeidsgiver arbeidsgiver = arbeidsgivere.get(chosenArbeidsgiver);

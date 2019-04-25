@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
+import klasser.Arbeidsgiver;
 import logikk.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,7 +35,13 @@ public class OversiktVikariaterController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
         tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
+        tcKontaktperson.setCellFactory(TextFieldTableCell.<TabellVikariater>forTableColumn());
+        tcKontaktperson.setOnEditCommit((TableColumn.CellEditEvent<TabellVikariater, String> t) -> {
+            (t.getTableView().getItems().get(t.getTablePosition().getRow())).setKontaktperson(t.getNewValue());
+        });
+
         tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV));
+        tvOversiktVikariater.setEditable(true);
     }
 
     @FXML
