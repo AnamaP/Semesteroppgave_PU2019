@@ -7,26 +7,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import logikk.*;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class ResultatSokereController implements Initializable {
 
     @FXML
     private TableView<TabellSokere> tvOversiktSoker;
 
+
     @FXML
     private TableColumn<TabellSokere, String> tcFornavn, tcEtternavn, tcAdresse, tcPostNr, tcPoststed, tcTlf, tcEpost, tcAlder,
             tcUtdanning, tcStudieretning, tcErfaring, tcKategorier;
 
-    @FXML
-    private Label lblMessage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        setTableEditable();
+     tvOversiktSoker.setPlaceholder(new Label("Det er dessverre ingen aktuelle vikariater for denne jobbsøkeren per nå" +
+                                    "\n Forsøk igjen senere eller velg en annen jobbsøker"));
 
         tcFornavn.setCellValueFactory(cellData->cellData.getValue().fornavnProperty());
         tcEtternavn.setCellValueFactory(cellData->cellData.getValue().etternavnProperty());
@@ -42,11 +41,6 @@ public class ResultatSokereController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
         tvOversiktSoker.setItems(OversiktSokereHjelper.visResultat(Paths.JOBBSOKER_CSV));
-
-        if(tvOversiktSoker.getItems().isEmpty()){
-            AlertHelper.showError("Det er dessverre ingen aktuelle vikariater for denne jobbsøkeren per nå. \n" +
-                    "Forsøk igjen senere eller velg en annen jobbsøker");
-        }
     }
 
     public void btnTilbake(ActionEvent event) {

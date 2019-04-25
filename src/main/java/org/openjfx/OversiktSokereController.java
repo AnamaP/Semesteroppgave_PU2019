@@ -27,9 +27,12 @@ public class OversiktSokereController implements Initializable {
     TableColumn<TabellSokere, String> tcFornavn, tcEtternavn, tcAdresse, tcPostNr, tcPoststed, tcTlf, tcEpost, tcAlder,
                                       tcUtdanning, tcStudieretning, tcErfaring, tcKategorier, tcStatus;
 
+    // Initialize klassen under gjør at tilhørende metoder automatisk blir kalt etter at fxml filen har blitt hentet.
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        // Initierer kolonnene
         tcFornavn.setCellValueFactory(cellData->cellData.getValue().fornavnProperty());
         tcEtternavn.setCellValueFactory(cellData->cellData.getValue().etternavnProperty());
         tcAdresse.setCellValueFactory(cellData->cellData.getValue().adresseProperty());
@@ -47,24 +50,29 @@ public class OversiktSokereController implements Initializable {
         tvOversiktSokere.setItems(visJobbsokere(Paths.JOBBSOKER_CSV));
 
 
-        //Filtrering av data i tabellen
-        FilteredList<TabellSokere> filteredData = new FilteredList<>(visJobbsokere(Paths.JOBBSOKER_CSV),p-> true);
-        txtFilterField.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredData.setPredicate(soker -> {
-                if(newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if(soker.getFornavn().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                    return true;
-                }
-                else if(soker.getEtternavn().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                    return true;
-                }
-                return false;
+        /* Muliggjør sortering og filtrering av data i tabellen*/
 
-            });
-        });
+        FilteredList<TabellSokere> filteredData = new FilteredList<>(visJobbsokere(Paths.JOBBSOKER_CSV),p-> true);
+
+        // bruker Listener til å fange opp endringer og .....
+        // TODO: fyll ut bedre forklaring
+        txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(soker -> {
+            if(newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if(soker.getFornavn().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getEtternavn().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getPostnr().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getPoststed().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getTlf().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getKategorier().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getStatus().toLowerCase().contains(lowerCaseFilter)){
+                return true;
+            }
+            return false;
+
+        }));
 
         SortedList<TabellSokere> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tvOversiktSokere.comparatorProperty());
