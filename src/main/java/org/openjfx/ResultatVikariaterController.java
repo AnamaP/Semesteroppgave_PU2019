@@ -3,6 +3,7 @@ package org.openjfx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import logikk.*;
@@ -22,6 +23,9 @@ public class ResultatVikariaterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        tvOversiktVikariater.setPlaceholder(new Label("Det er dessverre ingen aktuelle kandidater for dette " +
+                "vikariatet per nå. \n Gå tilbake og velg et annet vikariat."));
+
         tcKontaktperson.setCellValueFactory(cellData->cellData.getValue().kontaktpersonProperty());
         tcTlf.setCellValueFactory(cellData->cellData.getValue().tlfProperty());
         tcSektor.setCellValueFactory(cellData->cellData.getValue().sektorProperty());
@@ -32,11 +36,6 @@ public class ResultatVikariaterController implements Initializable {
 
         tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visResultat(Paths.VIKARIAT_CSV));
         setTableEditable();
-
-        if(tvOversiktVikariater.getItems().isEmpty()){
-            AlertHelper.showError("Det er dessverre ingen aktuelle kandidater for dette vikariatet per nå. \n" +
-                                "Gå tilbake og velg et annet vikariat.");
-        }
     }
 
     public void btnTilbake(ActionEvent event) {

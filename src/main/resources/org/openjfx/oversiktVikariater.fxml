@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -35,5 +36,6 @@
         <Button layoutX="254.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLastOppVikariat" prefHeight="27.0" prefWidth="83.0" text="Last opp" />
         <Button layoutX="852.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnFinnSokere" prefHeight="27.0" prefWidth="160.0" text="Finn passende vikarer" />
       <Button layoutX="442.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLesMerOmVikariat" prefHeight="27.0" prefWidth="83.0" text="Les mer" />
+      <TextField fx:id="txtFilterField" layoutX="13.0" layoutY="17.0" prefHeight="25.0" prefWidth="183.0" promptText="Filtrer her..." />
     </children>
 </Pane>

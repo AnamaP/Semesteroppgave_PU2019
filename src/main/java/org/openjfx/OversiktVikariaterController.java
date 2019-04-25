@@ -1,5 +1,7 @@
 package org.openjfx;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +13,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static logikk.OversiktVikariaterHjelper.visVikariater;
+
 public class OversiktVikariaterController implements Initializable {
+
+    @FXML
+    private TextField txtFilterField;
 
     @FXML
     private TableView<TabellVikariater> tvOversiktVikariater;
@@ -40,8 +47,37 @@ public class OversiktVikariaterController implements Initializable {
             (t.getTableView().getItems().get(t.getTablePosition().getRow())).setKontaktperson(t.getNewValue());
         });
 
-        tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visVikariater(Paths.VIKARIAT_CSV));
+        tvOversiktVikariater.setItems(visVikariater(Paths.VIKARIAT_CSV));
         tvOversiktVikariater.setEditable(true);
+
+        /* Muliggjør sortering og filtrering av data i tabellen*/
+        FilteredList<TabellVikariater> filteredData = new FilteredList<>(visVikariater(Paths.VIKARIAT_CSV), p-> true);
+
+        // bruker Listener til å fange opp endringer..
+        txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(soker -> {
+            // hvis det ikke er skrevet noe inn i filteret så skal all informasjon vises
+            if(newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if(soker.getKontaktperson().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getTlf().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getSektor().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getFirmanavn().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getAdresse().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getKategorier().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getBransje().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getStillingstittel().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getStillingstype().toLowerCase().contains(lowerCaseFilter) ||
+                    soker.getStatus().toLowerCase().contains(lowerCaseFilter)){
+                return true;
+            }
+            return false;
+        }));
+
+        SortedList<TabellVikariater> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tvOversiktVikariater.comparatorProperty());
+        tvOversiktVikariater.setItems(sortedData);
     }
 
     @FXML
