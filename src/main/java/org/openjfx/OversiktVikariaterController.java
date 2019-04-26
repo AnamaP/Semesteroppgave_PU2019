@@ -107,10 +107,10 @@ public class OversiktVikariaterController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/openjfx/regVikariater.fxml"));
         Parent root = loader.load();
-        RegVikariatController controller = loader.<RegVikariatController>getController();
+        RegVikariatController controller = loader.getController();
 
         controller.setData(valgtArbeidsgiver);
-        //NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariater.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariater.fxml", event);
     }
 
     public void btnSlettVikariat(ActionEvent event) {
