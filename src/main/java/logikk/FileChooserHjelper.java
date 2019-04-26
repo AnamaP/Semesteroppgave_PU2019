@@ -76,7 +76,6 @@ public class FileChooserHjelper {
         Filhandterer filhandterer = getExtensionFilter(chosenpath);
 
         try {
-            System.out.println(object.toString());
             filhandterer.skrivTilFil(object, chosenpath);
         }
         catch (IOException e) {

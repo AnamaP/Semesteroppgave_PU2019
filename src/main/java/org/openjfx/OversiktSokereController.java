@@ -106,7 +106,6 @@ public class OversiktSokereController implements Initializable {
             String nokkel = tvOversiktSokere.getSelectionModel().getSelectedItem().tlfProperty().get();
 
             Boolean test = RegSokerHjelper.slettValgtSoker(nokkel);
-            System.out.println(test);
             if (test) {
                 MainAppHelper run = new MainAppHelper();
                 run.reloadJobbsokerDatabase();

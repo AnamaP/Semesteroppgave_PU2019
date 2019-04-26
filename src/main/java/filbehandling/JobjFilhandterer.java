@@ -21,7 +21,6 @@ public class JobjFilhandterer extends Filhandterer {
 
     @Override
     public void skrivTilFil(Object object, String path) throws IOException {
-        System.out.println("skrivTilFil jobj: "+path);
         try(FileOutputStream fileOutput = new FileOutputStream(path);
             ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput)){
             objectOutput.writeObject(object);

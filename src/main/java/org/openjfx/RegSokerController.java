@@ -48,11 +48,6 @@ public class RegSokerController {
         Boolean inptIt = cbxIt.isSelected();
         Boolean inptEconomy = cbxOkonomi.isSelected();
 
-        System.out.println(valgRetning.getValue());
-        System.out.println(valgUtdanning.getValue());
-
-        //String test = FeilhandtererHjelper.getTextAreaData(txtFirstname);
-
         ValidationChecker validation = new ValidationChecker();
         String invalidInputs = validation.inputJobseekerCollector(inptFirstname, inptLastname, inptAddress, inptZipCode,
                 inptPostal,inptPhoneNmbr, inptEmail, inptAge, inptExperience, inptSalary, inptEducation,

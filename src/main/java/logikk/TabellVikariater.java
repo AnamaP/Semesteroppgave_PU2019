@@ -68,7 +68,6 @@ public class TabellVikariater {
         arbeidsgivere.get(chosenArbeidsgiver).setKontaktperson(nyKontaktperson);
         MainAppHelper reload = new MainAppHelper();
         reload.reloadVikariaterDatabase();
-        System.out.println(arbeidsgivere.get(chosenArbeidsgiver).getKontaktperson());
         this.kontaktperson.set(nyKontaktperson);
     }
 

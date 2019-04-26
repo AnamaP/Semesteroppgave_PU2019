@@ -24,8 +24,6 @@ public class CsvFilhandterer extends Filhandterer {
         catch(IOException e){
             System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
-
-        System.out.println(innhold);
         return innhold;
     }
 
