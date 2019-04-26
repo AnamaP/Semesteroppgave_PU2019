@@ -13,6 +13,7 @@ import logikk.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static logikk.OversiktVikariaterHjelper.*;
@@ -114,13 +115,24 @@ public class OversiktVikariaterController implements Initializable {
 
     public void btnSlettVikariat(ActionEvent event) {
         // TODO: kontrollsjekke at man ikke kan registreres med duplikate tlf nr
-        String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
-        OversiktVikariaterHjelper.slettValgtVikariat(key);
+        String message = tvOversiktVikariater.getSelectionModel().getSelectedItem().getStillingstittel();
+        Alert question = new Alert(Alert.AlertType.CONFIRMATION);
+        question.setHeaderText("Er du sikker på at du vil slette : ");
+        question.setContentText(message + "?");
+        Optional<ButtonType> result = question.showAndWait();
 
-        MainAppHelper run = new MainAppHelper();
-        run.reloadVikariaterDatabase();
+        if (result.get() == ButtonType.OK) {
+            // utføres sletting
+            String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().tlfProperty().get();
+            OversiktVikariaterHjelper.slettValgtVikariat(key);
 
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
+            MainAppHelper run = new MainAppHelper();
+            run.reloadVikariaterDatabase();
+
+            NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
+        } else {
+            // Avbryter sletting..
+        }
     }
 
     public void btnFinnSokere(ActionEvent event) {

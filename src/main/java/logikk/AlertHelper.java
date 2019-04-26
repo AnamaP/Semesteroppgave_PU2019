@@ -1,6 +1,10 @@
 package logikk;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 public class AlertHelper {
     private String message;
@@ -34,5 +38,18 @@ public class AlertHelper {
         moreInfo.setContentText(message);
         moreInfo.showAndWait();
     }
+
+    /*public static void showQuestion(String message){
+        Alert question = new Alert(Alert.AlertType.CONFIRMATION);
+        question.setHeaderText("Er du sikker på at du vil slette : ");
+        question.setContentText(message+" ?");
+
+        Optional<ButtonType> result = question.showAndWait();
+        if (result.get() == ButtonType.OK){
+            // ... user chose OK
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
+    }*/
 
 }
