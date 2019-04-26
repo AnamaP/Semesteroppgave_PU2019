@@ -1,5 +1,7 @@
 package org.openjfx;
 
+import filbehandling.Filhandterer;
+import filbehandling.JobjFilhandterer;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -7,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import logikk.*;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -96,6 +100,7 @@ public class OversiktSokereController implements Initializable {
         question.setHeaderText("Er du sikker på at du vil slette : ");
         question.setContentText(message +"?");
         Optional<ButtonType> result = question.showAndWait();
+
         if (result.get() == ButtonType.OK) {
             // blir sletting gjennomført
             String nokkel = tvOversiktSokere.getSelectionModel().getSelectedItem().tlfProperty().get();
@@ -120,7 +125,7 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnLastOppSoker(ActionEvent event){
-        FileChooserHjelper.lastOpp(Paths.JOBBSOKER_CSV);
+        FileChooserHjelper.lastOpp(Paths.JOBBSOKER);
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktSokere.fxml", event);
 
     }

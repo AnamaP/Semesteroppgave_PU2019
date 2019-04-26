@@ -1,8 +1,9 @@
 package klasser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Vikariat {
+public class Vikariat implements Serializable {
     private String tittel;
     private String stillingstype;
     private String beskrivelse;

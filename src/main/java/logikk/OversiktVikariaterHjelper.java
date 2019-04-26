@@ -22,8 +22,8 @@ public class OversiktVikariaterHjelper {
         // Oppretter en tabell
         ObservableList<TabellVikariater> obl = FXCollections.observableArrayList();
 
-        try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
-            BufferedReader csvreader = new BufferedReader(new FileReader(path));
+        try{
+            BufferedReader csvreader = new BufferedReader(new FileReader(Paths.VIKARIAT+".csv"));
             String rad;
 
             while ((rad = csvreader.readLine()) != null){
@@ -61,7 +61,7 @@ public class OversiktVikariaterHjelper {
         // Oppretter en tabell
         ObservableList<TabellVikariater> obl = FXCollections.observableArrayList();
 
-        try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
+        try{
             BufferedReader csvreader = new BufferedReader(new FileReader(path));
             String rad;
 

@@ -58,12 +58,14 @@ public class FileChooserHjelper {
     // Skal lese innhold fra lokal fil, sjekke at det stemmer, legge elementet til i arrayet og oppdatere tabellen
     public static void lastOpp(String path){
         String chosenpath = openDialog();
+        System.out.println("LastOpp(): "+path);
+        System.out.println("chosenPath: "+chosenpath);
         // if csv...
         Filhandterer filhandterer = getExtensionFilter(chosenpath);
-        Object object = filhandterer.henteFraFil(chosenpath);
+        Object object = filhandterer.henteFraFil(getPathBase(chosenpath));
 
         try {
-            filhandterer.skrivTilFil(object, path);
+            filhandterer.skrivTilDB(object, path);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -75,10 +77,16 @@ public class FileChooserHjelper {
         Filhandterer filhandterer = getExtensionFilter(chosenpath);
 
         try {
+            System.out.println(object.toString());
             filhandterer.skrivTilFil(object, chosenpath);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String getPathBase(String pathWithExtension){
+        String[] editedPath = pathWithExtension.split("\\.");
+        return editedPath[0];
     }
 }

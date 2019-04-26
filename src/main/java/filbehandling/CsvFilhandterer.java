@@ -8,11 +8,12 @@ public class CsvFilhandterer extends Filhandterer {
 
     @Override
     public Object henteFraFil(String path) {
+        System.out.println(path);
         String innhold = "";
 
         // en metode som kaller på validering av filen man forsøker å laste opp (null, tlf) - at formateringen er tilnærmet riktig (int)
 
-        try(RandomAccessFile lesFil = new RandomAccessFile(path, "r")){
+        try(RandomAccessFile lesFil = new RandomAccessFile(path+".csv", "r")){
             String rad;
             while((rad = lesFil.readLine()) != null){
                 innhold += rad + "\n";
@@ -45,6 +46,11 @@ public class CsvFilhandterer extends Filhandterer {
                 writer.close();
             }
         }
+    }
+
+    @Override
+    public void skrivTilDB(Object object, String path) throws IOException {
+        skrivTilFil(object, path+".csv");
     }
     /*
     @Override

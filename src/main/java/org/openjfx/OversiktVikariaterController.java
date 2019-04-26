@@ -45,10 +45,10 @@ public class OversiktVikariaterController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
         tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
-        tvOversiktVikariater.setItems(visVikariater(Paths.VIKARIAT_CSV));
+        tvOversiktVikariater.setItems(visVikariater(Paths.VIKARIAT));
 
         // Muliggjør sortering og filtrering av data i tabellen.
-        FilteredList<TabellVikariater> filteredData = new FilteredList<>(visVikariater(Paths.VIKARIAT_CSV), p-> true);
+        FilteredList<TabellVikariater> filteredData = new FilteredList<>(visVikariater(Paths.VIKARIAT), p-> true);
 
         // Bruker Listener til å fange opp endringer.
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(soker -> {
@@ -88,7 +88,7 @@ public class OversiktVikariaterController implements Initializable {
     }
 
     public void btnLastOppVikariat(ActionEvent event) {
-        FileChooserHjelper.lastOpp(Paths.VIKARIAT_CSV);
+        FileChooserHjelper.lastOpp(Paths.VIKARIAT);
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 

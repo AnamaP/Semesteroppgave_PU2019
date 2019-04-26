@@ -23,7 +23,7 @@ public class MainAppHelper {
 
     public void loadJobbsokerCsv(){
         CsvFilhandterer test = new CsvFilhandterer();
-        String sokereFraDatabase = (String) test.henteFraFil(Paths.JOBBSOKER_CSV);
+        String sokereFraDatabase = (String) test.henteFraFil(Paths.JOBBSOKER);
 
         String [] rader = sokereFraDatabase.split("\n");
 
@@ -48,7 +48,7 @@ public class MainAppHelper {
 
     public void loadVikariatCsv(){
         CsvFilhandterer test = new CsvFilhandterer();
-        String vikariaterFraDatabase = (String) test.henteFraFil(Paths.VIKARIAT_CSV);
+        String vikariaterFraDatabase = (String) test.henteFraFil(Paths.VIKARIAT);
 
         String [] rader = vikariaterFraDatabase.split("\n");
 
@@ -75,7 +75,7 @@ public class MainAppHelper {
 
         PrintWriter writer = null;
         try{
-            FileWriter fileWriter = new FileWriter(Paths.JOBBSOKER_CSV, false);
+            FileWriter fileWriter = new FileWriter(Paths.JOBBSOKER, false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for(int a = 0; a < jobbsokere.size(); a++) {
                 printWriter.println(jobbsokere.get(a));  //New line
@@ -94,7 +94,7 @@ public class MainAppHelper {
 
         PrintWriter writer = null;
         try{
-            FileWriter fileWriter = new FileWriter(Paths.VIKARIAT_CSV, false);
+            FileWriter fileWriter = new FileWriter(Paths.VIKARIAT, false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for(int a = 0; a < arbeidsgivere.size(); a++) {
                 printWriter.println(arbeidsgivere.get(a));  //New line

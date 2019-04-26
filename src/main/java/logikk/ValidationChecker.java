@@ -1,6 +1,6 @@
 package logikk;
 
-import Exceptions.*;
+import exceptions.*;
 
 import java.util.regex.Pattern;
 

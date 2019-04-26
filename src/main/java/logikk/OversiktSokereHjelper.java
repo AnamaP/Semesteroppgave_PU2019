@@ -24,7 +24,7 @@ public class OversiktSokereHjelper {
         ObservableList<TabellSokere> jobseekerList = FXCollections.observableArrayList();
 
         try{
-            BufferedReader csvreader = new BufferedReader(new FileReader(Paths.JOBBSOKER_CSV));
+            BufferedReader csvreader = new BufferedReader(new FileReader(Paths.JOBBSOKER+".csv"));
             String rad;
 
             while ((rad = csvreader.readLine()) != null){
@@ -48,10 +48,10 @@ public class OversiktSokereHjelper {
             csvreader.close();
         }
         catch(FileNotFoundException e){
-            System.err.println("Finner ikke filen du leter etter");
+            System.err.println("visJobbsokere() : Finner ikke filen du leter etter");
         }
         catch(IOException e){
-            System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
+            System.err.println("visJobbsokere() : Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
         return jobseekerList;
     }
@@ -96,10 +96,10 @@ public class OversiktSokereHjelper {
             csvreader.close();
         }
         catch(FileNotFoundException e){
-            System.err.println("Finner ikke filen du leter etter");
+            System.err.println("VisResultat() : Finner ikke filen du leter etter");
         }
         catch(IOException e){
-            System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
+            System.err.println("VisResultat() : Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
         return showResults;
     }

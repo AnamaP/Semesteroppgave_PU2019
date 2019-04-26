@@ -70,7 +70,7 @@ public class RegVikariatController {
             // Lagrer til .csv
             Filhandterer csvFilhandterer = new CsvFilhandterer();
             try {
-                csvFilhandterer.skrivTilFil(ut, Paths.VIKARIAT_CSV);
+                csvFilhandterer.skrivTilFil(ut, Paths.VIKARIAT);
             } catch (IOException e) {
                 e.printStackTrace();
             }

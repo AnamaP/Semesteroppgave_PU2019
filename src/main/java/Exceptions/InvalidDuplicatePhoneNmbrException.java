@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class InvalidDuplicatePhoneNmbrException extends Exception {
     public InvalidDuplicatePhoneNmbrException(String msg) {

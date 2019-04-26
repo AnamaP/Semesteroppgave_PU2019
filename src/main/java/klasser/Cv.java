@@ -1,8 +1,9 @@
 package klasser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cv {
+public class Cv implements Serializable {
     private String utdanning;
     private String studieretning;
     private String erfaring;

@@ -6,8 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import klasser.Arbeidsgiver;
-import klasser.Jobbsoker;
 import logikk.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,7 +46,7 @@ public class ResultatSokereController implements Initializable {
         tcErfaring.setCellValueFactory(cellData->cellData.getValue().erfaringProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        tvOversiktSoker.setItems(OversiktSokereHjelper.visResultat(Paths.JOBBSOKER_CSV));
+        tvOversiktSoker.setItems(OversiktSokereHjelper.visResultat(Paths.JOBBSOKER));
     }
 
     public void btnTilbake(ActionEvent event) {

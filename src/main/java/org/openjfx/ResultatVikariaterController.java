@@ -40,7 +40,7 @@ public class ResultatVikariaterController implements Initializable {
         tcStillingstittel.setCellValueFactory(cellData->cellData.getValue().stillingstittelProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visResultat(Paths.VIKARIAT_CSV));
+        tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visResultat(Paths.VIKARIAT));
         setTableEditable();
     }
 
