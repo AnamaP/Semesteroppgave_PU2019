@@ -84,6 +84,6 @@ public class Vikariat implements Serializable {
     }
 
     public String toString(){
-        return tittel+";"+stillingstype+";"+beskrivelse+";"+varighet+";"+lonn+";"+kvalifikasjoner+";"+kategorierToString()+";"+status+"\n";
+        return tittel+";"+stillingstype+";"+beskrivelse+";"+varighet+";"+lonn+";"+kvalifikasjoner+";"+kategorierToString()+";"+status;
     }
 }

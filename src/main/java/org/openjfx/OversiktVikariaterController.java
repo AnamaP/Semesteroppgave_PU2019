@@ -6,8 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import logikk.*;
 
 import java.io.IOException;
@@ -105,12 +108,20 @@ public class OversiktVikariaterController implements Initializable {
         String key = tvOversiktVikariater.getSelectionModel().getSelectedItem().getTlf();
         findArbeidsgiver(key);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/openjfx/regVikariater.fxml"));
-        Parent root = loader.load();
+        // Load FXML
+        URL url = getClass().getResource("/org/openjfx/regVikariat.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent parent = loader.load();
         RegVikariatController controller = loader.getController();
-
+        loader.setLocation(url);
         controller.setData(valgtArbeidsgiver);
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariater.fxml", event);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+
+        //NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
+
     }
 
     public void btnSlettVikariat(ActionEvent event) {
@@ -130,7 +141,8 @@ public class OversiktVikariaterController implements Initializable {
             run.reloadVikariaterDatabase();
 
             NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
-        } else {
+        }
+        else {
             // Avbryter sletting..
         }
     }

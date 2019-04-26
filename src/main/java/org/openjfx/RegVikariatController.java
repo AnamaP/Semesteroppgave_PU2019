@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import klasser.Arbeidsgiver;
 import java.io.*;
 
+import static logikk.OversiktVikariaterHjelper.valgtArbeidsgiver;
 import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class RegVikariatController {
@@ -25,8 +26,17 @@ public class RegVikariatController {
     @FXML
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
+    private boolean shouldUpdate = false;
+
     @FXML
     private void btnRegVikariat(ActionEvent event) {
+
+        System.out.println(shouldUpdate);
+        if(shouldUpdate){
+            arbeidsgivere.remove(arbeidsgivere.get(valgtArbeidsgiver));
+            MainAppHelper reload = new MainAppHelper();
+            reload.reloadVikariaterDatabase();
+        }
 
         Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
                 txtKontaktperson, txtTlf, txtSektor, txtFirmaNavn, txtAdresse, txtBransje,
@@ -70,8 +80,9 @@ public class RegVikariatController {
             // Lagrer til .csv
             Filhandterer csvFilhandterer = new CsvFilhandterer();
             try {
-                csvFilhandterer.skrivTilFil(ut, Paths.VIKARIAT);
-            } catch (IOException e) {
+                csvFilhandterer.skrivTilDB(ut, Paths.VIKARIAT);
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
 
@@ -80,8 +91,16 @@ public class RegVikariatController {
         }
     }
 
+    @FXML
+    private void btnTilbake(ActionEvent event) {
+        //Tar brukeren tilbake til index:
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
+    }
+
     public void setData(int valgtArbeidsgiver){
         Arbeidsgiver arbeidsgiver = arbeidsgivere.get(valgtArbeidsgiver);
+        System.out.println("int: "+valgtArbeidsgiver);
+        System.out.println(arbeidsgiver.toString());
 
         txtKontaktperson.setText(arbeidsgiver.getKontaktperson());
         txtTlf.setText(arbeidsgiver.getTlf());
@@ -94,11 +113,7 @@ public class RegVikariatController {
         txtVarighet.setText(arbeidsgiver.getVikariat().getVarighet());
         txtLonn.setText(arbeidsgiver.getVikariat().getLonn());
         txtBeskrivelse.setText(arbeidsgiver.getVikariat().getBeskrivelse());
-    }
 
-    @FXML
-    private void btnTilbake(ActionEvent event) {
-        //Tar brukeren tilbake til index:
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
+        shouldUpdate = true;
     }
 }

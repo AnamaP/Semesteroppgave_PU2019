@@ -64,7 +64,7 @@ public class RegSokerController {
         // Lagrer til .csv
         Filhandterer csvFilhandterer = new CsvFilhandterer();
         try {
-            csvFilhandterer.skrivTilFil(input, Paths.JOBBSOKER);
+            csvFilhandterer.skrivTilDB(input, Paths.JOBBSOKER);
         }
         catch (IOException e) {
             e.printStackTrace();
