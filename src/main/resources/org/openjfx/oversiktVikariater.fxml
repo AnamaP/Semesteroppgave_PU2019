@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.OversiktVikariaterController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.OversiktVikariaterController">
     <children>
-      <VBox prefHeight="38.0" prefWidth="1031.0" style="-fx-background-color: b8c4bd;">
+      <VBox prefHeight="38.0" prefWidth="1025.0" style="-fx-background-color: b8c4bd;">
          <children>
-              <Label alignment="CENTER" prefHeight="30.0" prefWidth="1030.0" text="Oversikt over vikariater:">
+              <Label alignment="CENTER" prefHeight="30.0" prefWidth="1025.0" text="Oversikt over vikariater:">
                   <font>
                       <Font name="Ayuthaya" size="20.0" />
                   </font>
