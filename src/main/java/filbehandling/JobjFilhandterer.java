@@ -35,11 +35,4 @@ public class JobjFilhandterer extends Filhandterer {
         Filhandterer filhandterer = new CsvFilhandterer();
         filhandterer.skrivTilFil(object, path+".csv");
     }
-    /*
-    @Override
-    public void lagreFilLokalt(String toPath, String fromPath) throws IOException {
-        Object innholdJobj = henteFraFil(fromPath);
-        skrivTilFil(innholdJobj, toPath);
-    }*/
-
 }

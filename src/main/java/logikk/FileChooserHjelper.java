@@ -40,7 +40,7 @@ public class FileChooserHjelper {
         return chosenpath;
     }
 
-    // Metode som sjekker hvilket filformat bruker har valgt, henter ut riktig fil med innhold
+    // Metode som sjekker hvilket filformat bruker har valgt
     public static Filhandterer getExtensionFilter(String chosenpath){
         Filhandterer filhandterer;
         String extension = Filhandterer.getExtension(chosenpath);
@@ -56,11 +56,10 @@ public class FileChooserHjelper {
     }
 
     // Skal lese innhold fra lokal fil, sjekke at det stemmer, legge elementet til i arrayet og oppdatere tabellen
+    // chosenpath er filen man velger til å laste opp, mens path er dit den skal
     public static void lastOpp(String path){
         String chosenpath = openDialog();
-        System.out.println("LastOpp(): "+path);
-        System.out.println("chosenPath: "+chosenpath);
-        // if csv...
+
         Filhandterer filhandterer = getExtensionFilter(chosenpath);
         Object object = filhandterer.henteFraFil(getPathBase(chosenpath));
 
@@ -85,6 +84,7 @@ public class FileChooserHjelper {
         }
     }
 
+    // metode som endrer/tar bort selve notasjonen på filformatet
     private static String getPathBase(String pathWithExtension){
         String[] editedPath = pathWithExtension.split("\\.");
         return editedPath[0];

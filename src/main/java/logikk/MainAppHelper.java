@@ -75,7 +75,7 @@ public class MainAppHelper {
 
         PrintWriter writer = null;
         try{
-            FileWriter fileWriter = new FileWriter(Paths.JOBBSOKER, false);
+            FileWriter fileWriter = new FileWriter(Paths.JOBBSOKER+".csv", false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for(int a = 0; a < jobbsokere.size(); a++) {
                 printWriter.println(jobbsokere.get(a));  //New line
@@ -94,7 +94,7 @@ public class MainAppHelper {
 
         PrintWriter writer = null;
         try{
-            FileWriter fileWriter = new FileWriter(Paths.VIKARIAT, false);
+            FileWriter fileWriter = new FileWriter(Paths.VIKARIAT+".csv", false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for(int a = 0; a < arbeidsgivere.size(); a++) {
                 printWriter.println(arbeidsgivere.get(a));  //New line

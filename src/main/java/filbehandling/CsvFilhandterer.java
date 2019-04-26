@@ -8,10 +8,9 @@ public class CsvFilhandterer extends Filhandterer {
 
     @Override
     public Object henteFraFil(String path) {
-        System.out.println(path);
         String innhold = "";
 
-        // en metode som kaller på validering av filen man forsøker å laste opp (null, tlf) - at formateringen er tilnærmet riktig (int)
+        // TODO: en metode som kaller på validering av filen man forsøker å laste opp (null, tlf) - at formateringen er tilnærmet riktig (int)
 
         try(RandomAccessFile lesFil = new RandomAccessFile(path+".csv", "r")){
             String rad;
@@ -32,13 +31,13 @@ public class CsvFilhandterer extends Filhandterer {
 
 
     @Override
-    public void skrivTilFil(Object person, String path) throws IOException {
+    public void skrivTilFil(Object object, String path) throws IOException {
         PrintWriter writer = null;
 
         try{
-            FileWriter fileWriter = new FileWriter(path, true); //Set true for append mode
+            FileWriter fileWriter = new FileWriter(path, true);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println(person);  //New line
+            printWriter.println(object);
             printWriter.close();
         }
         finally{
@@ -52,16 +51,4 @@ public class CsvFilhandterer extends Filhandterer {
     public void skrivTilDB(Object object, String path) throws IOException {
         skrivTilFil(object, path+".csv");
     }
-    /*
-    @Override
-    public void lagreFilLokalt(String toPath, String fromPath) {
-        Object databaseFil = henteFraFil(fromPath);
-        try {
-            skrivTilFil(databaseFil, toPath);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }*/
 }
