@@ -88,6 +88,7 @@ public class OversiktVikariaterController implements Initializable {
 
     public void btnLastOppVikariat(ActionEvent event) {
         FileChooserHjelper.lastOpp(Paths.VIKARIAT_CSV);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     public void btnLesMerOmVikariat(ActionEvent event) {

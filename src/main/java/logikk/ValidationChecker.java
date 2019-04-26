@@ -118,19 +118,21 @@ public class ValidationChecker {
     }
 
     private boolean checkIfDuplicatePhoneNmbr(String phoneNmbr) throws InvalidDuplicatePhoneNmbrException {
+        boolean duplicates = false;
         for (int i = 0; i < jobbsokere.size(); i++) {
             if (jobbsokere.get(i).getTlf().equals(phoneNmbr)) {
                 throw new InvalidDuplicatePhoneNmbrException("Duplikat telefonnr!");
             }
-            return true;
+            duplicates=true;
+            return duplicates;
         }
-        return false;
+        return duplicates;
     }
 
     private boolean checkDuplicatePhoneNmbr(String phoneNmbr){
         try{
             if(checkIfDuplicatePhoneNmbr(phoneNmbr)){
-                return true;
+                return false;
             }
         }
         catch(InvalidDuplicatePhoneNmbrException e){

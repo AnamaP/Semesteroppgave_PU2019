@@ -13,7 +13,7 @@ public class AlertHelper {
     public static void showError(String message) {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setTitle("Feilmelding");
-        error.setHeaderText("Obs!:");
+        error.setHeaderText("Obs!");
         error.setContentText(message);
         error.showAndWait();
     }

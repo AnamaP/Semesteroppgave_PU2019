@@ -11,17 +11,22 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="510.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegSokerController">
+<AnchorPane prefHeight="546.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegSokerController">
    <children>
-      <Text fill="#084d3e" layoutX="4.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jobbsøkerregistrering" textAlignment="CENTER" wrappingWidth="570.9999694824219">
-         <font>
-            <Font name="Ayuthaya" size="20.0" />
-         </font>
-      </Text>
+      <VBox prefHeight="35.0" prefWidth="592.0" style="-fx-background-color: b8c4bd;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jobbsøkerregistrering" textAlignment="CENTER" textOrigin="BOTTOM" wrappingWidth="591.8000183105469">
+               <font>
+                  <Font name="Ayuthaya" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
       <GridPane layoutX="36.0" layoutY="58.0" prefHeight="248.0" prefWidth="233.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -39,14 +44,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn*" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Etternavn*" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse*" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Postnummer*" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Poststed*" GridPane.rowIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefonnr*" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Epost*" GridPane.rowIndex="6" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alder*" GridPane.rowIndex="7" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn: *" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Etternavn: *" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse: *" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Postnummer: *" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Poststed: *" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefonnr: *" GridPane.rowIndex="5" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Epost: *" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alder: *" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lønnskrav:" GridPane.rowIndex="8" />
             <TextField fx:id="txtFornavn" prefHeight="2.0" prefWidth="42.0" GridPane.columnIndex="1" />
             <TextField fx:id="txtEtternavn" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -59,29 +64,29 @@
             <TextField fx:id="txtLonnskrav" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <Text fill="#000000cf" layoutX="340.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder:*" wrappingWidth="195.99999999999994">
+      <Text fill="#000000cf" layoutX="342.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder: *" wrappingWidth="233.60000000000002">
          <font>
             <Font name="Ayuthaya" size="16.0" />
          </font>
       </Text>
 
-                  <CheckBox fx:id="cbxSalg" layoutX="342.0" layoutY="85.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Salg" />
-      <CheckBox fx:id="cbxAdmin" layoutX="342.0" layoutY="109.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Admin" />
-      <CheckBox fx:id="cbxIt" layoutX="342.0" layoutY="133.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="It" />
-      <CheckBox fx:id="cbxOkonomi" layoutX="342.0" layoutY="157.0" lineSpacing="5.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Økonomi" />
-      <Label layoutX="479.0" layoutY="299.0" prefHeight="17.0" prefWidth="86.0" text="* obligatoriske felt" textFill="#000000b4">
+                  <CheckBox fx:id="cbxSalg" layoutX="342.0" layoutY="102.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Salg" />
+      <CheckBox fx:id="cbxAdmin" layoutX="342.0" layoutY="129.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Admin" />
+      <CheckBox fx:id="cbxIt" layoutX="342.0" layoutY="156.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="It" />
+      <CheckBox fx:id="cbxOkonomi" layoutX="342.0" layoutY="182.0" lineSpacing="5.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Økonomi" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="455.0" layoutY="299.0" prefHeight="18.0" prefWidth="110.0" text="* obligatoriske felt" textAlignment="RIGHT" textFill="#000000b4">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
       <Line endX="435.5" layoutX="129.0" layoutY="320.0" startX="-100.0" />
-      <Text fill="#084d3e" layoutX="28.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- CV -" textAlignment="CENTER" wrappingWidth="536.5">
+      <Text fill="#084d3e" layoutX="28.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- CV -" textAlignment="CENTER" wrappingWidth="536.5">
          <font>
-            <Font name="Ayuthaya" size="14.0" />
+            <Font size="20.0" />
          </font>
       </Text>
 
-       <ComboBox fx:id="valgUtdanning" layoutX="28.0" layoutY="349.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg høyeste utdanning*">
+       <ComboBox fx:id="valgUtdanning" layoutX="28.0" layoutY="371.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg høyeste utdanning*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="Vgs" />
@@ -91,7 +96,7 @@
            </items>
        </ComboBox>
 
-       <ComboBox fx:id="valgRetning" layoutX="369.0" layoutY="349.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg studieretning*">
+       <ComboBox fx:id="valgRetning" layoutX="369.0" layoutY="371.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg studieretning*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="It" />
@@ -101,11 +106,11 @@
                </FXCollections>
            </items>
        </ComboBox>
-      <Text layoutX="27.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Erfaring:*" />
-      <TextField fx:id="txtErfaring" layoutX="26.0" layoutY="428.0" prefHeight="27.0" prefWidth="263.0" promptText="Firma, stilling" />
-      <Text layoutX="305.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referanser:" />
-      <TextField fx:id="txtReferanse" layoutX="304.0" layoutY="428.0" prefHeight="27.0" prefWidth="263.0" promptText="Fullt navn, tlf" />
-      <Button fx:id="btnTilbake" layoutX="26.0" layoutY="473.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
-      <Button layoutX="510.0" layoutY="473.0" mnemonicParsing="false" onAction="#btnRegSoker" prefWidth="54.0" text="Lagre" />
+      <Text layoutX="27.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Erfaring: *" />
+      <TextField fx:id="txtErfaring" layoutX="26.0" layoutY="444.0" prefHeight="27.0" prefWidth="263.0" promptText="Firma, stilling" />
+      <Text layoutX="305.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referanser:" />
+      <TextField fx:id="txtReferanse" layoutX="304.0" layoutY="444.0" prefHeight="27.0" prefWidth="263.0" promptText="Fullt navn, tlf" />
+      <Button fx:id="btnTilbake" layoutX="26.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
+      <Button layoutX="510.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnRegSoker" prefWidth="54.0" text="Lagre" />
    </children>
 </AnchorPane>

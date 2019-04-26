@@ -57,10 +57,9 @@ public class FileChooserHjelper {
 
     // Skal lese innhold fra lokal fil, sjekke at det stemmer, legge elementet til i arrayet og oppdatere tabellen
     public static void lastOpp(String path){
-        //Filhandterer filhandterer;
         String chosenpath = openDialog();
         // if csv...
-        Filhandterer filhandterer = getExtensionFilter(chosenpath); // new extensionHelper
+        Filhandterer filhandterer = getExtensionFilter(chosenpath);
         Object object = filhandterer.henteFraFil(chosenpath);
 
         try {
@@ -69,11 +68,17 @@ public class FileChooserHjelper {
         catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void lastNed(Object object) {
         String chosenpath = saveDialog();
-        getExtensionFilter(chosenpath);
+        Filhandterer filhandterer = getExtensionFilter(chosenpath);
+
+        try {
+            filhandterer.skrivTilFil(object, chosenpath);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
