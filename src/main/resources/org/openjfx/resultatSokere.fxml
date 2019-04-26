@@ -5,16 +5,21 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1251.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ResultatSokereController">
     <children>
+      <VBox prefHeight="45.0" prefWidth="1250.0" style="-fx-background-color: b8c4bd;">
+         <children>
+              <Label alignment="CENTER" prefHeight="46.0" prefWidth="1252.0" text="Aktuelle kandidater:">
+                  <font>
+                      <Font size="22.0" />
+                  </font>
+              </Label>
+         </children>
+      </VBox>
         <Button fx:id="btnTilbake" layoutX="22.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="24.0" prefWidth="112.0" text="Tilbake" />
-        <Label alignment="CENTER" layoutX="23.0" layoutY="18.0" prefHeight="47.0" prefWidth="1204.0" text="Aktuelle kandidater:" textFill="#084d3e">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
         <TableView fx:id="tvOversiktSoker" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="1207.0">
             <columns>
                 <TableColumn fx:id="tcFornavn" prefWidth="70.0" text="Fornavn" />

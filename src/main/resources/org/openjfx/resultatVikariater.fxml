@@ -5,16 +5,21 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ResultatVikariaterController">
     <children>
+      <VBox prefHeight="42.0" prefWidth="1018.0" style="-fx-background-color: b8c4bd;">
+         <children>
+              <Label alignment="CENTER" prefHeight="47.0" prefWidth="1022.0" text="Aktuelle vikariater:">
+                  <font>
+                      <Font size="22.0" />
+                  </font>
+              </Label>
+         </children>
+      </VBox>
         <Button layoutX="22.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="24.0" prefWidth="112.0" text="Tilbake" />
-        <Label alignment="CENTER" layoutX="23.0" layoutY="18.0" prefHeight="47.0" prefWidth="973.0" text="Aktuelle vikariater:" textFill="#084d3e">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
         <TableView fx:id="tvOversiktVikariater" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="973.0">
             <columns>
                 <TableColumn fx:id="tcKontaktperson" prefWidth="120.5" text="Kontaktperson" />
