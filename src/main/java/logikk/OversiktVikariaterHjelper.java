@@ -70,10 +70,10 @@ public class OversiktVikariaterHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 11) {
+                if(kolonner.length > 12) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
-                    for (int i = 12; i < kolonner.length-1; i++) {
+                    for (int i = 13; i < kolonner.length-1; i++) {
                         kategorier.add(kolonner[i]);
                     }
 
@@ -85,6 +85,7 @@ public class OversiktVikariaterHjelper {
                                     (kategorier.toString().contains("Admin")) && valgteKategorier.contains("Admin") ||
                                     (kategorier.toString().contains("It")) && valgteKategorier.contains("It") ||
                                     (kategorier.toString().contains("Okonomi")) && valgteKategorier.contains("Okonomi")
+
                     ) {
 
                         Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],

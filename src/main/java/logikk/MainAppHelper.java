@@ -30,9 +30,9 @@ public class MainAppHelper {
         for (int i = 0; i < rader.length; i++) {
             String[] soker = rader[i].split(";");
 
-            if(soker.length > 11) {
+            if(soker.length > 14) {
                 ArrayList<String> kategorier = new ArrayList<>();
-                for (int k = 12; k < soker.length - 1; k++) {
+                for (int k = 13; k < soker.length - 1; k++) {
                     kategorier.add(soker[k]);
                 }
 
@@ -57,7 +57,7 @@ public class MainAppHelper {
 
             if(vikariat.length > 13) {
                 ArrayList<String> kategorier = new ArrayList<>();
-                for (int k = 11; k < vikariat.length - 1; k++) {
+                for (int k = 12; k < vikariat.length - 1; k++) {
                     kategorier.add(vikariat[k]);
                 }
 

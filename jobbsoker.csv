@@ -1,14 +1,8 @@
-Tristan;Fox Berg;Jacob Alls gate 51;3924;Oslo;2394 0294;tristan.f.b@live.no;24;;Bachelor;Ledelse;Fortnite boss;;, , , AC tec, Salg, It, Okonomi;Ledig
-Akiah;Ottesen;Norbyveien 42;2350;Kristiansand;420 92 192;akiah.ottesen@gmail.com;29;;Master;Ledelse;Hoppe i fallskjerm;;, , , Henne selv, Salg, Admin;Ansatt
-Hanne;Dahl;osloveien 2;0989;Oslo;12345678;hd@test.no;33;;Bachelor;ÃÂÃÂÃÂÃÂkonomi;ÃÂÃÂÃÂÃÂkonomiassistent;;, , , Morten Sivertsen, Okonomi, It;Ledig
-Trine;Solgaard;Huseby 3;0546;Hamar;23534235;trine.s@gmail.com;34;;Vgs;Salg;Kiosk;;, , , Lars Stensbu, Salg;Ledig
-Kjell Erik;Eide;Akersbakken 35C;0451;Oslo;49851728;ke.eide@online.no;59;;Vgs;Ledelse;Speiderleder;;, , , 1. rÃÂÃÂÃÂÃÂ¸a speidergruppe, Admin, Okonomi;Ledig
-Agnes Marie;Aanderaa;Huskebybakken 22B;0379;BÃÂÃÂÃÂÃÂ¦rum;22732002;agmaa@online.no;52;;Master;ÃÂÃÂÃÂÃÂkonomi;It, etninsk hacking;;, , , Telenor AS, It, Okonomi;Ledig
-Kjersti;Kristensen;Halogenveien 3;0978;Oslo;22997656;kriste@test.no;34;;Master;Ledelse;Daglig leder, Atoma As;;, , , Harald Mortensen, Salg, Admin, It, Okonomi;Ansatt
-Runa;A Eide;Sagveien 11;0479;Stavanger;90473627;runa.erlame@gmail.com;25;;Bachelor;Ledelse;Helsemedarbeider;;, Helga Olsen, Salg, Admin;Ledig
-marte;reieresen;osloveien 5;0989;Oslo;12345678;mr@test.no;55;;Bachelor;Salg;diverse;ikke bry deg om det;Admin, It;Ledig
-Runa;A Eide;Sagveien 11;0479;Stavanger;90473627;runa.erlame@gmail.com;25;;Bachelor;Ledelse;Helsemedarbeider;;Helga Olsen, Salg, Admin;Ledig
-TableView[id=tvOversiktSokere, styleClass=table-view]
-jobbsoker.csv
-java.lang.Object@26325f05
-
+Tristan;Fox Berg;Jacob Alls gate 51;3924;Oslo;2394 0294;tristan.f.b@live.no;24;;Bachelor;Ledelse;Fortnite boss;; Salg, It, Okonomi;Ledig
+Akiah;Ottesen;Norbyveien 42;2350;Kristiansand;420 92 192;akiah.ottesen@gmail.com;29;;Master;Ledelse;Hoppe i fallskjerm;; Salg, Admin;Ansatt
+Trine;Solgaard;Huseby 3;0546;Hamar;23534235;trine.s@gmail.com;34;;Vgs;Salg;Kiosk;; Salg;Ledig
+Kjell Erik;Eide;Akersbakken 35C;0451;Oslo;49851728;ke.eide@online.no;59;;Vgs;Ledelse;Speiderleder;; Admin, Okonomi;Ledig
+Agnes Marie;Aanderaa;Huskebybakken 22B;0379;Baerum;22732002;agmaa@online.no;52;;Master;Okonomi;It, etninsk hacking;; It, Okonomi;Ansatt
+Kjersti;Kristensen;Halogenveien 3;0978;Oslo;22997656;kriste@test.no;34;;Master;Ledelse;Daglig leder, Atoma As;; Salg, Admin, It, Okonomi;Ansatt
+Runa;A Eide;Sagveien 11;0479;Stavanger;90473627;runa.erlame@gmail.com;25;;Bachelor;Ledelse;Helsemedarbeider;;Salg, Admin;Ledig
+Kjersti;Kristensen;Halogenveien 3;0978;Oslo;22997656;kriste@test.no;34;;Master;Ledelse;Daglig leder, Atoma As;; Salg, Admin, It, Okonomi;Ansatt

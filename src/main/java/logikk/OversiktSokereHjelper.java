@@ -30,7 +30,7 @@ public class OversiktSokereHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 13){
+                if(kolonner.length > 14){
                     ArrayList<String> kategorier = new ArrayList<>();
                     for(int i = 13; i < kolonner.length-1; i++) {
                         kategorier.add(kolonner[i]);
@@ -40,8 +40,6 @@ public class OversiktSokereHjelper {
 
                     Jobbsoker tabell = new Jobbsoker(kolonner[0],kolonner[1],kolonner[2],kolonner[3],kolonner[4],
                                                      kolonner[5],kolonner[6],kolonner[7],cv, kolonner[kolonner.length-1]);
-
-                    //TODO: finne ut av hvordan vi gjør det med lonnskrav[8] og referanse[12] (valgfritt felt, ikke med i konstruktøren)
 
                     TabellSokere oversiktSokere = new TabellSokere(tabell);
                     jobseekerList.add(oversiktSokere);
@@ -84,14 +82,14 @@ public class OversiktSokereHjelper {
                         kategorier.equals(valgteKategorier.get(i));
                     }
 
-                    //Denne henter kun de som passer til alle kategoriene vikariatet spør om (+ evt ekstra kategorier søkeren måtte ha):
+                    //Denne henter kun søkerne som passer til alle kategoriene vikariatet spør om (+ evt ekstra kategorier søkeren måtte ha):
                     int antall = 0;
                     for(int i = 0; i < valgteKategorier.size(); i++) {
                         if (kategorier.toString().contains(valgteKategorier.get(i))) {
                             antall++;
                         }
                     }
-                    if(antall == valgteKategorier.size()){
+                    if((antall == valgteKategorier.size()) && (kolonner[kolonner.length-1].equals("Ledig"))){
                         Cv cv = new Cv(kolonner[9], kolonner[10], kolonner[11], kategorier);
 
                         Jobbsoker tabell = new Jobbsoker(kolonner[0], kolonner[1], kolonner[2], kolonner[3], kolonner[4],
