@@ -6,16 +6,21 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.OversiktVikariaterController">
     <children>
+      <VBox prefHeight="38.0" prefWidth="1031.0" style="-fx-background-color: b8c4bd;">
+         <children>
+              <Label alignment="CENTER" prefHeight="30.0" prefWidth="1030.0" text="Oversikt over vikariater:">
+                  <font>
+                      <Font name="Ayuthaya" size="20.0" />
+                  </font>
+              </Label>
+         </children>
+      </VBox>
         <Button layoutX="13.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
-        <Label alignment="CENTER" layoutX="32.0" layoutY="14.0" prefHeight="30.0" prefWidth="903.0" text="Oversikt over vikariater:" textFill="#084d3e">
-            <font>
-                <Font name="Ayuthaya" size="20.0" />
-            </font>
-        </Label>
         <TableView fx:id="tvOversiktVikariater" layoutX="12.0" layoutY="51.0" prefHeight="498.0" prefWidth="1001.0">
             <columns>
                 <TableColumn fx:id="tcKontaktperson" prefWidth="105.5" text="Kontaktperson" />
@@ -36,6 +41,6 @@
         <Button layoutX="255.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLastOppVikariat" prefHeight="27.0" prefWidth="83.0" text="Last opp" />
         <Button layoutX="852.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnFinnSokere" prefHeight="27.0" prefWidth="160.0" text="Finn passende vikarer" />
       <Button layoutX="442.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnLesMerOmVikariat" prefHeight="27.0" prefWidth="83.0" text="Les mer" />
-      <TextField fx:id="txtFilterField" layoutX="13.0" layoutY="17.0" prefHeight="25.0" prefWidth="183.0" promptText="Filtrer her..." />
+      <TextField fx:id="txtFilterField" layoutX="13.0" layoutY="6.0" prefHeight="25.0" prefWidth="183.0" promptText="Filtrer her..." />
     </children>
 </Pane>
