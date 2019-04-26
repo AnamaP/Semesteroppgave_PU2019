@@ -64,7 +64,7 @@
             <TextField fx:id="txtLonnskrav" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <Text fill="#000000cf" layoutX="342.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder: *" wrappingWidth="233.60000000000002">
+      <Text fill="#000000cf" layoutX="342.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder: *" wrappingWidth="248.79995117187502">
          <font>
             <Font name="Ayuthaya" size="16.0" />
          </font>
@@ -86,7 +86,7 @@
          </font>
       </Text>
 
-       <ComboBox fx:id="valgUtdanning" layoutX="28.0" layoutY="371.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg høyeste utdanning*">
+       <ComboBox fx:id="valgUtdanning" layoutX="28.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg høyeste utdanning*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="Vgs" />
@@ -96,7 +96,7 @@
            </items>
        </ComboBox>
 
-       <ComboBox fx:id="valgRetning" layoutX="369.0" layoutY="371.0" prefHeight="28.0" prefWidth="196.0" promptText="Velg studieretning*">
+       <ComboBox fx:id="valgRetning" layoutX="302.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg studieretning*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="It" />
