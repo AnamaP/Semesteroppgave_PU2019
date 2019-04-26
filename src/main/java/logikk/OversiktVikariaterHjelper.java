@@ -65,26 +65,33 @@ public class OversiktVikariaterHjelper {
             BufferedReader csvreader = new BufferedReader(new FileReader(path));
             String rad;
 
-            System.out.println("Valgte kategorier: " + valgteKategorier.toString());
-
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 12) {
+                if(kolonner.length > 11) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
-                    for (int i = 13; i < kolonner.length-1; i++) {
+                    for (int i = 12; i < kolonner.length-1; i++) {
                         kategorier.add(kolonner[i]);
                     }
 
-                    System.out.println("Kategorier : " + kategorier.toString());
+                    //Denne henter kun søkerne som passer til alle kategoriene vikariatet spør om (+ evt ekstra kategorier søkeren måtte ha):
+                    int antall = 0;
+                    for(int i = 0; i < valgteKategorier.size(); i++) {
+                        if (kategorier.toString().contains(valgteKategorier.get(i))) {
+                            antall++;
+                        }
+                    }
+
+                    //if((antall == valgteKategorier.size())){
 
                     //Skrivet ut kun en av kategoriene "matcher":
                     if (
-                            (kategorier.toString().contains("Salg")) && valgteKategorier.contains("Salg") ||
+                            ((kategorier.toString().contains("Salg")) && valgteKategorier.contains("Salg") ||
                                     (kategorier.toString().contains("Admin")) && valgteKategorier.contains("Admin") ||
                                     (kategorier.toString().contains("It")) && valgteKategorier.contains("It") ||
-                                    (kategorier.toString().contains("Okonomi")) && valgteKategorier.contains("Okonomi")
+                                    (kategorier.toString().contains("Okonomi")) && valgteKategorier.contains("Okonomi"))
+                            && kolonner[kolonner.length-1].equals("Ledig")
 
                     ) {
 

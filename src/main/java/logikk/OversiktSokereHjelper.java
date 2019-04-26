@@ -64,8 +64,6 @@ public class OversiktSokereHjelper {
             BufferedReader csvreader = new BufferedReader(new FileReader(path));
             String rad;
 
-            System.out.println("Valgte kategorier: " + valgteKategorier.toString());
-
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
@@ -76,12 +74,6 @@ public class OversiktSokereHjelper {
                         kategorier.add(kolonner[i]);
                     }
 
-                    System.out.println("Kategorier : " + kategorier.toString());
-
-                    for(int i = 0; i < valgteKategorier.size(); i++){
-                        kategorier.equals(valgteKategorier.get(i));
-                    }
-
                     //Denne henter kun søkerne som passer til alle kategoriene vikariatet spør om (+ evt ekstra kategorier søkeren måtte ha):
                     int antall = 0;
                     for(int i = 0; i < valgteKategorier.size(); i++) {
@@ -89,6 +81,7 @@ public class OversiktSokereHjelper {
                             antall++;
                         }
                     }
+
                     if((antall == valgteKategorier.size()) && (kolonner[kolonner.length-1].equals("Ledig"))){
                         Cv cv = new Cv(kolonner[9], kolonner[10], kolonner[11], kategorier);
 
