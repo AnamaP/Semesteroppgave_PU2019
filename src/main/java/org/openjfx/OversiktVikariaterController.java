@@ -48,10 +48,10 @@ public class OversiktVikariaterController implements Initializable {
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
         tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
-        tvOversiktVikariater.setItems(visVikariater(Paths.VIKARIAT));
+        tvOversiktVikariater.setItems(visVikariater());
 
         // Muliggjør sortering og filtrering av data i tabellen.
-        FilteredList<TabellVikariater> filteredData = new FilteredList<>(visVikariater(Paths.VIKARIAT), p-> true);
+        FilteredList<TabellVikariater> filteredData = new FilteredList<>(visVikariater(), p-> true);
 
         // Bruker Listener til å fange opp endringer.
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(soker -> {

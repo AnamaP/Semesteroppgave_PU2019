@@ -18,7 +18,7 @@ public class OversiktVikariaterHjelper {
         this.valgteKategorier = valgteKategorier;
     }
 
-    public static ObservableList<TabellVikariater> visVikariater(String path) {
+    public static ObservableList<TabellVikariater> visVikariater() {
         // Oppretter en tabell
         ObservableList<TabellVikariater> obl = FXCollections.observableArrayList();
 
