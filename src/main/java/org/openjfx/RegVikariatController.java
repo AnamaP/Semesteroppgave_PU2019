@@ -31,11 +31,10 @@ public class RegVikariatController {
     @FXML
     private void btnRegVikariat(ActionEvent event) {
 
-        System.out.println(shouldUpdate);
         if(shouldUpdate){
             arbeidsgivere.remove(arbeidsgivere.get(valgtArbeidsgiver));
             MainAppHelper reload = new MainAppHelper();
-            reload.reloadVikariaterDatabase();
+            reload.reloadJobbsokerDatabase();
         }
 
         Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(

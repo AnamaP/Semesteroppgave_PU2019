@@ -9,6 +9,9 @@ import klasser.Jobbsoker;
 
 import java.io.IOException;
 
+import static logikk.OversiktSokereHjelper.valgtJobbsoker;
+import static logikk.RegSokerHjelper.jobbsokere;
+
 public class RegSokerController {
 
     @FXML
@@ -23,8 +26,14 @@ public class RegSokerController {
     @FXML
     private CheckBox cbxSalg, cbxAdmin, cbxIt, cbxOkonomi;
 
+    private boolean shouldUpdate = false;
 
     public void btnRegSoker(ActionEvent event) {
+        if(shouldUpdate){
+            jobbsokere.remove(jobbsokere.get(valgtJobbsoker));
+            MainAppHelper reload = new MainAppHelper();
+            reload.reloadVikariaterDatabase();
+        }
 
         Jobbsoker nySoker = RegSokerHjelper.nySoker(txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed,
                 txtTlf, txtEpost, txtAlder, valgUtdanning, valgRetning, txtErfaring, txtReferanse, txtLonnskrav, cbxSalg,
@@ -78,5 +87,26 @@ public class RegSokerController {
     public void btnTilbake(ActionEvent event) {
         //Tar brukeren tilbake til index:
         NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/index.fxml", event);
+    }
+
+    public void setData(){
+        Jobbsoker jobbsoker = jobbsokere.get(valgtJobbsoker);
+        System.out.println("int: "+ valgtJobbsoker);
+        System.out.println(jobbsoker.toString());
+
+        txtFornavn.setText(jobbsoker.getFornavn());
+        txtEtternavn.setText(jobbsoker.getEtternavn());
+        txtAdresse.setText(jobbsoker.getAdresse());
+        txtPostnr.setText(jobbsoker.getPostnr());
+        txtPoststed.setText(jobbsoker.getPoststed());
+        txtTlf.setText(jobbsoker.getTlf());
+        txtEpost.setText(jobbsoker.getEpost());
+        txtAlder.setText(jobbsoker.getAlder());
+        txtLonnskrav.setText(jobbsoker.getLonnskrav());
+
+        txtErfaring.setText(jobbsoker.getCv().getErfaring());
+        txtReferanse.setText(jobbsoker.getCv().getReferanse());
+
+        shouldUpdate = true;
     }
 }
