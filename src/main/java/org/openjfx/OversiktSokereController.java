@@ -1,13 +1,16 @@
 package org.openjfx;
 
-import filbehandling.Filhandterer;
-import filbehandling.JobjFilhandterer;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import logikk.*;
 
 import java.io.IOException;
@@ -16,9 +19,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static logikk.OversiktSokereHjelper.findJobbsoker;
-import static logikk.OversiktSokereHjelper.visJobbsokere;
-import static logikk.OversiktVikariaterHjelper.findArbeidsgiver;
+import static logikk.OversiktSokereHjelper.*;
 
 public class OversiktSokereController implements Initializable {
 
@@ -90,7 +91,25 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnRedigerSoker(ActionEvent event) {
-        // TODO : her skal det kalles på metode som redigerer en jobbsøker
+        String key = tvOversiktSokere.getSelectionModel().getSelectedItem().getTlf();
+        findJobbsoker(key);
+
+        // Load FXML
+        URL url = getClass().getResource("/org/openjfx/regSoker.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent parent = null;
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        RegSokerController controller = loader.getController();
+        loader.setLocation(url);
+        controller.setData();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
     }
 
     public void btnSlettSoker(ActionEvent event) {

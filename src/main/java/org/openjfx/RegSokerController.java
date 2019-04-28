@@ -30,9 +30,9 @@ public class RegSokerController {
 
     public void btnRegSoker(ActionEvent event) {
         if(shouldUpdate){
-            jobbsokere.remove(jobbsokere.get(valgtJobbsoker));
+            jobbsokere.remove(valgtJobbsoker);
             MainAppHelper reload = new MainAppHelper();
-            reload.reloadVikariaterDatabase();
+            reload.reloadJobbsokerDatabase();
         }
 
         Jobbsoker nySoker = RegSokerHjelper.nySoker(txtFornavn, txtEtternavn, txtAdresse, txtPostnr, txtPoststed,

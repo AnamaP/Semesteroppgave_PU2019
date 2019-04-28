@@ -34,7 +34,7 @@ public class RegVikariatController {
         if(shouldUpdate){
             arbeidsgivere.remove(arbeidsgivere.get(valgtArbeidsgiver));
             MainAppHelper reload = new MainAppHelper();
-            reload.reloadJobbsokerDatabase();
+            reload.reloadVikariaterDatabase();
         }
 
         Arbeidsgiver nyUtlysning = RegVikariatHjelper.lagVikariat(
