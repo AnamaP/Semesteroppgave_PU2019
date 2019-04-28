@@ -24,7 +24,7 @@ public class AlertHelper {
 
     // Alert metode for vellykket registrering
     public static void showConfirmation(){
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert confirm = new Alert(Alert.AlertType.INFORMATION);
         confirm.setTitle("Bekreftelse");
         confirm.setContentText("Registereringen var vellykket!");
         confirm.showAndWait();
