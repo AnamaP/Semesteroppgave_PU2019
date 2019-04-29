@@ -1,7 +1,9 @@
 package logikk;
 
+import klasser.Arbeidsgiver;
 import klasser.Cv;
 import klasser.Jobbsoker;
+import klasser.Vikariat;
 
 import java.util.ArrayList;
 
@@ -49,9 +51,18 @@ public class OversiktHjelper {
         Cv cv = new Cv(kolonner[9], kolonner[10], kolonner[11], kategorier);
 
         Jobbsoker jobbsoker = new Jobbsoker(kolonner[0], kolonner[1], kolonner[2], kolonner[3], kolonner[4],
-                kolonner[5], kolonner[6], kolonner[7], cv, kolonner[kolonner.length-1]);
-
+                                            kolonner[5], kolonner[6], kolonner[7], cv, kolonner[kolonner.length-1]);
         return jobbsoker;
+    }
+
+    public Arbeidsgiver hentVikariatFraListe(String [] kolonner){
+        ArrayList<String> kategorier = hentKategorier(kolonner, 12);
+        Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],
+                                         kolonner[10], kolonner[11], kategorier, kolonner[kolonner.length-1]);
+
+        Arbeidsgiver arbeidsgiver = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2],
+                                                     kolonner[3],kolonner[4], kolonner[5], vikariat);
+        return arbeidsgiver;
     }
 
     public ArrayList hentKategorier(String [] kolonner, int start){

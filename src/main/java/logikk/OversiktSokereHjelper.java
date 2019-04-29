@@ -64,6 +64,7 @@ public class OversiktSokereHjelper {
                     ArrayList<String> kategorier = run.hentKategorier(kolonner,13);
                     //Finner antall felles kategorier
                     int antall = run.sjekkKategorier(kategorier);
+
                     //Om søkeren har mange nok kategorier legges den til i tabellen:
                     if((antall == valgteKategorier.size()) && (kolonner[kolonner.length-1].equals("Ledig"))){
                         TabellSokere oversiktSokere = new TabellSokere(jobbsoker);

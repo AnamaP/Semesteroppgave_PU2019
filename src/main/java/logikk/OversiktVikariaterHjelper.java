@@ -16,7 +16,6 @@ public class OversiktVikariaterHjelper {
     public static ObservableList<TabellVikariater> visVikariater() {
         // Oppretter en tabell
         ObservableList<TabellVikariater> obl = FXCollections.observableArrayList();
-
         try{
             BufferedReader csvreader = new BufferedReader(new FileReader(Paths.VIKARIAT+".csv"));
             String rad;
@@ -25,19 +24,10 @@ public class OversiktVikariaterHjelper {
                 String [] kolonner = rad.split(";");
 
                 if(kolonner.length > 12){
+                    OversiktHjelper run = new OversiktHjelper();
+                    Arbeidsgiver arbeidsgiver = run.hentVikariatFraListe(kolonner);
 
-                    ArrayList<String> kategorier = new ArrayList<>();
-                    for(int i = 12; i < kolonner.length-1; i++) {
-                        kategorier.add(kolonner[i]);
-                    }
-
-                    Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],
-                                                     kolonner[10], kolonner[11], kategorier, kolonner[kolonner.length-1]);
-
-                    Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2],
-                                                           kolonner[3],kolonner[4], kolonner[5], vikariat);
-
-                    TabellVikariater test = new TabellVikariater(tabell);
+                    TabellVikariater test = new TabellVikariater(arbeidsgiver);
                     obl.add(test);
                 }
             }
@@ -64,17 +54,13 @@ public class OversiktVikariaterHjelper {
                 String [] kolonner = rad.split(";");
 
                 if(kolonner.length > 12) {
-
-                    ArrayList<String> kategorier = new ArrayList<>();
-                    for (int i = 12; i < kolonner.length-1; i++) {
-                        kategorier.add(kolonner[i]);
-                    }
-
-                    //Denne henter kun søkerne som passer til alle kategoriene vikariatet spør om (+ evt ekstra kategorier søkeren måtte ha):
                     OversiktHjelper run = new OversiktHjelper();
-                    int antall = run.sjekkKategorier(kategorier);
+                    //Henter ut en arbeidsgiver:
+                    Arbeidsgiver arbeidsgiver = run.hentVikariatFraListe(kolonner);
 
-                    //Skrivet ut kun en av kategoriene "matcher":
+                    ArrayList<String> kategorier = run.hentKategorier(kolonner, 12);
+
+                    //Legger arbeidsgiveren i tabellen kun om en av kategoriene "matcher":
                     if (
                             ((kategorier.toString().contains("Salg")) && valgteKategorier.contains("Salg") ||
                                     (kategorier.toString().contains("Admin")) && valgteKategorier.contains("Admin") ||
@@ -83,14 +69,7 @@ public class OversiktVikariaterHjelper {
                             && kolonner[kolonner.length-1].equals("Ledig")
 
                     ) {
-
-                        Vikariat vikariat = new Vikariat(kolonner[6],kolonner[7],kolonner[8],kolonner[9],
-                                                         kolonner[10], kolonner[11], kategorier, kolonner[kolonner.length-1]);
-
-                        Arbeidsgiver tabell = new Arbeidsgiver(kolonner[0], kolonner[1],kolonner[2],
-                                                               kolonner[3],kolonner[4], kolonner[5], vikariat);
-
-                        TabellVikariater test = new TabellVikariater(tabell);
+                        TabellVikariater test = new TabellVikariater(arbeidsgiver);
                         obl.add(test);
                     }
                 }

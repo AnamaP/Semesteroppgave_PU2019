@@ -4,7 +4,6 @@ import filbehandling.CsvFilhandterer;
 import klasser.Arbeidsgiver;
 import klasser.Cv;
 import klasser.Jobbsoker;
-import klasser.Vikariat;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -63,18 +62,11 @@ public class MainAppHelper {
         String [] rader = vikariaterFraDatabase.split("\n");
 
         for (int i = 0; i < rader.length; i++) {
-            String[] vikariat = rader[i].split(";");
+            String[] arbeidsgiver = rader[i].split(";");
 
-            if(vikariat.length > 13) {
-                ArrayList<String> kategorier = new ArrayList<>();
-                for (int k = 12; k < vikariat.length - 1; k++) {
-                    kategorier.add(vikariat[k]);
-                }
-
-                Vikariat nyttVikariat = new Vikariat(vikariat[6], vikariat[7], vikariat[8], vikariat[9], vikariat[10], vikariat[11], kategorier, vikariat[vikariat.length - 1]);
-
-                Arbeidsgiver nyArbeidsgiver = new Arbeidsgiver(vikariat[0], vikariat[1], vikariat[2], vikariat[3], vikariat[4],
-                        vikariat[5], nyttVikariat);
+            if(arbeidsgiver.length > 13) {
+                OversiktHjelper run = new OversiktHjelper();
+                Arbeidsgiver nyArbeidsgiver = run.hentVikariatFraListe(arbeidsgiver);
 
                 arbeidsgivere.add(nyArbeidsgiver);
             }
