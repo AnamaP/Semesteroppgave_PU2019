@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static logikk.OversiktSokereHjelper.*;
+import static logikk.ViewJobseekerHelper.*;
 
 public class ViewJobseekersController implements Initializable {
 
@@ -52,12 +52,12 @@ public class ViewJobseekersController implements Initializable {
         tcWorkfields.setCellValueFactory(cellData -> cellData.getValue().workfieldsProperty());
         tcStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
 
-        tvJobseekers.setItems(visJobbsokere());
+        tvJobseekers.setItems(showJobseekers());
 
 
         /* Muliggjør sortering og filtrering av data i tabellen*/
 
-        FilteredList<TableJobseekers> filteredData = new FilteredList<>(visJobbsokere(), p -> true);
+        FilteredList<TableJobseekers> filteredData = new FilteredList<>(showJobseekers(), p -> true);
 
         // bruker Listener til å fange opp endringer og ..
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(jobseeker -> {
@@ -86,12 +86,12 @@ public class ViewJobseekersController implements Initializable {
 
     @FXML
     private void btnBack(ActionEvent event) {
-        NavigationHelper.changePange("/org/openjfx/index.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/index.fxml", event);
     }
 
     public void btnEditJobseeker(ActionEvent event) {
         String key = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
-        findJobbsoker(key);
+        findJobseeker(key);
 
         // Load FXML
         URL url = getClass().getResource("/org/openjfx/regSoker.fxml");
@@ -123,12 +123,12 @@ public class ViewJobseekersController implements Initializable {
             // blir sletting gjennomført
             String key = tvJobseekers.getSelectionModel().getSelectedItem().phoneNoProperty().get();
 
-            Boolean deleted = RegSokerHjelper.slettValgtSoker(key);
+            Boolean deleted = RegJobseekerHelper.deleteChosenJobseeker(key);
             if (deleted) {
                 MainAppHelper run = new MainAppHelper();
                 run.reloadJobbsokerDatabase();
             }
-            NavigationHelper.changePange("/org/openjfx/oversiktSokere.fxml", event);
+            NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
         }
         else {
         // avbryter slettingen
@@ -138,25 +138,25 @@ public class ViewJobseekersController implements Initializable {
 
     public void btnDownloadJobseeker(ActionEvent event){
         String key = tvJobseekers.getSelectionModel().getSelectedItem().phoneNoProperty().get();
-        OversiktSokereHjelper.saveJobseeker(key);
+        ViewJobseekerHelper.saveJobseeker(key);
     }
 
     public void btnUploadJobseeker(ActionEvent event){
-        FileChooserHjelper.lastOpp(Paths.JOBBSOKER);
-        NavigationHelper.changePange("/org/openjfx/oversiktSokere.fxml", event);
+        FileChooserHelper.upload(Paths.JOBSEEKER);
+        NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
 
     }
 
     public void btnFindTempJob(ActionEvent event){
         String workfieldsStr = tvJobseekers.getSelectionModel().getSelectedItem().workfieldsProperty().get();
-        ArrayList<String> workfields = OversiktHjelper.stringToList(workfieldsStr);
+        ArrayList<String> workfields = ViewHelper.stringToList(workfieldsStr);
 
-        OversiktHjelper chosenWorkfields = new OversiktHjelper();
+        ViewHelper chosenWorkfields = new ViewHelper();
         chosenWorkfields.setValgteKategorier(workfields);
 
         String phoneNo = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
-        findJobbsoker(phoneNo);
+        findJobseeker(phoneNo);
 
-        NavigationHelper.changePange("/org/openjfx/resultatVikariater.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/resultatVikariater.fxml", event);
     }
 }

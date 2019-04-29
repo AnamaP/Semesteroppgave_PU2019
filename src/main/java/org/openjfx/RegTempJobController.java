@@ -1,15 +1,16 @@
 package org.openjfx;
 
+import klasser.Company;
 import logikk.*;
 import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import klasser.Arbeidsgiver;
+
 import java.io.*;
 
-import static logikk.OversiktHjelper.chosenRow;
-import static logikk.RegVikariatHjelper.arbeidsgivere;
+import static logikk.ViewHelper.chosenRow;
+import static logikk.RegTempJobHelper.tempJobsList;
 
 public class RegTempJobController {
 
@@ -32,12 +33,12 @@ public class RegTempJobController {
     private void btnRegTempJob(ActionEvent event) {
 
         if(shouldUpdate){
-            arbeidsgivere.remove(arbeidsgivere.get(chosenRow));
+            tempJobsList.remove(tempJobsList.get(chosenRow));
             MainAppHelper reload = new MainAppHelper();
             reload.reloadVikariaterDatabase();
         }
 
-        Arbeidsgiver newTempJob = RegVikariatHjelper.lagVikariat(
+        Company newTempJob = RegTempJobHelper.createTempJob(
                 txtContactPerson, txtPhoneNo, txtSector, txtCompanyName, txtAddress, txtIndustry,
                 txtJobTitle, txtDuration, txtSalary, radioFullTime, radioPartTime,
                 txtQualif, txtDescription, cbxSales, cbxAdmin, cbxIt, cbxEconomy, "Ledig");
@@ -77,41 +78,41 @@ public class RegTempJobController {
             String ut = newTempJob.toString();
 
             // Lagrer til .csv
-            Filhandterer csvFilhandterer = new CsvFilhandterer();
+            FileHandler csvFileHandler = new CsvFileHandler();
             try {
-                csvFilhandterer.skrivTilDB(ut, Paths.VIKARIAT);
+                csvFileHandler.writeToDB(ut, Paths.TEMPJOB);
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
 
             //Tar brukeren til visning:
-            NavigationHelper.changePange("/org/openjfx/oversiktVikariater.fxml", event);
+            NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
         }
     }
 
     @FXML
     private void btnBack(ActionEvent event) {
         //Tar brukeren tilbake til index:
-        NavigationHelper.changePange("/org/openjfx/index.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/index.fxml", event);
     }
 
     public void setData(int valgtArbeidsgiver){
-        Arbeidsgiver tempJob = arbeidsgivere.get(valgtArbeidsgiver);
+        Company tempJob = tempJobsList.get(valgtArbeidsgiver);
         System.out.println("int: "+valgtArbeidsgiver);
         System.out.println(tempJob.toString());
 
-        txtContactPerson.setText(tempJob.getKontaktperson());
-        txtPhoneNo.setText(tempJob.getTlf());
-        txtSector.setText(tempJob.getSektor());
-        txtCompanyName.setText(tempJob.getFirmanavn());
-        txtAddress.setText(tempJob.getAdresse());
-        txtIndustry.setText(tempJob.getBransje());
-        txtJobTitle.setText(tempJob.getBransje());
-        txtQualif.setText(tempJob.getVikariat().getKvalifikasjoner());
-        txtDuration.setText(tempJob.getVikariat().getVarighet());
-        txtSalary.setText(tempJob.getVikariat().getLonn());
-        txtDescription.setText(tempJob.getVikariat().getBeskrivelse());
+        txtContactPerson.setText(tempJob.getContactPerson());
+        txtPhoneNo.setText(tempJob.getPhoneNo());
+        txtSector.setText(tempJob.getSector());
+        txtCompanyName.setText(tempJob.getCompanyName());
+        txtAddress.setText(tempJob.getAddress());
+        txtIndustry.setText(tempJob.getIndustry());
+        txtJobTitle.setText(tempJob.getIndustry());
+        txtQualif.setText(tempJob.getTempJob().getQualif());
+        txtDuration.setText(tempJob.getTempJob().getDuration());
+        txtSalary.setText(tempJob.getTempJob().getSalary());
+        txtDescription.setText(tempJob.getTempJob().getDescription());
 
         shouldUpdate = true;
     }

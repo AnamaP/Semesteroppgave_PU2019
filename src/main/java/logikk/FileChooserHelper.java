@@ -1,13 +1,13 @@
 package logikk;
 
-import filbehandling.CsvFilhandterer;
-import filbehandling.Filhandterer;
-import filbehandling.JobjFilhandterer;
+import filbehandling.CsvFileHandler;
+import filbehandling.FileHandler;
+import filbehandling.JobjFileHandler;
 import javafx.stage.Stage;
 
 import java.io.*;
 
-public class FileChooserHjelper {
+public class FileChooserHelper {
     final static int SAVE_FLAG = 1;
     final static int OPEN_FLAG = 2;
 
@@ -41,42 +41,42 @@ public class FileChooserHjelper {
     }
 
     // Metode som sjekker hvilket filformat bruker har valgt
-    public static Filhandterer getExtensionFilter(String chosenpath){
-        Filhandterer filhandterer;
-        String extension = Filhandterer.getExtension(chosenpath);
+    public static FileHandler getExtensionFilter(String chosenpath){
+        FileHandler fileHandler;
+        String extension = FileHandler.getExtension(chosenpath);
 
         if(extension.equals(".csv")){
-            filhandterer = new CsvFilhandterer();
+            fileHandler = new CsvFileHandler();
         }
         else{
-            filhandterer = new JobjFilhandterer();
+            fileHandler = new JobjFileHandler();
         }
-        return filhandterer;
+        return fileHandler;
 
     }
 
     // Skal lese innhold fra lokal fil, sjekke at det stemmer, legge elementet til i arrayet og oppdatere tabellen
     // chosenpath er filen man velger til å laste opp, mens path er dit den skal
-    public static void lastOpp(String path){
+    public static void upload(String path){
         String chosenpath = openDialog();
 
-        Filhandterer filhandterer = getExtensionFilter(chosenpath);
-        Object object = filhandterer.henteFraFil(getPathBase(chosenpath));
+        FileHandler fileHandler = getExtensionFilter(chosenpath);
+        Object object = fileHandler.readFromFile(getPathBase(chosenpath));
 
         try {
-            filhandterer.skrivTilDB(object, path);
+            fileHandler.writeToDB(object, path);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void lastNed(Object object) {
+    public static void download(Object object) {
         String chosenpath = saveDialog();
-        Filhandterer filhandterer = getExtensionFilter(chosenpath);
+        FileHandler fileHandler = getExtensionFilter(chosenpath);
 
         try {
-            filhandterer.skrivTilFil(object, chosenpath);
+            fileHandler.writeToFile(object, chosenpath);
         }
         catch (IOException e) {
             e.printStackTrace();

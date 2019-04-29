@@ -9,10 +9,10 @@ import javafx.scene.control.TableView;
 import logikk.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import static logikk.OversiktHjelper.chosenRow;
-import static logikk.OversiktSokereHjelper.findJobbsoker;
-import static logikk.RegSokerHjelper.jobbsokere;
-import static logikk.RegVikariatHjelper.arbeidsgivere;
+import static logikk.ViewHelper.chosenRow;
+import static logikk.ViewJobseekerHelper.findJobseeker;
+import static logikk.RegJobseekerHelper.jobseekersList;
+import static logikk.RegTempJobHelper.tempJobsList;
 
 
 public class MatchingJobseekersController implements Initializable {
@@ -44,25 +44,25 @@ public class MatchingJobseekersController implements Initializable {
         tcExperience.setCellValueFactory(cellData->cellData.getValue().experienceProperty());
         tcWorkfields.setCellValueFactory(cellData->cellData.getValue().workfieldsProperty());
 
-        tvJobseekers.setItems(OversiktSokereHjelper.visResultat());
+        tvJobseekers.setItems(ViewJobseekerHelper.showResults());
     }
 
     public void btnBack(ActionEvent event) {
         //Tar brukeren tilbake til oversikten:
-        NavigationHelper.changePange("/org/openjfx/oversiktVikariater.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     public void btnEmploy(ActionEvent event) {
         String phoneNo = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
-        findJobbsoker(phoneNo);
+        findJobseeker(phoneNo);
 
-        arbeidsgivere.get(chosenRow).getVikariat().setStatus("Besatt");
-        jobbsokere.get(chosenRow).setStatus("Ansatt");
+        tempJobsList.get(chosenRow).getTempJob().setStatus("Besatt");
+        jobseekersList.get(chosenRow).setStatus("Ansatt");
 
         MainAppHelper reload = new MainAppHelper();
         reload.reloadVikariaterDatabase();
         reload.reloadJobbsokerDatabase();
 
-        NavigationHelper.changePange("/org/openjfx/oversiktVikariater.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
     }
 }

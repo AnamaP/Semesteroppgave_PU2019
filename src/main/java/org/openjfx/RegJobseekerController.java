@@ -5,10 +5,10 @@ import filbehandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import klasser.Jobbsoker;
+import klasser.Jobseeker;
 import java.io.IOException;
-import static logikk.OversiktHjelper.chosenRow;
-import static logikk.RegSokerHjelper.jobbsokere;
+import static logikk.ViewHelper.chosenRow;
+import static logikk.RegJobseekerHelper.jobseekersList;
 
 public class RegJobseekerController {
 
@@ -28,12 +28,12 @@ public class RegJobseekerController {
 
     public void btnRegJobseeker(ActionEvent event) {
         if(shouldUpdate){
-            jobbsokere.remove(chosenRow);
+            jobseekersList.remove(chosenRow);
             MainAppHelper reload = new MainAppHelper();
             reload.reloadJobbsokerDatabase();
         }
 
-        Jobbsoker newJobseeker = RegSokerHjelper.nySoker(txtFirstname, txtLastname, txtAddress, txtZipcode, txtPostal,
+        Jobseeker newJobseeker = RegJobseekerHelper.newSeeker(txtFirstname, txtLastname, txtAddress, txtZipcode, txtPostal,
                 txtPhoneNo, txtEmail, txtAge, choiseEducation, choiseStudy, txtExperience, txtReference, txtSalary, cbxSales,
                 cbxAdmin, cbxIt, cbxEconomy, "Ledig");
 
@@ -69,35 +69,35 @@ public class RegJobseekerController {
         String input = newJobseeker.toString();
 
         // Lagrer til .csv
-        Filhandterer csvFileHandler = new CsvFilhandterer();
+        FileHandler csvFileHandler = new CsvFileHandler();
         try {
-            csvFileHandler.skrivTilDB(input, Paths.JOBBSOKER);
+            csvFileHandler.writeToDB(input, Paths.JOBSEEKER);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
         //Tar brukeren med til neste side:
-        NavigationHelper.changePange("/org/openjfx/oversiktSokere.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
         }
     }
 
     public void btnBack(ActionEvent event) {
         //Tar brukeren tilbake til index:
-        NavigationHelper.changePange("/org/openjfx/index.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/index.fxml", event);
     }
 
     public void setData(){
-        Jobbsoker jobseeker = jobbsokere.get(chosenRow);
+        Jobseeker jobseeker = jobseekersList.get(chosenRow);
         System.out.println("int: "+ chosenRow);
         System.out.println(jobseeker.toString());
 
         txtFirstname.setText(jobseeker.getFirstname());
         txtLastname.setText(jobseeker.getLastname());
         txtAddress.setText(jobseeker.getAddress());
-        txtZipcode.setText(jobseeker.getZipcode());
+        txtZipcode.setText(jobseeker.getZipCode());
         txtPostal.setText(jobseeker.getPostal());
-        txtPhoneNo.setText(jobseeker.getTlf());
+        txtPhoneNo.setText(jobseeker.getPhoneNo());
         txtEmail.setText(jobseeker.getEmail());
         txtAge.setText(jobseeker.getAge());
         txtSalary.setText(jobseeker.getSalary());

@@ -1,14 +1,14 @@
 package klasser;
 
-public class Jobbsoker extends Person {
+public class Jobseeker extends Person {
     private Cv cv;
     private String salary;
     private String status;
 
 
-    public Jobbsoker(String firstname, String lastname, String adderss, String zipcode, String postal, String tlf,
+    public Jobseeker(String firstname, String lastname, String adderss, String zipCode, String postal, String tlf,
                      String email, String age, Cv cv, String status) {
-        super(firstname, lastname, adderss, zipcode, postal, tlf, email, age);
+        super(firstname, lastname, adderss, zipCode, postal, tlf, email, age);
         this.cv = cv;
         this.salary = "";
         this.status = status;
@@ -32,7 +32,6 @@ public class Jobbsoker extends Person {
 
     @Override
     public String toString(){
-        String ut = super.toString() +";"+ salary +";"+cv.toString()+";"+status;
-        return ut;
+        return super.toString() +";"+ salary +";"+cv.toString()+";"+status;
     }
 }

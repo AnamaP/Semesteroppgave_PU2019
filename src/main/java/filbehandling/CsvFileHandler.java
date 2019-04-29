@@ -2,20 +2,20 @@ package filbehandling;
 
 import java.io.*;
 
-public class CsvFilhandterer extends Filhandterer {
+public class CsvFileHandler extends FileHandler {
 
     // TODO: Metode for validering
 
     @Override
-    public Object henteFraFil(String path) {
-        String innhold = "";
+    public Object readFromFile(String path) {
+        String content = "";
 
         // TODO: en metode som kaller på validering av filen man forsøker å laste opp (null, tlf) - at formateringen er tilnærmet riktig (int)
 
-        try(RandomAccessFile lesFil = new RandomAccessFile(path+".csv", "r")){
-            String rad;
-            while((rad = lesFil.readLine()) != null){
-                innhold += rad + "\n";
+        try(RandomAccessFile readFile = new RandomAccessFile(path+".csv", "r")){
+            String row;
+            while((row = readFile.readLine()) != null){
+                content += row + "\n";
             }
         }
         catch(FileNotFoundException e){
@@ -24,12 +24,12 @@ public class CsvFilhandterer extends Filhandterer {
         catch(IOException e){
             System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
-        return innhold;
+        return content;
     }
 
 
     @Override
-    public void skrivTilFil(Object object, String path) throws IOException {
+    public void writeToFile(Object object, String path) throws IOException {
         PrintWriter writer = null;
 
         try{
@@ -46,7 +46,7 @@ public class CsvFilhandterer extends Filhandterer {
     }
 
     @Override
-    public void skrivTilDB(Object object, String path) throws IOException {
-        skrivTilFil(object, path+".csv");
+    public void writeToDB(Object object, String path) throws IOException {
+        writeToFile(object, path+".csv");
     }
 }

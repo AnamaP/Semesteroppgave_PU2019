@@ -36,7 +36,7 @@
             </columns>
         </TableView>
         <Button layoutX="629.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnEdit" prefHeight="27.0" prefWidth="83.0" text="Rediger" />
-        <Button layoutX="536.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnDelete" prefHeight="27.0" prefWidth="83.0" text="Slett" />
+        <Button layoutX="536.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnDeleteChosenTempJob" prefHeight="27.0" prefWidth="83.0" text="Slett" />
         <Button layoutX="348.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnDownload" prefHeight="27.0" prefWidth="83.0" text="Last ned" />
         <Button layoutX="255.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnUpload" prefHeight="27.0" prefWidth="83.0" text="Last opp" />
         <Button layoutX="852.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnFindJobseekers" prefHeight="27.0" prefWidth="160.0" text="Finn passende vikarer" />

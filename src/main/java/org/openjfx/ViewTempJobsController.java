@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static logikk.OversiktHjelper.chosenRow;
-import static logikk.OversiktVikariaterHjelper.*;
+import static logikk.ViewHelper.chosenRow;
+import static logikk.ViewTempJobsHelper.*;
 
 public class ViewTempJobsController implements Initializable {
 
@@ -49,10 +49,10 @@ public class ViewTempJobsController implements Initializable {
         tcWorkfields.setCellValueFactory(cellData->cellData.getValue().workfieldsProperty());
         tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
-        tvTempJobs.setItems(visVikariater());
+        tvTempJobs.setItems(viewTempJobs());
 
         // Muliggjør sortering og filtrering av data i tabellen.
-        FilteredList<TableTempJobs> filteredData = new FilteredList<>(visVikariater(), p-> true);
+        FilteredList<TableTempJobs> filteredData = new FilteredList<>(viewTempJobs(), p-> true);
 
         // Bruker Listener til å fange opp endringer.
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(tempJob -> {
@@ -83,31 +83,31 @@ public class ViewTempJobsController implements Initializable {
 
     @FXML
     private void btnBack(ActionEvent event){
-        NavigationHelper.changePange("/org/openjfx/index.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/index.fxml", event);
     }
 
     public void btnDownload(ActionEvent event) {
         String key = tvTempJobs.getSelectionModel().getSelectedItem().phoneNoProperty().get();
-        OversiktVikariaterHjelper.saveTempJob(key);
+        ViewTempJobsHelper.saveTempJob(key);
     }
 
     public void btnUpload(ActionEvent event) {
-        FileChooserHjelper.lastOpp(Paths.VIKARIAT);
-        NavigationHelper.changePange("/org/openjfx/oversiktVikariater.fxml", event);
+        FileChooserHelper.upload(Paths.TEMPJOB);
+        NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     public void btnReadMore(ActionEvent event) {
         String key = tvTempJobs.getSelectionModel().getSelectedItem().phoneNoProperty().get();
 
-        String title = OversiktVikariaterHjelper.lesMerTittel(key);
-        String message = OversiktVikariaterHjelper.lesMerInnhold(key);
+        String title = ViewTempJobsHelper.readMoreTitle(key);
+        String message = ViewTempJobsHelper.readMoreContent(key);
 
         AlertHelper.showMoreInfo(title,message);
     }
 
     public void btnEdit(ActionEvent event) throws IOException {
         String key = tvTempJobs.getSelectionModel().getSelectedItem().getPhoneNo();
-        findArbeidsgiver(key);
+        findTempJob(key);
 
         // Load FXML
         URL url = getClass().getResource("/org/openjfx/regVikariat.fxml");
@@ -121,11 +121,11 @@ public class ViewTempJobsController implements Initializable {
         Scene scene = new Scene(parent);
         stage.setScene(scene);
 
-        //NavigeringsHjelper.changePange("/org/openjfx/regVikariat.fxml", event);
+        //NavigeringsHjelper.changePage("/org/openjfx/regVikariat.fxml", event);
 
     }
 
-    public void btnDelete(ActionEvent event) {
+    public void btnDeleteChosenTempJob(ActionEvent event) {
         // TODO: kontrollsjekke at man ikke kan registreres med duplikate tlf nr
         String message = tvTempJobs.getSelectionModel().getSelectedItem().getJobTitle();
         Alert question = new Alert(Alert.AlertType.CONFIRMATION);
@@ -136,12 +136,12 @@ public class ViewTempJobsController implements Initializable {
         if (result.get() == ButtonType.OK) {
             // utføres sletting
             String key = tvTempJobs.getSelectionModel().getSelectedItem().phoneNoProperty().get();
-            OversiktVikariaterHjelper.slettValgtVikariat(key);
+            ViewTempJobsHelper.deleteChosenTempJob(key);
 
             MainAppHelper run = new MainAppHelper();
             run.reloadVikariaterDatabase();
 
-            NavigationHelper.changePange("/org/openjfx/oversiktVikariater.fxml", event);
+            NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
         }
         else {
             // Avbryter sletting..
@@ -150,15 +150,15 @@ public class ViewTempJobsController implements Initializable {
 
     public void btnFindJobseekers(ActionEvent event) {
         String workfieldsStr = tvTempJobs.getSelectionModel().getSelectedItem().workfieldsProperty().get();
-        ArrayList<String> workfields = OversiktHjelper.stringToList(workfieldsStr);
+        ArrayList<String> workfields = ViewHelper.stringToList(workfieldsStr);
 
-        OversiktHjelper chosenWorkfields = new OversiktHjelper();
+        ViewHelper chosenWorkfields = new ViewHelper();
         chosenWorkfields.setValgteKategorier(workfields);
 
         String phoneNo = tvTempJobs.getSelectionModel().getSelectedItem().getPhoneNo();
-        findArbeidsgiver(phoneNo);
+        findTempJob(phoneNo);
 
-        NavigationHelper.changePange("/org/openjfx/resultatSokere.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/resultatSokere.fxml", event);
     }
 }
 

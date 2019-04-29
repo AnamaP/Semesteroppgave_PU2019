@@ -1,17 +1,17 @@
 package logikk;
 
-import filbehandling.CsvFilhandterer;
-import klasser.Arbeidsgiver;
+import filbehandling.CsvFileHandler;
+import klasser.Company;
 import klasser.Cv;
-import klasser.Jobbsoker;
+import klasser.Jobseeker;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import static logikk.RegSokerHjelper.jobbsokere;
-import static logikk.RegVikariatHjelper.arbeidsgivere;
+import static logikk.RegJobseekerHelper.jobseekersList;
+import static logikk.RegTempJobHelper.tempJobsList;
 
 public class MainAppHelper {
 
@@ -21,8 +21,8 @@ public class MainAppHelper {
     }
 
     public void loadJobbsokerCsv(){
-        CsvFilhandterer test = new CsvFilhandterer();
-        String sokereFraDatabase = (String) test.henteFraFil(Paths.JOBBSOKER);
+        CsvFileHandler test = new CsvFileHandler();
+        String sokereFraDatabase = (String) test.readFromFile(Paths.JOBSEEKER);
 
         String [] rader = sokereFraDatabase.split("\n");
 
@@ -42,22 +42,22 @@ public class MainAppHelper {
                     cv.setReference(soker[12]);
                 }
 
-                Jobbsoker jobbsoker = new Jobbsoker(soker[0], soker[1], soker[2], soker[3], soker[4],
+                Jobseeker jobseeker = new Jobseeker(soker[0], soker[1], soker[2], soker[3], soker[4],
                         soker[5], soker[6], soker[7], cv, soker[soker.length - 1]);
 
                 // hvis lønnskrav er satt så...
                 if(soker[8] != ""){
-                    jobbsoker.setSalary(soker[8]);
+                    jobseeker.setSalary(soker[8]);
                 }
 
-                jobbsokere.add(jobbsoker);
+                jobseekersList.add(jobseeker);
             }
         }
     }
 
     public void loadVikariatCsv(){
-        CsvFilhandterer test = new CsvFilhandterer();
-        String vikariaterFraDatabase = (String) test.henteFraFil(Paths.VIKARIAT);
+        CsvFileHandler test = new CsvFileHandler();
+        String vikariaterFraDatabase = (String) test.readFromFile(Paths.TEMPJOB);
 
         String [] rader = vikariaterFraDatabase.split("\n");
 
@@ -65,10 +65,10 @@ public class MainAppHelper {
             String[] arbeidsgiver = rader[i].split(";");
 
             if(arbeidsgiver.length > 13) {
-                OversiktHjelper run = new OversiktHjelper();
-                Arbeidsgiver nyArbeidsgiver = run.hentVikariatFraListe(arbeidsgiver);
+                ViewHelper run = new ViewHelper();
+                Company nyCompany = run.getTempJobFromList(arbeidsgiver);
 
-                arbeidsgivere.add(nyArbeidsgiver);
+                tempJobsList.add(nyCompany);
             }
         }
     }
@@ -77,10 +77,10 @@ public class MainAppHelper {
 
         PrintWriter writer = null;
         try{
-            FileWriter fileWriter = new FileWriter(Paths.JOBBSOKER+".csv", false);
+            FileWriter fileWriter = new FileWriter(Paths.JOBSEEKER +".csv", false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            for(int a = 0; a < jobbsokere.size(); a++) {
-                printWriter.println(jobbsokere.get(a));  //New line
+            for(int a = 0; a < jobseekersList.size(); a++) {
+                printWriter.println(jobseekersList.get(a));  //New line
             }
             printWriter.close();
         } catch (IOException e) {
@@ -96,10 +96,10 @@ public class MainAppHelper {
 
         PrintWriter writer = null;
         try{
-            FileWriter fileWriter = new FileWriter(Paths.VIKARIAT+".csv", false);
+            FileWriter fileWriter = new FileWriter(Paths.TEMPJOB +".csv", false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            for(int a = 0; a < arbeidsgivere.size(); a++) {
-                printWriter.println(arbeidsgivere.get(a));  //New line
+            for(int a = 0; a < tempJobsList.size(); a++) {
+                printWriter.println(tempJobsList.get(a));  //New line
             }
             printWriter.close();
         } catch (IOException e) {

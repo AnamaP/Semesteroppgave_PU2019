@@ -4,7 +4,7 @@ import exceptions.*;
 
 import java.util.regex.Pattern;
 
-import static logikk.RegSokerHjelper.jobbsokere;
+import static logikk.RegJobseekerHelper.jobseekersList;
 
 public class ValidationChecker {
     private String invalidInputs = "";
@@ -119,8 +119,8 @@ public class ValidationChecker {
 
     private boolean checkIfDuplicatePhoneNmbr(String phoneNmbr) throws InvalidDuplicatePhoneNmbrException {
         boolean duplicates = false;
-        for (int i = 0; i < jobbsokere.size(); i++) {
-            if (jobbsokere.get(i).getTlf().equals(phoneNmbr)) {
+        for (int i = 0; i < jobseekersList.size(); i++) {
+            if (jobseekersList.get(i).getPhoneNo().equals(phoneNmbr)) {
                 throw new InvalidDuplicatePhoneNmbrException("Duplikat telefonnr!");
             }
             duplicates=true;
@@ -231,7 +231,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidValueSelectedIsNullException e){
-            invalidInputs += "Utdanning/studieretning er ikke valgt, vennligst velg en \n";
+            invalidInputs += "Utdanning/study er ikke valgt, vennligst velg en \n";
         }
         return false;
     }

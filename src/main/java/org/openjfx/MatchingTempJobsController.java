@@ -11,10 +11,10 @@ import logikk.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static logikk.OversiktHjelper.chosenRow;
-import static logikk.OversiktSokereHjelper.findJobbsoker;
-import static logikk.RegSokerHjelper.jobbsokere;
-import static logikk.RegVikariatHjelper.arbeidsgivere;
+import static logikk.ViewHelper.chosenRow;
+import static logikk.ViewJobseekerHelper.findJobseeker;
+import static logikk.RegJobseekerHelper.jobseekersList;
+import static logikk.RegTempJobHelper.tempJobsList;
 
 public class MatchingTempJobsController implements Initializable {
     // TODO: Legge til ekstra felt som skal vises i guiresultatet
@@ -39,36 +39,36 @@ public class MatchingTempJobsController implements Initializable {
         tcJobTitle.setCellValueFactory(cellData->cellData.getValue().jobTitleProperty());
         tcKWorkfields.setCellValueFactory(cellData->cellData.getValue().workfieldsProperty());
 
-        tvTempJobs.setItems(OversiktVikariaterHjelper.visResultat());
+        tvTempJobs.setItems(ViewTempJobsHelper.showResults());
         setTableEditable();
     }
 
     public void btnBack(ActionEvent event) {
         //Tar brukeren tilbake til oversikten:
-        NavigationHelper.changePange("/org/openjfx/oversiktSokere.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
     }
 
     public void btnReadMore(ActionEvent event) {
         String key = tvTempJobs.getSelectionModel().getSelectedItem().phoneNoProperty().get();
 
-        String title = OversiktVikariaterHjelper.lesMerTittel(key);
-        String message = OversiktVikariaterHjelper.lesMerInnhold(key);
+        String title = ViewTempJobsHelper.readMoreTitle(key);
+        String message = ViewTempJobsHelper.readMoreContent(key);
 
         AlertHelper.showMoreInfo(title,message);
     }
 
     public void btnEmploy(ActionEvent event) {
         String phoneNo = tvTempJobs.getSelectionModel().getSelectedItem().getPhoneNo();
-        findJobbsoker(phoneNo);
+        findJobseeker(phoneNo);
 
-        arbeidsgivere.get(chosenRow).getVikariat().setStatus("Besatt");
-        jobbsokere.get(chosenRow).setStatus("Ansatt");
+        tempJobsList.get(chosenRow).getTempJob().setStatus("Besatt");
+        jobseekersList.get(chosenRow).setStatus("Ansatt");
 
         MainAppHelper reload = new MainAppHelper();
         reload.reloadVikariaterDatabase();
         reload.reloadJobbsokerDatabase();
 
-        NavigationHelper.changePange("/org/openjfx/oversiktSokere.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
     }
 
     private void setTableEditable() {

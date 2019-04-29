@@ -2,13 +2,13 @@ package filbehandling;
 
 import java.io.*;
 
-public class JobjFilhandterer extends Filhandterer {
+public class JobjFileHandler extends FileHandler {
     @Override
-    public Object henteFraFil(String path) {
+    public Object readFromFile(String path) {
         try(FileInputStream fileInput = new FileInputStream(path+".jobj");
             ObjectInputStream objectInput = new ObjectInputStream(fileInput)){
-            Object hentPerson = objectInput.readObject();
-            return hentPerson;
+            Object readObject = objectInput.readObject();
+            return readObject;
         }
         catch(IOException e){
             System.err.println("Kunne ikke lese fil. Feilmelding : " + e.getCause());
@@ -20,7 +20,7 @@ public class JobjFilhandterer extends Filhandterer {
     }
 
     @Override
-    public void skrivTilFil(Object object, String path) throws IOException {
+    public void writeToFile(Object object, String path) throws IOException {
         try(FileOutputStream fileOutput = new FileOutputStream(path);
             ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput)){
             objectOutput.writeObject(object);
@@ -30,8 +30,8 @@ public class JobjFilhandterer extends Filhandterer {
         }
     }
 
-    public void skrivTilDB(Object object, String path) throws IOException {
-        Filhandterer filhandterer = new CsvFilhandterer();
-        filhandterer.skrivTilFil(object, path+".csv");
+    public void writeToDB(Object object, String path) throws IOException {
+        FileHandler fileHandler = new CsvFileHandler();
+        fileHandler.writeToFile(object, path+".csv");
     }
 }
