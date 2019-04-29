@@ -1,14 +1,14 @@
 package org.openjfx;
 
-import logikk.*;
-import filbehandling.*;
+import logic.*;
+import fileHandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import klasser.Jobseeker;
+import classes.Jobseeker;
 import java.io.IOException;
-import static logikk.ViewHelper.chosenRow;
-import static logikk.RegJobseekerHelper.jobseekersList;
+import static logic.ViewHelper.chosenRow;
+import static logic.RegJobseekerHelper.jobseekersList;
 
 public class RegJobseekerController {
 

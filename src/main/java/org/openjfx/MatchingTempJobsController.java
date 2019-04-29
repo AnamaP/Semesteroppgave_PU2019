@@ -6,15 +6,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import logikk.*;
+import logic.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static logikk.ViewHelper.chosenRow;
-import static logikk.ViewJobseekerHelper.findJobseeker;
-import static logikk.RegJobseekerHelper.jobseekersList;
-import static logikk.RegTempJobHelper.tempJobsList;
+import static logic.ViewHelper.chosenRow;
+import static logic.ViewJobseekerHelper.findJobseeker;
+import static logic.RegJobseekerHelper.jobseekersList;
+import static logic.RegTempJobHelper.tempJobsList;
 
 public class MatchingTempJobsController implements Initializable {
     // TODO: Legge til ekstra felt som skal vises i guiresultatet

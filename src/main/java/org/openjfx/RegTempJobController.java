@@ -1,16 +1,16 @@
 package org.openjfx;
 
-import klasser.Company;
-import logikk.*;
-import filbehandling.*;
+import classes.Company;
+import logic.*;
+import fileHandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.*;
 
-import static logikk.ViewHelper.chosenRow;
-import static logikk.RegTempJobHelper.tempJobsList;
+import static logic.ViewHelper.chosenRow;
+import static logic.RegTempJobHelper.tempJobsList;
 
 public class RegTempJobController {
 

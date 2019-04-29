@@ -11,14 +11,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import logikk.*;
+import logic.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static logikk.ViewJobseekerHelper.*;
+import static logic.ViewJobseekerHelper.*;
 
 public class ViewJobseekersController implements Initializable {
 
