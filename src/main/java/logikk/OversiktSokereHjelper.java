@@ -8,15 +8,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 import static logikk.OversiktHjelper.chosenRow;
+import static logikk.OversiktHjelper.valgteKategorier;
 import static logikk.RegSokerHjelper.jobbsokere;
 
 public class OversiktSokereHjelper {
-
-    private static ArrayList<String> valgteKategorier;
-
-    public void setValgteKategorier(ArrayList<String> valgteKategorier) {
-        this.valgteKategorier = valgteKategorier;
-    }
 
     public static ObservableList<TabellSokere> visJobbsokere() {
 
@@ -30,18 +25,12 @@ public class OversiktSokereHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 14){
-                    ArrayList<String> kategorier = new ArrayList<>();
-                    for(int i = 13; i < kolonner.length-1; i++) {
-                        kategorier.add(kolonner[i]);
-                    }
-
-                    Cv cv = new Cv(kolonner[9],kolonner[10],kolonner[11],kategorier);
-
-                    Jobbsoker tabell = new Jobbsoker(kolonner[0],kolonner[1],kolonner[2],kolonner[3],kolonner[4],
-                                                     kolonner[5],kolonner[6],kolonner[7],cv, kolonner[kolonner.length-1]);
-
-                    TabellSokere oversiktSokere = new TabellSokere(tabell);
+                if(kolonner.length > 13){
+                    OversiktHjelper run = new OversiktHjelper();
+                    //Henter en jobbsoker fra listen:
+                    Jobbsoker jobbsoker = run.hentSokerFraListe(kolonner);
+                    //Legger søkeren til i tabellen:
+                    TabellSokere oversiktSokere = new TabellSokere(jobbsoker);
                     jobseekerList.add(oversiktSokere);
                 }
             }
@@ -68,27 +57,16 @@ public class OversiktSokereHjelper {
                 String [] kolonner = rad.split(";");
 
                 if(kolonner.length > 13) {
-
-                    ArrayList<String> kategorier = new ArrayList<>();
-                    for (int i = 13; i < kolonner.length -1; i++) {
-                        kategorier.add(kolonner[i]);
-                    }
-
-                    //Denne henter kun søkerne som passer til alle kategoriene vikariatet spør om (+ evt ekstra kategorier søkeren måtte ha):
-                    int antall = 0;
-                    for(int i = 0; i < valgteKategorier.size(); i++) {
-                        if (kategorier.toString().contains(valgteKategorier.get(i))) {
-                            antall++;
-                        }
-                    }
-
+                    OversiktHjelper run = new OversiktHjelper();
+                    //Henter ut en jobbsøker fra listen:
+                    Jobbsoker jobbsoker = run.hentSokerFraListe(kolonner);
+                    //Henter ut jobbsokerens kategorier:
+                    ArrayList<String> kategorier = run.hentKategorier(kolonner,13);
+                    //Finner antall felles kategorier
+                    int antall = run.sjekkKategorier(kategorier);
+                    //Om søkeren har mange nok kategorier legges den til i tabellen:
                     if((antall == valgteKategorier.size()) && (kolonner[kolonner.length-1].equals("Ledig"))){
-                        Cv cv = new Cv(kolonner[9], kolonner[10], kolonner[11], kategorier);
-
-                        Jobbsoker tabell = new Jobbsoker(kolonner[0], kolonner[1], kolonner[2], kolonner[3], kolonner[4],
-                                kolonner[5], kolonner[6], kolonner[7], cv, kolonner[kolonner.length-1]);
-
-                        TabellSokere oversiktSokere = new TabellSokere(tabell);
+                        TabellSokere oversiktSokere = new TabellSokere(jobbsoker);
                         showResults.add(oversiktSokere);
                     }
                 }

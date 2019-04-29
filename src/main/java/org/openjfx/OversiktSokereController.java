@@ -149,11 +149,10 @@ public class OversiktSokereController implements Initializable {
     }
 
     public void btnFinnVikariater(ActionEvent event){
-
         String kategoriStr = tvOversiktSokere.getSelectionModel().getSelectedItem().kategorierProperty().get();
         ArrayList<String> kategorier = OversiktHjelper.stringToList(kategoriStr);
 
-        OversiktVikariaterHjelper valgteKategorier = new OversiktVikariaterHjelper();
+        OversiktHjelper valgteKategorier = new OversiktHjelper();
         valgteKategorier.setValgteKategorier(kategorier);
 
         String tlf = tvOversiktSokere.getSelectionModel().getSelectedItem().getTlf();

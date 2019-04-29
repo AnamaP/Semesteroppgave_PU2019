@@ -152,7 +152,7 @@ public class OversiktVikariaterController implements Initializable {
         String kategoriStr = tvOversiktVikariater.getSelectionModel().getSelectedItem().kategorierProperty().get();
         ArrayList<String> kategorier = OversiktHjelper.stringToList(kategoriStr);
 
-        OversiktSokereHjelper valgteKategorier = new OversiktSokereHjelper();
+        OversiktHjelper valgteKategorier = new OversiktHjelper();
         valgteKategorier.setValgteKategorier(kategorier);
 
         String tlf = tvOversiktVikariater.getSelectionModel().getSelectedItem().getTlf();

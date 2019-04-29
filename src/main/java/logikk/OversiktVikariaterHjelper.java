@@ -8,15 +8,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 import static logikk.OversiktHjelper.chosenRow;
+import static logikk.OversiktHjelper.valgteKategorier;
 import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class OversiktVikariaterHjelper {
-
-    private static ArrayList<String> valgteKategorier;
-
-    public void setValgteKategorier(ArrayList<String> valgteKategorier) {
-        this.valgteKategorier = valgteKategorier;
-    }
 
     public static ObservableList<TabellVikariater> visVikariater() {
         // Oppretter en tabell
@@ -29,7 +24,7 @@ public class OversiktVikariaterHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 11){
+                if(kolonner.length > 12){
 
                     ArrayList<String> kategorier = new ArrayList<>();
                     for(int i = 12; i < kolonner.length-1; i++) {
@@ -68,7 +63,7 @@ public class OversiktVikariaterHjelper {
             while ((rad = csvreader.readLine()) != null){
                 String [] kolonner = rad.split(";");
 
-                if(kolonner.length > 11) {
+                if(kolonner.length > 12) {
 
                     ArrayList<String> kategorier = new ArrayList<>();
                     for (int i = 12; i < kolonner.length-1; i++) {
@@ -76,14 +71,8 @@ public class OversiktVikariaterHjelper {
                     }
 
                     //Denne henter kun søkerne som passer til alle kategoriene vikariatet spør om (+ evt ekstra kategorier søkeren måtte ha):
-                    int antall = 0;
-                    for(int i = 0; i < valgteKategorier.size(); i++) {
-                        if (kategorier.toString().contains(valgteKategorier.get(i))) {
-                            antall++;
-                        }
-                    }
-
-                    //if((antall == valgteKategorier.size())){
+                    OversiktHjelper run = new OversiktHjelper();
+                    int antall = run.sjekkKategorier(kategorier);
 
                     //Skrivet ut kun en av kategoriene "matcher":
                     if (
