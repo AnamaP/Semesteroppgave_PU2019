@@ -4,62 +4,62 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Cv implements Serializable {
-    private String utdanning;
-    private String studieretning;
-    private String erfaring;
-    private String referanse;
-    private ArrayList<String> kategorier;
+    private String education;
+    private String study;
+    private String experience;
+    private String reference;
+    private ArrayList<String> categories;
 
-    public Cv(String utdanning, String studieretning, String erfaring, ArrayList<String> kategorier) {
-        this.utdanning = utdanning;
-        this.studieretning = studieretning;
-        this.erfaring = erfaring;
-        this.referanse = "";
-        this.kategorier = kategorier;
-    }
-
-    public void setReferanse(String referanse){
-        this.referanse = referanse;
-    }
-    public void setUtdanning(String utdanning) {
-        this.utdanning = utdanning;
-    }
-    public void setStudieretning(String studieretning) {
-        this.studieretning = studieretning;
-    }
-    public void setErfaring(String erfaring) {
-        this.erfaring = erfaring;
-    }
-    public void setKategorier(ArrayList<String> kategorier) {
-        this.kategorier = kategorier;
-    }
-    public String getUtdanning() {
-        return utdanning;
-    }
-    public String getStudieretning() {
-        return studieretning;
-    }
-    public String getErfaring() {
-        return erfaring;
-    }
-    public String getReferanse() {
-        return referanse;
+    public Cv(String education, String stucy, String experience, ArrayList<String> categories) {
+        this.education = education;
+        this.study = stucy;
+        this.experience = experience;
+        this.reference = "";
+        this.categories = categories;
     }
 
-    public String kategorierToString() {
+    public void setReference(String reference){
+        this.reference = reference;
+    }
+    public void setEducation(String education) {
+        this.education = education;
+    }
+    public void setStudy(String study) {
+        this.study = study;
+    }
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
+    }
+    public String getEducation() {
+        return education;
+    }
+    public String getStudy() {
+        return study;
+    }
+    public String getExperience() {
+        return experience;
+    }
+    public String getReference() {
+        return reference;
+    }
+
+    public String categoriesToString() {
         String sb = "";
-        for(int i = 0; i < kategorier.size(); i++){
-            if(i == kategorier.size() -1){
-                sb += kategorier.get(i);
+        for(int i = 0; i < categories.size(); i++){
+            if(i == categories.size() -1){
+                sb += categories.get(i);
             }
             else{
-                sb += kategorier.get(i) + ", ";
+                sb += categories.get(i) + ", ";
             }
         }
         return sb;
     }
 
     public String toString(){
-        return utdanning+";"+studieretning+";"+erfaring+";"+referanse+";"+kategorierToString();
+        return education +";"+ study +";"+ experience +";"+ reference +";"+ categoriesToString();
     }
 }

@@ -24,7 +24,7 @@ public class RegSokerHjelper {
 
         // hvis referanse er satt så...
         if(txtReferanse.getText() != ""){
-            cv.setReferanse(txtReferanse.getText());
+            cv.setReference(txtReferanse.getText());
         }
 
         Jobbsoker nySoker = new Jobbsoker(txtFornavn.getText(), txtEtternavn.getText(), txtAdresse.getText(), txtPostnr.getText(),
@@ -32,7 +32,7 @@ public class RegSokerHjelper {
 
         // hvis lønnskrav er satt så...
         if(txtLonnskrav.getText() != ""){
-            nySoker.setLonnskrav(txtLonnskrav.getText());
+            nySoker.setSalary(txtLonnskrav.getText());
         }
 
         RegSokerHjelper.jobbsokere.add(nySoker);

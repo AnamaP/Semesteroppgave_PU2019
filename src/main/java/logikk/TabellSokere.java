@@ -22,20 +22,20 @@ public class TabellSokere {
     private final SimpleStringProperty status; //16
 
     public TabellSokere(Jobbsoker jobbsoker) {
-        this.fornavn = new SimpleStringProperty(jobbsoker.getFornavn());
-        this.etternavn = new SimpleStringProperty(jobbsoker.getEtternavn());
-        this.adresse = new SimpleStringProperty(jobbsoker.getAdresse());
-        this.postnr = new SimpleStringProperty(jobbsoker.getPostnr());
-        this.poststed = new SimpleStringProperty(jobbsoker.getPoststed());
+        this.fornavn = new SimpleStringProperty(jobbsoker.getFirstname());
+        this.etternavn = new SimpleStringProperty(jobbsoker.getLastname());
+        this.adresse = new SimpleStringProperty(jobbsoker.getAddress());
+        this.postnr = new SimpleStringProperty(jobbsoker.getZipcode());
+        this.poststed = new SimpleStringProperty(jobbsoker.getPostal());
         this.tlf = new SimpleStringProperty(jobbsoker.getTlf());
-        this.epost = new SimpleStringProperty(jobbsoker.getEpost());
-        this.alder = new SimpleStringProperty(jobbsoker.getAlder());
-        this.lonnskrav = new SimpleStringProperty(jobbsoker.getLonnskrav());
-        this.utdanning = new SimpleStringProperty(jobbsoker.getCv().getUtdanning());
-        this.studieretning = new SimpleStringProperty(jobbsoker.getCv().getStudieretning());
-        this.erfaring = new SimpleStringProperty(jobbsoker.getCv().getErfaring());
-        this.referanse = new SimpleStringProperty(jobbsoker.getCv().getReferanse());
-        this.kategorier = new SimpleStringProperty(jobbsoker.getCv().kategorierToString());
+        this.epost = new SimpleStringProperty(jobbsoker.getEmail());
+        this.alder = new SimpleStringProperty(jobbsoker.getAge());
+        this.lonnskrav = new SimpleStringProperty(jobbsoker.getSalary());
+        this.utdanning = new SimpleStringProperty(jobbsoker.getCv().getEducation());
+        this.studieretning = new SimpleStringProperty(jobbsoker.getCv().getStudy());
+        this.erfaring = new SimpleStringProperty(jobbsoker.getCv().getExperience());
+        this.referanse = new SimpleStringProperty(jobbsoker.getCv().getReference());
+        this.kategorier = new SimpleStringProperty(jobbsoker.getCv().categoriesToString());
         this.status = new SimpleStringProperty(jobbsoker.getStatus());
     }
 

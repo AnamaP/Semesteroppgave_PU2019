@@ -86,7 +86,7 @@
          </font>
       </Text>
 
-       <ComboBox fx:id="valgUtdanning" layoutX="28.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg høyeste utdanning*">
+       <ComboBox fx:id="valgUtdanning" layoutX="28.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg høyeste education*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="Vgs" />
@@ -96,7 +96,7 @@
            </items>
        </ComboBox>
 
-       <ComboBox fx:id="valgRetning" layoutX="302.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg studieretning*">
+       <ComboBox fx:id="valgRetning" layoutX="302.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg study*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="It" />

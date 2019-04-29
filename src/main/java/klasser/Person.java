@@ -3,92 +3,92 @@ package klasser;
 import java.io.Serializable;
 
 public class Person implements Serializable {
-    private String fornavn;
-    private String etternavn;
-    private String adresse;
-    private String postnr;
-    private String poststed;
+    private String firstname;
+    private String lastname;
+    private String address;
+    private String zipcode;
+    private String postal;
     private String tlf;
-    private String epost;
-    private String alder;
+    private String email;
+    private String age;
 
-    public Person(String fornavn, String etternavn, String adresse, String postnr, String poststed, String tlf, String epost, String alder) {
+    public Person(String firstname, String surname, String address, String zipcode, String postal, String tlf, String email, String age) {
 
         // Feilhåndtering - sjekk heller her om variabelen er null og kaste en feilmelding
-        if(fornavn != null){
-            this.fornavn = fornavn;
+        if(firstname != null){
+            this.firstname = firstname;
         }
-        if(etternavn != null){
-            this.etternavn = etternavn;
+        if(surname != null){
+            this.lastname = surname;
         }
-        if(adresse != null){
-            this.adresse = adresse;
+        if(address != null){
+            this.address = address;
         }
-        if(postnr != null){
-            this.postnr = postnr;
+        if(zipcode != null){
+            this.zipcode = zipcode;
         }
-        if(poststed != null){
-            this.poststed = poststed;
+        if(postal != null){
+            this.postal = postal;
         }
         if(tlf != null){
             this.tlf = tlf;
         }
-        if(epost != null){
-            this.epost = epost;
+        if(email != null){
+            this.email = email;
         }
-        this.alder = alder;
+        this.age = age;
     }
 
-    public void setFornavn(String fornavn) {
-        this.fornavn = fornavn;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
-    public void setEtternavn(String etternavn) {
-        this.etternavn = etternavn;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setAddress(String address) {
+        this.address = address;
     }
-    public void setPostnr(String postnr) {
-        this.postnr = postnr;
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
-    public void setPoststed(String poststed) {
-        this.poststed = poststed;
+    public void setPostal(String postal) {
+        this.postal = postal;
     }
     public void setTlf(String tlf) {
         this.tlf = tlf;
     }
-    public void setEpost(String epost) {
-        this.epost = epost;
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public void setAlder(String alder) {
-        this.alder = alder;
+    public void setAge(String age) {
+        this.age = age;
     }
-    public String getFornavn() {
-        return fornavn;
+    public String getFirstname() {
+        return firstname;
     }
-    public String getEtternavn() {
-        return etternavn;
+    public String getLastname() {
+        return lastname;
     }
-    public String getAdresse() {
-        return adresse;
+    public String getAddress() {
+        return address;
     }
-    public String getPostnr() {
-        return postnr;
+    public String getZipcode() {
+        return zipcode;
     }
-    public String getPoststed() {
-        return poststed;
+    public String getPostal() {
+        return postal;
     }
     public String getTlf() {
         return tlf;
     }
-    public String getEpost() {
-        return epost;
+    public String getEmail() {
+        return email;
     }
-    public String getAlder() {
-        return alder;
+    public String getAge() {
+        return age;
     }
 
     public String toString() {
-        return fornavn+";"+etternavn+";"+adresse+";"+postnr+";"+poststed+";"+tlf+";"+epost+";"+alder;
+        return firstname +";"+ lastname +";"+ address +";"+ zipcode +";"+ postal +";"+tlf+";"+ email +";"+ age;
     }
 }

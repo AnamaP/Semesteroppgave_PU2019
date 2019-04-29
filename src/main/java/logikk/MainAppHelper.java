@@ -39,7 +39,7 @@ public class MainAppHelper {
 
                 // hvis referanse er satt så...
                 if(soker[12] != ""){
-                    cv.setReferanse(soker[12]);
+                    cv.setReference(soker[12]);
                 }
 
                 Jobbsoker jobbsoker = new Jobbsoker(soker[0], soker[1], soker[2], soker[3], soker[4],
@@ -47,7 +47,7 @@ public class MainAppHelper {
 
                 // hvis lønnskrav er satt så...
                 if(soker[8] != ""){
-                    jobbsoker.setLonnskrav(soker[8]);
+                    jobbsoker.setSalary(soker[8]);
                 }
 
                 jobbsokere.add(jobbsoker);

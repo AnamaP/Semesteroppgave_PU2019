@@ -94,18 +94,18 @@ public class RegSokerController {
         System.out.println("int: "+ chosenRow);
         System.out.println(jobbsoker.toString());
 
-        txtFornavn.setText(jobbsoker.getFornavn());
-        txtEtternavn.setText(jobbsoker.getEtternavn());
-        txtAdresse.setText(jobbsoker.getAdresse());
-        txtPostnr.setText(jobbsoker.getPostnr());
-        txtPoststed.setText(jobbsoker.getPoststed());
+        txtFornavn.setText(jobbsoker.getFirstname());
+        txtEtternavn.setText(jobbsoker.getLastname());
+        txtAdresse.setText(jobbsoker.getAddress());
+        txtPostnr.setText(jobbsoker.getZipcode());
+        txtPoststed.setText(jobbsoker.getPostal());
         txtTlf.setText(jobbsoker.getTlf());
-        txtEpost.setText(jobbsoker.getEpost());
-        txtAlder.setText(jobbsoker.getAlder());
-        txtLonnskrav.setText(jobbsoker.getLonnskrav());
+        txtEpost.setText(jobbsoker.getEmail());
+        txtAlder.setText(jobbsoker.getAge());
+        txtLonnskrav.setText(jobbsoker.getSalary());
 
-        txtErfaring.setText(jobbsoker.getCv().getErfaring());
-        txtReferanse.setText(jobbsoker.getCv().getReferanse());
+        txtErfaring.setText(jobbsoker.getCv().getExperience());
+        txtReferanse.setText(jobbsoker.getCv().getReference());
 
         shouldUpdate = true;
     }
