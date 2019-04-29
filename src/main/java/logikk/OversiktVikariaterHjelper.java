@@ -7,12 +7,12 @@ import klasser.Vikariat;
 import java.io.*;
 import java.util.ArrayList;
 
+import static logikk.OversiktHjelper.chosenRow;
 import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class OversiktVikariaterHjelper {
 
     private static ArrayList<String> valgteKategorier;
-    public static int valgtArbeidsgiver;
 
     public void setValgteKategorier(ArrayList<String> valgteKategorier) {
         this.valgteKategorier = valgteKategorier;
@@ -57,12 +57,12 @@ public class OversiktVikariaterHjelper {
         return obl;
     }
 
-    public static ObservableList<TabellVikariater> visResultat(String path){
+    public static ObservableList<TabellVikariater> visResultat(){
         // Oppretter en tabell
         ObservableList<TabellVikariater> obl = FXCollections.observableArrayList();
 
         try{
-            BufferedReader csvreader = new BufferedReader(new FileReader(path));
+            BufferedReader csvreader = new BufferedReader(new FileReader(Paths.VIKARIAT+".csv"));
             String rad;
 
             while ((rad = csvreader.readLine()) != null){
@@ -119,41 +119,35 @@ public class OversiktVikariaterHjelper {
 
     public static void slettValgtVikariat(String key) {
         findArbeidsgiver(key);
-        arbeidsgivere.remove(arbeidsgivere.get(valgtArbeidsgiver));
+        arbeidsgivere.remove(arbeidsgivere.get(chosenRow));
     }
 
     public static void saveTempJob(String key){
         findArbeidsgiver(key);
-        FileChooserHjelper.lastNed(arbeidsgivere.get(valgtArbeidsgiver));
+        FileChooserHjelper.lastNed(arbeidsgivere.get(chosenRow));
 
         //TODO : Feilmld til bruker om at vikariat ikke er valgt
     }
 
     public static String lesMerTittel(String key){
         findArbeidsgiver(key);
-        return arbeidsgivere.get(valgtArbeidsgiver).getVikariat().getTittel();
+        return arbeidsgivere.get(chosenRow).getVikariat().getTittel();
     }
 
     public static String lesMerInnhold(String key){
         findArbeidsgiver(key);
-        Arbeidsgiver arbeidsgiver = arbeidsgivere.get(valgtArbeidsgiver);
+        Arbeidsgiver arbeidsgiver = arbeidsgivere.get(chosenRow);
         String ut = "";
-        ut += "Beskrivelse: \n" + arbeidsgiver.getVikariat().getBeskrivelse() + "\n";
-        ut += "Kvalifikasjoner: \n" + arbeidsgiver.getVikariat().getKvalifikasjoner() + "\n";
-        ut += "Antatt årslønn: \n" + arbeidsgiver.getVikariat().getLonn() + "\n";
-        ut += "Varighet: \n" + arbeidsgiver.getVikariat().getVarighet() + "\n";
+        ut += "Beskrivelse: \n" + arbeidsgiver.getVikariat().getBeskrivelse() + "\n\n";
+        ut += "Kvalifikasjoner: \n" + arbeidsgiver.getVikariat().getKvalifikasjoner() + "\n\n";
+        ut += "Antatt årslønn: " + arbeidsgiver.getVikariat().getLonn() + "\n\n";
+        ut += "Varighet: " + arbeidsgiver.getVikariat().getVarighet() + "\n\n";
         return ut;
     }
 
     public static void findArbeidsgiver(String key){
-        for(int i = 0; i < arbeidsgivere.size(); i++){
-            String [] row = arbeidsgivere.get(i).toString().split(";");
-            for(int j = 0; j < row.length; j++){
-                if(row[j].equals(key)){
-                    valgtArbeidsgiver = i;
-                }
-            }
-        }
+        OversiktHjelper run = new OversiktHjelper();
+        run.findRow(arbeidsgivere, key);
     }
 }
 

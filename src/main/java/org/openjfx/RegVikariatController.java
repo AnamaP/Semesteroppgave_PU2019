@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import klasser.Arbeidsgiver;
 import java.io.*;
 
-import static logikk.OversiktVikariaterHjelper.valgtArbeidsgiver;
+import static logikk.OversiktHjelper.chosenRow;
 import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class RegVikariatController {
@@ -32,7 +32,7 @@ public class RegVikariatController {
     private void btnRegVikariat(ActionEvent event) {
 
         if(shouldUpdate){
-            arbeidsgivere.remove(arbeidsgivere.get(valgtArbeidsgiver));
+            arbeidsgivere.remove(arbeidsgivere.get(chosenRow));
             MainAppHelper reload = new MainAppHelper();
             reload.reloadVikariaterDatabase();
         }

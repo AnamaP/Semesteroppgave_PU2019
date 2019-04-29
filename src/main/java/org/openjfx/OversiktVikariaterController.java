@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static logikk.OversiktHjelper.chosenRow;
 import static logikk.OversiktVikariaterHjelper.*;
 
 public class OversiktVikariaterController implements Initializable {
@@ -114,7 +115,7 @@ public class OversiktVikariaterController implements Initializable {
         Parent parent = loader.load();
         RegVikariatController controller = loader.getController();
         loader.setLocation(url);
-        controller.setData(valgtArbeidsgiver);
+        controller.setData(chosenRow);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(parent);

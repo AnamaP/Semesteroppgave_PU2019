@@ -10,9 +10,8 @@ import logikk.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static logikk.OversiktHjelper.chosenRow;
 import static logikk.OversiktSokereHjelper.findJobbsoker;
-import static logikk.OversiktSokereHjelper.valgtJobbsoker;
-import static logikk.OversiktVikariaterHjelper.valgtArbeidsgiver;
 import static logikk.RegSokerHjelper.jobbsokere;
 import static logikk.RegVikariatHjelper.arbeidsgivere;
 
@@ -46,7 +45,7 @@ public class ResultatSokereController implements Initializable {
         tcErfaring.setCellValueFactory(cellData->cellData.getValue().erfaringProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        tvOversiktSoker.setItems(OversiktSokereHjelper.visResultat(Paths.JOBBSOKER));
+        tvOversiktSoker.setItems(OversiktSokereHjelper.visResultat());
     }
 
     public void btnTilbake(ActionEvent event) {
@@ -58,8 +57,8 @@ public class ResultatSokereController implements Initializable {
         String tlf = tvOversiktSoker.getSelectionModel().getSelectedItem().getTlf();
         findJobbsoker(tlf);
 
-        arbeidsgivere.get(valgtArbeidsgiver).getVikariat().setStatus("Besatt");
-        jobbsokere.get(valgtJobbsoker).setStatus("Ansatt");
+        arbeidsgivere.get(chosenRow).getVikariat().setStatus("Besatt");
+        jobbsokere.get(chosenRow).setStatus("Ansatt");
 
         MainAppHelper reload = new MainAppHelper();
         reload.reloadVikariaterDatabase();

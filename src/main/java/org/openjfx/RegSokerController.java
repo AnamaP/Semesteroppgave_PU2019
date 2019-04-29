@@ -9,7 +9,7 @@ import klasser.Jobbsoker;
 
 import java.io.IOException;
 
-import static logikk.OversiktSokereHjelper.valgtJobbsoker;
+import static logikk.OversiktHjelper.chosenRow;
 import static logikk.RegSokerHjelper.jobbsokere;
 
 public class RegSokerController {
@@ -30,7 +30,7 @@ public class RegSokerController {
 
     public void btnRegSoker(ActionEvent event) {
         if(shouldUpdate){
-            jobbsokere.remove(valgtJobbsoker);
+            jobbsokere.remove(chosenRow);
             MainAppHelper reload = new MainAppHelper();
             reload.reloadJobbsokerDatabase();
         }
@@ -90,8 +90,8 @@ public class RegSokerController {
     }
 
     public void setData(){
-        Jobbsoker jobbsoker = jobbsokere.get(valgtJobbsoker);
-        System.out.println("int: "+ valgtJobbsoker);
+        Jobbsoker jobbsoker = jobbsokere.get(chosenRow);
+        System.out.println("int: "+ chosenRow);
         System.out.println(jobbsoker.toString());
 
         txtFornavn.setText(jobbsoker.getFornavn());

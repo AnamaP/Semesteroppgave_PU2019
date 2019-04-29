@@ -7,12 +7,12 @@ import klasser.Jobbsoker;
 import java.io.*;
 import java.util.ArrayList;
 
+import static logikk.OversiktHjelper.chosenRow;
 import static logikk.RegSokerHjelper.jobbsokere;
 
 public class OversiktSokereHjelper {
 
     private static ArrayList<String> valgteKategorier;
-    public static int valgtJobbsoker;
 
     public void setValgteKategorier(ArrayList<String> valgteKategorier) {
         this.valgteKategorier = valgteKategorier;
@@ -56,12 +56,12 @@ public class OversiktSokereHjelper {
         return jobseekerList;
     }
 
-    public static ObservableList<TabellSokere> visResultat(String path){
+    public static ObservableList<TabellSokere> visResultat(){
         // Oppretter en tabell
         ObservableList<TabellSokere> showResults = FXCollections.observableArrayList();
 
         try{
-            BufferedReader csvreader = new BufferedReader(new FileReader(path));
+            BufferedReader csvreader = new BufferedReader(new FileReader(Paths.JOBBSOKER+".csv"));
             String rad;
 
             while ((rad = csvreader.readLine()) != null){
@@ -106,18 +106,12 @@ public class OversiktSokereHjelper {
 
     public static void saveJobseeker(String key){
         findJobbsoker(key);
-        FileChooserHjelper.lastNed(jobbsokere.get(valgtJobbsoker));
+        FileChooserHjelper.lastNed(jobbsokere.get(chosenRow));
         //TODO : Feilmld til bruker om at jobbsoker ikke er valgt
     }
 
     public static void findJobbsoker(String key){
-        for(int i = 0; i < jobbsokere.size(); i++){
-            String [] row = jobbsokere.get(i).toString().split(";");
-            for(int j = 0; j < row.length; j++){
-                if(row[j].equals(key)){
-                    valgtJobbsoker = i;
-                }
-            }
-        }
+        OversiktHjelper run = new OversiktHjelper();
+        run.findRow(jobbsokere, key);
     }
 }

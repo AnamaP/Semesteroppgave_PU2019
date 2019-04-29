@@ -11,9 +11,8 @@ import logikk.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static logikk.OversiktHjelper.chosenRow;
 import static logikk.OversiktSokereHjelper.findJobbsoker;
-import static logikk.OversiktSokereHjelper.valgtJobbsoker;
-import static logikk.OversiktVikariaterHjelper.valgtArbeidsgiver;
 import static logikk.RegSokerHjelper.jobbsokere;
 import static logikk.RegVikariatHjelper.arbeidsgivere;
 
@@ -40,7 +39,7 @@ public class ResultatVikariaterController implements Initializable {
         tcStillingstittel.setCellValueFactory(cellData->cellData.getValue().stillingstittelProperty());
         tcKategorier.setCellValueFactory(cellData->cellData.getValue().kategorierProperty());
 
-        tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visResultat(Paths.VIKARIAT));
+        tvOversiktVikariater.setItems(OversiktVikariaterHjelper.visResultat());
         setTableEditable();
     }
 
@@ -62,14 +61,14 @@ public class ResultatVikariaterController implements Initializable {
         String tlf = tvOversiktVikariater.getSelectionModel().getSelectedItem().getTlf();
         findJobbsoker(tlf);
 
-        arbeidsgivere.get(valgtArbeidsgiver).getVikariat().setStatus("Besatt");
-        jobbsokere.get(valgtJobbsoker).setStatus("Ansatt");
+        arbeidsgivere.get(chosenRow).getVikariat().setStatus("Besatt");
+        jobbsokere.get(chosenRow).setStatus("Ansatt");
 
         MainAppHelper reload = new MainAppHelper();
         reload.reloadVikariaterDatabase();
         reload.reloadJobbsokerDatabase();
 
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml", event);
+        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktSokere.fxml", event);
     }
 
     private void setTableEditable() {
