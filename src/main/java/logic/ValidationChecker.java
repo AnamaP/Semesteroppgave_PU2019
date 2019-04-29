@@ -17,7 +17,7 @@ public class ValidationChecker {
     // - har også separert andre metoder som er avhengige av et spesielt regex mønster (f.eks. e-post)
 
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
-                                          String phoneNmbr, String email, String age, String experience, String salary,
+                                          String phoneNo, String email, String age, String experience, String salary,
                                           Object education, Object study, Boolean sales, Boolean admin,
                                           Boolean it, Boolean economy) {
 
@@ -27,8 +27,8 @@ public class ValidationChecker {
         checkZipCode(zipcode);//
         checkValidString(address);
         checkValidString(experience);
-        checkPhoneNmbr(phoneNmbr);
-        checkDuplicatePhoneNmbr(phoneNmbr);
+        checkPhoneNo(phoneNo);
+        checkDuplicatePhoneNo(phoneNo);
         checkEmail(email);
         checkAge(age);
         checkSalary(salary);
@@ -38,19 +38,19 @@ public class ValidationChecker {
         return invalidInputs;
     }
 
-    public String inputJobAdvertCollector(String name, String phoneNmbr, String sector, String companyName,
-                                          String industry, String address, String jobTitle, String jobDescription,
+    public String inputJobAdvertCollector(String contactPerson, String phoneNo, String sector, String companyName,
+                                          String industry, String address, String jobTitle, String description,
                                           String duration, String salary, String qualif, Boolean sales, Boolean admin,
                                           Boolean it, Boolean economy, Boolean fullTime, Boolean partTime) {
-        checkString(name);
-        checkPhoneNmbr(phoneNmbr);
-        checkDuplicatePhoneNmbr(phoneNmbr);
+        checkString(contactPerson);
+        checkPhoneNo(phoneNo);
+        checkDuplicatePhoneNo(phoneNo);
         checkString(sector);
         checkValidString(companyName);
         checkValidString(industry);
         checkValidString(address);
         checkValidString(jobTitle);
-        checkValidString(jobDescription);
+        checkValidString(description);
         checkValidString(duration);
         checkValidString(qualif);
         checkSalary(salary);
@@ -79,8 +79,8 @@ public class ValidationChecker {
         return false;
     }
 
-    private boolean ckeckValidZipCode(String zipcode) throws InvalidNumberFormatException {
-        if(!Pattern.matches("[0-9]+",zipcode) || zipcode.length() != 4 || zipcode.isEmpty()){
+    private boolean ckeckValidZipCode(String zipCode) throws InvalidNumberFormatException {
+        if(!Pattern.matches("[0-9]+",zipCode) || zipCode.length() != 4 || zipCode.isEmpty()){
             throw new InvalidNumberFormatException("Feil i postnr");
         }
         return true;
@@ -98,16 +98,16 @@ public class ValidationChecker {
         return false;
     }
 
-    private boolean checkValidPhoneNmbr(String phoneNmbr) throws InvalidNumberFormatException {
-        if(!Pattern.matches("[0-9]{8}+",phoneNmbr) || phoneNmbr.isEmpty() || phoneNmbr.startsWith("0")){
+    private boolean checkValidPhoneNo(String phoneNo) throws InvalidNumberFormatException {
+        if(!Pattern.matches("[0-9]{8}+",phoneNo) || phoneNo.isEmpty() || phoneNo.startsWith("0")){
             throw new InvalidNumberFormatException("Feil i tlfnr!");
         }
         return true;
     }
 
-    private boolean checkPhoneNmbr(String phoneNmbr){
+    private boolean checkPhoneNo(String phoneNmbr){
         try{
-            if(checkValidPhoneNmbr(phoneNmbr)){
+            if(checkValidPhoneNo(phoneNmbr)){
                 return true;
             }
         }
@@ -117,11 +117,11 @@ public class ValidationChecker {
         return false;
     }
 
-    private boolean checkIfDuplicatePhoneNmbr(String phoneNmbr) throws InvalidDuplicatePhoneNmbrException {
+    private boolean checkIfDuplicatePhoneNo(String phoneNmbr) throws InvalidDuplicatePhoneNoException {
         boolean duplicates = false;
         for (int i = 0; i < jobseekersList.size(); i++) {
             if (jobseekersList.get(i).getPhoneNo().equals(phoneNmbr)) {
-                throw new InvalidDuplicatePhoneNmbrException("Duplikat telefonnr!");
+                throw new InvalidDuplicatePhoneNoException("Duplikat telefonnr!");
             }
             duplicates=true;
             return duplicates;
@@ -129,13 +129,13 @@ public class ValidationChecker {
         return duplicates;
     }
 
-    private boolean checkDuplicatePhoneNmbr(String phoneNmbr){
+    private boolean checkDuplicatePhoneNo(String phoneNo){
         try{
-            if(checkIfDuplicatePhoneNmbr(phoneNmbr)){
+            if(checkIfDuplicatePhoneNo(phoneNo)){
                 return false;
             }
         }
-        catch(InvalidDuplicatePhoneNmbrException e){
+        catch(InvalidDuplicatePhoneNoException e){
             invalidInputs += "Telefonnummeret er registrert fra før!";
         }
         return false;
@@ -231,7 +231,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidValueSelectedIsNullException e){
-            invalidInputs += "Utdanning/study er ikke valgt, vennligst velg en \n";
+            invalidInputs += "Utdanning/studieretning er ikke valgt, vennligst velg en \n";
         }
         return false;
     }
