@@ -2,7 +2,6 @@ package logikk;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import klasser.Cv;
 import klasser.Jobbsoker;
 import java.io.*;
 import java.util.ArrayList;
@@ -13,10 +12,10 @@ import static logikk.RegSokerHjelper.jobbsokere;
 
 public class OversiktSokereHjelper {
 
-    public static ObservableList<TabellSokere> visJobbsokere() {
+    public static ObservableList<TableJobseekers> visJobbsokere() {
 
         // Oppretter en tabell
-        ObservableList<TabellSokere> jobseekerList = FXCollections.observableArrayList();
+        ObservableList<TableJobseekers> jobseekerList = FXCollections.observableArrayList();
 
         try{
             BufferedReader csvreader = new BufferedReader(new FileReader(Paths.JOBBSOKER+".csv"));
@@ -30,7 +29,7 @@ public class OversiktSokereHjelper {
                     //Henter en jobbsoker fra listen:
                     Jobbsoker jobbsoker = run.hentSokerFraListe(kolonner);
                     //Legger søkeren til i tabellen:
-                    TabellSokere oversiktSokere = new TabellSokere(jobbsoker);
+                    TableJobseekers oversiktSokere = new TableJobseekers(jobbsoker);
                     jobseekerList.add(oversiktSokere);
                 }
             }
@@ -45,9 +44,9 @@ public class OversiktSokereHjelper {
         return jobseekerList;
     }
 
-    public static ObservableList<TabellSokere> visResultat(){
+    public static ObservableList<TableJobseekers> visResultat(){
         // Oppretter en tabell
-        ObservableList<TabellSokere> showResults = FXCollections.observableArrayList();
+        ObservableList<TableJobseekers> showResults = FXCollections.observableArrayList();
 
         try{
             BufferedReader csvreader = new BufferedReader(new FileReader(Paths.JOBBSOKER+".csv"));
@@ -67,7 +66,7 @@ public class OversiktSokereHjelper {
 
                     //Om søkeren har mange nok kategorier legges den til i tabellen:
                     if((antall == valgteKategorier.size()) && (kolonner[kolonner.length-1].equals("Ledig"))){
-                        TabellSokere oversiktSokere = new TabellSokere(jobbsoker);
+                        TableJobseekers oversiktSokere = new TableJobseekers(jobbsoker);
                         showResults.add(oversiktSokere);
                     }
                 }

@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="546.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegSokerController">
+<AnchorPane prefHeight="546.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegJobseekerController">
    <children>
       <VBox prefHeight="35.0" prefWidth="592.0" style="-fx-background-color: b8c4bd;">
          <children>
@@ -53,15 +53,15 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Epost: *" GridPane.rowIndex="6" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alder: *" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lønnskrav:" GridPane.rowIndex="8" />
-            <TextField fx:id="txtFornavn" prefHeight="2.0" prefWidth="42.0" GridPane.columnIndex="1" />
-            <TextField fx:id="txtEtternavn" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtAdresse" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtPostnr" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txtPoststed" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="txtTlf" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="txtEpost" prefHeight="0.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="txtAlder" prefHeight="41.0" prefWidth="117.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="txtLonnskrav" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="txtFirstname" prefHeight="2.0" prefWidth="42.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtLastname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtZipcode" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtPostal" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtPhoneNo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtEmail" prefHeight="0.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="txtAge" prefHeight="41.0" prefWidth="117.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="txtSalary" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
       <Text fill="#000000cf" layoutX="342.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder: *" wrappingWidth="248.79995117187502">
@@ -70,10 +70,10 @@
          </font>
       </Text>
 
-                  <CheckBox fx:id="cbxSalg" layoutX="342.0" layoutY="102.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Salg" />
+                  <CheckBox fx:id="cbxSales" layoutX="342.0" layoutY="102.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Salg" />
       <CheckBox fx:id="cbxAdmin" layoutX="342.0" layoutY="129.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Admin" />
       <CheckBox fx:id="cbxIt" layoutX="342.0" layoutY="156.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="It" />
-      <CheckBox fx:id="cbxOkonomi" layoutX="342.0" layoutY="182.0" lineSpacing="5.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Økonomi" />
+      <CheckBox fx:id="cbxEconomy" layoutX="342.0" layoutY="182.0" lineSpacing="5.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="128.0" text="Økonomi" />
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="455.0" layoutY="299.0" prefHeight="18.0" prefWidth="110.0" text="* obligatoriske felt" textAlignment="RIGHT" textFill="#000000b4">
          <font>
             <Font size="10.0" />
@@ -86,7 +86,7 @@
          </font>
       </Text>
 
-       <ComboBox fx:id="valgUtdanning" layoutX="28.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg høyeste education*">
+       <ComboBox fx:id="choiseEducation" layoutX="28.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg høyeste education*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="Vgs" />
@@ -96,7 +96,7 @@
            </items>
        </ComboBox>
 
-       <ComboBox fx:id="valgRetning" layoutX="302.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg study*">
+       <ComboBox fx:id="choiseStudy" layoutX="302.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg study*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="It" />
@@ -107,10 +107,10 @@
            </items>
        </ComboBox>
       <Text layoutX="27.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Erfaring: *" />
-      <TextField fx:id="txtErfaring" layoutX="26.0" layoutY="444.0" prefHeight="27.0" prefWidth="263.0" promptText="Firma, stilling" />
+      <TextField fx:id="txtExperience" layoutX="26.0" layoutY="444.0" prefHeight="27.0" prefWidth="263.0" promptText="Firma, stilling" />
       <Text layoutX="305.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referanser:" />
-      <TextField fx:id="txtReferanse" layoutX="304.0" layoutY="444.0" prefHeight="27.0" prefWidth="263.0" promptText="Fullt navn, tlf" />
-      <Button fx:id="btnTilbake" layoutX="26.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnTilbake" text="Tilbake" />
-      <Button layoutX="510.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnRegSoker" prefWidth="54.0" text="Lagre" />
+      <TextField fx:id="txtReference" layoutX="304.0" layoutY="444.0" prefHeight="27.0" prefWidth="263.0" promptText="Fullt navn, phoneNo" />
+      <Button fx:id="btnTilbake" layoutX="26.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnBack" text="Tilbake" />
+      <Button layoutX="510.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnRegJobseeker" prefWidth="54.0" text="Lagre" />
    </children>
 </AnchorPane>

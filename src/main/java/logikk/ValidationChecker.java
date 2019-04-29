@@ -24,14 +24,14 @@ public class ValidationChecker {
         checkString(firstname);
         checkString(lastname);
         checkString(postal);
-        checkZipCode(zipcode);// TODO: sjekk at det ikke går an å skrive negative tall
+        checkZipCode(zipcode);//
         checkValidString(address);
         checkValidString(experience);
         checkPhoneNmbr(phoneNmbr);
         checkDuplicatePhoneNmbr(phoneNmbr);
         checkEmail(email);
-        checkAge(age); // TODO: sjekk at det ikke går an å skrive negative tall
-        checkSalary(salary); // TODO: sjekk at det ikke går an å skrive negative tall
+        checkAge(age);
+        checkSalary(salary);
         checkValueSelected(education, study);
         checkWorkfields(sales, admin, it, economy);
 
@@ -161,8 +161,8 @@ public class ValidationChecker {
     }
 
     private boolean checkIfValidString(String string) throws InvalidTextIfNullException {
-        if(string.isEmpty() && string.length() != 200){
-            throw new InvalidTextIfNullException("Feil: Enten tomme bligatoriske felt eller oversteget 200 ord");
+        if(!Pattern.matches("^(?=.{1,200}$).*", string) || string.isEmpty()) {
+            throw new InvalidTextIfNullException("Feil: Enten tomme obligatoriske felt eller oversteget 200 ord");
         }
         return true;
     }
@@ -174,7 +174,7 @@ public class ValidationChecker {
             }
         }
         catch(InvalidTextIfNullException e){
-            invalidInputs += "Ett eller flere obligatoriske felt står tomme, eller så har du oversteget 200 ord \n";
+            invalidInputs += "Feil i ett eller flere obligatoriske feil \n";
         }
         return false;
     }

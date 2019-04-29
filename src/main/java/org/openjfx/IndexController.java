@@ -8,21 +8,21 @@ import logikk.*;
 public class IndexController {
 
     @FXML
-    private void btnJobbsoker(ActionEvent event) {
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regSoker.fxml", event);
+    private void btnJobseeker(ActionEvent event) {
+        NavigationHelper.changePange("/org/openjfx/regSoker.fxml", event);
     }
 
     @FXML
-    private void btnArbeidsgiver(ActionEvent event) {
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/regVikariat.fxml", event);
+    private void btnTempJob(ActionEvent event) {
+        NavigationHelper.changePange("/org/openjfx/regVikariat.fxml", event);
     }
 
-    public void btnOversiktSokere(ActionEvent event) {
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktSokere.fxml", event);
+    public void btnViewJobseekers(ActionEvent event) {
+        NavigationHelper.changePange("/org/openjfx/oversiktSokere.fxml", event);
     }
 
-    public void btnOversiktVikariater(ActionEvent event) {
-        NavigeringsHjelper.gåTilAnnenSide("/org/openjfx/oversiktVikariater.fxml",event);
+    public void btnViewTempJobs(ActionEvent event) {
+        NavigationHelper.changePange("/org/openjfx/oversiktVikariater.fxml",event);
 
     }
 

@@ -3,7 +3,7 @@ package logikk;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import klasser.Arbeidsgiver;
-import klasser.Vikariat;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -13,9 +13,9 @@ import static logikk.RegVikariatHjelper.arbeidsgivere;
 
 public class OversiktVikariaterHjelper {
 
-    public static ObservableList<TabellVikariater> visVikariater() {
+    public static ObservableList<TableTempJobs> visVikariater() {
         // Oppretter en tabell
-        ObservableList<TabellVikariater> obl = FXCollections.observableArrayList();
+        ObservableList<TableTempJobs> obl = FXCollections.observableArrayList();
         try{
             BufferedReader csvreader = new BufferedReader(new FileReader(Paths.VIKARIAT+".csv"));
             String rad;
@@ -27,7 +27,7 @@ public class OversiktVikariaterHjelper {
                     OversiktHjelper run = new OversiktHjelper();
                     Arbeidsgiver arbeidsgiver = run.hentVikariatFraListe(kolonner);
 
-                    TabellVikariater test = new TabellVikariater(arbeidsgiver);
+                    TableTempJobs test = new TableTempJobs(arbeidsgiver);
                     obl.add(test);
                 }
             }
@@ -42,9 +42,9 @@ public class OversiktVikariaterHjelper {
         return obl;
     }
 
-    public static ObservableList<TabellVikariater> visResultat(){
+    public static ObservableList<TableTempJobs> visResultat(){
         // Oppretter en tabell
-        ObservableList<TabellVikariater> obl = FXCollections.observableArrayList();
+        ObservableList<TableTempJobs> obl = FXCollections.observableArrayList();
 
         try{
             BufferedReader csvreader = new BufferedReader(new FileReader(Paths.VIKARIAT+".csv"));
@@ -69,7 +69,7 @@ public class OversiktVikariaterHjelper {
                             && kolonner[kolonner.length-1].equals("Ledig")
 
                     ) {
-                        TabellVikariater test = new TabellVikariater(arbeidsgiver);
+                        TableTempJobs test = new TableTempJobs(arbeidsgiver);
                         obl.add(test);
                     }
                 }

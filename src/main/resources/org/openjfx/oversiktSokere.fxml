@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="testPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="1308.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.OversiktSokereController">
+<Pane fx:id="testPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="1308.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.ViewJobseekersController">
    <children>
       <VBox prefHeight="50.0" prefWidth="1308.0" style="-fx-background-color: b8c4bd;">
          <children>
@@ -21,29 +21,29 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="btnTilbake" layoutX="22.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnTilbake" prefHeight="25.0" prefWidth="83.0" text="Tilbake" />
-      <TableView fx:id="tvOversiktSokere" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="1269.0">
+      <Button fx:id="btnTilbake" layoutX="22.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnBack" prefHeight="25.0" prefWidth="83.0" text="Tilbake" />
+      <TableView fx:id="tvJobseekers" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="1269.0">
         <columns>
-           <TableColumn fx:id="tcFornavn" prefWidth="100.0" text="Fornavn" />
-           <TableColumn fx:id="tcEtternavn" prefWidth="100.0" text="Etternavn" />
-           <TableColumn fx:id="tcAdresse" prefWidth="100.0" text="Adresse" />
-           <TableColumn fx:id="tcPostNr" prefWidth="60.0" text="Postnr" />
-           <TableColumn fx:id="tcPoststed" prefWidth="100.0" text="Poststed" />
-           <TableColumn fx:id="tcTlf" text="Tlf" />
-           <TableColumn fx:id="tcEpost" prefWidth="120.0" text="Epost" />
-           <TableColumn fx:id="tcAlder" prefWidth="50.0" text="Alder" />
-           <TableColumn fx:id="tcUtdanning" text="Utdanning" />
-           <TableColumn fx:id="tcStudieretning" prefWidth="90.0" text="Studieretning" />
-           <TableColumn fx:id="tcErfaring" prefWidth="170.0" text="Erfaring" />
-           <TableColumn fx:id="tcKategorier" prefWidth="151.3333740234375" text="Kategorier" />
+           <TableColumn fx:id="tcFirstname" prefWidth="100.0" text="Fornavn" />
+           <TableColumn fx:id="tcLastname" prefWidth="100.0" text="Etternavn" />
+           <TableColumn fx:id="tcAddress" prefWidth="100.0" text="Adresse" />
+           <TableColumn fx:id="tcZipcode" prefWidth="60.0" text="Postnr" />
+           <TableColumn fx:id="tcPostal" prefWidth="100.0" text="Poststed" />
+           <TableColumn fx:id="tcPhoneNo" text="Tlf" />
+           <TableColumn fx:id="tcEmail" prefWidth="120.0" text="Epost" />
+           <TableColumn fx:id="tcAge" prefWidth="50.0" text="Alder" />
+           <TableColumn fx:id="tcEducation" text="Utdanning" />
+           <TableColumn fx:id="tcStudy" prefWidth="90.0" text="Studieretning" />
+           <TableColumn fx:id="tcExperience" prefWidth="170.0" text="Erfaring" />
+           <TableColumn fx:id="tcWorkfields" prefWidth="151.3333740234375" text="Kategorier" />
             <TableColumn fx:id="tcStatus" maxWidth="74.6666259765625" prefWidth="65.6666259765625" text="Status" />
         </columns>
       </TableView>
-      <Button layoutX="422.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnLastOppSoker" prefHeight="25.0" prefWidth="84.0" text="Last opp" />
-      <Button layoutX="532.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnLastNedSoker" prefHeight="25.0" prefWidth="84.0" text="Last ned" />
-      <Button layoutX="638.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnSlettSoker" prefHeight="25.0" prefWidth="86.0" text="Slett " />
-      <Button layoutX="743.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnRedigerSoker" prefHeight="25.0" prefWidth="91.0" text="Rediger" />
-      <Button layoutX="1137.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnFinnVikariater" prefHeight="25.0" prefWidth="153.0" text="Finn passende vikariater" />
+      <Button layoutX="422.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnUploadJobseeker" prefHeight="25.0" prefWidth="84.0" text="Last opp" />
+      <Button layoutX="532.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnDownloadJobseeker" prefHeight="25.0" prefWidth="84.0" text="Last ned" />
+      <Button layoutX="638.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnDeleteJobseeker" prefHeight="25.0" prefWidth="86.0" text="Slett " />
+      <Button layoutX="743.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnEditJobseeker" prefHeight="25.0" prefWidth="91.0" text="Rediger" />
+      <Button layoutX="1137.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnFindTempJob" prefHeight="25.0" prefWidth="153.0" text="Finn passende vikariater" />
       <TextField fx:id="txtFilterField" layoutX="22.0" layoutY="12.0" prefHeight="28.0" prefWidth="174.0" promptText="Filtrer her..">
          <padding>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
