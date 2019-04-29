@@ -1,4 +1,4 @@
-package klasser;
+package classes;
 
 import java.io.Serializable;
 

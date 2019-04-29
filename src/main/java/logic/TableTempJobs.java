@@ -1,7 +1,7 @@
-package logikk;
+package logic;
 
 import javafx.beans.property.SimpleStringProperty;
-import klasser.Arbeidsgiver;
+import classes.Company;
 
 public class TableTempJobs {
     private final SimpleStringProperty contactPerson; //0
@@ -15,18 +15,18 @@ public class TableTempJobs {
     private final SimpleStringProperty workfields; // 11,12,13,14
     private final SimpleStringProperty status; //15
 
-    // en toVikariat metode som koverterer all data her til en Arbeidsgiver
-    public TableTempJobs(Arbeidsgiver arbeidsgiver){
-        this.contactPerson = new SimpleStringProperty(arbeidsgiver.getKontaktperson());
-        this.phoneNo = new SimpleStringProperty(arbeidsgiver.getTlf());
-        this.sector = new SimpleStringProperty(arbeidsgiver.getSektor());
-        this.companyName = new SimpleStringProperty(arbeidsgiver.getFirmanavn());
-        this.address = new SimpleStringProperty(arbeidsgiver.getAdresse());
-        this.industry = new SimpleStringProperty(arbeidsgiver.getBransje());
-        this.jobTitle = new SimpleStringProperty(arbeidsgiver.getVikariat().getTittel());
-        this.jobType = new SimpleStringProperty(arbeidsgiver.getVikariat().getStillingstype());
-        this.workfields = new SimpleStringProperty(arbeidsgiver.getVikariat().kategorierToString());
-        this.status = new SimpleStringProperty(arbeidsgiver.getVikariat().getStatus());
+    // en toVikariat metode som koverterer all data her til en Company
+    public TableTempJobs(Company company){
+        this.contactPerson = new SimpleStringProperty(company.getContactPerson());
+        this.phoneNo = new SimpleStringProperty(company.getPhoneNo());
+        this.sector = new SimpleStringProperty(company.getSector());
+        this.companyName = new SimpleStringProperty(company.getCompanyName());
+        this.address = new SimpleStringProperty(company.getAddress());
+        this.industry = new SimpleStringProperty(company.getIndustry());
+        this.jobTitle = new SimpleStringProperty(company.getTempJob().getJobTitle());
+        this.jobType = new SimpleStringProperty(company.getTempJob().getJobType());
+        this.workfields = new SimpleStringProperty(company.getTempJob().workfieldsToString());
+        this.status = new SimpleStringProperty(company.getTempJob().getStatus());
     }
 
     public String getContactPerson() {

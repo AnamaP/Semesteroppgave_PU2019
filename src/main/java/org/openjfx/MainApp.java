@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import logikk.MainAppHelper;
+import logic.MainAppHelper;
 
 public class MainApp extends Application {
 

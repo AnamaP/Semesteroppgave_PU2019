@@ -1,4 +1,4 @@
-package logikk;
+package logic;
 
 import javafx.scene.control.CheckBox;
 

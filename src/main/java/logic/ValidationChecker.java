@@ -1,10 +1,10 @@
-package logikk;
+package logic;
 
 import exceptions.*;
 
 import java.util.regex.Pattern;
 
-import static logikk.RegJobseekerHelper.jobseekersList;
+import static logic.RegJobseekerHelper.jobseekersList;
 
 public class ValidationChecker {
     private String invalidInputs = "";

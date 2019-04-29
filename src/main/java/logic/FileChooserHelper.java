@@ -1,8 +1,8 @@
-package logikk;
+package logic;
 
-import filbehandling.CsvFileHandler;
-import filbehandling.FileHandler;
-import filbehandling.JobjFileHandler;
+import fileHandling.CsvFileHandler;
+import fileHandling.FileHandler;
+import fileHandling.JobjFileHandler;
 import javafx.stage.Stage;
 
 import java.io.*;

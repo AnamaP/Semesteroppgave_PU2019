@@ -1,4 +1,4 @@
-package klasser;
+package classes;
 
 import java.io.Serializable;
 
@@ -6,13 +6,13 @@ public class Person implements Serializable {
     private String firstname;
     private String lastname;
     private String address;
-    private String zipcode;
+    private String zipCode;
     private String postal;
-    private String tlf;
+    private String phoneNo;
     private String email;
     private String age;
 
-    public Person(String firstname, String surname, String address, String zipcode, String postal, String tlf, String email, String age) {
+    public Person(String firstname, String surname, String address, String zipCode, String postal, String phoneNo, String email, String age) {
 
         // Feilhåndtering - sjekk heller her om variabelen er null og kaste en feilmelding
         if(firstname != null){
@@ -24,14 +24,14 @@ public class Person implements Serializable {
         if(address != null){
             this.address = address;
         }
-        if(zipcode != null){
-            this.zipcode = zipcode;
+        if(zipCode != null){
+            this.zipCode = zipCode;
         }
         if(postal != null){
             this.postal = postal;
         }
-        if(tlf != null){
-            this.tlf = tlf;
+        if(phoneNo != null){
+            this.phoneNo = phoneNo;
         }
         if(email != null){
             this.email = email;
@@ -48,14 +48,14 @@ public class Person implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
     public void setPostal(String postal) {
         this.postal = postal;
     }
-    public void setTlf(String tlf) {
-        this.tlf = tlf;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
     public void setEmail(String email) {
         this.email = email;
@@ -72,14 +72,14 @@ public class Person implements Serializable {
     public String getAddress() {
         return address;
     }
-    public String getZipcode() {
-        return zipcode;
+    public String getZipCode() {
+        return zipCode;
     }
     public String getPostal() {
         return postal;
     }
-    public String getTlf() {
-        return tlf;
+    public String getPhoneNo() {
+        return phoneNo;
     }
     public String getEmail() {
         return email;
@@ -89,6 +89,6 @@ public class Person implements Serializable {
     }
 
     public String toString() {
-        return firstname +";"+ lastname +";"+ address +";"+ zipcode +";"+ postal +";"+tlf+";"+ email +";"+ age;
+        return firstname +";"+ lastname +";"+ address +";"+ zipCode +";"+ postal +";"+ phoneNo +";"+ email +";"+ age;
     }
 }

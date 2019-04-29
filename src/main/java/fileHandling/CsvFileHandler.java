@@ -1,4 +1,4 @@
-package filbehandling;
+package fileHandling;
 
 import java.io.*;
 

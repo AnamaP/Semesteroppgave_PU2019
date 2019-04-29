@@ -1,9 +1,9 @@
-package logikk;
+package logic;
 
-import klasser.Company;
-import klasser.Cv;
-import klasser.Jobseeker;
-import klasser.TempJob;
+import classes.Company;
+import classes.Cv;
+import classes.Jobseeker;
+import classes.TempJob;
 
 import java.util.ArrayList;
 

@@ -1,17 +1,17 @@
-package logikk;
+package logic;
 
-import filbehandling.CsvFileHandler;
-import klasser.Company;
-import klasser.Cv;
-import klasser.Jobseeker;
+import fileHandling.CsvFileHandler;
+import classes.Company;
+import classes.Cv;
+import classes.Jobseeker;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import static logikk.RegJobseekerHelper.jobseekersList;
-import static logikk.RegTempJobHelper.tempJobsList;
+import static logic.RegJobseekerHelper.jobseekersList;
+import static logic.RegTempJobHelper.tempJobsList;
 
 public class MainAppHelper {
 

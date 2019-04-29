@@ -1,10 +1,10 @@
-package logikk;
+package logic;
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import klasser.Cv;
-import klasser.Jobseeker;
+import classes.Cv;
+import classes.Jobseeker;
 import java.util.ArrayList;
 
 public class RegJobseekerHelper {

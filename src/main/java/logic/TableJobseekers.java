@@ -1,7 +1,7 @@
-package logikk;
+package logic;
 
 import javafx.beans.property.SimpleStringProperty;
-import klasser.Jobbsoker;
+import classes.Jobseeker;
 
 public class TableJobseekers {
 
@@ -21,22 +21,22 @@ public class TableJobseekers {
     private final SimpleStringProperty workfields;//13, 14, 15
     private final SimpleStringProperty status; //16
 
-    public TableJobseekers(Jobbsoker jobbsoker) {
-        this.firstname = new SimpleStringProperty(jobbsoker.getFirstname());
-        this.lastname = new SimpleStringProperty(jobbsoker.getLastname());
-        this.address = new SimpleStringProperty(jobbsoker.getAddress());
-        this.zipcode = new SimpleStringProperty(jobbsoker.getZipcode());
-        this.postal = new SimpleStringProperty(jobbsoker.getPostal());
-        this.phoneNo = new SimpleStringProperty(jobbsoker.getTlf());
-        this.email = new SimpleStringProperty(jobbsoker.getEmail());
-        this.age = new SimpleStringProperty(jobbsoker.getAge());
-        this.salary = new SimpleStringProperty(jobbsoker.getSalary());
-        this.education = new SimpleStringProperty(jobbsoker.getCv().getEducation());
-        this.study = new SimpleStringProperty(jobbsoker.getCv().getStudy());
-        this.experience = new SimpleStringProperty(jobbsoker.getCv().getExperience());
-        this.reference = new SimpleStringProperty(jobbsoker.getCv().getReference());
-        this.workfields = new SimpleStringProperty(jobbsoker.getCv().categoriesToString());
-        this.status = new SimpleStringProperty(jobbsoker.getStatus());
+    public TableJobseekers(Jobseeker jobseeker) {
+        this.firstname = new SimpleStringProperty(jobseeker.getFirstname());
+        this.lastname = new SimpleStringProperty(jobseeker.getLastname());
+        this.address = new SimpleStringProperty(jobseeker.getAddress());
+        this.zipcode = new SimpleStringProperty(jobseeker.getZipCode());
+        this.postal = new SimpleStringProperty(jobseeker.getPostal());
+        this.phoneNo = new SimpleStringProperty(jobseeker.getPhoneNo());
+        this.email = new SimpleStringProperty(jobseeker.getEmail());
+        this.age = new SimpleStringProperty(jobseeker.getAge());
+        this.salary = new SimpleStringProperty(jobseeker.getSalary());
+        this.education = new SimpleStringProperty(jobseeker.getCv().getEducation());
+        this.study = new SimpleStringProperty(jobseeker.getCv().getStudy());
+        this.experience = new SimpleStringProperty(jobseeker.getCv().getExperience());
+        this.reference = new SimpleStringProperty(jobseeker.getCv().getReference());
+        this.workfields = new SimpleStringProperty(jobseeker.getCv().categoriesToString());
+        this.status = new SimpleStringProperty(jobseeker.getStatus());
     }
 
     public String getFirstname() {

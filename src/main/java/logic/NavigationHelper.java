@@ -1,4 +1,4 @@
-package logikk;
+package logic;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class NavigationHelper {
 
-    public static void changePange(String path, ActionEvent event){
+    public static void changePage(String path, ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader();
             URL url = NavigationHelper.class.getResource(path);

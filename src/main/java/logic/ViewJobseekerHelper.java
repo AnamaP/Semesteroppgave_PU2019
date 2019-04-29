@@ -1,14 +1,14 @@
-package logikk;
+package logic;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import klasser.Jobseeker;
+import classes.Jobseeker;
 import java.io.*;
 import java.util.ArrayList;
 
-import static logikk.ViewHelper.chosenRow;
-import static logikk.ViewHelper.chosenWorkfields;
-import static logikk.RegJobseekerHelper.jobseekersList;
+import static logic.ViewHelper.chosenRow;
+import static logic.ViewHelper.chosenWorkfields;
+import static logic.RegJobseekerHelper.jobseekersList;
 
 public class ViewJobseekerHelper {
 

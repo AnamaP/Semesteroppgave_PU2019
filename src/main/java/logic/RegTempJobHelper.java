@@ -1,8 +1,8 @@
-package logikk;
+package logic;
 
 import javafx.scene.control.*;
-import klasser.Company;
-import klasser.TempJob;
+import classes.Company;
+import classes.TempJob;
 import java.util.ArrayList;
 
 public class RegTempJobHelper {

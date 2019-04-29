@@ -1,4 +1,4 @@
-package klasser;
+package classes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,14 +8,14 @@ public class Cv implements Serializable {
     private String study;
     private String experience;
     private String reference;
-    private ArrayList<String> categories;
+    private ArrayList<String> workfields;
 
-    public Cv(String education, String stucy, String experience, ArrayList<String> categories) {
+    public Cv(String education, String stucy, String experience, ArrayList<String> workfields) {
         this.education = education;
         this.study = stucy;
         this.experience = experience;
         this.reference = "";
-        this.categories = categories;
+        this.workfields = workfields;
     }
 
     public void setReference(String reference){
@@ -30,8 +30,8 @@ public class Cv implements Serializable {
     public void setExperience(String experience) {
         this.experience = experience;
     }
-    public void setCategories(ArrayList<String> categories) {
-        this.categories = categories;
+    public void setWorkfields(ArrayList<String> workfields) {
+        this.workfields = workfields;
     }
     public String getEducation() {
         return education;
@@ -48,12 +48,12 @@ public class Cv implements Serializable {
 
     public String categoriesToString() {
         String sb = "";
-        for(int i = 0; i < categories.size(); i++){
-            if(i == categories.size() -1){
-                sb += categories.get(i);
+        for(int i = 0; i < workfields.size(); i++){
+            if(i == workfields.size() -1){
+                sb += workfields.get(i);
             }
             else{
-                sb += categories.get(i) + ", ";
+                sb += workfields.get(i) + ", ";
             }
         }
         return sb;

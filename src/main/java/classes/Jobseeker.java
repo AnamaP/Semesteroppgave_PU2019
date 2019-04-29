@@ -1,4 +1,4 @@
-package klasser;
+package classes;
 
 public class Jobseeker extends Person {
     private Cv cv;

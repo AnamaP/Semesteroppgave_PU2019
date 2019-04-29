@@ -1,10 +1,6 @@
-package logikk;
+package logic;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-
-import java.util.Optional;
 
 public class AlertHelper {
     private String message;
