@@ -11,6 +11,8 @@ import logic.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static logic.ViewTempJobsHelper.selectedPhoneNo;
+
 public class MatchingTempJobsController implements Initializable {
     // TODO: Legge til ekstra felt som skal vises i guiresultatet
     @FXML
@@ -39,13 +41,13 @@ public class MatchingTempJobsController implements Initializable {
 
     public void btnReadMore(ActionEvent event) {
         ViewHelper run = new ViewHelper();
-        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
+        String key = selectedPhoneNo(tvTempJobs);
         run.showMore(key);
     }
 
     public void btnEmploy(ActionEvent event) {
         ViewHelper run = new ViewHelper();
-        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
+        String key = selectedPhoneNo(tvTempJobs);
         run.employ(key);
 
         NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);

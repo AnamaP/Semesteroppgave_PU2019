@@ -4,21 +4,24 @@ import classes.Company;
 import classes.Cv;
 import classes.Jobseeker;
 import classes.TempJob;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.RegTempJobHelper.tempJobsList;
-import static logic.ViewJobseekerHelper.chosenJobseeker;
-import static logic.ViewJobseekerHelper.findJobseeker;
-import static logic.ViewTempJobsHelper.chosenTempJob;
+import static logic.ViewJobseekerHelper.*;
+import static logic.ViewTempJobsHelper.*;
 
 public class ViewHelper {
 
     public static ArrayList<String> chosenWorkfields;
 
-    public void setValgteKategorier(ArrayList<String> chosenWorkfields) {
+    public void setValgteKategorier(String workfieldsStr) {
+        ArrayList<String> chosenWorkfields = ViewHelper.stringToList(workfieldsStr);
         this.chosenWorkfields = chosenWorkfields;
     }
 
