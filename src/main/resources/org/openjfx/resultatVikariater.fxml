@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.MatchingTempJobsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="1126.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.MatchingTempJobsController">
     <children>
-      <VBox prefHeight="42.0" prefWidth="1018.0" style="-fx-background-color: b8c4bd;">
+      <VBox prefHeight="42.0" prefWidth="1126.0" style="-fx-background-color: b8c4bd;">
          <children>
-              <Label alignment="CENTER" prefHeight="47.0" prefWidth="1022.0" text="Aktuelle vikariater:">
+              <Label alignment="CENTER" prefHeight="42.0" prefWidth="1127.0" text="Aktuelle vikariater:">
                   <font>
                       <Font size="22.0" />
                   </font>
@@ -20,18 +20,20 @@
          </children>
       </VBox>
         <Button layoutX="22.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnBack" prefHeight="24.0" prefWidth="112.0" text="Tilbake" />
-        <TableView fx:id="tvTempJobs" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="973.0">
+        <TableView fx:id="tvTempJobs" layoutX="21.0" layoutY="68.0" prefHeight="475.0" prefWidth="1082.0">
             <columns>
                 <TableColumn fx:id="tcContactPerson" prefWidth="120.5" text="Kontaktperson" />
                 <TableColumn fx:id="tcPhoneNo" prefWidth="89.5" text="Tlf" />
                 <TableColumn fx:id="tcSector" prefWidth="59.5" text="Sektor" />
                 <TableColumn fx:id="tcCompanyName" prefWidth="117.0" text="Firmanavn" />
+            <TableColumn fx:id="tcAddress" prefWidth="117.0" text="Adresse" />
                 <TableColumn fx:id="tcIndustry" prefWidth="95.0" text="Bransje" />
-                <TableColumn fx:id="tcJobTitle" prefWidth="157.5" text="Stillingstittel" />
-                <TableColumn fx:id="tcKWorkfields" prefWidth="332.5" text="Kategorier" />
+                <TableColumn fx:id="tcJobTitle" minWidth="0.0" prefWidth="138.5" text="Stillingstittel" />
+            <TableColumn fx:id="tcJobType" minWidth="0.0" prefWidth="92.5" text="Stillingstype" />
+                <TableColumn fx:id="tcKWorkfields" prefWidth="250.5" text="Kategorier" />
             </columns>
         </TableView>
-        <Button layoutX="835.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnEmploy" text="Opprett arbeidsforhold" />
+        <Button layoutX="944.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnEmploy" text="Opprett arbeidsforhold" />
       <Button layoutX="480.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnReadMore" text="Les mer" />
     </children>
 </Pane>

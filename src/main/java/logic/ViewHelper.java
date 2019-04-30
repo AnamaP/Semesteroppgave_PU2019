@@ -4,6 +4,7 @@ import classes.Company;
 import classes.Cv;
 import classes.Jobseeker;
 import classes.TempJob;
+import javafx.scene.control.TableView;
 
 import java.util.ArrayList;
 
@@ -99,5 +100,13 @@ public class ViewHelper {
         String message = ViewTempJobsHelper.readMoreContent(key);
 
         AlertHelper.showMoreInfo(title,message);
+    }
+
+    public String selectedPhoneNoTempJobs(TableView<TableTempJobs> tvTable){
+        return tvTable.getSelectionModel().getSelectedItem().getPhoneNo();
+    }
+
+    public String selectedPhoneNoJobseekers(TableView<TableJobseekers> tvTable){
+        return tvTable.getSelectionModel().getSelectedItem().getPhoneNo();
     }
 }

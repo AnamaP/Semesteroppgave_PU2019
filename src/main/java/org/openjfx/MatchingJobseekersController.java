@@ -16,7 +16,6 @@ public class MatchingJobseekersController implements Initializable {
     @FXML
     private TableView<TableJobseekers> tvJobseekers;
 
-
     @FXML
     private TableColumn<TableJobseekers, String> tcFistname, tcLastname, tcAddress, tcZipcode, tcPostal, tcPhoneNo,
             tcEmail, tcAge, tcEducation, tcStudy, tcExperience, tcWorkfields;
@@ -24,33 +23,23 @@ public class MatchingJobseekersController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-     tvJobseekers.setPlaceholder(new Label("Det er dessverre ingen aktuelle vikariater for denne jobbsøkeren per nå" +
+        tvJobseekers.setPlaceholder(new Label("Det er dessverre ingen aktuelle vikariater for denne jobbsøkeren per nå" +
                                     "\n Forsøk igjen senere eller velg en annen jobbsøker"));
 
-        tcFistname.setCellValueFactory(cellData->cellData.getValue().firstnameProperty());
-        tcLastname.setCellValueFactory(cellData->cellData.getValue().lastnameProperty());
-        tcAddress.setCellValueFactory(cellData->cellData.getValue().addressProperty());
-        tcZipcode.setCellValueFactory(cellData->cellData.getValue().zipcodeProperty());
-        tcPostal.setCellValueFactory(cellData->cellData.getValue().postalProperty());
-        tcPhoneNo.setCellValueFactory(cellData->cellData.getValue().phoneNoProperty());
-        tcEmail.setCellValueFactory(cellData->cellData.getValue().emailProperty());
-        tcAge.setCellValueFactory(cellData->cellData.getValue().ageProperty());
-        tcEducation.setCellValueFactory(cellData->cellData.getValue().educationProperty());
-        tcStudy.setCellValueFactory(cellData->cellData.getValue().studyProperty());
-        tcExperience.setCellValueFactory(cellData->cellData.getValue().experienceProperty());
-        tcWorkfields.setCellValueFactory(cellData->cellData.getValue().workfieldsProperty());
+        SetTableHelper run = new SetTableHelper();
+        run.setJobbseekerTable(tcFistname, tcLastname, tcAddress, tcZipcode, tcPostal, tcPhoneNo,
+                tcEmail, tcAge, tcEducation, tcStudy, tcExperience, tcWorkfields);
 
         tvJobseekers.setItems(ViewJobseekerHelper.showResults());
     }
 
     public void btnBack(ActionEvent event) {
-        //Tar brukeren tilbake til oversikten:
         NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
     }
 
     public void btnEmploy(ActionEvent event) {
-        String key = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
         ViewHelper run = new ViewHelper();
+        String key = run.selectedPhoneNoJobseekers(tvJobseekers);
         run.employ(key);
 
         NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);

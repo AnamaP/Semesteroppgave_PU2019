@@ -37,19 +37,10 @@ public class ViewJobseekersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        // Initierer kolonnene
-        tcFirstname.setCellValueFactory(cellData -> cellData.getValue().firstnameProperty());
-        tcLastname.setCellValueFactory(cellData -> cellData.getValue().lastnameProperty());
-        tcAddress.setCellValueFactory(cellData -> cellData.getValue().addressProperty());
-        tcZipcode.setCellValueFactory(cellData -> cellData.getValue().zipcodeProperty());
-        tcPostal.setCellValueFactory(cellData -> cellData.getValue().postalProperty());
-        tcPhoneNo.setCellValueFactory(cellData -> cellData.getValue().phoneNoProperty());
-        tcEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
-        tcAge.setCellValueFactory(cellData -> cellData.getValue().ageProperty());
-        tcEducation.setCellValueFactory(cellData -> cellData.getValue().educationProperty());
-        tcStudy.setCellValueFactory(cellData -> cellData.getValue().studyProperty());
-        tcExperience.setCellValueFactory(cellData -> cellData.getValue().experienceProperty());
-        tcWorkfields.setCellValueFactory(cellData -> cellData.getValue().workfieldsProperty());
+        SetTableHelper run = new SetTableHelper();
+        run.setJobbseekerTable(tcFirstname, tcLastname, tcAddress, tcZipcode, tcPostal, tcPhoneNo,
+                tcEmail, tcAge, tcEducation, tcStudy, tcExperience, tcWorkfields);
+
         tcStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
 
         tvJobseekers.setItems(showJobseekers());

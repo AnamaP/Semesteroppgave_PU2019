@@ -37,15 +37,10 @@ public class ViewTempJobsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        tcContactPerson.setCellValueFactory(cellData->cellData.getValue().contactPersonProperty());
-        tcPhoneNo.setCellValueFactory(cellData->cellData.getValue().phoneNoProperty());
-        tcSector.setCellValueFactory(cellData->cellData.getValue().sectorProperty());
-        tcCompanyName.setCellValueFactory(cellData->cellData.getValue().companyNameProperty());
-        tcAddress.setCellValueFactory(cellData->cellData.getValue().addressProperty());
-        tcIndustry.setCellValueFactory(cellData->cellData.getValue().industryProperty());
-        tcJobTitle.setCellValueFactory(cellData->cellData.getValue().jobTitleProperty());
-        tcJobType.setCellValueFactory(cellData->cellData.getValue().jobTypeProperty());
-        tcWorkfields.setCellValueFactory(cellData->cellData.getValue().workfieldsProperty());
+        SetTableHelper run = new SetTableHelper();
+        run.setTempJobsTable(tcContactPerson, tcPhoneNo, tcSector, tcCompanyName, tcAddress, tcIndustry,
+                tcJobTitle, tcJobType, tcWorkfields);
+
         tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
 
         tvTempJobs.setItems(viewTempJobs());
@@ -86,7 +81,8 @@ public class ViewTempJobsController implements Initializable {
     }
 
     public void btnDownload(ActionEvent event) {
-        String key = tvTempJobs.getSelectionModel().getSelectedItem().phoneNoProperty().get();
+        ViewHelper run = new ViewHelper();
+        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
         ViewTempJobsHelper.saveTempJob(key);
     }
 
@@ -96,7 +92,8 @@ public class ViewTempJobsController implements Initializable {
     }
 
     public void btnReadMore(ActionEvent event) {
-        String key = tvTempJobs.getSelectionModel().getSelectedItem().phoneNoProperty().get();
+        ViewHelper run = new ViewHelper();
+        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
 
         String title = ViewTempJobsHelper.readMoreTitle(key);
         String message = ViewTempJobsHelper.readMoreContent(key);
@@ -105,7 +102,8 @@ public class ViewTempJobsController implements Initializable {
     }
 
     public void btnEdit(ActionEvent event) throws IOException {
-        String key = tvTempJobs.getSelectionModel().getSelectedItem().getPhoneNo();
+        ViewHelper run = new ViewHelper();
+        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
         findTempJob(key);
 
         // Load FXML
@@ -134,11 +132,12 @@ public class ViewTempJobsController implements Initializable {
 
         if (result.get() == ButtonType.OK) {
             // utføres sletting
-            String key = tvTempJobs.getSelectionModel().getSelectedItem().phoneNoProperty().get();
+            ViewHelper run = new ViewHelper();
+            String key = run.selectedPhoneNoTempJobs(tvTempJobs);
             ViewTempJobsHelper.deleteChosenTempJob(key);
 
-            MainAppHelper run = new MainAppHelper();
-            run.reloadVikariaterDatabase();
+            MainAppHelper run1 = new MainAppHelper();
+            run1.reloadVikariaterDatabase();
 
             NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
         }
@@ -154,7 +153,8 @@ public class ViewTempJobsController implements Initializable {
         ViewHelper chosenWorkfields = new ViewHelper();
         chosenWorkfields.setValgteKategorier(workfields);
 
-        String phoneNo = tvTempJobs.getSelectionModel().getSelectedItem().getPhoneNo();
+        ViewHelper run = new ViewHelper();
+        String phoneNo = run.selectedPhoneNoTempJobs(tvTempJobs);
         findTempJob(phoneNo);
 
         NavigationHelper.changePage("/org/openjfx/resultatSokere.fxml", event);

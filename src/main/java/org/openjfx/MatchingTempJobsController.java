@@ -17,8 +17,8 @@ public class MatchingTempJobsController implements Initializable {
     private TableView<TableTempJobs> tvTempJobs;
 
     @FXML
-    private TableColumn<TableTempJobs, String> tcContactPerson, tcPhoneNo, tcSector, tcCompanyName, tcIndustry,
-            tcJobTitle, tcKWorkfields;
+    private TableColumn<TableTempJobs, String> tcContactPerson, tcPhoneNo, tcSector, tcCompanyName,
+            tcAddress,  tcIndustry, tcJobTitle, tcJobType, tcKWorkfields;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -26,31 +26,26 @@ public class MatchingTempJobsController implements Initializable {
         tvTempJobs.setPlaceholder(new Label("Det er dessverre ingen aktuelle kandidater for dette " +
                 "vikariatet per nå. \n Gå tilbake og velg et annet vikariat."));
 
-        tcContactPerson.setCellValueFactory(cellData->cellData.getValue().contactPersonProperty());
-        tcPhoneNo.setCellValueFactory(cellData->cellData.getValue().phoneNoProperty());
-        tcSector.setCellValueFactory(cellData->cellData.getValue().sectorProperty());
-        tcCompanyName.setCellValueFactory(cellData->cellData.getValue().companyNameProperty());
-        tcIndustry.setCellValueFactory(cellData->cellData.getValue().industryProperty());
-        tcJobTitle.setCellValueFactory(cellData->cellData.getValue().jobTitleProperty());
-        tcKWorkfields.setCellValueFactory(cellData->cellData.getValue().workfieldsProperty());
+        SetTableHelper run = new SetTableHelper();
+        run.setTempJobsTable(tcContactPerson, tcPhoneNo, tcSector, tcCompanyName,
+                tcAddress,  tcIndustry, tcJobTitle, tcJobType, tcKWorkfields);
 
         tvTempJobs.setItems(ViewTempJobsHelper.showResults());
     }
 
     public void btnBack(ActionEvent event) {
-        //Tar brukeren tilbake til oversikten:
         NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
     }
 
     public void btnReadMore(ActionEvent event) {
-        String key = tvTempJobs.getSelectionModel().getSelectedItem().phoneNoProperty().get();
         ViewHelper run = new ViewHelper();
+        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
         run.showMore(key);
     }
 
     public void btnEmploy(ActionEvent event) {
-        String key = tvTempJobs.getSelectionModel().getSelectedItem().getPhoneNo();
         ViewHelper run = new ViewHelper();
+        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
         run.employ(key);
 
         NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
