@@ -2,9 +2,11 @@ package logic;
 
 import exceptions.*;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import static logic.RegJobseekerHelper.jobseekersList;
+import static logic.RegTempJobHelper.tempJobsList;
 
 public class ValidationChecker {
     private String invalidInputs = "";
@@ -28,7 +30,7 @@ public class ValidationChecker {
         checkValidString(address);
         checkValidString(experience);
         checkPhoneNo(phoneNo);
-        checkDuplicatePhoneNo(phoneNo);
+        checkDuplicatePhoneNo(jobseekersList, phoneNo);
         checkEmail(email);
         checkAge(age);
         checkSalary(salary);
@@ -44,7 +46,7 @@ public class ValidationChecker {
                                           Boolean it, Boolean economy, Boolean fullTime, Boolean partTime) {
         checkString(contactPerson);
         checkPhoneNo(phoneNo);
-        checkDuplicatePhoneNo(phoneNo);
+        checkDuplicatePhoneNo(tempJobsList, phoneNo);
         checkString(sector);
         checkValidString(companyName);
         checkValidString(industry);
@@ -74,7 +76,7 @@ public class ValidationChecker {
             }
         }
         catch (InvalidStringFormatException e) {
-            invalidInputs += (String.format("%s er et ugyldig, kun bokstaver Aa-åÅ tillatt \n", name));
+            invalidInputs += (String.format("%s er ugyldig, kun bokstaver Aa-åÅ tillatt \n", name));
         }
         return false;
     }
@@ -98,6 +100,19 @@ public class ValidationChecker {
         return false;
     }
 
+    private boolean checkPhoneNo(String phoneNo){
+        try{
+            if(checkValidPhoneNo(phoneNo)) {
+                return true;
+            }
+        }
+        catch(InvalidNumberFormatException e){
+            invalidInputs += (String.format("%s : er et ugyldig tlfnr, må bestå av positive tall og uten mellomrom \n", phoneNo));
+
+        }
+        return false;
+    }
+
     private boolean checkValidPhoneNo(String phoneNo) throws InvalidNumberFormatException {
         if(!Pattern.matches("[0-9]{8}+",phoneNo) || phoneNo.isEmpty() || phoneNo.startsWith("0")){
             throw new InvalidNumberFormatException("Feil i tlfnr!");
@@ -105,40 +120,27 @@ public class ValidationChecker {
         return true;
     }
 
-    private boolean checkPhoneNo(String phoneNmbr){
-        try{
-            if(checkValidPhoneNo(phoneNmbr)){
+    private boolean checkDuplicatePhoneNo(ArrayList arrayList, String phoneNo){
+        try {
+            if(checkIfDuplicatePhoneNo(arrayList, phoneNo)) {
                 return true;
             }
         }
-        catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er et ugyldig tlfnr, må bestå av positive tall og uten mellomrom \n", phoneNmbr));
+        catch (InvalidDuplicatePhoneNoException e) {
+            invalidInputs += "Telefonnummeret er registrert fra før.\n";
         }
         return false;
     }
 
-    private boolean checkIfDuplicatePhoneNo(String phoneNmbr) throws InvalidDuplicatePhoneNoException {
-        boolean duplicates = false;
-        for (int i = 0; i < jobseekersList.size(); i++) {
-            if (jobseekersList.get(i).getPhoneNo().equals(phoneNmbr)) {
+    private boolean checkIfDuplicatePhoneNo(ArrayList arrayList, String phoneNo) throws InvalidDuplicatePhoneNoException {
+        for (int i = 0; i < arrayList.size() -1; i++) {
+            String [] row = arrayList.get(i).toString().split(";");
+            System.out.println(row[1] + " " + row[5]);
+            if (row[1].equals(phoneNo) || row[5].equals(phoneNo)) {
                 throw new InvalidDuplicatePhoneNoException("Duplikat telefonnr!");
             }
-            duplicates=true;
-            return duplicates;
         }
-        return duplicates;
-    }
-
-    private boolean checkDuplicatePhoneNo(String phoneNo){
-        try{
-            if(checkIfDuplicatePhoneNo(phoneNo)){
-                return false;
-            }
-        }
-        catch(InvalidDuplicatePhoneNoException e){
-            invalidInputs += "Telefonnummeret er registrert fra før!";
-        }
-        return false;
+        return true;
     }
 
     private static boolean checkValidEmail(String email) throws InvalidEmailFormatException {
