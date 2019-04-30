@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static logic.AlertHelper.showDeleteAlert;
+import static logic.RegTempJobHelper.tempJobsList;
 import static logic.ViewTempJobsHelper.*;
 
 public class ViewTempJobsController implements Initializable {
@@ -112,7 +113,8 @@ public class ViewTempJobsController implements Initializable {
     public void btnEdit(ActionEvent event) throws IOException {
         try {
             String key = selectedPhoneNo(tvTempJobs);
-            findTempJob(key);
+            ViewHelper run = new ViewHelper();
+            run.findRow(tempJobsList, key, false);
 
             // Load FXML
             URL url = getClass().getResource("/org/openjfx/regVikariat.fxml");
@@ -165,7 +167,7 @@ public class ViewTempJobsController implements Initializable {
             run.setValgteKategorier(workfieldsStr);
 
             String key = selectedPhoneNo(tvTempJobs);
-            findTempJob(key);
+            run.findRow(tempJobsList, key, false);
 
             NavigationHelper.changePage("/org/openjfx/resultatSokere.fxml", event);
         }

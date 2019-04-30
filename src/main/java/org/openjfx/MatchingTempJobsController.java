@@ -11,6 +11,7 @@ import logic.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static logic.RegTempJobHelper.tempJobsList;
 import static logic.ViewTempJobsHelper.selectedPhoneNo;
 
 public class MatchingTempJobsController implements Initializable {
@@ -48,7 +49,8 @@ public class MatchingTempJobsController implements Initializable {
     public void btnEmploy(ActionEvent event) {
         ViewHelper run = new ViewHelper();
         String key = selectedPhoneNo(tvTempJobs);
-        run.employ(key);
+        run.findRow(tempJobsList, key, false);
+        run.employ();
 
         NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
     }

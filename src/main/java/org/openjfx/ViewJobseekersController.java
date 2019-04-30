@@ -18,8 +18,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static logic.AlertHelper.showDeleteAlert;
+import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.ViewJobseekerHelper.*;
-import static logic.ViewTempJobsHelper.findTempJob;
 
 public class ViewJobseekersController implements Initializable {
 
@@ -83,7 +83,8 @@ public class ViewJobseekersController implements Initializable {
     public void btnEditJobseeker(ActionEvent event) {
         try{
             String key = selectedPhoneNo(tvJobseekers);
-            findJobseeker(key);
+            ViewHelper run = new ViewHelper();
+            run.findRow(jobseekersList, key, true);
 
             // Load FXML
             URL url = getClass().getResource("/org/openjfx/regSoker.fxml");
@@ -156,7 +157,7 @@ public class ViewJobseekersController implements Initializable {
             run.setValgteKategorier(workfieldsStr);
 
             String key = selectedPhoneNo(tvJobseekers);
-            findTempJob(key);
+            run.findRow(jobseekersList, key, true);
 
             NavigationHelper.changePage("/org/openjfx/resultatVikariater.fxml", event);
         }

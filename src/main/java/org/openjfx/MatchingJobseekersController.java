@@ -10,6 +10,7 @@ import logic.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.ViewJobseekerHelper.selectedPhoneNo;
 
 
@@ -42,7 +43,8 @@ public class MatchingJobseekersController implements Initializable {
     public void btnEmploy(ActionEvent event) {
         ViewHelper run = new ViewHelper();
         String key = selectedPhoneNo(tvJobseekers);
-        run.employ(key);
+        run.findRow(jobseekersList, key, true);
+        run.employ();
 
         NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
     }

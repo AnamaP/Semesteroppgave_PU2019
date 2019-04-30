@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import static logic.ViewHelper.chosenWorkfields;
 import static logic.RegJobseekerHelper.jobseekersList;
-import static logic.ViewTempJobsHelper.*;
 
 public class ViewJobseekerHelper {
 
@@ -88,14 +87,10 @@ public class ViewJobseekerHelper {
     }
 
     public static void saveJobseeker(String key){
-        findJobseeker(key);
+        ViewHelper run = new ViewHelper();
+        run.findRow(jobseekersList, key, true);
         FileChooserHelper.download(jobseekersList.get(chosenJobseeker));
         //TODO : Feilmld til bruker om at jobbsoker ikke er valgt
-    }
-
-    public static void findJobseeker(String key){
-        ViewHelper run = new ViewHelper();
-        run.findRow(jobseekersList, key);
     }
 
     public static String selectedPhoneNo(TableView<TableJobseekers> tvTable){

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import static logic.ViewHelper.chosenWorkfields;
 import static logic.RegTempJobHelper.tempJobsList;
-import static logic.ViewJobseekerHelper.selectedPhoneNo;
 
 public class ViewTempJobsHelper {
 
@@ -90,24 +89,28 @@ public class ViewTempJobsHelper {
     }
 
     public static void deleteChosenTempJob(String key) {
-        findTempJob(key);
+        ViewHelper run = new ViewHelper();
+        run.findRow(tempJobsList, key, false);
         tempJobsList.remove(tempJobsList.get(chosenTempJob));
     }
 
     public static void saveTempJob(String key){
-        findTempJob(key);
+        ViewHelper run = new ViewHelper();
+        run.findRow(tempJobsList, key, false);
         FileChooserHelper.download(tempJobsList.get(chosenTempJob));
 
         //TODO : Feilmld til bruker om at vikariat ikke er valgt
     }
 
     public static String readMoreTitle(String key){
-        findTempJob(key);
+        ViewHelper run = new ViewHelper();
+        run.findRow(tempJobsList, key, false);
         return tempJobsList.get(chosenTempJob).getTempJob().getJobTitle();
     }
 
     public static String readMoreContent(String key){
-        findTempJob(key);
+        ViewHelper run = new ViewHelper();
+        run.findRow(tempJobsList, key, false);
         Company tempJob = tempJobsList.get(chosenTempJob);
         String out = "";
         out += "Beskrivelse: \n" + tempJob.getTempJob().getDescription() + "\n\n";
@@ -115,11 +118,6 @@ public class ViewTempJobsHelper {
         out += "Antatt årslønn: " + tempJob.getTempJob().getSalary() + "\n\n";
         out += "Varighet: " + tempJob.getTempJob().getDuration() + "\n\n";
         return out;
-    }
-
-    public static void findTempJob(String key){
-        ViewHelper run = new ViewHelper();
-        run.findRow(tempJobsList, key);
     }
 
     public static String selectedPhoneNo(TableView<TableTempJobs> tvTable){

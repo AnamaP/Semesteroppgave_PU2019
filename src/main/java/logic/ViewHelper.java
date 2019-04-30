@@ -30,16 +30,22 @@ public class ViewHelper{
         return result;
     }
 
-    public void findRow(ArrayList arrayList, String key){
+    /*
+        Metoden finner hvilken rad i hvilken liste basert på et nøkkelelement.
+        Arraylisten inneholder hele tabellen. Den deles inn i rader og det sjekkes om nøkkelen finnes i en av radene.
+        Om den finnes, finner man ut av hvilken type objekt det er og setter den valgte raden inn i enten
+        "chosenTempJob" eller "chosenJobseeker".
+     */
+    public void findRow(ArrayList arrayList, String key, Boolean isJobseeker){
         for(int i = 0; i < arrayList.size(); i++){
             String [] row = arrayList.get(i).toString().split(";");
             for(int j = 0; j < row.length; j++){
                 if(row[j].equals(key)){
-                    if(arrayList.size() > 14) {
-                        chosenTempJob = i;
-                    }
-                    else{
+                    if(isJobseeker){
                         chosenJobseeker = i;
+                    }
+                    else {
+                        chosenTempJob = i;
                     }
                 }
             }
@@ -83,9 +89,7 @@ public class ViewHelper{
         return workfields;
     }
 
-    public void employ(String key){
-        findJobseeker(key);
-
+    public void employ(){
         tempJobsList.get(chosenTempJob).getTempJob().setStatus("Besatt");
         jobseekersList.get(chosenJobseeker).setStatus("Ansatt");
 
