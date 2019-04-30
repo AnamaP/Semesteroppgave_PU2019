@@ -86,7 +86,7 @@
          </font>
       </Text>
 
-       <ComboBox fx:id="choiseEducation" layoutX="28.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg høyeste education*">
+       <ComboBox fx:id="choiseEducation" layoutX="28.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg høyeste utdanning*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="Vgs" />
@@ -96,7 +96,7 @@
            </items>
        </ComboBox>
 
-       <ComboBox fx:id="choiseStudy" layoutX="302.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg study*">
+       <ComboBox fx:id="choiseStudy" layoutX="302.0" layoutY="371.0" prefHeight="28.0" prefWidth="263.0" promptText="Velg studieretning*">
            <items>
                <FXCollections fx:factory="observableArrayList">
                    <String fx:value="It" />
@@ -109,7 +109,7 @@
       <Text layoutX="27.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Erfaring: *" />
       <TextField fx:id="txtExperience" layoutX="26.0" layoutY="444.0" prefHeight="27.0" prefWidth="263.0" promptText="Firma, stilling" />
       <Text layoutX="305.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referanser:" />
-      <TextField fx:id="txtReference" layoutX="304.0" layoutY="444.0" prefHeight="27.0" prefWidth="263.0" promptText="Fullt navn, phoneNo" />
+      <TextField fx:id="txtReference" layoutX="304.0" layoutY="444.0" prefHeight="27.0" prefWidth="263.0" promptText="Fullt navn, telefonnr" />
       <Button fx:id="btnTilbake" layoutX="26.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnBack" text="Tilbake" />
       <Button layoutX="510.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnRegJobseeker" prefWidth="54.0" text="Lagre" />
    </children>
