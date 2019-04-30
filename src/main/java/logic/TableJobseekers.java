@@ -45,7 +45,7 @@ public class TableJobseekers {
     public String getLastname() {
         return lastname.get();
     }
-    public String getZipcode() {
+    public String getZipCode() {
         return zipcode.get();
     }
     public String getPostal() {

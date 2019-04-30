@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -37,5 +38,6 @@
             </columns>
         </TableView>
       <Button layoutX="1069.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnEmploy" text="Opprett arbeidsforhold" />
+      <TextField fx:id="txtFilterField" layoutX="21.0" layoutY="7.0" prefHeight="26.0" prefWidth="189.0" promptText="Filtrer her.." />
     </children>
 </Pane>

@@ -38,6 +38,8 @@ public class ViewJobseekersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        tvJobseekers.setPlaceholder(new Label("Obs! Ingen treff som passer søket ditt!"));
+
         SetTableHelper run = new SetTableHelper();
         run.setJobbseekerTable(tcFirstname, tcLastname, tcAddress, tcZipcode, tcPostal, tcPhoneNo,
                 tcEmail, tcAge, tcEducation, tcStudy, tcExperience, tcWorkfields);
@@ -59,7 +61,7 @@ public class ViewJobseekersController implements Initializable {
             String lowerCaseFilter = newValue.toLowerCase();
             if (jobseeker.getFirstname().toLowerCase().contains(lowerCaseFilter) ||
                     jobseeker.getLastname().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getZipcode().toLowerCase().contains(lowerCaseFilter) ||
+                    jobseeker.getZipCode().toLowerCase().contains(lowerCaseFilter) ||
                     jobseeker.getPostal().toLowerCase().contains(lowerCaseFilter) ||
                     jobseeker.getPhoneNo().toLowerCase().contains(lowerCaseFilter) ||
                     jobseeker.getWorkfields().toLowerCase().contains(lowerCaseFilter) ||

@@ -38,6 +38,8 @@ public class ViewTempJobsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        tvTempJobs.setPlaceholder(new Label("Obs! Ingen treff som passer søket ditt!"));
+
         SetTableHelper run = new SetTableHelper();
         run.setTempJobsTable(tcContactPerson, tcPhoneNo, tcSector, tcCompanyName, tcAddress, tcIndustry,
                 tcJobTitle, tcJobType, tcWorkfields);
