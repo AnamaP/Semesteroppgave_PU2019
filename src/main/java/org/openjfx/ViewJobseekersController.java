@@ -89,55 +89,73 @@ public class ViewJobseekersController implements Initializable {
     }
 
     public void btnEditJobseeker(ActionEvent event) {
-        String key = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
-        findJobseeker(key);
-
-        // Load FXML
-        URL url = getClass().getResource("/org/openjfx/regSoker.fxml");
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent parent = null;
-        try {
-            parent = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
+        String key = "";
+        if (key == ""){
+            AlertHelper.showError("Du må velge en jobbsøker for å kunne redigere!");
         }
-        RegJobseekerController controller = loader.getController();
-        loader.setLocation(url);
-        controller.setData();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        else {
+            key = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
+            findJobseeker(key);
 
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
+            // Load FXML
+            URL url = getClass().getResource("/org/openjfx/regSoker.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent parent = null;
+            try {
+                parent = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            RegJobseekerController controller = loader.getController();
+            loader.setLocation(url);
+            controller.setData();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
+        }
     }
 
     public void btnDeleteJobseeker(ActionEvent event) {
-        String message = tvJobseekers.getSelectionModel().getSelectedItem().getFirstname();
-        message += " "+ tvJobseekers.getSelectionModel().getSelectedItem().getLastname();
-        Alert question = new Alert(Alert.AlertType.CONFIRMATION);
-        question.setHeaderText("Er du sikker på at du vil slette : ");
-        question.setContentText(message +"?");
-        Optional<ButtonType> result = question.showAndWait();
-
-        if (result.get() == ButtonType.OK) {
-            // blir sletting gjennomført
-            String key = tvJobseekers.getSelectionModel().getSelectedItem().phoneNoProperty().get();
-
-            Boolean deleted = RegJobseekerHelper.deleteChosenJobseeker(key);
-            if (deleted) {
-                MainAppHelper run = new MainAppHelper();
-                run.reloadJobbsokerDatabase();
-            }
-            NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
+        String message = "";
+        if (message == ""){
+            AlertHelper.showError("Du må velge en jobbsøker for å kunne slette!");
         }
         else {
-        // avbryter slettingen
-    }
+            message = tvJobseekers.getSelectionModel().getSelectedItem().getFirstname();
+            message += " " + tvJobseekers.getSelectionModel().getSelectedItem().getLastname();
+            Alert question = new Alert(Alert.AlertType.CONFIRMATION);
+            question.setHeaderText("Er du sikker på at du vil slette : ");
+            question.setContentText(message + "?");
+            Optional<ButtonType> result = question.showAndWait();
 
+            if (result.get() == ButtonType.OK) {
+                // blir sletting gjennomført
+                String key = tvJobseekers.getSelectionModel().getSelectedItem().phoneNoProperty().get();
+
+                Boolean deleted = RegJobseekerHelper.deleteChosenJobseeker(key);
+                if (deleted) {
+                    MainAppHelper run = new MainAppHelper();
+                    run.reloadJobbsokerDatabase();
+                }
+                NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
+            } else {
+                // avbryter slettingen
+            }
+        }
 }
 
-    public void btnDownloadJobseeker(ActionEvent event){
-        String key = tvJobseekers.getSelectionModel().getSelectedItem().phoneNoProperty().get();
-        ViewJobseekerHelper.saveJobseeker(key);
+    public void btnDownloadJobseeker(ActionEvent event) {
+       // TODO : bør det håndteres med en exception også her ??
+        String key = "";
+        if (key == ""){
+            AlertHelper.showError("Du har ikke valgt en jobbsøker for nedlasting!");
+        }
+        else {
+            key = tvJobseekers.getSelectionModel().getSelectedItem().phoneNoProperty().get();
+            ViewJobseekerHelper.saveJobseeker(key);
+        }
+
     }
 
     public void btnUploadJobseeker(ActionEvent event){
@@ -146,16 +164,21 @@ public class ViewJobseekersController implements Initializable {
 
     }
 
-    public void btnFindTempJob(ActionEvent event){
-        String workfieldsStr = tvJobseekers.getSelectionModel().getSelectedItem().workfieldsProperty().get();
-        ArrayList<String> workfields = ViewHelper.stringToList(workfieldsStr);
+    public void btnFindTempJob(ActionEvent event) {
+        String workfieldsStr = "";
+        if (workfieldsStr == "") {
+            AlertHelper.showError("Du må velge en jobbsøker for å finne passende vikariat!");
+        } else {
+            workfieldsStr = tvJobseekers.getSelectionModel().getSelectedItem().workfieldsProperty().get();
+            ArrayList<String> workfields = ViewHelper.stringToList(workfieldsStr);
 
-        ViewHelper chosenWorkfields = new ViewHelper();
-        chosenWorkfields.setValgteKategorier(workfields);
+            ViewHelper chosenWorkfields = new ViewHelper();
+            chosenWorkfields.setValgteKategorier(workfields);
 
-        String phoneNo = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
-        findJobseeker(phoneNo);
+            String phoneNo = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
+            findJobseeker(phoneNo);
 
-        NavigationHelper.changePage("/org/openjfx/resultatVikariater.fxml", event);
+            NavigationHelper.changePage("/org/openjfx/resultatVikariater.fxml", event);
+        }
     }
 }
