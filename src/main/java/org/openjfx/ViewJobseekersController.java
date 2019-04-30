@@ -89,7 +89,7 @@ public class ViewJobseekersController implements Initializable {
             run.findRow(jobseekersList, key, true);
 
             // Load FXML
-            URL url = getClass().getResource("/org/openjfx/regSoker.fxml");
+            URL url = getClass().getResource("/org/openjfx/regJobseeker.fxml");
             FXMLLoader loader = new FXMLLoader(url);
             Parent parent = null;
             try {
@@ -126,7 +126,7 @@ public class ViewJobseekersController implements Initializable {
                     MainAppHelper run = new MainAppHelper();
                     run.reloadJobbsokerDatabase();
                 }
-                NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
+                NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
             }
             else {
                 // avbryter slettingen
@@ -149,7 +149,7 @@ public class ViewJobseekersController implements Initializable {
 
     public void btnUploadJobseeker(ActionEvent event){
         FileChooserHelper.upload(Paths.JOBSEEKER);
-        NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
     }
 
     public void btnFindTempJob(ActionEvent event) {
@@ -161,7 +161,7 @@ public class ViewJobseekersController implements Initializable {
             String key = selectedPhoneNo(tvJobseekers);
             run.findRow(jobseekersList, key, true);
 
-            NavigationHelper.changePage("/org/openjfx/resultatVikariater.fxml", event);
+            NavigationHelper.changePage("/org/openjfx/matchTempJobs.fxml", event);
         }
         catch(NullPointerException e){
             AlertHelper.showError("Du må velge en jobbsøker for å finne passende vikariat!");
