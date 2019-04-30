@@ -9,10 +9,6 @@ import javafx.scene.control.TableView;
 import logic.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import static logic.ViewHelper.chosenRow;
-import static logic.ViewJobseekerHelper.findJobseeker;
-import static logic.RegJobseekerHelper.jobseekersList;
-import static logic.RegTempJobHelper.tempJobsList;
 
 
 public class MatchingJobseekersController implements Initializable {
@@ -53,15 +49,9 @@ public class MatchingJobseekersController implements Initializable {
     }
 
     public void btnEmploy(ActionEvent event) {
-        String phoneNo = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
-        findJobseeker(phoneNo);
-
-        tempJobsList.get(chosenRow).getTempJob().setStatus("Besatt");
-        jobseekersList.get(chosenRow).setStatus("Ansatt");
-
-        MainAppHelper reload = new MainAppHelper();
-        reload.reloadVikariaterDatabase();
-        reload.reloadJobbsokerDatabase();
+        String key = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
+        ViewHelper run = new ViewHelper();
+        run.employ(key);
 
         NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
     }

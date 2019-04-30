@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static logic.ViewHelper.chosenRow;
 import static logic.ViewTempJobsHelper.*;
 
 public class ViewTempJobsController implements Initializable {
@@ -115,7 +114,7 @@ public class ViewTempJobsController implements Initializable {
         Parent parent = loader.load();
         RegTempJobController controller = loader.getController();
         loader.setLocation(url);
-        controller.setData(chosenRow);
+        controller.setData(chosenTempJob);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(parent);

@@ -7,8 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import classes.Jobseeker;
 import java.io.IOException;
-import static logic.ViewHelper.chosenRow;
 import static logic.RegJobseekerHelper.jobseekersList;
+import static logic.ViewJobseekerHelper.chosenJobseeker;
 
 public class RegJobseekerController {
 
@@ -28,7 +28,7 @@ public class RegJobseekerController {
 
     public void btnRegJobseeker(ActionEvent event) {
         if(shouldUpdate){
-            jobseekersList.remove(chosenRow);
+            jobseekersList.remove(chosenJobseeker);
             MainAppHelper reload = new MainAppHelper();
             reload.reloadJobbsokerDatabase();
         }
@@ -88,8 +88,8 @@ public class RegJobseekerController {
     }
 
     public void setData(){
-        Jobseeker jobseeker = jobseekersList.get(chosenRow);
-        System.out.println("int: "+ chosenRow);
+        Jobseeker jobseeker = jobseekersList.get(chosenJobseeker);
+        System.out.println("int: "+ chosenJobseeker);
         System.out.println(jobseeker.toString());
 
         txtFirstname.setText(jobseeker.getFirstname());

@@ -36,6 +36,6 @@
                 <TableColumn fx:id="tcWorkfields" prefWidth="204.666748046875" text="Kategorier" />
             </columns>
         </TableView>
-      <Button layoutX="1125.0" layoutY="563.0" mnemonicParsing="false" onAction="#btnEmploy" text="Ansett person" />
+      <Button layoutX="1069.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnEmploy" text="Opprett arbeidsforhold" />
     </children>
 </Pane>

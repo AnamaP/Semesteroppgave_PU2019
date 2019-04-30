@@ -31,7 +31,7 @@
                 <TableColumn fx:id="tcKWorkfields" prefWidth="332.5" text="Kategorier" />
             </columns>
         </TableView>
-        <Button layoutX="889.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnEmploy" text="Ansett person" />
+        <Button layoutX="835.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnEmploy" text="Opprett arbeidsforhold" />
       <Button layoutX="480.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnReadMore" text="Les mer" />
     </children>
 </Pane>

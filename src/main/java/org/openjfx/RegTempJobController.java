@@ -9,8 +9,8 @@ import javafx.scene.control.*;
 
 import java.io.*;
 
-import static logic.ViewHelper.chosenRow;
 import static logic.RegTempJobHelper.tempJobsList;
+import static logic.ViewTempJobsHelper.chosenTempJob;
 
 public class RegTempJobController {
 
@@ -33,7 +33,7 @@ public class RegTempJobController {
     private void btnRegTempJob(ActionEvent event) {
 
         if(shouldUpdate){
-            tempJobsList.remove(tempJobsList.get(chosenRow));
+            tempJobsList.remove(tempJobsList.get(chosenTempJob));
             MainAppHelper reload = new MainAppHelper();
             reload.reloadVikariaterDatabase();
         }

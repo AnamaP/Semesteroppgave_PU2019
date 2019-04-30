@@ -7,9 +7,14 @@ import classes.TempJob;
 
 import java.util.ArrayList;
 
+import static logic.RegJobseekerHelper.jobseekersList;
+import static logic.RegTempJobHelper.tempJobsList;
+import static logic.ViewJobseekerHelper.chosenJobseeker;
+import static logic.ViewJobseekerHelper.findJobseeker;
+import static logic.ViewTempJobsHelper.chosenTempJob;
+
 public class ViewHelper {
 
-    public static int chosenRow;
     public static ArrayList<String> chosenWorkfields;
 
     public void setValgteKategorier(ArrayList<String> chosenWorkfields) {
@@ -30,7 +35,12 @@ public class ViewHelper {
             String [] row = arrayList.get(i).toString().split(";");
             for(int j = 0; j < row.length; j++){
                 if(row[j].equals(key)){
-                    chosenRow = i;
+                    if(arrayList.size() > 14) {
+                        chosenTempJob = i;
+                    }
+                    else{
+                        chosenJobseeker = i;
+                    }
                 }
             }
         }
@@ -71,5 +81,23 @@ public class ViewHelper {
             workfields.add(columns[i]);
         }
         return workfields;
+    }
+
+    public void employ(String key){
+        findJobseeker(key);
+
+        tempJobsList.get(chosenTempJob).getTempJob().setStatus("Besatt");
+        jobseekersList.get(chosenJobseeker).setStatus("Ansatt");
+
+        MainAppHelper reload = new MainAppHelper();
+        reload.reloadVikariaterDatabase();
+        reload.reloadJobbsokerDatabase();
+    }
+
+    public void showMore(String key){
+        String title = ViewTempJobsHelper.readMoreTitle(key);
+        String message = ViewTempJobsHelper.readMoreContent(key);
+
+        AlertHelper.showMoreInfo(title,message);
     }
 }

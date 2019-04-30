@@ -7,11 +7,13 @@ import classes.Company;
 import java.io.*;
 import java.util.ArrayList;
 
-import static logic.ViewHelper.chosenRow;
 import static logic.ViewHelper.chosenWorkfields;
 import static logic.RegTempJobHelper.tempJobsList;
 
 public class ViewTempJobsHelper {
+
+
+    public static int chosenTempJob;
 
     public static ObservableList<TableTempJobs> viewTempJobs() {
         // Oppretter en tabell
@@ -87,24 +89,24 @@ public class ViewTempJobsHelper {
 
     public static void deleteChosenTempJob(String key) {
         findTempJob(key);
-        tempJobsList.remove(tempJobsList.get(chosenRow));
+        tempJobsList.remove(tempJobsList.get(chosenTempJob));
     }
 
     public static void saveTempJob(String key){
         findTempJob(key);
-        FileChooserHelper.download(tempJobsList.get(chosenRow));
+        FileChooserHelper.download(tempJobsList.get(chosenTempJob));
 
         //TODO : Feilmld til bruker om at vikariat ikke er valgt
     }
 
     public static String readMoreTitle(String key){
         findTempJob(key);
-        return tempJobsList.get(chosenRow).getTempJob().getJobTitle();
+        return tempJobsList.get(chosenTempJob).getTempJob().getJobTitle();
     }
 
     public static String readMoreContent(String key){
         findTempJob(key);
-        Company tempJob = tempJobsList.get(chosenRow);
+        Company tempJob = tempJobsList.get(chosenTempJob);
         String out = "";
         out += "Beskrivelse: \n" + tempJob.getTempJob().getDescription() + "\n\n";
         out += "Kvalifikasjoner: \n" + tempJob.getTempJob().getQualif() + "\n\n";

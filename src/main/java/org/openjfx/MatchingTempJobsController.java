@@ -11,11 +11,6 @@ import logic.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static logic.ViewHelper.chosenRow;
-import static logic.ViewJobseekerHelper.findJobseeker;
-import static logic.RegJobseekerHelper.jobseekersList;
-import static logic.RegTempJobHelper.tempJobsList;
-
 public class MatchingTempJobsController implements Initializable {
     // TODO: Legge til ekstra felt som skal vises i guiresultatet
     @FXML
@@ -50,23 +45,14 @@ public class MatchingTempJobsController implements Initializable {
 
     public void btnReadMore(ActionEvent event) {
         String key = tvTempJobs.getSelectionModel().getSelectedItem().phoneNoProperty().get();
-
-        String title = ViewTempJobsHelper.readMoreTitle(key);
-        String message = ViewTempJobsHelper.readMoreContent(key);
-
-        AlertHelper.showMoreInfo(title,message);
+        ViewHelper run = new ViewHelper();
+        run.showMore(key);
     }
 
     public void btnEmploy(ActionEvent event) {
-        String phoneNo = tvTempJobs.getSelectionModel().getSelectedItem().getPhoneNo();
-        findJobseeker(phoneNo);
-
-        tempJobsList.get(chosenRow).getTempJob().setStatus("Besatt");
-        jobseekersList.get(chosenRow).setStatus("Ansatt");
-
-        MainAppHelper reload = new MainAppHelper();
-        reload.reloadVikariaterDatabase();
-        reload.reloadJobbsokerDatabase();
+        String key = tvTempJobs.getSelectionModel().getSelectedItem().getPhoneNo();
+        ViewHelper run = new ViewHelper();
+        run.employ(key);
 
         NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
     }
