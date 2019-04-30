@@ -80,11 +80,8 @@ public class ViewJobseekersController implements Initializable {
     }
 
     public void btnEditJobseeker(ActionEvent event) {
-        String key = "";
-        if (key == ""){
-            AlertHelper.showError("Du må velge en jobbsøker for å kunne redigere!");
-        }
-        else {
+        String key;
+        try{
             key = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
             findJobseeker(key);
 
@@ -105,14 +102,14 @@ public class ViewJobseekersController implements Initializable {
             Scene scene = new Scene(parent);
             stage.setScene(scene);
         }
+        catch(NullPointerException e){
+            AlertHelper.showError("Du må velge en jobbsøker for å kunne redigere!");
+        }
     }
 
     public void btnDeleteJobseeker(ActionEvent event) {
-        String message = "";
-        if (message == ""){
-            AlertHelper.showError("Du må velge en jobbsøker for å kunne slette!");
-        }
-        else {
+        String message;
+        try{
             message = tvJobseekers.getSelectionModel().getSelectedItem().getFirstname();
             message += " " + tvJobseekers.getSelectionModel().getSelectedItem().getLastname();
             Alert question = new Alert(Alert.AlertType.CONFIRMATION);
@@ -130,23 +127,25 @@ public class ViewJobseekersController implements Initializable {
                     run.reloadJobbsokerDatabase();
                 }
                 NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
-            } else {
+            }
+            else {
                 // avbryter slettingen
             }
         }
-}
+        catch(NullPointerException e){
+            AlertHelper.showError("Du må velge en jobbsøker for å kunne slette!");
+        }
+    }
 
     public void btnDownloadJobseeker(ActionEvent event) {
-       // TODO : bør det håndteres med en exception også her ??
-        String key = "";
-        if (key == ""){
-            AlertHelper.showError("Du har ikke valgt en jobbsøker for nedlasting!");
-        }
-        else {
+        String key;
+        try{
             key = tvJobseekers.getSelectionModel().getSelectedItem().phoneNoProperty().get();
             ViewJobseekerHelper.saveJobseeker(key);
         }
-
+        catch(NullPointerException e){
+            AlertHelper.showError("Du har ikke valgt en jobbsøker for nedlasting!");
+        }
     }
 
     public void btnUploadJobseeker(ActionEvent event){
@@ -156,10 +155,8 @@ public class ViewJobseekersController implements Initializable {
     }
 
     public void btnFindTempJob(ActionEvent event) {
-        String workfieldsStr = "";
-        if (workfieldsStr == "") {
-            AlertHelper.showError("Du må velge en jobbsøker for å finne passende vikariat!");
-        } else {
+        String workfieldsStr;
+        try {
             workfieldsStr = tvJobseekers.getSelectionModel().getSelectedItem().workfieldsProperty().get();
             ArrayList<String> workfields = ViewHelper.stringToList(workfieldsStr);
 
@@ -171,5 +168,9 @@ public class ViewJobseekersController implements Initializable {
 
             NavigationHelper.changePage("/org/openjfx/resultatVikariater.fxml", event);
         }
+        catch(NullPointerException e){
+            AlertHelper.showError("Du må velge en jobbsøker for å finne passende vikariat!");
+        }
+
     }
 }
