@@ -15,10 +15,10 @@ import logic.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static logic.AlertHelper.showDeleteAlert;
 import static logic.ViewTempJobsHelper.*;
 
 public class ViewTempJobsController implements Initializable {
@@ -84,7 +84,8 @@ public class ViewTempJobsController implements Initializable {
         try {
             String key = selectedPhoneNo(tvTempJobs);
             ViewTempJobsHelper.saveTempJob(key);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et vikariat for å kunne laste ned!");
         }
     }
@@ -102,7 +103,8 @@ public class ViewTempJobsController implements Initializable {
             String message = ViewTempJobsHelper.readMoreContent(key);
 
             AlertHelper.showMoreInfo(title, message);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et vikariat for å lese mer!");
         }
     }
@@ -125,7 +127,8 @@ public class ViewTempJobsController implements Initializable {
             stage.setScene(scene);
 
             //NavigeringsHjelper.changePage("/org/openjfx/regVikariat.fxml", event);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et vikariat for å kunne redigere!");
         }
     }
@@ -133,12 +136,8 @@ public class ViewTempJobsController implements Initializable {
     public void btnDeleteChosenTempJob(ActionEvent event) {
         String message;
         try {
-            // TODO: kontrollsjekke at man ikke kan registreres med duplikate tlf nr
             message = tvTempJobs.getSelectionModel().getSelectedItem().getJobTitle();
-            Alert question = new Alert(Alert.AlertType.CONFIRMATION);
-            question.setHeaderText("Er du sikker på at du vil slette : ");
-            question.setContentText(message + "?");
-            Optional<ButtonType> result = question.showAndWait();
+            Optional<ButtonType> result = showDeleteAlert(message);
 
             if (result.get() == ButtonType.OK) {
                 // utføres sletting
@@ -149,28 +148,28 @@ public class ViewTempJobsController implements Initializable {
                 reload.reloadVikariaterDatabase();
 
                 NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
-            } else {
+            }
+            else {
                 // Avbryter sletting..
             }
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et vikariat for å kunne slette det!");
         }
     }
 
     public void btnFindJobseekers(ActionEvent event) {
-        String workfieldsStr;
         try {
-            workfieldsStr = tvTempJobs.getSelectionModel().getSelectedItem().workfieldsProperty().get();
-            ArrayList<String> workfields = ViewHelper.stringToList(workfieldsStr);
+            String workfieldsStr = tvTempJobs.getSelectionModel().getSelectedItem().workfieldsProperty().get();
+            ViewHelper run = new ViewHelper();
+            run.setValgteKategorier(workfieldsStr);
 
-            ViewHelper chosenWorkfields = new ViewHelper();
-            chosenWorkfields.setValgteKategorier(workfields);
-
-            String phoneNo = selectedPhoneNo(tvTempJobs);
-            findTempJob(phoneNo);
+            String key = selectedPhoneNo(tvTempJobs);
+            findTempJob(key);
 
             NavigationHelper.changePage("/org/openjfx/resultatSokere.fxml", event);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et vikariat for å finne passende jobbsøker!");
         }
     }

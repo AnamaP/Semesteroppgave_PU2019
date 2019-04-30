@@ -1,6 +1,9 @@
 package logic;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 public class AlertHelper {
     private String message;
@@ -33,6 +36,14 @@ public class AlertHelper {
         moreInfo.setHeaderText(title);
         moreInfo.setContentText(message);
         moreInfo.showAndWait();
+    }
+
+    public static Optional<ButtonType> showDeleteAlert(String message){
+        Alert question = new Alert(Alert.AlertType.CONFIRMATION);
+        question.setHeaderText("Er du sikker på at du vil slette : ");
+        question.setContentText(message + "?");
+        Optional<ButtonType> result = question.showAndWait();
+        return result;
     }
 
     /*public static void showQuestion(String message){

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import static logic.ViewHelper.chosenWorkfields;
 import static logic.RegTempJobHelper.tempJobsList;
+import static logic.ViewJobseekerHelper.selectedPhoneNo;
 
 public class ViewTempJobsHelper {
 

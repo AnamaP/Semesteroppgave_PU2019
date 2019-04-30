@@ -14,11 +14,12 @@ import javafx.stage.Stage;
 import logic.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static logic.AlertHelper.showDeleteAlert;
 import static logic.ViewJobseekerHelper.*;
+import static logic.ViewTempJobsHelper.findTempJob;
 
 public class ViewJobseekersController implements Initializable {
 
@@ -111,10 +112,7 @@ public class ViewJobseekersController implements Initializable {
         try{
             message = tvJobseekers.getSelectionModel().getSelectedItem().getFirstname();
             message += " " + tvJobseekers.getSelectionModel().getSelectedItem().getLastname();
-            Alert question = new Alert(Alert.AlertType.CONFIRMATION);
-            question.setHeaderText("Er du sikker på at du vil slette : ");
-            question.setContentText(message + "?");
-            Optional<ButtonType> result = question.showAndWait();
+            Optional<ButtonType> result = showDeleteAlert(message);
 
             if (result.get() == ButtonType.OK) {
                 // blir sletting gjennomført
@@ -149,20 +147,16 @@ public class ViewJobseekersController implements Initializable {
     public void btnUploadJobseeker(ActionEvent event){
         FileChooserHelper.upload(Paths.JOBSEEKER);
         NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
-
     }
 
     public void btnFindTempJob(ActionEvent event) {
-        String workfieldsStr;
         try {
-            workfieldsStr = tvJobseekers.getSelectionModel().getSelectedItem().workfieldsProperty().get();
-            ArrayList<String> workfields = ViewHelper.stringToList(workfieldsStr);
+            String workfieldsStr = tvJobseekers.getSelectionModel().getSelectedItem().workfieldsProperty().get();
+            ViewHelper run = new ViewHelper();
+            run.setValgteKategorier(workfieldsStr);
 
-            ViewHelper chosenWorkfields = new ViewHelper();
-            chosenWorkfields.setValgteKategorier(workfields);
-
-            String phoneNo = selectedPhoneNo(tvJobseekers);
-            findJobseeker(phoneNo);
+            String key = selectedPhoneNo(tvJobseekers);
+            findTempJob(key);
 
             NavigationHelper.changePage("/org/openjfx/resultatVikariater.fxml", event);
         }
