@@ -3,6 +3,7 @@ package logic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import classes.Company;
+import javafx.scene.control.TableView;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -118,6 +119,10 @@ public class ViewTempJobsHelper {
     public static void findTempJob(String key){
         ViewHelper run = new ViewHelper();
         run.findRow(tempJobsList, key);
+    }
+
+    public static String selectedPhoneNo(TableView<TableTempJobs> tvTable){
+        return tvTable.getSelectionModel().getSelectedItem().getPhoneNo();
     }
 }
 

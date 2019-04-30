@@ -80,9 +80,8 @@ public class ViewJobseekersController implements Initializable {
     }
 
     public void btnEditJobseeker(ActionEvent event) {
-        String key;
         try{
-            key = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
+            String key = selectedPhoneNo(tvJobseekers);
             findJobseeker(key);
 
             // Load FXML
@@ -119,9 +118,9 @@ public class ViewJobseekersController implements Initializable {
 
             if (result.get() == ButtonType.OK) {
                 // blir sletting gjennomført
-                String key = tvJobseekers.getSelectionModel().getSelectedItem().phoneNoProperty().get();
-
+                String key = selectedPhoneNo(tvJobseekers);
                 Boolean deleted = RegJobseekerHelper.deleteChosenJobseeker(key);
+
                 if (deleted) {
                     MainAppHelper run = new MainAppHelper();
                     run.reloadJobbsokerDatabase();
@@ -138,9 +137,8 @@ public class ViewJobseekersController implements Initializable {
     }
 
     public void btnDownloadJobseeker(ActionEvent event) {
-        String key;
         try{
-            key = tvJobseekers.getSelectionModel().getSelectedItem().phoneNoProperty().get();
+            String key = selectedPhoneNo(tvJobseekers);
             ViewJobseekerHelper.saveJobseeker(key);
         }
         catch(NullPointerException e){
@@ -163,7 +161,7 @@ public class ViewJobseekersController implements Initializable {
             ViewHelper chosenWorkfields = new ViewHelper();
             chosenWorkfields.setValgteKategorier(workfields);
 
-            String phoneNo = tvJobseekers.getSelectionModel().getSelectedItem().getPhoneNo();
+            String phoneNo = selectedPhoneNo(tvJobseekers);
             findJobseeker(phoneNo);
 
             NavigationHelper.changePage("/org/openjfx/resultatVikariater.fxml", event);
@@ -171,6 +169,5 @@ public class ViewJobseekersController implements Initializable {
         catch(NullPointerException e){
             AlertHelper.showError("Du må velge en jobbsøker for å finne passende vikariat!");
         }
-
     }
 }

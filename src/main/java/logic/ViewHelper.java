@@ -101,12 +101,4 @@ public class ViewHelper {
 
         AlertHelper.showMoreInfo(title,message);
     }
-
-    public String selectedPhoneNoTempJobs(TableView<TableTempJobs> tvTable){
-        return tvTable.getSelectionModel().getSelectedItem().getPhoneNo();
-    }
-
-    public String selectedPhoneNoJobseekers(TableView<TableJobseekers> tvTable){
-        return tvTable.getSelectionModel().getSelectedItem().getPhoneNo();
-    }
 }

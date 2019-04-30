@@ -81,10 +81,8 @@ public class ViewTempJobsController implements Initializable {
     }
 
     public void btnDownload(ActionEvent event) {
-        String key;
         try {
-            ViewHelper run = new ViewHelper();
-            key = run.selectedPhoneNoTempJobs(tvTempJobs);
+            String key = selectedPhoneNo(tvTempJobs);
             ViewTempJobsHelper.saveTempJob(key);
         } catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et vikariat for å kunne laste ned!");
@@ -97,10 +95,8 @@ public class ViewTempJobsController implements Initializable {
     }
 
     public void btnReadMore(ActionEvent event) {
-        String key;
         try {
-            ViewHelper run = new ViewHelper();
-            key = run.selectedPhoneNoTempJobs(tvTempJobs);
+            String key = selectedPhoneNo(tvTempJobs);
 
             String title = ViewTempJobsHelper.readMoreTitle(key);
             String message = ViewTempJobsHelper.readMoreContent(key);
@@ -112,10 +108,8 @@ public class ViewTempJobsController implements Initializable {
     }
 
     public void btnEdit(ActionEvent event) throws IOException {
-        String key;
         try {
-            ViewHelper run = new ViewHelper();
-            key = run.selectedPhoneNoTempJobs(tvTempJobs);
+            String key = selectedPhoneNo(tvTempJobs);
             findTempJob(key);
 
             // Load FXML
@@ -148,12 +142,11 @@ public class ViewTempJobsController implements Initializable {
 
             if (result.get() == ButtonType.OK) {
                 // utføres sletting
-                ViewHelper run = new ViewHelper();
-                String key = run.selectedPhoneNoTempJobs(tvTempJobs);
+                String key = selectedPhoneNo(tvTempJobs);
                 ViewTempJobsHelper.deleteChosenTempJob(key);
 
-                MainAppHelper run1 = new MainAppHelper();
-                run1.reloadVikariaterDatabase();
+                MainAppHelper reload = new MainAppHelper();
+                reload.reloadVikariaterDatabase();
 
                 NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
             } else {
@@ -173,8 +166,7 @@ public class ViewTempJobsController implements Initializable {
             ViewHelper chosenWorkfields = new ViewHelper();
             chosenWorkfields.setValgteKategorier(workfields);
 
-            ViewHelper run = new ViewHelper();
-            String phoneNo = run.selectedPhoneNoTempJobs(tvTempJobs);
+            String phoneNo = selectedPhoneNo(tvTempJobs);
             findTempJob(phoneNo);
 
             NavigationHelper.changePage("/org/openjfx/resultatSokere.fxml", event);
