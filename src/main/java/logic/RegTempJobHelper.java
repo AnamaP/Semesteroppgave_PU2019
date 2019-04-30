@@ -3,11 +3,14 @@ package logic;
 import javafx.scene.control.*;
 import classes.Company;
 import classes.TempJob;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class RegTempJobHelper {
 
     public static ArrayList<Company> tempJobsList = new ArrayList<>();
+
 
     public static Company createTempJob(
             TextField txtContactPerson, TextField txtPhoneNo, TextField txtSector, TextField txtCompanyName, TextField txtAddress,

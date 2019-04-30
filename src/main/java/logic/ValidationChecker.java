@@ -133,7 +133,7 @@ public class ValidationChecker {
     }
 
     private boolean checkIfDuplicatePhoneNo(ArrayList arrayList, String phoneNo) throws InvalidDuplicatePhoneNoException {
-        for (int i = 0; i < arrayList.size() -1; i++) {
+        for (int i = 0; i < arrayList.size()-1; i++) {
             String [] row = arrayList.get(i).toString().split(";");
             System.out.println(row[1] + " " + row[5]);
             if (row[1].equals(phoneNo) || row[5].equals(phoneNo)) {
