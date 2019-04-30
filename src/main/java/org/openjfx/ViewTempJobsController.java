@@ -95,7 +95,7 @@ public class ViewTempJobsController implements Initializable {
 
     public void btnUpload(ActionEvent event) {
         FileChooserHelper.upload(Paths.TEMPJOB);
-        NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
     }
 
     public void btnReadMore(ActionEvent event) {
@@ -119,7 +119,7 @@ public class ViewTempJobsController implements Initializable {
             run.findRow(tempJobsList, key, false);
 
             // Load FXML
-            URL url = getClass().getResource("/org/openjfx/regVikariat.fxml");
+            URL url = getClass().getResource("/org/openjfx/regTempJob.fxml");
             FXMLLoader loader = new FXMLLoader(url);
             Parent parent = loader.load();
             RegTempJobController controller = loader.getController();
@@ -130,7 +130,7 @@ public class ViewTempJobsController implements Initializable {
             Scene scene = new Scene(parent);
             stage.setScene(scene);
 
-            //NavigeringsHjelper.changePage("/org/openjfx/regVikariat.fxml", event);
+            //NavigeringsHjelper.changePage("/org/openjfx/regTempJob.fxml", event);
         }
         catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et vikariat for å kunne redigere!");
@@ -151,7 +151,7 @@ public class ViewTempJobsController implements Initializable {
                 MainAppHelper reload = new MainAppHelper();
                 reload.reloadVikariaterDatabase();
 
-                NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
+                NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
             }
             else {
                 // Avbryter sletting..
@@ -171,7 +171,7 @@ public class ViewTempJobsController implements Initializable {
             String key = selectedPhoneNo(tvTempJobs);
             run.findRow(tempJobsList, key, false);
 
-            NavigationHelper.changePage("/org/openjfx/resultatSokere.fxml", event);
+            NavigationHelper.changePage("/org/openjfx/matchJobseekers.fxml", event);
         }
         catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et vikariat for å finne passende jobbsøker!");

@@ -78,7 +78,7 @@ public class RegJobseekerController {
         }
 
         //Tar brukeren med til neste side:
-        NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
         }
     }
 

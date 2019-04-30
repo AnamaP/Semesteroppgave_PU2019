@@ -87,7 +87,7 @@ public class RegTempJobController {
             }
 
             //Tar brukeren til visning:
-            NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
+            NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
         }
     }
 

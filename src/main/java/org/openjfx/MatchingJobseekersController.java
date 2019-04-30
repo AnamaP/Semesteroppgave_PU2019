@@ -67,7 +67,7 @@ public class MatchingJobseekersController implements Initializable {
     }
 
     public void btnBack(ActionEvent event) {
-        NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
     }
 
     public void btnEmploy(ActionEvent event) {
@@ -76,6 +76,6 @@ public class MatchingJobseekersController implements Initializable {
         run.findRow(jobseekersList, key, true);
         run.employ();
 
-        NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
+        NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
     }
 }
