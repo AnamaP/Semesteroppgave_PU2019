@@ -89,8 +89,6 @@ public class RegJobseekerController {
 
     public void setData(){
         Jobseeker jobseeker = jobseekersList.get(chosenJobseeker);
-        System.out.println("int: "+ chosenJobseeker);
-        System.out.println(jobseeker.toString());
 
         txtFirstname.setText(jobseeker.getFirstname());
         txtLastname.setText(jobseeker.getLastname());

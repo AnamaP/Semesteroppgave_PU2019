@@ -129,8 +129,6 @@ public class ViewTempJobsController implements Initializable {
 
             Scene scene = new Scene(parent);
             stage.setScene(scene);
-
-            //NavigeringsHjelper.changePage("/org/openjfx/regTempJob.fxml", event);
         }
         catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et vikariat for å kunne redigere!");

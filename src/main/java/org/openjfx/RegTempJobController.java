@@ -99,8 +99,6 @@ public class RegTempJobController {
 
     public void setData(int valgtArbeidsgiver){
         Company tempJob = tempJobsList.get(valgtArbeidsgiver);
-        System.out.println("int: "+valgtArbeidsgiver);
-        System.out.println(tempJob.toString());
 
         txtContactPerson.setText(tempJob.getContactPerson());
         txtPhoneNo.setText(tempJob.getPhoneNo());
