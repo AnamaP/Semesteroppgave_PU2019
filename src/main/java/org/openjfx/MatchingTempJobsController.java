@@ -35,7 +35,6 @@ public class MatchingTempJobsController implements Initializable {
         tcKWorkfields.setCellValueFactory(cellData->cellData.getValue().workfieldsProperty());
 
         tvTempJobs.setItems(ViewTempJobsHelper.showResults());
-        setTableEditable();
     }
 
     public void btnBack(ActionEvent event) {
@@ -55,9 +54,5 @@ public class MatchingTempJobsController implements Initializable {
         run.employ(key);
 
         NavigationHelper.changePage("/org/openjfx/oversiktSokere.fxml", event);
-    }
-
-    private void setTableEditable() {
-        tvTempJobs.setEditable(true);
     }
 }

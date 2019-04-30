@@ -54,7 +54,6 @@ public class ViewJobseekersController implements Initializable {
 
         tvJobseekers.setItems(showJobseekers());
 
-
         /* Muliggjør sortering og filtrering av data i tabellen*/
 
         FilteredList<TableJobseekers> filteredData = new FilteredList<>(showJobseekers(), p -> true);
