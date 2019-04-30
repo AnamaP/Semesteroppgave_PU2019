@@ -19,17 +19,17 @@
             </Text>
          </children>
       </HBox>
-      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="146.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnJobseeker" prefHeight="57.0" prefWidth="124.0" text="Registerer en jobbsøker" textAlignment="CENTER" wrapText="true">
+      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="146.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnJobseeker" prefHeight="57.0" prefWidth="118.0" text="Registerer en jobbsøker" textAlignment="CENTER" wrapText="true">
          <cursor>
             <Cursor fx:constant="E_RESIZE" />
          </cursor></Button>
-      <Button layoutX="308.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnTempJob" prefHeight="57.0" prefWidth="124.0" text="Registrer en company" textAlignment="CENTER" wrapText="true" />
-      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="146.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnViewJobseekers" prefHeight="57.0" prefWidth="124.0" text="Oversikt over søkere" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="308.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnTempJob" prefHeight="57.0" prefWidth="118.0" text="Registrer et vikariat" wrapText="true" />
+      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="146.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnViewJobseekers" prefHeight="57.0" prefWidth="118.0" text="Behandle søkere" textAlignment="CENTER" wrapText="true">
          <cursor>
             <Cursor fx:constant="E_RESIZE" />
          </cursor>
       </Button>
-      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="308.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnViewTempJobs" prefHeight="57.0" prefWidth="124.0" text="Oversikt over vikariater" textAlignment="CENTER" wrapText="true">
+      <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="308.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnViewTempJobs" prefHeight="57.0" prefWidth="118.0" text="Behandle vikariater" textAlignment="CENTER" wrapText="true">
          <cursor>
             <Cursor fx:constant="E_RESIZE" />
          </cursor>
