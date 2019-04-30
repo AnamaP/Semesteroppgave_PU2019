@@ -41,21 +41,21 @@ public class ViewTempJobsController implements Initializable {
         run.setTempJobsTable(tcContactPerson, tcPhoneNo, tcSector, tcCompanyName, tcAddress, tcIndustry,
                 tcJobTitle, tcJobType, tcWorkfields);
 
-        tcStatus.setCellValueFactory(cellData->cellData.getValue().statusProperty());
+        tcStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
 
         tvTempJobs.setItems(viewTempJobs());
 
         // Muliggjør sortering og filtrering av data i tabellen.
-        FilteredList<TableTempJobs> filteredData = new FilteredList<>(viewTempJobs(), p-> true);
+        FilteredList<TableTempJobs> filteredData = new FilteredList<>(viewTempJobs(), p -> true);
 
         // Bruker Listener til å fange opp endringer.
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(tempJob -> {
             // Hvis det ikke er skrevet noe inn i filteret så skal all informasjon vises.
-            if(newValue == null || newValue.isEmpty()) {
+            if (newValue == null || newValue.isEmpty()) {
                 return true;
             }
             String lowerCaseFilter = newValue.toLowerCase();
-            if(tempJob.getContactPerson().toLowerCase().contains(lowerCaseFilter) ||
+            if (tempJob.getContactPerson().toLowerCase().contains(lowerCaseFilter) ||
                     tempJob.getPhoneNo().toLowerCase().contains(lowerCaseFilter) ||
                     tempJob.getSector().toLowerCase().contains(lowerCaseFilter) ||
                     tempJob.getCompanyName().toLowerCase().contains(lowerCaseFilter) ||
@@ -64,7 +64,7 @@ public class ViewTempJobsController implements Initializable {
                     tempJob.getIndustry().toLowerCase().contains(lowerCaseFilter) ||
                     tempJob.getJobTitle().toLowerCase().contains(lowerCaseFilter) ||
                     tempJob.getJobType().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getStatus().toLowerCase().contains(lowerCaseFilter)){
+                    tempJob.getStatus().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
             }
             return false;
@@ -76,14 +76,19 @@ public class ViewTempJobsController implements Initializable {
     }
 
     @FXML
-    private void btnBack(ActionEvent event){
+    private void btnBack(ActionEvent event) {
         NavigationHelper.changePage("/org/openjfx/index.fxml", event);
     }
 
     public void btnDownload(ActionEvent event) {
-        ViewHelper run = new ViewHelper();
-        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
-        ViewTempJobsHelper.saveTempJob(key);
+        String key;
+        try {
+            ViewHelper run = new ViewHelper();
+            key = run.selectedPhoneNoTempJobs(tvTempJobs);
+            ViewTempJobsHelper.saveTempJob(key);
+        } catch (NullPointerException e) {
+            AlertHelper.showError("Du må velge et vikariat for å kunne laste ned!");
+        }
     }
 
     public void btnUpload(ActionEvent event) {
@@ -92,72 +97,90 @@ public class ViewTempJobsController implements Initializable {
     }
 
     public void btnReadMore(ActionEvent event) {
-        ViewHelper run = new ViewHelper();
-        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
+        String key;
+        try {
+            ViewHelper run = new ViewHelper();
+            key = run.selectedPhoneNoTempJobs(tvTempJobs);
 
-        String title = ViewTempJobsHelper.readMoreTitle(key);
-        String message = ViewTempJobsHelper.readMoreContent(key);
+            String title = ViewTempJobsHelper.readMoreTitle(key);
+            String message = ViewTempJobsHelper.readMoreContent(key);
 
-        AlertHelper.showMoreInfo(title,message);
+            AlertHelper.showMoreInfo(title, message);
+        } catch (NullPointerException e) {
+            AlertHelper.showError("Du må velge et vikariat for å lese mer!");
+        }
     }
 
     public void btnEdit(ActionEvent event) throws IOException {
-        ViewHelper run = new ViewHelper();
-        String key = run.selectedPhoneNoTempJobs(tvTempJobs);
-        findTempJob(key);
+        String key;
+        try {
+            ViewHelper run = new ViewHelper();
+            key = run.selectedPhoneNoTempJobs(tvTempJobs);
+            findTempJob(key);
 
-        // Load FXML
-        URL url = getClass().getResource("/org/openjfx/regVikariat.fxml");
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent parent = loader.load();
-        RegTempJobController controller = loader.getController();
-        loader.setLocation(url);
-        controller.setData(chosenTempJob);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Load FXML
+            URL url = getClass().getResource("/org/openjfx/regVikariat.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent parent = loader.load();
+            RegTempJobController controller = loader.getController();
+            loader.setLocation(url);
+            controller.setData(chosenTempJob);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
 
-        //NavigeringsHjelper.changePage("/org/openjfx/regVikariat.fxml", event);
-
+            //NavigeringsHjelper.changePage("/org/openjfx/regVikariat.fxml", event);
+        } catch (NullPointerException e) {
+            AlertHelper.showError("Du må velge et vikariat for å kunne redigere!");
+        }
     }
 
     public void btnDeleteChosenTempJob(ActionEvent event) {
-        // TODO: kontrollsjekke at man ikke kan registreres med duplikate tlf nr
-        String message = tvTempJobs.getSelectionModel().getSelectedItem().getJobTitle();
-        Alert question = new Alert(Alert.AlertType.CONFIRMATION);
-        question.setHeaderText("Er du sikker på at du vil slette : ");
-        question.setContentText(message + "?");
-        Optional<ButtonType> result = question.showAndWait();
+        String message;
+        try {
+            // TODO: kontrollsjekke at man ikke kan registreres med duplikate tlf nr
+            message = tvTempJobs.getSelectionModel().getSelectedItem().getJobTitle();
+            Alert question = new Alert(Alert.AlertType.CONFIRMATION);
+            question.setHeaderText("Er du sikker på at du vil slette : ");
+            question.setContentText(message + "?");
+            Optional<ButtonType> result = question.showAndWait();
 
-        if (result.get() == ButtonType.OK) {
-            // utføres sletting
-            ViewHelper run = new ViewHelper();
-            String key = run.selectedPhoneNoTempJobs(tvTempJobs);
-            ViewTempJobsHelper.deleteChosenTempJob(key);
+            if (result.get() == ButtonType.OK) {
+                // utføres sletting
+                ViewHelper run = new ViewHelper();
+                String key = run.selectedPhoneNoTempJobs(tvTempJobs);
+                ViewTempJobsHelper.deleteChosenTempJob(key);
 
-            MainAppHelper run1 = new MainAppHelper();
-            run1.reloadVikariaterDatabase();
+                MainAppHelper run1 = new MainAppHelper();
+                run1.reloadVikariaterDatabase();
 
-            NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
-        }
-        else {
-            // Avbryter sletting..
+                NavigationHelper.changePage("/org/openjfx/oversiktVikariater.fxml", event);
+            } else {
+                // Avbryter sletting..
+            }
+        } catch (NullPointerException e) {
+            AlertHelper.showError("Du må velge et vikariat for å kunne slette det!");
         }
     }
 
     public void btnFindJobseekers(ActionEvent event) {
-        String workfieldsStr = tvTempJobs.getSelectionModel().getSelectedItem().workfieldsProperty().get();
-        ArrayList<String> workfields = ViewHelper.stringToList(workfieldsStr);
+        String workfieldsStr;
+        try {
+            workfieldsStr = tvTempJobs.getSelectionModel().getSelectedItem().workfieldsProperty().get();
+            ArrayList<String> workfields = ViewHelper.stringToList(workfieldsStr);
 
-        ViewHelper chosenWorkfields = new ViewHelper();
-        chosenWorkfields.setValgteKategorier(workfields);
+            ViewHelper chosenWorkfields = new ViewHelper();
+            chosenWorkfields.setValgteKategorier(workfields);
 
-        ViewHelper run = new ViewHelper();
-        String phoneNo = run.selectedPhoneNoTempJobs(tvTempJobs);
-        findTempJob(phoneNo);
+            ViewHelper run = new ViewHelper();
+            String phoneNo = run.selectedPhoneNoTempJobs(tvTempJobs);
+            findTempJob(phoneNo);
 
-        NavigationHelper.changePage("/org/openjfx/resultatSokere.fxml", event);
+            NavigationHelper.changePage("/org/openjfx/resultatSokere.fxml", event);
+        } catch (NullPointerException e) {
+            AlertHelper.showError("Du må velge et vikariat for å finne passende jobbsøker!");
+        }
     }
 }
 
