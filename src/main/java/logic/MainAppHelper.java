@@ -15,6 +15,15 @@ import static logic.RegTempJobHelper.tempJobsList;
 
 public class MainAppHelper {
 
+    private static MainAppHelper instance;
+
+    public static MainAppHelper getMainAppHelper(){
+        if(instance == null){
+            instance = new MainAppHelper();
+        }
+        return instance;
+    }
+
     public void loadDatabaseFromCsv(){
         loadJobbsokerCsv();
         loadVikariatCsv();
@@ -74,40 +83,24 @@ public class MainAppHelper {
     }
 
     public void reloadJobbsokerDatabase(){
-
-        PrintWriter writer = null;
-        try{
-            FileWriter fileWriter = new FileWriter(Paths.JOBSEEKER +".csv", false);
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-            for(int a = 0; a < jobseekersList.size(); a++) {
-                printWriter.println(jobseekersList.get(a));  //New line
-            }
-            printWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally{
-            if(writer != null){
-                writer.close();
-            }
-        }
+        reloadDatabase(Paths.JOBSEEKER +".csv", jobseekersList);
     }
 
     public void reloadVikariaterDatabase(){
+        reloadDatabase(Paths.TEMPJOB +".csv", tempJobsList);
+    }
 
-        PrintWriter writer = null;
-        try{
-            FileWriter fileWriter = new FileWriter(Paths.TEMPJOB +".csv", false);
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-            for(int a = 0; a < tempJobsList.size(); a++) {
-                printWriter.println(tempJobsList.get(a));  //New line
-            }
-            printWriter.close();
+    private void reloadDatabase(String path, ArrayList arrayList){
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(path, false);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally{
-            if(writer != null){
-                writer.close();
-            }
         }
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        for(int a = 0; a < arrayList.size(); a++) {
+            printWriter.println(arrayList.get(a));
+        }
+        printWriter.close();
     }
 }

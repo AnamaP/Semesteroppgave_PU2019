@@ -12,7 +12,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("index.fxml"));
-        MainAppHelper mainStart = new MainAppHelper();
+        MainAppHelper mainStart = MainAppHelper.getMainAppHelper();
         mainStart.loadDatabaseFromCsv();
 
         Scene scene = new Scene(root);
