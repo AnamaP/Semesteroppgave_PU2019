@@ -13,7 +13,6 @@ import static logic.RegJobseekerHelper.jobseekersList;
 
 public class ViewJobseekerHelper {
 
-
     public static int chosenJobseeker;
 
     public static ObservableList<TableJobseekers> showJobseekers() {
@@ -59,7 +58,7 @@ public class ViewJobseekerHelper {
             while ((row = csvreader.readLine()) != null){
                 String [] columns = row.split(";");
 
-                if(columns.length > 13) {
+                if(columns.length > 14) {
                     ViewHelper run = new ViewHelper();
                     //Henter ut en jobbsøker fra listen:
                     Jobseeker jobseeker = run.getJobseekerFromList(columns);
@@ -69,6 +68,7 @@ public class ViewJobseekerHelper {
                     int amount = run.checkWorkfields(workfields);
 
                     //Om søkeren har mange nok kategorier legges den til i tabellen:
+                    System.out.println(columns[columns.length-1]);
                     if((amount == chosenWorkfields.size()) && (columns[columns.length-1].equals("Ledig"))){
                         TableJobseekers viewJobseekers = new TableJobseekers(jobseeker);
                         showResults.add(viewJobseekers);
@@ -90,7 +90,6 @@ public class ViewJobseekerHelper {
         ViewHelper run = new ViewHelper();
         run.findRow(jobseekersList, key, true);
         FileChooserHelper.download(jobseekersList.get(chosenJobseeker));
-        //TODO : Feilmld til bruker om at jobbsoker ikke er valgt
     }
 
     public static String selectedPhoneNo(TableView<TableJobseekers> tvTable){

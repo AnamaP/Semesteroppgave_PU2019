@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.ViewJobseekerHelper.selectedPhoneNo;
-import static logic.ViewJobseekerHelper.showJobseekers;
+import static logic.ViewJobseekerHelper.showResults;
 
 
 public class MatchingJobseekersController implements Initializable {
@@ -39,9 +39,9 @@ public class MatchingJobseekersController implements Initializable {
         run.setJobbseekerTable(tcFistname, tcLastname, tcAddress, tcZipcode, tcPostal, tcPhoneNo,
                 tcEmail, tcAge, tcEducation, tcStudy, tcExperience, tcWorkfields);
 
-        tvJobseekers.setItems(ViewJobseekerHelper.showResults());
+        tvJobseekers.setItems(showResults());
 
-        FilteredList<TableJobseekers> filteredData = new FilteredList<>(showJobseekers(), p -> true);
+        FilteredList<TableJobseekers> filteredData = new FilteredList<>(showResults(), p -> true);
 
         // bruker Listener til å fange opp endringer og ..
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(jobseeker -> {

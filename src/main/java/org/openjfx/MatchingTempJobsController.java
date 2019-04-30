@@ -15,8 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static logic.RegTempJobHelper.tempJobsList;
+import static logic.ViewTempJobsHelper.showResults;
 import static logic.ViewTempJobsHelper.selectedPhoneNo;
-import static logic.ViewTempJobsHelper.viewTempJobs;
 
 public class MatchingTempJobsController implements Initializable {
     @FXML
@@ -41,7 +41,7 @@ public class MatchingTempJobsController implements Initializable {
         tvTempJobs.setItems(ViewTempJobsHelper.showResults());
 
         // Muliggjør sortering og filtrering av data i tabellen.
-        FilteredList<TableTempJobs> filteredData = new FilteredList<>(viewTempJobs(), p -> true);
+        FilteredList<TableTempJobs> filteredData = new FilteredList<>(showResults(), p -> true);
 
         // Bruker Listener til å fange opp endringer.
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(tempJob -> {

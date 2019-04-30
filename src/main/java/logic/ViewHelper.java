@@ -52,16 +52,6 @@ public class ViewHelper{
         }
     }
 
-    public int checkWorkfields(ArrayList arrayList){
-        int amount = 0;
-        for(int i = 0; i < chosenWorkfields.size(); i++) {
-            if (arrayList.toString().contains(chosenWorkfields.get(i))) {
-                amount++;
-            }
-        }
-        return amount;
-    }
-
     public Jobseeker getJobseekerFromList(String [] columns){
         ArrayList<String> workfields = getWorkfields(columns, 13);
         Cv cv = new Cv(columns[9], columns[10], columns[11], workfields);
@@ -87,6 +77,17 @@ public class ViewHelper{
             workfields.add(columns[i]);
         }
         return workfields;
+    }
+
+    public int checkWorkfields(ArrayList arrayList){
+        int amount = 0;
+        for(int i = 0; i < chosenWorkfields.size(); i++) {
+            if (arrayList.toString().contains(chosenWorkfields.get(i))) {
+                amount++;
+            }
+        }
+        System.out.println(amount);
+        return amount;
     }
 
     public void employ(){
