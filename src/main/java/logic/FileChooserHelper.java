@@ -68,21 +68,25 @@ public class FileChooserHelper {
         String chosenpath = openDialog();
 
         FileHandler fileHandler = getExtensionFilter(chosenpath);
-        Object object = fileHandler.readFromFile(getPathBase(chosenpath));
+        Object object = fileHandler.readFromFile(getPathBase(chosenpath)[0]);
+        boolean csvFiltype = true;
+        if(getPathBase(chosenpath)[1].equals("jobj")){
+            csvFiltype = false;
+        }
 
         ValidationHelper run = new ValidationHelper();
-        if(run.validateFileInpt(object, path)) {
+        if (run.validateFileInpt(object, path, csvFiltype)) {
             try {
                 fileHandler.writeToDB(object, path);
-            }
-            catch (FileNotFoundException e){
+            } catch (FileNotFoundException e) {
                 System.err.println("Fant ikke filen du lette etter.");
-            }
-            catch (IOException e) {
-                System.err.println("Kunne ikke lese filen du lette etter. Årsak : "+e.getCause());
+            } catch (IOException e) {
+                System.err.println("Kunne ikke lese filen du lette etter. Årsak : " + e.getCause());
             }
         }
-        AlertHelper.showError(invalidInputs);
+        else {
+            AlertHelper.showError(invalidInputs);
+        }
     }
 
     public static void download(Object object) {
@@ -98,8 +102,8 @@ public class FileChooserHelper {
     }
 
     // metode som endrer/tar bort selve notasjonen på filformatet
-    private static String getPathBase(String pathWithExtension){
+    private static String[] getPathBase(String pathWithExtension){
         String[] editedPath = pathWithExtension.split("\\.");
-        return editedPath[0];
+        return editedPath;
     }
 }

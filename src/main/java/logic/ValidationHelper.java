@@ -1,12 +1,9 @@
 package logic;
 
 import classes.Company;
-import classes.Cv;
 import classes.Jobseeker;
-import exceptions.InvalidContentFileException;
 import fileHandling.CsvFileHandler;
 import fileHandling.FileHandler;
-import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -110,18 +107,17 @@ public class ValidationHelper {
         }
     }
 
-    public boolean validateFileInpt(Object object, String path) {
-        String [] columns;
+    public boolean validateFileInpt(Object object, String path, boolean csvFilType) {
+        //TODO: Om csvFiletype er false er det er jobj-fil og den burde sjekkes deretter.
+        //      Det har jeg ikke fått til. Se metoden under.
+
+        String[] columns;
         columns = object.toString().split(";");
-        System.out.println("Test: "+columns.length+ " og " +columns[14]);
 
+        System.out.println(columns.length);
         if(columns.length == 15) {
-            System.out.println("Inne!");
             if (columns[14].equals("\n") && path.equals(Paths.TEMPJOB)) {
-                System.out.println("Vikariat!!!");
                 String phoneNo = columns[1];
-                System.out.println("phoneNo: "+phoneNo);
-
                 if(uniquePhoneNr(tempJobsList, phoneNo)) {
                     ViewHelper run = new ViewHelper();
                     Company nyCompany = run.getTempJobFromList(columns);
@@ -129,15 +125,12 @@ public class ValidationHelper {
                     return true;
                 }
                 else{
-                    invalidInputs = "Jobbutlysningen er allerede registrert.";
+                    invalidInputs += "Jobbutlysningen er allerede registrert.";
                     return false;
                 }
             }
             if (!(columns[14].equals("\n")) && path.equals(Paths.JOBSEEKER)) {
-                System.out.println("Jobbsøker!!");
                 String phoneNo = columns[5];
-                System.out.println("phoneNo: "+phoneNo);
-
                 if(uniquePhoneNr(jobseekersList, phoneNo)) {
                     ViewHelper run = new ViewHelper();
                     Jobseeker jobseeker = run.getJobseekerFromList(columns);
@@ -145,7 +138,7 @@ public class ValidationHelper {
                     return true;
                 }
                 else{
-                    invalidInputs = "Jobbsøkeren er allerede registrert.";
+                    invalidInputs += "Jobbsøkeren er allerede registrert.";
                     return false;
                 }
             }
@@ -154,15 +147,15 @@ public class ValidationHelper {
                 invalidInputs += "Feil i valgt fil.";
                 return false;
             }
-
         }
         else {
             invalidInputs += "Feil lengde på fil.";
+            System.out.println(columns.length);
             return false;
         }
     }
 
-    public Boolean uniquePhoneNr(ArrayList arrayList, String phoneNo){
+    private Boolean uniquePhoneNr(ArrayList arrayList, String phoneNo){
         for(int i = 0; i < arrayList.size(); i++) {
             String[] row = arrayList.get(i).toString().split(";");
             for (int j = 0; j < row.length; j++) {
@@ -172,5 +165,37 @@ public class ValidationHelper {
             }
         }
         return true;
+    }
+
+    //TODO: Prøver å finne ut av om objektet er en jobbsøker eller et vikariat, men fikk det ikke til..!!
+    private String [] objectToList(Object object, String path){
+        String [] columns = {};
+        Jobseeker jobseeker;
+        Company company;
+
+        if(path == Paths.JOBSEEKER){
+            try {
+                jobseeker = (Jobseeker) object;
+            }
+            catch(NullPointerException e){
+                jobseeker = null;
+            }
+            if(jobseeker != null){
+                return jobseeker.toString().split(";");
+            }
+        }
+        if(path == Paths.TEMPJOB){
+            try{
+                company = (Company) object;
+            }
+            catch (NullPointerException e) {
+                company = null;
+            }
+            if(company != null){
+                return company.toString().split(";");
+            }
+        }
+        invalidInputs += "Ikke riktig formatert jobj-fil.";
+        return columns;
     }
 }

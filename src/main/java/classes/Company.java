@@ -3,6 +3,8 @@ package classes;
 import java.io.Serializable;
 
 public class Company implements Serializable {
+    private static final long serialVersionUID = 1;
+
     private String contactPerson;
     private String phoneNo;
     private String sector;
@@ -22,24 +24,6 @@ public class Company implements Serializable {
         this.tempJob = tempJob;
     }
 
-    public void setContactPerson(String contactPerson) {
-        this.contactPerson = contactPerson;
-    }
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-    public void setSector(String sector) {
-        this.sector = sector;
-    }
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    public void setIndustry(String industry) {
-        this.industry = industry;
-    }
     public String getContactPerson() {
         return contactPerson;
     }

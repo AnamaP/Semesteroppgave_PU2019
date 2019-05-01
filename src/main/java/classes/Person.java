@@ -3,6 +3,8 @@ package classes;
 import java.io.Serializable;
 
 public class Person implements Serializable {
+    private static final long serialVersionUID = 1;
+
     private String firstname;
     private String lastname;
     private String address;

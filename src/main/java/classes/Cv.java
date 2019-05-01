@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Cv implements Serializable {
+    private static final long serialVersionUID = 1;
+
     private String education;
     private String study;
     private String experience;

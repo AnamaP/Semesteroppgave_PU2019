@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class TempJob implements Serializable {
+    private static final long serialVersionUID = 1;
+
     private String jobTitle;
     private String jobType;
     private String description;
@@ -25,24 +27,6 @@ public class TempJob implements Serializable {
         this.status = status;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-    public void setJobType(String jobType) {
-        this.jobType = jobType;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-    public void setSalary(String salary) {
-        this.salary = salary;
-    }
-    public void setQualif(String qualif) {
-        this.qualif = qualif;
-    }
     public void setStatus(String status) {
         this.status = status;
     }
