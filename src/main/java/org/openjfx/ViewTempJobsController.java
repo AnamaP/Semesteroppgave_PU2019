@@ -19,7 +19,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static logic.AlertHelper.showDeleteAlert;
-import static logic.FiltrationHelper.filtrateJbseekerTable;
 import static logic.FiltrationHelper.filtrateTempJobTable;
 import static logic.RegTempJobHelper.tempJobsList;
 import static logic.ViewTempJobsHelper.*;
@@ -140,7 +139,7 @@ public class ViewTempJobsController implements Initializable {
                 ViewTempJobsHelper.deleteChosenTempJob(key);
 
                 MainAppHelper reload = new MainAppHelper();
-                reload.reloadVikariaterDatabase();
+                reload.reloadTempJobsDB();
 
                 NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
             }

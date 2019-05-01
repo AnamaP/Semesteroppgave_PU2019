@@ -95,8 +95,8 @@ public class ViewHelper{
         jobseekersList.get(chosenJobseeker).setStatus("Ansatt");
 
         MainAppHelper reload = new MainAppHelper();
-        reload.reloadVikariaterDatabase();
-        reload.reloadJobbsokerDatabase();
+        reload.reloadTempJobsDB();
+        reload.reloadJobseekersDB();
     }
 
     public void showMore(String key){

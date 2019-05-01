@@ -2,14 +2,12 @@ package org.openjfx;
 
 import classes.Company;
 import logic.*;
-import fileHandling.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.io.*;
-
 import static logic.RegTempJobHelper.tempJobsList;
+import static logic.ValidationHelper.runTempJobValidation;
 import static logic.ViewTempJobsHelper.chosenTempJob;
 
 public class RegTempJobController {
@@ -29,74 +27,52 @@ public class RegTempJobController {
 
     private boolean shouldUpdate = false;
 
+    /**
+     * I metoden under går man igjennom 3 stadier:
+     *
+     * 1: Oppretter en ny utlysning bassert på hva bruker har skrevet inn.
+     *
+     * 2: Om man kommer fra registrering ønsker man at den gamle versjonen av jobbutlysningen skal slettes
+     *    og erstattes etter at den nye versjonen er blitt registrert. Her kjørers også reloadTempJobsDB som setter
+     *    det nå oppdaterte arrayet inn i csv-filen og overskriver det som ligger der, slik at det ikke finnes en
+     *    gammel versjon av jobbutlysningen i csv-filen lenger.
+     *
+     * 3: Her kjører den en test på at det brukeren har skrevet inn er gyldige verdier og sender deg videre til
+     *    en ny side om det du skriver inn er "godkjent".
+     */
     @FXML
     private void btnRegTempJob(ActionEvent event) {
-
+        // 1
         if(shouldUpdate){
             tempJobsList.remove(tempJobsList.get(chosenTempJob));
             MainAppHelper reload = new MainAppHelper();
-            reload.reloadVikariaterDatabase();
+            reload.reloadTempJobsDB();
         }
 
+        // 2
         Company newTempJob = RegTempJobHelper.createTempJob(
                 txtContactPerson, txtPhoneNo, txtSector, txtCompanyName, txtAddress, txtIndustry,
                 txtJobTitle, txtDuration, txtSalary, radioFullTime, radioPartTime,
                 txtQualif, txtDescription, cbxSales, cbxAdmin, cbxIt, cbxEconomy, "Ledig");
 
-        // TODO: flytte kode for validering i en egen metode utenfor controller
-        String inptContactPerson = txtContactPerson.getText();
-        String inptPhoneNo = txtPhoneNo.getText();
-        String inptSector = txtSector.getText();
-        String inptCompanyName = txtCompanyName.getText();
-        String inptAddress = txtAddress.getText();
-        String inptIndustry = txtIndustry.getText();
-        String inptJobTitle = txtJobTitle.getText();
-        String inptQualif = txtQualif.getText();
-        String inptDuration = txtDuration.getText();
-        String inptSalary = txtSalary.getText();
-        String inptDescription = txtDescription.getText();
-        Boolean inptFullTime = radioFullTime.isSelected();
-        Boolean inptPartTime = radioPartTime.isSelected();
-        Boolean inptAdmin = cbxAdmin.isSelected();
-        Boolean inptSales = cbxSales.isSelected();
-        Boolean inptIt = cbxIt.isSelected();
-        Boolean inptEconomy = cbxEconomy.isSelected();
-
-        ValidationChecker validation = new ValidationChecker();
-        String invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNo, inptSector, inptCompanyName,
-                inptAddress, inptIndustry, inptJobTitle, inptDescription,inptDuration, inptSalary, inptQualif,
-                inptSales,inptAdmin, inptIt, inptEconomy, inptFullTime, inptPartTime);
-
-        // Dialogboks som vises dersom feilmeldinger
-        if (!invalidInputs.isEmpty()) {
-            AlertHelper.showError(invalidInputs);
-        }
-        else{
-            // Dialogboks som vises dersom vellykket registrering
-            AlertHelper.showConfirmation();
-
-            String ut = newTempJob.toString();
-
-            // Lagrer til .csv
-            FileHandler csvFileHandler = new CsvFileHandler();
-            try {
-                csvFileHandler.writeToDB(ut, Paths.TEMPJOB);
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            //Tar brukeren til visning:
-            NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
-        }
+        // 3
+        runTempJobValidation(newTempJob, event);
     }
 
+    /**
+     * Sender bruker tilbake til menysiden.
+     */
     @FXML
     private void btnBack(ActionEvent event) {
-        //Tar brukeren tilbake til index:
         NavigationHelper.changePage("/org/openjfx/index.fxml", event);
     }
 
+    /**
+     * Denne kjøres om bruker har valgt å redigere en jobbutlysning i tabellen. Her vil man hente ut de
+     * verdiene som ligger på denne jobbutlysningen og brukeren kan forandre det som ønskes.
+     * shounlUpdate settes til true slik at programmet skjønner at dette ikke er en ny registrering men
+     * noe som skal overskrive en eksisterende jobbutlysning.
+     */
     public void setData(int valgtArbeidsgiver){
         Company tempJob = tempJobsList.get(valgtArbeidsgiver);
 

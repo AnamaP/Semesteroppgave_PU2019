@@ -119,7 +119,7 @@ public class ViewJobseekersController implements Initializable {
 
                 if (deleted) {
                     MainAppHelper run = new MainAppHelper();
-                    run.reloadJobbsokerDatabase();
+                    run.reloadJobseekersDB();
                 }
                 NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
             }

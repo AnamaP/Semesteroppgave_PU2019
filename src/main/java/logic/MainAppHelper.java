@@ -97,11 +97,11 @@ public class MainAppHelper {
         }
     }
 
-    public void reloadJobbsokerDatabase(){
+    public void reloadJobseekersDB(){
         reloadDatabase(Paths.JOBSEEKER +".csv", jobseekersList);
     }
 
-    public void reloadVikariaterDatabase(){
+    public void reloadTempJobsDB(){
         reloadDatabase(Paths.TEMPJOB +".csv", tempJobsList);
     }
 

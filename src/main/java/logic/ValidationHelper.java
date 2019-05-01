@@ -1,5 +1,6 @@
 package logic;
 
+import classes.Company;
 import classes.Jobseeker;
 import fileHandling.CsvFileHandler;
 import fileHandling.FileHandler;
@@ -9,9 +10,11 @@ import java.io.IOException;
 
 public class ValidationHelper {
 
-// TODO : Flytte koden for kall på regex hit ?
+    /**
+     * Denne metoden tar inn en jobbsøker og kjører den inn i feilhåndteringsmetodene i ValidationChecker.
+     * invalidInputs vil inneholde alle feilmeldingene som måtte inntreffe.
+     */
     public static void runJobseekerValidation(Jobseeker jobseeker, ActionEvent event){
-
         String inptFirstname = jobseeker.getFirstname();
         String inptLastname = jobseeker.getLastname();
         String inptAddress = jobseeker.getAddress();
@@ -31,24 +34,73 @@ public class ValidationHelper {
                 inptPostal,inptPhoneNo, inptEmail, inptAge, inptExperience, inptSalary, inptEducation,
                 inptStudy, inptWorkfields);
 
-        if (!invalidInputs.isEmpty()){
-            AlertHelper.showError(invalidInputs);
-        }
-        else{
 
-            AlertHelper.showConfirmation();
-            String input = jobseeker.toString();
+        String content = jobseeker.toString();
 
-            // Lagrer til .csv
-            FileHandler csvFileHandler = new CsvFileHandler();
-            try {
-                csvFileHandler.writeToDB(input, Paths.JOBSEEKER);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+        if(checkResults(content, invalidInputs, Paths.JOBSEEKER)){
             //Tar brukeren med til neste side:
             NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
         }
     }
+
+    /**
+     * Likt som over, bare at denne metoden tar inn en jobbutlysning og kjører den inn i
+     * feilhåndteringsmetodene i ValidationChecker.invalidInputs vil inneholde alle feilmeldingene
+     * som måtte inntreffe. Bassert på om checkResults gikk fint skal den sende bruker til neste side.
+     */
+    public static void runTempJobValidation(Company company, ActionEvent event){
+        String inptContactPerson = company.getContactPerson();
+        String inptPhoneNo = company.getPhoneNo();
+        String inptSector = company.getSector();
+        String inptCompanyName = company.getCompanyName();
+        String inptAddress = company.getAddress();
+        String inptIndustry = company.getIndustry();
+        String inptJobTitle = company.getTempJob().getJobTitle();
+        String inptQualif = company.getTempJob().getQualif();
+        String inptDuration = company.getTempJob().getDuration();
+        String inptSalary = company.getTempJob().getSalary();
+        String inptDescription = company.getTempJob().getDescription();
+        String inptJobType = company.getTempJob().getJobType();
+        String inptWorkfields = company.getTempJob().workfieldsToString();
+
+        ValidationChecker validation = new ValidationChecker();
+        String invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNo, inptSector, inptCompanyName,
+                inptAddress, inptIndustry, inptJobTitle, inptDescription,inptDuration, inptSalary, inptQualif,
+                inptJobType, inptWorkfields);
+
+        String content = company.toString();
+
+        if(checkResults(content, invalidInputs, Paths.TEMPJOB)) {
+            NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
+        }
+    }
+
+    /**
+     * Her tar sjekker metoden om invalidInputs inneholder noe:
+     * Fant feil? Feilmaldingen vises til bruker og det returneres false. Bruker blir på siden og får mulighet
+     * til å kunne rette opp i feilene som er skrevet inn før raden blir registrert.
+     * Fant ingen feil? Objektet (her i toString() form) skal lagres som ny linje i fil og den returnerer true.
+     */
+    private static boolean checkResults(String content, String invalidInputs, String path){
+        // Dialogboks som vises dersom feilmeldinger
+        if (!invalidInputs.isEmpty()) {
+            AlertHelper.showError(invalidInputs);
+            return false;
+        }
+        else {
+            // Dialogboks som vises dersom vellykket registrering
+            AlertHelper.showConfirmation();
+
+            // Lagrer til .csv
+            FileHandler csvFileHandler = new CsvFileHandler();
+            try {
+                csvFileHandler.writeToDB(content, path);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+    }
+
 }
