@@ -14,6 +14,7 @@ import logic.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static logic.FiltrationHelper.filtrateTempJobTable;
 import static logic.RegTempJobHelper.tempJobsList;
 import static logic.ViewTempJobsHelper.showResults;
 import static logic.ViewTempJobsHelper.selectedPhoneNo;
@@ -50,16 +51,7 @@ public class MatchingTempJobsController implements Initializable {
                 return true;
             }
             String lowerCaseFilter = newValue.toLowerCase();
-            if (tempJob.getContactPerson().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getPhoneNo().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getSector().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getCompanyName().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getAddress().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getWorkfields().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getIndustry().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getJobTitle().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getJobType().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getStatus().toLowerCase().contains(lowerCaseFilter)) {
+            if (filtrateTempJobTable(tempJob, lowerCaseFilter)) {
                 return true;
             }
             return false;

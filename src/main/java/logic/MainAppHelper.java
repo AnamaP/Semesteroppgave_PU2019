@@ -24,11 +24,20 @@ public class MainAppHelper {
         return instance;
     }
 
+    /**
+     * Denne kjører begge load-metodene.
+     */
     public void loadDatabaseFromCsv(){
         loadJobbsokerCsv();
         loadVikariatCsv();
     }
 
+
+    /**
+     * Denne metoden henter ut alle jobbsøkere fra csv-filen og legger dem inn i en ArrayList.
+     * Dette gjør at man har en "kopi" av listen tilgjengelig som kan forandres, før man samkjører
+     * den med csv-filen. Csv-filen fungerer litt som en database / back up.
+     */
     public void loadJobbsokerCsv(){
         CsvFileHandler test = new CsvFileHandler();
         String sokereFraDatabase = (String) test.readFromFile(Paths.JOBSEEKER);
@@ -64,6 +73,12 @@ public class MainAppHelper {
         }
     }
 
+    /**
+     * Denne metoden henter ut alle jobbutlysningene fra csv-filen og legger dem inn i en ArrayList.
+     * Dette gjør at man har en "kopi" av listen tilgjengelig som kan forandres, før man samkjører
+     * den med csv-filen. Csv-filen fungerer litt som en database / back up.
+     * getTempJobFromList, tar inn en String [] og returnerer et Company.
+     */
     public void loadVikariatCsv(){
         CsvFileHandler test = new CsvFileHandler();
         String vikariaterFraDatabase = (String) test.readFromFile(Paths.TEMPJOB);
@@ -90,6 +105,11 @@ public class MainAppHelper {
         reloadDatabase(Paths.TEMPJOB +".csv", tempJobsList);
     }
 
+    /**
+     * Denne metoden tar alt som ligger i en ArrayList (enten en liste med jobbsøkere eller jobbutlysninger) og
+     * skriver den inn i en csv-fil. Her er append satt til false slik at listen i filen vil bli fullstendig oppdatert.
+     * Denne brukes hver gang en rad i en av listene endres eller slettes.
+     */
     private void reloadDatabase(String path, ArrayList arrayList){
         FileWriter fileWriter = null;
         try {

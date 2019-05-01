@@ -11,6 +11,10 @@ import java.net.URL;
 
 public class NavigationHelper {
 
+    /**
+     * ChangePage får inn en path som sier hvilken FXML-side den skal ta deg til. Den oppretter så en
+     * ny "scene" eller "vindu" bassert på denne FXML-siden.
+     */
     public static void changePage(String path, ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader();

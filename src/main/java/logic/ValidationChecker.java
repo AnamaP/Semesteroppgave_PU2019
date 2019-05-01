@@ -20,8 +20,7 @@ public class ValidationChecker {
 
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
                                           String phoneNo, String email, String age, String experience, String salary,
-                                          Object education, Object study, Boolean sales, Boolean admin,
-                                          Boolean it, Boolean economy) {
+                                          Object education, Object study, Object workfields) {
 
         checkString(firstname);
         checkString(lastname);
@@ -35,7 +34,7 @@ public class ValidationChecker {
         checkAge(age);
         checkSalary(salary);
         checkValueSelected(education, study);
-        checkWorkfields(sales, admin, it, economy);
+        checkWorkfields(workfields);
 
         return invalidInputs;
     }
@@ -56,7 +55,7 @@ public class ValidationChecker {
         checkValidString(duration);
         checkValidString(qualif);
         checkSalary(salary);
-        checkWorkfields(sales, admin, it, economy);
+        //checkWorkfields(sales, admin, it, economy);
         checkJobTypeSelected(fullTime, partTime);
 
         return invalidInputs;
@@ -220,7 +219,7 @@ public class ValidationChecker {
     }
 
     private boolean checkIfValueSelected(Object education, Object study) throws InvalidValueSelectedIsNullException{
-        if(education.equals("null") && study.equals("null")){
+        if(education.equals("not selected") || study.equals("not selected")){
             throw new InvalidValueSelectedIsNullException("En eller flere av valgalternativene er ikke valgt!");
         }
         return true;
@@ -238,16 +237,16 @@ public class ValidationChecker {
         return false;
     }
 
-    private boolean checkIfWorkfieldsSelected(Boolean sales, Boolean admin, Boolean it, Boolean economy) throws NullPointerException{
-        if(!sales && !admin && !it && !economy){
+    private boolean checkIfWorkfieldsSelected(Object workfields) throws NullPointerException{
+        if(workfields.equals("")){
             throw new NullPointerException("Ingen kategorier i 'arbeidsområde' er valgt");
         }
         return true;
     }
 
-    private boolean checkWorkfields(Boolean sales, Boolean admin, Boolean it, Boolean economy){
+    private boolean checkWorkfields(Object workfields){
         try{
-            if(checkIfWorkfieldsSelected(sales,admin,it,economy)){
+            if(checkIfWorkfieldsSelected(workfields)){
                 return true;
             }
         }

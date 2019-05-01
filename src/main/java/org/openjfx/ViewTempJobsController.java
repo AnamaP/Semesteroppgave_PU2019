@@ -19,6 +19,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static logic.AlertHelper.showDeleteAlert;
+import static logic.FiltrationHelper.filtrateJbseekerTable;
+import static logic.FiltrationHelper.filtrateTempJobTable;
 import static logic.RegTempJobHelper.tempJobsList;
 import static logic.ViewTempJobsHelper.*;
 
@@ -58,16 +60,7 @@ public class ViewTempJobsController implements Initializable {
                 return true;
             }
             String lowerCaseFilter = newValue.toLowerCase();
-            if (tempJob.getContactPerson().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getPhoneNo().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getSector().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getCompanyName().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getAddress().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getWorkfields().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getIndustry().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getJobTitle().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getJobType().toLowerCase().contains(lowerCaseFilter) ||
-                    tempJob.getStatus().toLowerCase().contains(lowerCaseFilter)) {
+            if (filtrateTempJobTable(tempJob, lowerCaseFilter) || tempJob.getStatus().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
             }
             return false;

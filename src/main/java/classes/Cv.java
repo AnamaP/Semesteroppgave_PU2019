@@ -46,7 +46,7 @@ public class Cv implements Serializable {
         return reference;
     }
 
-    public String categoriesToString() {
+    public String workfieldsToString() {
         String sb = "";
         for(int i = 0; i < workfields.size(); i++){
             if(i == workfields.size() -1){
@@ -60,6 +60,6 @@ public class Cv implements Serializable {
     }
 
     public String toString(){
-        return education +";"+ study +";"+ experience +";"+ reference +";"+ categoriesToString();
+        return education +";"+ study +";"+ experience +";"+ reference +";"+ workfieldsToString();
     }
 }

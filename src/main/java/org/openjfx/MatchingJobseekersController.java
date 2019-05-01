@@ -13,10 +13,10 @@ import logic.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static logic.FiltrationHelper.filtrateJbseekerTable;
 import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.ViewJobseekerHelper.selectedPhoneNo;
 import static logic.ViewJobseekerHelper.showResults;
-
 
 public class MatchingJobseekersController implements Initializable {
 
@@ -33,6 +33,7 @@ public class MatchingJobseekersController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //1:
         tvJobseekers.setPlaceholder(new Label("Det er dessverre ingen aktuelle kandidater som oppfyller dine kriterier"));
 
         SetTableHelper run = new SetTableHelper();
@@ -50,12 +51,7 @@ public class MatchingJobseekersController implements Initializable {
                 return true;
             }
             String lowerCaseFilter = newValue.toLowerCase();
-            if (jobseeker.getFirstname().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getLastname().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getZipCode().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getPostal().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getPhoneNo().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getWorkfields().toLowerCase().contains(lowerCaseFilter)) {
+            if (filtrateJbseekerTable(jobseeker, lowerCaseFilter)) {
                 return true;
             }
             return false;

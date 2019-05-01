@@ -4,7 +4,6 @@ import javafx.scene.control.*;
 import classes.Company;
 import classes.TempJob;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class RegTempJobHelper {
@@ -16,9 +15,9 @@ public class RegTempJobHelper {
             TextField txtContactPerson, TextField txtPhoneNo, TextField txtSector, TextField txtCompanyName, TextField txtAddress,
             TextField txtIndustry, TextField txtJobTitle, TextField txtDuration, TextField txtSalary,
             RadioButton radioFullTime, RadioButton radioPartTime, TextField txtQualif,  TextArea txtDescription,
-            CheckBox cbxSale, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxEconomy, String status) {
+            CheckBox cbxSales, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxEconomy, String status) {
 
-        ArrayList<String> workfields = RegWorkfieldsHelper.regWorkfields(cbxSale,cbxAdmin,cbxIt,cbxEconomy);
+        ArrayList<String> workfields = RegWorkfieldsHelper.regWorkfields(cbxSales,cbxAdmin,cbxIt,cbxEconomy);
 
         String jobbType = regJobType(radioFullTime, radioPartTime);
 

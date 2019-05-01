@@ -18,6 +18,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static logic.AlertHelper.showDeleteAlert;
+import static logic.FiltrationHelper.filtrateJbseekerTable;
 import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.ViewJobseekerHelper.*;
 
@@ -59,13 +60,7 @@ public class ViewJobseekersController implements Initializable {
                 return true;
             }
             String lowerCaseFilter = newValue.toLowerCase();
-            if (jobseeker.getFirstname().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getLastname().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getZipCode().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getPostal().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getPhoneNo().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getWorkfields().toLowerCase().contains(lowerCaseFilter) ||
-                    jobseeker.getStatus().toLowerCase().contains(lowerCaseFilter)) {
+            if (filtrateJbseekerTable(jobseeker, lowerCaseFilter) || jobseeker.getStatus().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
             }
             return false;

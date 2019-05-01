@@ -19,8 +19,8 @@ public class RegJobseekerHelper {
 
         ArrayList<String> workfields = RegWorkfieldsHelper.regWorkfields(cbxSales, cbxAdmin, cbxIt, cbxEconomy);
 
-        String study = RegJobseekerHelper.study(choiseStudy);
         String education = RegJobseekerHelper.education(choiseEducation);
+        String study = RegJobseekerHelper.study(choiseStudy);
         Cv cv = new Cv(education, study, txtExperience.getText(), workfields);
 
         // hvis referanse er satt så...
@@ -42,11 +42,23 @@ public class RegJobseekerHelper {
     }
 
     public static String education(ComboBox choiseEducation){
-        return (String) choiseEducation.getValue();
+        return readComboBxValue(choiseEducation);
     }
 
     public static String study(ComboBox choiseStudy) {
-        return (String) choiseStudy.getValue();
+        return readComboBxValue(choiseStudy);
+    }
+
+    private static String readComboBxValue(ComboBox comboBox){
+        String choise;
+        try{
+            choise = comboBox.getSelectionModel().getSelectedItem().toString();
+        }
+        catch(NullPointerException nope){
+            choise = "not selected";
+        }
+        System.out.println(choise);
+        return choise;
     }
 
     public static Boolean deleteChosenJobseeker(String key) {
