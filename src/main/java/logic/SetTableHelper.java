@@ -1,9 +1,12 @@
 package logic;
 
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 public class SetTableHelper {
+
+    /**
+     * Her opprettes en tabell og sier hvilke verdier som skal inn i hver kolonne. Initialiserer kolonnene.
+     */
     public void setTempJobsTable(TableColumn<TableTempJobs, String> tcContactPerson, TableColumn<TableTempJobs, String> tcPhoneNo,
                                  TableColumn<TableTempJobs, String> tcSector, TableColumn<TableTempJobs, String> tcCompanyName,
                                  TableColumn<TableTempJobs, String> tcAddress, TableColumn<TableTempJobs, String> tcIndustry,
@@ -20,6 +23,9 @@ public class SetTableHelper {
         tcKWorkfields.setCellValueFactory(cellData->cellData.getValue().workfieldsProperty());
     }
 
+    /**
+     * Her opprettes en tabell og sier hvilke verdier som skal inn i hver kolonne. Initialiserer kolonnene.
+     */
     public void setJobbseekerTable(TableColumn<TableJobseekers, String> tcFistname, TableColumn<TableJobseekers, String> tcLastname,
                                    TableColumn<TableJobseekers, String> tcAddress, TableColumn<TableJobseekers, String> tcZipcode,
                                    TableColumn<TableJobseekers, String> tcPostal, TableColumn<TableJobseekers, String> tcPhoneNo,

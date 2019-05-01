@@ -31,31 +31,49 @@ public class ViewJobseekersController implements Initializable {
     TableView<TableJobseekers> tvJobseekers;
 
     @FXML
-    TableColumn<TableJobseekers, String> tcFirstname, tcLastname, tcAddress, tcZipcode, tcPostal, tcPhoneNo, tcEmail, tcAge,
-            tcEducation, tcStudy, tcExperience, tcWorkfields, tcStatus;
+    TableColumn<TableJobseekers, String> tcFirstname, tcLastname, tcAddress, tcZipcode, tcPostal, tcPhoneNo,
+                                         tcEmail, tcAge, tcEducation, tcStudy, tcExperience, tcWorkfields, tcStatus;
 
-    // Initialize klassen under gjør at tilhørende metoder automatisk blir kalt etter at fxml filen har blitt hentet.
-
+    /**
+     * Denne metoden har følgende punkter:
+     *
+     *  1: Om listen står tom vil denne meldingen gis til bruker. Dette skjer om filtreringen ikke finner noen
+     *     matcher eller om man ikke finner noen matcher til en valgt jobbutlysning.
+     *
+     *  2: setTempJobsTable initialiserer kolonnene.
+     *
+     *  3: "status" skal kun vises her i view og ikke når man får listen opp som et resultat etter å ha valgt
+     *     en jobbutlysning. Siden det kun skal komme opp "ledige" jobbutlysninger uansett, så vil dette være overflødig.
+     *     Det å initialisere denne kolonnen utenfor metoden gjør at vi kan kalle på samme metode i kontrolleren
+     *     hvor programmet kun viser resultater.
+     *
+     *  4: Denne fyller opp tabellen med jobbsøkere.
+     *
+     *  5: Her setter man ObservablaList inn i filterredData som muliggjør sortering og filtrering av data i tabellen.
+     *     Programmet bruker Listener til å fange opp endringer. Hvis det ikke er skrevet noe inn i filteret så skal
+     *     all informasjon vises og om noe skrives inn skriver den kun ut de elementene som inneholder dette.
+     *
+     *  6: Legger sortert og filtrert liste inn i tabellen.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        // 1:
         tvJobseekers.setPlaceholder(new Label("Obs! Ingen treff som passer søket ditt!"));
 
+        // 2:
         SetTableHelper run = new SetTableHelper();
         run.setJobbseekerTable(tcFirstname, tcLastname, tcAddress, tcZipcode, tcPostal, tcPhoneNo,
                 tcEmail, tcAge, tcEducation, tcStudy, tcExperience, tcWorkfields);
 
+        // 3:
         tcStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
 
+        // 4:
         tvJobseekers.setItems(showJobseekers());
 
-        /* Muliggjør sortering og filtrering av data i tabellen*/
-
+        // 5:
         FilteredList<TableJobseekers> filteredData = new FilteredList<>(showJobseekers(), p -> true);
-
-        // bruker Listener til å fange opp endringer og ..
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(jobseeker -> {
-            // hvis det ikke er skrevet noe inn i filteret så skal all informasjon vises
             if (newValue == null || newValue.isEmpty()) {
                 return true;
             }
@@ -66,17 +84,23 @@ public class ViewJobseekersController implements Initializable {
             return false;
         }));
 
+        // 6:
         SortedList<TableJobseekers> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tvJobseekers.comparatorProperty());
         tvJobseekers.setItems(sortedData);
-
     }
 
+    /**
+     * Sender bruker tilbake til menysiden.
+     */
     @FXML
     private void btnBack(ActionEvent event) {
         NavigationHelper.changePage("/org/openjfx/index.fxml", event);
     }
 
+    /**
+     * Sender bruker tilbake til menysiden.
+     */
     public void btnEditJobseeker(ActionEvent event) {
         try{
             String key = selectedPhoneNo(tvJobseekers);
@@ -105,6 +129,9 @@ public class ViewJobseekersController implements Initializable {
         }
     }
 
+    /**
+     * Sender bruker tilbake til menysiden.
+     */
     public void btnDeleteJobseeker(ActionEvent event) {
         String message;
         try{
@@ -132,6 +159,9 @@ public class ViewJobseekersController implements Initializable {
         }
     }
 
+    /**
+     * Sender bruker tilbake til menysiden.
+     */
     public void btnDownloadJobseeker(ActionEvent event) {
         try{
             String key = selectedPhoneNo(tvJobseekers);
@@ -142,11 +172,17 @@ public class ViewJobseekersController implements Initializable {
         }
     }
 
+    /**
+     * Sender bruker tilbake til menysiden.
+     */
     public void btnUploadJobseeker(ActionEvent event){
         FileChooserHelper.upload(Paths.JOBSEEKER);
         NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
     }
 
+    /**
+     * Sender bruker tilbake til menysiden.
+     */
     public void btnFindTempJob(ActionEvent event) {
         try {
             String workfieldsStr = tvJobseekers.getSelectionModel().getSelectedItem().workfieldsProperty().get();

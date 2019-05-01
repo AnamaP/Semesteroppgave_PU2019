@@ -30,11 +30,11 @@ public class ViewHelper{
         return result;
     }
 
-    /*
-        Metoden finner hvilken rad i hvilken liste basert på et nøkkelelement.
-        Arraylisten inneholder hele tabellen. Den deles inn i rader og det sjekkes om nøkkelen finnes i en av radene.
-        Om den finnes, finner man ut av hvilken type objekt det er og setter den valgte raden inn i enten
-        "chosenTempJob" eller "chosenJobseeker".
+    /**
+     * Metoden finner hvilken rad i hvilken liste basert på et nøkkelelement.
+     * Arraylisten inneholder hele tabellen. Den deles inn i rader og det sjekkes om nøkkelen finnes i en av radene.
+     * Om den finnes, finner man ut av hvilken type objekt det er og setter den valgte raden inn i enten
+     * "chosenTempJob" eller "chosenJobseeker".
      */
     public void findRow(ArrayList arrayList, String key, Boolean isJobseeker){
         for(int i = 0; i < arrayList.size(); i++){

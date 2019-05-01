@@ -77,21 +77,19 @@ public class ValidationHelper {
 
     /**
      * Her tar sjekker metoden om invalidInputs inneholder noe:
-     * Fant feil? Feilmaldingen vises til bruker og det returneres false. Bruker blir på siden og får mulighet
+     * Fant feil? Feilmeldingen vises til bruker og det returneres false. Bruker blir på siden og får mulighet
      * til å kunne rette opp i feilene som er skrevet inn før raden blir registrert.
-     * Fant ingen feil? Objektet (her i toString() form) skal lagres som ny linje i fil og den returnerer true.
+     * Fant ingen feil? Bruker får meldig om at alt så fint ut, objektet (her i toString() form) lagres som
+     * ny linje i csv-filen og den returnerer true.
      */
     private static boolean checkResults(String content, String invalidInputs, String path){
-        // Dialogboks som vises dersom feilmeldinger
         if (!invalidInputs.isEmpty()) {
             AlertHelper.showError(invalidInputs);
             return false;
         }
         else {
-            // Dialogboks som vises dersom vellykket registrering
             AlertHelper.showConfirmation();
 
-            // Lagrer til .csv
             FileHandler csvFileHandler = new CsvFileHandler();
             try {
                 csvFileHandler.writeToDB(content, path);
