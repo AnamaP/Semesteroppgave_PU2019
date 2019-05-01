@@ -6,8 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import classes.Jobseeker;
 import static logic.RegJobseekerHelper.jobseekersList;
-import static logic.ValidationHelper.invalidInputs;
-import static logic.ValidationHelper.runJobseekerValidation;
 import static logic.ViewJobseekerHelper.chosenJobseeker;
 
 public class RegJobseekerController {
@@ -49,12 +47,12 @@ public class RegJobseekerController {
         }
 
         // 2
-        Boolean registrer = RegJobseekerHelper.newSeeker(txtFirstname, txtLastname, txtAddress, txtZipcode, txtPostal,
+        Boolean register = RegJobseekerHelper.newSeeker(txtFirstname, txtLastname, txtAddress, txtZipcode, txtPostal,
                 txtPhoneNo, txtEmail, txtAge, choiseEducation, choiseStudy, txtExperience, txtReference, txtSalary, cbxSales,
                 cbxAdmin, cbxIt, cbxEconomy, "Ledig");
 
         // 3
-        if(registrer){
+        if(register){
             NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
         }
     }

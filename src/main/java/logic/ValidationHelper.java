@@ -50,7 +50,7 @@ public class ValidationHelper {
      * feilhåndteringsmetodene i ValidationChecker.invalidInputs vil inneholde alle feilmeldingene
      * som måtte inntreffe. Bassert på om checkResults gikk fint skal den sende bruker til neste side.
      */
-    public static void runTempJobValidation(Company company, ActionEvent event){
+    public static boolean runTempJobValidation(Company company){
         String inptContactPerson = company.getContactPerson();
         String inptPhoneNo = company.getPhoneNo();
         String inptSector = company.getSector();
@@ -73,8 +73,9 @@ public class ValidationHelper {
         String content = company.toString();
 
         if(checkResults(content, Paths.TEMPJOB)) {
-            NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
+            return true;
         }
+        return false;
     }
 
     /**

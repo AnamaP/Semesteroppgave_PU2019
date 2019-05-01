@@ -6,12 +6,14 @@ import classes.TempJob;
 
 import java.util.ArrayList;
 
+import static logic.ValidationHelper.runTempJobValidation;
+
 public class RegTempJobHelper {
 
     public static ArrayList<Company> tempJobsList = new ArrayList<>();
 
 
-    public static Company createTempJob(
+    public static Boolean createTempJob(
             TextField txtContactPerson, TextField txtPhoneNo, TextField txtSector, TextField txtCompanyName, TextField txtAddress,
             TextField txtIndustry, TextField txtJobTitle, TextField txtDuration, TextField txtSalary,
             RadioButton radioFullTime, RadioButton radioPartTime, TextField txtQualif,  TextArea txtDescription,
@@ -27,9 +29,11 @@ public class RegTempJobHelper {
         Company newCompany = new Company(txtContactPerson.getText(),txtPhoneNo.getText(),txtSector.getText(),
                                         txtCompanyName.getText(), txtAddress.getText(), txtIndustry.getText(), newTempJob);
 
-        RegTempJobHelper.tempJobsList.add(newCompany);
-
-        return newCompany;
+        if(runTempJobValidation(newCompany)){
+            RegTempJobHelper.tempJobsList.add(newCompany);
+            return true;
+        }
+        return false;
     }
 
     private static String regJobType(RadioButton radioFullTime, RadioButton radioPartTime) {

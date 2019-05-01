@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import static logic.RegTempJobHelper.tempJobsList;
-import static logic.ValidationHelper.runTempJobValidation;
 import static logic.ViewTempJobsHelper.chosenTempJob;
 
 public class RegTempJobController {
@@ -47,16 +46,19 @@ public class RegTempJobController {
             tempJobsList.remove(tempJobsList.get(chosenTempJob));
             MainAppHelper reload = new MainAppHelper();
             reload.reloadTempJobsDB();
+            shouldUpdate = false;
         }
 
         // 2
-        Company newTempJob = RegTempJobHelper.createTempJob(
+        Boolean register = RegTempJobHelper.createTempJob(
                 txtContactPerson, txtPhoneNo, txtSector, txtCompanyName, txtAddress, txtIndustry,
                 txtJobTitle, txtDuration, txtSalary, radioFullTime, radioPartTime,
                 txtQualif, txtDescription, cbxSales, cbxAdmin, cbxIt, cbxEconomy, "Ledig");
 
         // 3
-        runTempJobValidation(newTempJob, event);
+        if(register){
+            NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
+        }
     }
 
     /**
