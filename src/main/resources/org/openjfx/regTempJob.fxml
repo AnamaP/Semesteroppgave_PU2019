@@ -64,7 +64,7 @@
       </GridPane>
       <Label alignment="CENTER_RIGHT" layoutX="530.0" layoutY="219.0" prefHeight="17.0" prefWidth="149.0" text="* obligatoriske felt" textFill="#000000c3" />
       <Line endX="532.0" layoutX="146.0" layoutY="239.0" startX="-100.0" />
-      <Text fill="#084d3e" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsutlysning" textAlignment="CENTER" wrappingWidth="722.4">
+      <Text fill="#084d3e" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stillingsutlysning" textAlignment="CENTER" wrappingWidth="722.4">
          <font>
             <Font name="Ayuthaya" size="20.0" />
          </font>
