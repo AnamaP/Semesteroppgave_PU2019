@@ -2,7 +2,6 @@ package logic;
 
 import fileHandling.CsvFileHandler;
 import classes.Company;
-import classes.Cv;
 import classes.Jobseeker;
 
 import java.io.FileWriter;
@@ -27,47 +26,29 @@ public class MainAppHelper {
     /**
      * Denne kjører begge load-metodene.
      */
-    public void loadDatabaseFromCsv(){
-        loadJobbsokerCsv();
-        loadVikariatCsv();
+    public void loadDBFromCsv(){
+        loadJobseekerCsv();
+        loadTempJobCsv();
     }
-
 
     /**
      * Denne metoden henter ut alle jobbsøkere fra csv-filen og legger dem inn i en ArrayList.
      * Dette gjør at man har en "kopi" av listen tilgjengelig som kan forandres, før man samkjører
-     * den med csv-filen. Csv-filen fungerer litt som en database / back up.
+     * den med csv-filen. Csv-filen fungerer litt som en database / back up. getJobseekerFromList lager
+     * en jobseeker utifra en oppgitt String [].
      */
-    public void loadJobbsokerCsv(){
+    public void loadJobseekerCsv(){
         CsvFileHandler test = new CsvFileHandler();
         String sokereFraDatabase = (String) test.readFromFile(Paths.JOBSEEKER);
 
         String [] rader = sokereFraDatabase.split("\n");
 
         for (int i = 0; i < rader.length; i++) {
-            String[] soker = rader[i].split(";");
+            String[] columns = rader[i].split(";");
 
-            if(soker.length > 14) {
-                ArrayList<String> kategorier = new ArrayList<>();
-                for (int k = 13; k < soker.length - 1; k++) {
-                    kategorier.add(soker[k]);
-                }
-
-                Cv cv = new Cv(soker[9], soker[10], soker[11], kategorier);
-
-                // hvis referanse er satt så...
-                if(soker[12] != ""){
-                    cv.setReference(soker[12]);
-                }
-
-                Jobseeker jobseeker = new Jobseeker(soker[0], soker[1], soker[2], soker[3], soker[4],
-                        soker[5], soker[6], soker[7], cv, soker[soker.length - 1]);
-
-                // hvis lønnskrav er satt så...
-                if(soker[8] != ""){
-                    jobseeker.setSalary(soker[8]);
-                }
-
+            if(columns.length > 14) {
+                ViewHelper run = new ViewHelper();
+                Jobseeker jobseeker = run.getJobseekerFromList(columns);
                 jobseekersList.add(jobseeker);
             }
         }
@@ -79,19 +60,18 @@ public class MainAppHelper {
      * den med csv-filen. Csv-filen fungerer litt som en database / back up.
      * getTempJobFromList, tar inn en String [] og returnerer et Company.
      */
-    public void loadVikariatCsv(){
-        CsvFileHandler test = new CsvFileHandler();
-        String vikariaterFraDatabase = (String) test.readFromFile(Paths.TEMPJOB);
+    public void loadTempJobCsv(){
+        CsvFileHandler handler = new CsvFileHandler();
+        String tempJobsFromDB = (String) handler.readFromFile(Paths.TEMPJOB);
 
-        String [] rader = vikariaterFraDatabase.split("\n");
+        String [] rader = tempJobsFromDB.split("\n");
 
         for (int i = 0; i < rader.length; i++) {
-            String[] arbeidsgiver = rader[i].split(";");
+            String[] columns = rader[i].split(";");
 
-            if(arbeidsgiver.length > 13) {
+            if(columns.length > 13) {
                 ViewHelper run = new ViewHelper();
-                Company nyCompany = run.getTempJobFromList(arbeidsgiver);
-
+                Company nyCompany = run.getTempJobFromList(columns);
                 tempJobsList.add(nyCompany);
             }
         }

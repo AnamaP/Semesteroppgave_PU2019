@@ -56,8 +56,19 @@ public class ViewHelper{
         ArrayList<String> workfields = getWorkfields(columns, 13);
         Cv cv = new Cv(columns[9], columns[10], columns[11], workfields);
 
+        // hvis referanse er satt så...
+        if (columns[12] != "") {
+            cv.setReference(columns[12]);
+        }
+
         Jobseeker jobseeker = new Jobseeker(columns[0], columns[1], columns[2], columns[3], columns[4],
                                             columns[5], columns[6], columns[7], cv, columns[columns.length-1]);
+
+        // hvis lønnskrav er satt så...
+        if (columns[8] != "") {
+            jobseeker.setSalary(columns[8]);
+        }
+
         return jobseeker;
     }
 
@@ -73,8 +84,9 @@ public class ViewHelper{
 
     public ArrayList getWorkfields(String [] columns, int start){
         ArrayList<String> workfields = new ArrayList<>();
-        for (int i = start; i < columns.length -1; i++) {
-            workfields.add(columns[i]);
+        String[] workfieldsStr = columns[start].split(",");
+        for (int i = 0; i < workfieldsStr.length; i++) {
+            workfields.add(workfieldsStr[i]);
         }
         return workfields;
     }

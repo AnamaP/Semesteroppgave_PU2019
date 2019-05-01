@@ -1,12 +1,18 @@
 package logic;
 
 import classes.Company;
+import classes.Cv;
 import classes.Jobseeker;
+import exceptions.InvalidContentFileException;
 import fileHandling.CsvFileHandler;
 import fileHandling.FileHandler;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import static logic.RegJobseekerHelper.jobseekersList;
+import static logic.RegTempJobHelper.tempJobsList;
 
 public class ValidationHelper {
 
@@ -104,4 +110,67 @@ public class ValidationHelper {
         }
     }
 
+    public boolean validateFileInpt(Object object, String path) {
+        String [] columns;
+        columns = object.toString().split(";");
+        System.out.println("Test: "+columns.length+ " og " +columns[14]);
+
+        if(columns.length == 15) {
+            System.out.println("Inne!");
+            if (columns[14].equals("\n") && path.equals(Paths.TEMPJOB)) {
+                System.out.println("Vikariat!!!");
+                String phoneNo = columns[1];
+                System.out.println("phoneNo: "+phoneNo);
+
+                if(uniquePhoneNr(tempJobsList, phoneNo)) {
+                    ViewHelper run = new ViewHelper();
+                    Company nyCompany = run.getTempJobFromList(columns);
+                    tempJobsList.add(nyCompany);
+                    return true;
+                }
+                else{
+                    invalidInputs = "Jobbutlysningen er allerede registrert.";
+                    return false;
+                }
+            }
+            if (!(columns[14].equals("\n")) && path.equals(Paths.JOBSEEKER)) {
+                System.out.println("Jobbsøker!!");
+                String phoneNo = columns[5];
+                System.out.println("phoneNo: "+phoneNo);
+
+                if(uniquePhoneNr(jobseekersList, phoneNo)) {
+                    ViewHelper run = new ViewHelper();
+                    Jobseeker jobseeker = run.getJobseekerFromList(columns);
+                    jobseekersList.add(jobseeker);
+                    return true;
+                }
+                else{
+                    invalidInputs = "Jobbsøkeren er allerede registrert.";
+                    return false;
+                }
+            }
+            else {
+                System.out.println("Havner du her mon tro...??");
+                invalidInputs += "Feil i valgt fil.";
+                return false;
+            }
+
+        }
+        else {
+            invalidInputs += "Feil lengde på fil.";
+            return false;
+        }
+    }
+
+    public Boolean uniquePhoneNr(ArrayList arrayList, String phoneNo){
+        for(int i = 0; i < arrayList.size(); i++) {
+            String[] row = arrayList.get(i).toString().split(";");
+            for (int j = 0; j < row.length; j++) {
+                if (row[j].equals(phoneNo)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

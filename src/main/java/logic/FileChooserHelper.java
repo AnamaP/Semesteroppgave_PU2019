@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
+import static logic.ValidationHelper.invalidInputs;
+
 public class FileChooserHelper {
     final static int SAVE_FLAG = 1;
     final static int OPEN_FLAG = 2;
@@ -68,12 +70,19 @@ public class FileChooserHelper {
         FileHandler fileHandler = getExtensionFilter(chosenpath);
         Object object = fileHandler.readFromFile(getPathBase(chosenpath));
 
-        try {
-            fileHandler.writeToDB(object, path);
+        ValidationHelper run = new ValidationHelper();
+        if(run.validateFileInpt(object, path)) {
+            try {
+                fileHandler.writeToDB(object, path);
+            }
+            catch (FileNotFoundException e){
+                System.err.println("Fant ikke filen du lette etter.");
+            }
+            catch (IOException e) {
+                System.err.println("Kunne ikke lese filen du lette etter. Årsak : "+e.getCause());
+            }
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        AlertHelper.showError(invalidInputs);
     }
 
     public static void download(Object object) {
