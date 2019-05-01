@@ -1,5 +1,6 @@
 package logic;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -7,11 +8,13 @@ import classes.Cv;
 import classes.Jobseeker;
 import java.util.ArrayList;
 
+import static logic.ValidationHelper.runJobseekerValidation;
+
 public class RegJobseekerHelper {
 
     public static ArrayList<Jobseeker> jobseekersList = new ArrayList<>();
 
-    public static Jobseeker newSeeker(TextField txtFirstName, TextField txtLastName, TextField txtAddress, TextField txtZipCode,
+    public static boolean newSeeker(TextField txtFirstName, TextField txtLastName, TextField txtAddress, TextField txtZipCode,
                                       TextField txtPostal, TextField txtPhoneNo, TextField txtEmail, TextField txtAge,
                                       ComboBox choiseEducation, ComboBox choiseStudy, TextField txtExperience,
                                       TextField txtReference, TextField txtSalary, CheckBox cbxSales, CheckBox cbxAdmin,
@@ -36,9 +39,11 @@ public class RegJobseekerHelper {
             newJobseeker.setSalary(txtSalary.getText());
         }
 
-        RegJobseekerHelper.jobseekersList.add(newJobseeker);
-
-        return newJobseeker;
+        if(runJobseekerValidation(newJobseeker)) {
+            RegJobseekerHelper.jobseekersList.add(newJobseeker);
+            return true;
+        }
+        return false;
     }
 
     public static String education(ComboBox choiseEducation){

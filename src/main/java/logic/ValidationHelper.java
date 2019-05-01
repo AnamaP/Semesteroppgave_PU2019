@@ -10,11 +10,13 @@ import java.io.IOException;
 
 public class ValidationHelper {
 
+    public static String invalidInputs;
+
     /**
      * Denne metoden tar inn en jobbsøker og kjører den inn i feilhåndteringsmetodene i ValidationChecker.
      * invalidInputs vil inneholde alle feilmeldingene som måtte inntreffe.
      */
-    public static void runJobseekerValidation(Jobseeker jobseeker, ActionEvent event){
+    public static Boolean runJobseekerValidation(Jobseeker jobseeker){
         String inptFirstname = jobseeker.getFirstname();
         String inptLastname = jobseeker.getLastname();
         String inptAddress = jobseeker.getAddress();
@@ -30,17 +32,17 @@ public class ValidationHelper {
         String inptWorkfields = jobseeker.getCv().workfieldsToString();
 
         ValidationChecker validation = new ValidationChecker();
-        String invalidInputs = validation.inputJobseekerCollector(inptFirstname, inptLastname, inptAddress, inptZipcode,
+        invalidInputs = validation.inputJobseekerCollector(inptFirstname, inptLastname, inptAddress, inptZipcode,
                 inptPostal,inptPhoneNo, inptEmail, inptAge, inptExperience, inptSalary, inptEducation,
                 inptStudy, inptWorkfields);
 
 
         String content = jobseeker.toString();
 
-        if(checkResults(content, invalidInputs, Paths.JOBSEEKER)){
-            //Tar brukeren med til neste side:
-            NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
+        if(checkResults(content, Paths.JOBSEEKER)) {
+            return true;
         }
+        return false;
     }
 
     /**
@@ -64,13 +66,13 @@ public class ValidationHelper {
         String inptWorkfields = company.getTempJob().workfieldsToString();
 
         ValidationChecker validation = new ValidationChecker();
-        String invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNo, inptSector, inptCompanyName,
+        invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNo, inptSector, inptCompanyName,
                 inptAddress, inptIndustry, inptJobTitle, inptDescription,inptDuration, inptSalary, inptQualif,
                 inptJobType, inptWorkfields);
 
         String content = company.toString();
 
-        if(checkResults(content, invalidInputs, Paths.TEMPJOB)) {
+        if(checkResults(content, Paths.TEMPJOB)) {
             NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
         }
     }
@@ -82,7 +84,7 @@ public class ValidationHelper {
      * Fant ingen feil? Bruker får meldig om at alt så fint ut, objektet (her i toString() form) lagres som
      * ny linje i csv-filen og den returnerer true.
      */
-    private static boolean checkResults(String content, String invalidInputs, String path){
+    private static boolean checkResults(String content, String path){
         if (!invalidInputs.isEmpty()) {
             AlertHelper.showError(invalidInputs);
             return false;

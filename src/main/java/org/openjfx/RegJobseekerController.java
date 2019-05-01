@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import classes.Jobseeker;
 import static logic.RegJobseekerHelper.jobseekersList;
+import static logic.ValidationHelper.invalidInputs;
 import static logic.ValidationHelper.runJobseekerValidation;
 import static logic.ViewJobseekerHelper.chosenJobseeker;
 
@@ -23,7 +24,7 @@ public class RegJobseekerController {
     @FXML
     private CheckBox cbxSales, cbxAdmin, cbxIt, cbxEconomy;
 
-    private boolean shouldUpdate = false;
+    private static boolean shouldUpdate = false;
 
     /**
      * I metoden under går man igjennom 3 stadier:
@@ -44,15 +45,18 @@ public class RegJobseekerController {
             jobseekersList.remove(chosenJobseeker);
             MainAppHelper reload = new MainAppHelper();
             reload.reloadJobseekersDB();
+            shouldUpdate = false;
         }
 
         // 2
-        Jobseeker newJobseeker = RegJobseekerHelper.newSeeker(txtFirstname, txtLastname, txtAddress, txtZipcode, txtPostal,
+        Boolean registrer = RegJobseekerHelper.newSeeker(txtFirstname, txtLastname, txtAddress, txtZipcode, txtPostal,
                 txtPhoneNo, txtEmail, txtAge, choiseEducation, choiseStudy, txtExperience, txtReference, txtSalary, cbxSales,
                 cbxAdmin, cbxIt, cbxEconomy, "Ledig");
 
         // 3
-        runJobseekerValidation(newJobseeker, event);
+        if(registrer){
+            NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
+        }
     }
 
     /**

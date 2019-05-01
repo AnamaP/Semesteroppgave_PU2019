@@ -100,6 +100,16 @@ public class ViewTempJobsController implements Initializable {
     }
 
     /**
+     * Om denne knappen blir trykket kjører programmet upload-metoden via FilChoserHelper-klassen.
+     * TEMPJOB sier hvor den opplastede jobbutlysningen skal lagres. Ved å kjøre changePage til
+     * siden man er på gjør at siden reloader.
+     */
+    public void btnUpload(ActionEvent event) {
+        FileChooserHelper.upload(Paths.TEMPJOB);
+        NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
+    }
+
+    /**
      * Om denne knappen blir trykket finner hvilken jobbutlysning som bruker har valgt og kjører den
      * igjennom slett-metoden. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
@@ -111,16 +121,6 @@ public class ViewTempJobsController implements Initializable {
         catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et jobbutlysning for å kunne laste ned!");
         }
-    }
-
-    /**
-     * Om denne knappen blir trykket kjører programmet upload-metoden via FilChoserHelper-klassen.
-     * TEMPJOB sier hvor den opplastede jobbutlysningen skal lagres. Ved å kjøre changePage til
-     * siden man er på gjør at siden reloader.
-     */
-    public void btnUpload(ActionEvent event) {
-        FileChooserHelper.upload(Paths.TEMPJOB);
-        NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
     }
 
     /**
@@ -140,6 +140,34 @@ public class ViewTempJobsController implements Initializable {
         }
         catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et jobbutlysning for å lese mer!");
+        }
+    }
+
+    /**
+     * Om man trykker på denne knappen henter programmet ut den valgte jobbutlysning's tittel og
+     * spør deg i en allert-box om du virkelig ønsker å slette utlysningen med denne tittelen.
+     * Om bruker trykker "Ok" vil programmet hente ut en nøkkel som gjør at slette-metoden vet hvilken
+     * utlysningn den skal fjerne fra jobbutlysnings-listen. Etter sletting oppdaterer programmet csv-filen
+     * og reloader siden. Om ingen rad er valgt vil bruker få en meldig om dette.
+     */
+    public void btnDeleteChosenTempJob(ActionEvent event) {
+        String message;
+        try {
+            message = tvTempJobs.getSelectionModel().getSelectedItem().getJobTitle();
+            Optional<ButtonType> result = showDeleteAlert(message);
+
+            if (result.get() == ButtonType.OK) {
+                String key = selectedPhoneNo(tvTempJobs);
+                ViewTempJobsHelper.deleteChosenTempJob(key);
+
+                MainAppHelper reload = new MainAppHelper();
+                reload.reloadTempJobsDB();
+
+                NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
+            }
+        }
+        catch (NullPointerException e) {
+            AlertHelper.showError("Du må velge et jobbutlysning for å kunne slette det!");
         }
     }
 
@@ -169,34 +197,6 @@ public class ViewTempJobsController implements Initializable {
         }
         catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et jobbutlysning for å kunne redigere!");
-        }
-    }
-
-    /**
-     * Om man trykker på denne knappen henter programmet ut den valgte jobbutlysning's tittel og
-     * spør deg i en allert-box om du virkelig ønsker å slette utlysningen med denne tittelen.
-     * Om bruker trykker "Ok" vil programmet hente ut en nøkkel som gjør at slette-metoden vet hvilken
-     * utlysningn den skal fjerne fra jobbutlysnings-listen. Etter sletting oppdaterer programmet csv-filen
-     * og reloader siden. Om ingen rad er valgt vil bruker få en meldig om dette.
-     */
-    public void btnDeleteChosenTempJob(ActionEvent event) {
-        String message;
-        try {
-            message = tvTempJobs.getSelectionModel().getSelectedItem().getJobTitle();
-            Optional<ButtonType> result = showDeleteAlert(message);
-
-            if (result.get() == ButtonType.OK) {
-                String key = selectedPhoneNo(tvTempJobs);
-                ViewTempJobsHelper.deleteChosenTempJob(key);
-
-                MainAppHelper reload = new MainAppHelper();
-                reload.reloadTempJobsDB();
-
-                NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml", event);
-            }
-        }
-        catch (NullPointerException e) {
-            AlertHelper.showError("Du må velge et jobbutlysning for å kunne slette det!");
         }
     }
 

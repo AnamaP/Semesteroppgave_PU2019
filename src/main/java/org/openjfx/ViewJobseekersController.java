@@ -101,31 +101,21 @@ public class ViewJobseekersController implements Initializable {
     /**
      * Sender bruker tilbake til menysiden.
      */
-    public void btnEditJobseeker(ActionEvent event) {
+    public void btnUploadJobseeker(ActionEvent event){
+        FileChooserHelper.upload(Paths.JOBSEEKER);
+        NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
+    }
+
+    /**
+     * Sender bruker tilbake til menysiden.
+     */
+    public void btnDownloadJobseeker(ActionEvent event) {
         try{
             String key = selectedPhoneNo(tvJobseekers);
-            ViewHelper run = new ViewHelper();
-            run.findRow(jobseekersList, key, true);
-
-            // Load FXML
-            URL url = getClass().getResource("/org/openjfx/regJobseeker.fxml");
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent parent = null;
-            try {
-                parent = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            RegJobseekerController controller = loader.getController();
-            loader.setLocation(url);
-            controller.setData();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
+            ViewJobseekerHelper.saveJobseeker(key);
         }
         catch(NullPointerException e){
-            AlertHelper.showError("Du må velge en jobbsøker for å kunne redigere!");
+            AlertHelper.showError("Du har ikke valgt en jobbsøker for nedlasting!");
         }
     }
 
@@ -162,22 +152,32 @@ public class ViewJobseekersController implements Initializable {
     /**
      * Sender bruker tilbake til menysiden.
      */
-    public void btnDownloadJobseeker(ActionEvent event) {
+    public void btnEditJobseeker(ActionEvent event) {
         try{
             String key = selectedPhoneNo(tvJobseekers);
-            ViewJobseekerHelper.saveJobseeker(key);
+            ViewHelper run = new ViewHelper();
+            run.findRow(jobseekersList, key, true);
+
+            // Load FXML
+            URL url = getClass().getResource("/org/openjfx/regJobseeker.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent parent = null;
+            try {
+                parent = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            RegJobseekerController controller = loader.getController();
+            loader.setLocation(url);
+            controller.setData();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
         }
         catch(NullPointerException e){
-            AlertHelper.showError("Du har ikke valgt en jobbsøker for nedlasting!");
+            AlertHelper.showError("Du må velge en jobbsøker for å kunne redigere!");
         }
-    }
-
-    /**
-     * Sender bruker tilbake til menysiden.
-     */
-    public void btnUploadJobseeker(ActionEvent event){
-        FileChooserHelper.upload(Paths.JOBSEEKER);
-        NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
     }
 
     /**

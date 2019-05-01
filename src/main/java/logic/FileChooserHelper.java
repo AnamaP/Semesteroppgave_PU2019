@@ -35,8 +35,13 @@ public class FileChooserHelper {
         else {
             selectedFile = fileChooser.showOpenDialog(chooserStage);
         }
-
-        String chosenpath = selectedFile.toString();
+        String chosenpath;
+        try {
+            chosenpath = selectedFile.toString();
+        }
+        catch (NullPointerException e){
+            chosenpath = "";
+        }
         return chosenpath;
     }
 
