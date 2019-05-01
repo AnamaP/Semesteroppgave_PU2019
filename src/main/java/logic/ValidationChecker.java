@@ -12,7 +12,7 @@ public class ValidationChecker {
     private String invalidInputs = "";
 
     // Begrunne i rapporten:
-    // - Alle input felter med strenger er plassert i samme "checkString" metode med samme regex mønster,
+    // - Alle input felter med strenger er plassert i samme "checkStringFormat" metode med samme regex mønster,
     // - vi har valgt å gjøre det slik ettersom strengene ikke vil kransje systemet
     // - telfnr, postnr og andre int verdier har egne metoder meg individuelle regex mønster da disse brukes for å
     //   bl.a. validere registreringer, i søkemotor for filtrering o.l. for at det ikke skal krasje programmet.
@@ -21,19 +21,18 @@ public class ValidationChecker {
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipcode, String postal,
                                           String phoneNo, String email, String age, String experience, String salary,
                                           Object education, Object study, Object workfields) {
-
-        checkString(firstname);
-        checkString(lastname);
-        checkString(postal);
-        checkZipCode(zipcode);//
-        checkValidString(address);
-        checkValidString(experience);
+        checkMandatoryInputs(address);
+        checkMandatoryInputs(experience);
+        checkStringFormat(firstname);
+        checkStringFormat(lastname);
+        checkStringFormat(postal);
+        checkZipCode(zipcode);
         checkPhoneNo(phoneNo);
         checkDuplicatePhoneNo(jobseekersList, phoneNo);
         checkEmail(email);
         checkAge(age);
         checkSalary(salary);
-        checkValueSelected(education, study);
+        checkValue(education, study);
         checkWorkfields(workfields);
 
         return invalidInputs;
@@ -41,48 +40,61 @@ public class ValidationChecker {
 
     public String inputJobAdvertCollector(String contactPerson, String phoneNo, String sector, String companyName,
                                           String industry, String address, String jobTitle, String description,
-                                          String duration, String salary, String qualif, Boolean sales, Boolean admin,
-                                          Boolean it, Boolean economy, Boolean fullTime, Boolean partTime) {
-        checkString(contactPerson);
+                                          String duration, String salary, String qualif, Object workfields, String jobType) {
+
+
+        checkStringFormat(contactPerson);
         checkPhoneNo(phoneNo);
         checkDuplicatePhoneNo(tempJobsList, phoneNo);
-        checkString(sector);
-        checkValidString(companyName);
-        checkValidString(industry);
-        checkValidString(address);
-        checkValidString(jobTitle);
-        checkValidString(description);
-        checkValidString(duration);
-        checkValidString(qualif);
+        checkStringFormat(sector);
+        checkMandatoryInputs(companyName);
+        checkMandatoryInputs(industry);
+        checkMandatoryInputs(address);
+        checkMandatoryInputs(jobTitle);
+        checkMandatoryInputs(description);
+        checkMandatoryInputs(duration);
+        checkMandatoryInputs(qualif);
         checkSalary(salary);
-        //checkWorkfields(sales, admin, it, economy);
-        checkJobTypeSelected(fullTime, partTime);
+        checkWorkfields(workfields);
+        checkJobType(jobType);
 
         return invalidInputs;
     }
 
-    private boolean checkStringFormat(String string) throws InvalidStringFormatException {
-        if (!Pattern.matches("[a-zæøåA-ZÆØÅ_\\p{Space}\\-]+", string) || string.isEmpty()) {
-            throw new InvalidStringFormatException("Feil i ett av tekstfeltene");
-        }
-        return true;
-    }
-
-    private boolean checkString(String name) {
-        try {
-            if (checkStringFormat(name)) {
+    private boolean checkMandatoryInputs(String string){
+        try{
+            if(checkValidMandatoryInputs(string)){
                 return true;
             }
         }
-        catch (InvalidStringFormatException e) {
-            invalidInputs += (String.format("%s er ugyldig, kun bokstaver Aa-åÅ tillatt \n", name));
+        catch(InputEmptyException e){
+            invalidInputs += "Feil i ett eller flere obligatoriske felt : " + e.getMessage() +"\n";
         }
         return false;
     }
 
-    private boolean ckeckValidZipCode(String zipCode) throws InvalidNumberFormatException {
-        if(!Pattern.matches("[0-9]+",zipCode) || zipCode.length() != 4 || zipCode.isEmpty()){
-            throw new InvalidNumberFormatException("Feil i postnr");
+    private boolean checkValidMandatoryInputs(String string) throws InputEmptyException {
+        if(string.isEmpty()){
+            throw new InputEmptyException("Obligatoriske felt må fylles ut!");
+        }
+        return true;
+    }
+
+    private boolean checkStringFormat(String name) {
+        try {
+            if (checkValidStringFormat(name)) {
+                return true;
+            }
+        }
+        catch (InvalidStringFormatException e) {
+            invalidInputs += (String.format("%s er ugyldig : " + e.getMessage() +"\n", name));
+        }
+        return false;
+    }
+
+    private boolean checkValidStringFormat(String string) throws InvalidStringFormatException {
+        if (!Pattern.matches("[a-zæøåA-ZÆØÅ_\\p{Space}\\-\\.]+", string) && !string.isEmpty()) {
+            throw new InvalidStringFormatException("Feil formatering i tekst, kun bokstaver!");
         }
         return true;
     }
@@ -94,27 +106,33 @@ public class ValidationChecker {
             }
         }
         catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er et ugyldig postnr, må bestå av 4 tall mellom 0-9 \n", zipcode));
+            invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + "\n", zipcode));
         }
         return false;
+    }
+
+    private boolean ckeckValidZipCode(String zipCode) throws InvalidNumberFormatException {
+        if(!Pattern.matches("[0-9]{4}+",zipCode) && !zipCode.isEmpty()){
+            throw new InvalidNumberFormatException("Postnr er formatert feil, skal ha 4 tall!");
+        }
+        return true;
     }
 
     private boolean checkPhoneNo(String phoneNo){
         try{
-            if(checkValidPhoneNo(phoneNo)) {
+            if(checkPhoneNoFormat(phoneNo)) {
                 return true;
             }
         }
         catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er et ugyldig tlfnr, må bestå av positive tall og uten mellomrom \n", phoneNo));
-
+            invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + "\n", phoneNo));
         }
         return false;
     }
 
-    private boolean checkValidPhoneNo(String phoneNo) throws InvalidNumberFormatException {
-        if(!Pattern.matches("[0-9]{8}+",phoneNo) || phoneNo.isEmpty() || phoneNo.startsWith("0")){
-            throw new InvalidNumberFormatException("Feil i tlfnr!");
+    private boolean checkPhoneNoFormat(String phoneNo) throws InvalidNumberFormatException {
+        if(!Pattern.matches("[0-9]{8}+",phoneNo) && !phoneNo.isEmpty() || phoneNo.startsWith("0")) {
+            throw new InvalidNumberFormatException("Feil formatering i telefonnr, må bestå av 8 tall uten mellomrom!");
         }
         return true;
     }
@@ -125,83 +143,57 @@ public class ValidationChecker {
                 return true;
             }
         }
-        catch (InvalidDuplicatePhoneNoException e) {
-            invalidInputs += "Telefonnummeret er registrert fra før.\n";
+        catch (DuplicatePhoneNoException e) {
+            invalidInputs += String.format("%s er ugyldig : " + e.getCause() +"\n", phoneNo);
         }
         return false;
     }
 
-    private boolean checkIfDuplicatePhoneNo(ArrayList arrayList, String phoneNo) throws InvalidDuplicatePhoneNoException {
+    private boolean checkIfDuplicatePhoneNo(ArrayList arrayList, String phoneNo) throws DuplicatePhoneNoException {
         for (int i = 0; i < arrayList.size()-1; i++) {
             String [] row = arrayList.get(i).toString().split(";");
             System.out.println(row[1] + " " + row[5]);
             if (row[1].equals(phoneNo) || row[5].equals(phoneNo)) {
-                throw new InvalidDuplicatePhoneNoException("Duplikat telefonnr!");
+                throw new DuplicatePhoneNoException("Telefonnr finnes allerede i databasen");
             }
-        }
-        return true;
-    }
-
-    private static boolean checkValidEmail(String email) throws InvalidEmailFormatException {
-        if(!Pattern.matches("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$",email) || email.isEmpty()){
-            throw new InvalidEmailFormatException("Feil i epost formt, riktig format er f.eks.: kari@test.no");
         }
         return true;
     }
 
     private boolean checkEmail(String email){
         try{
-            if(checkValidEmail(email)){
+            if(checkEmailFormat(email)){
                 return true;
             }
         }
         catch(InvalidEmailFormatException e){
-            invalidInputs += (String.format("%s : er en ugyldig epost, riktig format er f.eks.: kari@test.no \n", email));
+            invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + "\n", email));
         }
         return false;
     }
 
-    private boolean checkIfValidString(String string) throws InvalidTextIfNullException {
-        if(!Pattern.matches("^(?=.{1,200}$).*", string) || string.isEmpty()) {
-            throw new InvalidTextIfNullException("Feil: Enten tomme obligatoriske felt eller oversteget 200 ord");
-        }
-        return true;
-    }
-
-    private boolean checkValidString(String string){
-        try{
-            if(checkIfValidString(string)){
-                return true;
-            }
-        }
-        catch(InvalidTextIfNullException e){
-            invalidInputs += "Feil i ett eller flere obligatoriske feil \n";
-        }
-        return false;
-    }
-
-    private boolean checkValidAge(String age) throws InvalidNumberFormatException {
-        if(!Pattern.matches("[0-9]{2}+",age) || age.isEmpty() || age.startsWith("0")){
-            throw new InvalidNumberFormatException("Ugyldig alder");
+    private static boolean checkEmailFormat(String email) throws InvalidEmailFormatException {
+        if(!Pattern.matches("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$",email) && !email.isEmpty()){
+            throw new InvalidEmailFormatException("Feil i epost format, riktig format er f.eks.: kari@test.no");
         }
         return true;
     }
 
     private boolean checkAge(String age){
         try{
-            if(checkValidAge(age)){
+            if(checkAgeFormat(age)){
                 return true;
             }
         }
         catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er en ugyldig alder, kun positive tall(ingen mellomrom)\n", age));
+            invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + "\n", age));
         }
         return false;
     }
 
-    private boolean checkSalaryFormat(String salary) throws InvalidNumberFormatException {
-        if(!Pattern.matches("[0-9\\p{Space}]{0,7}+",salary)){
-            throw new InvalidNumberFormatException("Feil i lønn");
+    private boolean checkAgeFormat(String age) throws InvalidNumberFormatException {
+        if(!Pattern.matches("[0-9]{2}+",age) && !age.isEmpty() || age.startsWith("0")){
+            throw new InvalidNumberFormatException("Alder har feil format, kun positive tall!");
         }
         return true;
     }
@@ -213,33 +205,33 @@ public class ValidationChecker {
             }
         }
         catch(InvalidNumberFormatException e){
-            invalidInputs += (String.format("%s : er en ugyldig lønn, tillatt: positive tall (maks: mio)\n",salary));
+            invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + " \n",salary));
         }
         return false;
     }
 
-    private boolean checkIfValueSelected(Object education, Object study) throws InvalidValueSelectedIsNullException{
-        if(education.equals("not selected") || study.equals("not selected")){
-            throw new InvalidValueSelectedIsNullException("En eller flere av valgalternativene er ikke valgt!");
+    private boolean checkSalaryFormat(String salary) throws InvalidNumberFormatException {
+        if(!Pattern.matches("[0-9\\p{Space}]{0,7}+",salary)){
+            throw new InvalidNumberFormatException("Feil format på lønn, kun positive tall (maks 7 sifret)!");
         }
         return true;
     }
 
-    private boolean checkValueSelected(Object education, Object study){
+    private boolean checkValue(Object education, Object study){
         try{
             if(checkIfValueSelected(education,study)){
                 return true;
             }
         }
-        catch(InvalidValueSelectedIsNullException e){
-            invalidInputs += "Utdanning/studieretning er ikke valgt, vennligst velg en \n";
+        catch(NoValueSelectedException e){
+            invalidInputs += "Obs! Ingen verdier valgt : " + e.getMessage() + "\n";
         }
         return false;
     }
 
-    private boolean checkIfWorkfieldsSelected(Object workfields) throws NullPointerException{
-        if(workfields.equals("")){
-            throw new NullPointerException("Ingen kategorier i 'arbeidsområde' er valgt");
+    private boolean checkIfValueSelected(Object education, Object study) throws NoValueSelectedException {
+        if(education.equals("not selected") || study.equals("not selected")){
+            throw new NoValueSelectedException("Utdanning/studieretning må velges!");
         }
         return true;
     }
@@ -250,29 +242,35 @@ public class ValidationChecker {
                 return true;
             }
         }
-        catch(NullPointerException e){
-            invalidInputs += "Ingen kategorier i 'arbeidsområde' er valgt \n";
+        catch(NoValueSelectedException e){
+            invalidInputs += "Feil i arbeidsområde : . " + e.getMessage() + "\n";
         }
         return false;
     }
 
-    private boolean checkIfJobTypeSelected(Boolean partTime, Boolean fullTime) throws InvalidValueSelectedIsNullException{
-        if(!partTime && !fullTime){
-            throw new InvalidValueSelectedIsNullException("Stillingstype er ikke valgt");
+    private boolean checkIfWorkfieldsSelected(Object workfields) throws NoValueSelectedException{
+        if(workfields.equals("")){
+            throw new NoValueSelectedException("Minst ett arbeidsområde må velges!");
         }
         return true;
     }
 
-    private boolean checkJobTypeSelected(Boolean partTime, Boolean fullTime){
+    private boolean checkJobType(String jobType){
         try{
-            if(checkIfJobTypeSelected(partTime,fullTime)){
+            if(checkIfJobTypeSelected(jobType)){
                 return true;
             }
         }
-        catch(InvalidValueSelectedIsNullException e){
-            invalidInputs += "Stillingstype er ikke valgt, velg enten heltid eller deltid \n";
+        catch(NoValueSelectedException e){
+            invalidInputs += "Feil i stillingstype : " + e.getMessage() + "\n";
         }
         return false;
     }
 
+    private boolean checkIfJobTypeSelected(String jobType) throws NoValueSelectedException {
+        if(jobType.isEmpty()){
+            throw new NoValueSelectedException("Stillingstype må velges!");
+        }
+        return true;
+    }
 }
