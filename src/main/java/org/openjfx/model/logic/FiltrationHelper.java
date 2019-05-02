@@ -2,8 +2,8 @@ package org.openjfx.model.logic;
 
 /**
  * Disse to metodene sammenligner "get"-feltene for hver jobbsøker/jobbutlysning med filtertekst
- * Returnerer true dersom filteret matcher
- * Returnerer false dersom det skrives inn noe som ikke passer med det som står i raden i tabellen
+ * Returnerer true dersom filteret matcher og false dersom det skrives inn noe som ikke passer
+ * med det som står i raden i tabellen
  */
 
 public class FiltrationHelper {

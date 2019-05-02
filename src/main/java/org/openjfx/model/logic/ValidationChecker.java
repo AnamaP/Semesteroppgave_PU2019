@@ -190,7 +190,7 @@ public class ValidationChecker {
     }
 
     /**
-     * Metoden gir en feilmld til bruker hvis tlfnr som forsøkes å registreres allerede er registrert. 
+     * Metoden gir en feilmld til bruker hvis tlfnr som forsøkes å registreres allerede er registrert.
      */
     private boolean checkIfDuplicatePhoneNo(ArrayList arrayList, String phoneNo) throws DuplicatePhoneNoException {
         for (int i = 0; i < arrayList.size()-1; i++) {

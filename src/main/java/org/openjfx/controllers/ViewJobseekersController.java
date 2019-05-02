@@ -189,7 +189,7 @@ public class ViewJobseekersController implements Initializable {
      * Om man trykker på denne knappen henter programmet ut valgte arbeidsområder fra jobbsøkeren
      * og setter dem til chosenWorkfields. findRow()-metoden finner hvilken rad den valgte utlysningen
      * er i listen og setter det nummeret til chosenJobseeker. Dette gjør at man kan filtrere hvilke
-     * jobbutøysninger som skal vises i resultater og om det opprettes et arbeidsforhold så får man tak i
+     * jobbutlysninger som skal vises i resultatet og om det opprettes et arbeidsforhold så får man tak i
      * hvilken søker som ble valgt her via chosenJobseeker. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnFindTempJob(ActionEvent event) {

@@ -26,7 +26,7 @@ public class ViewHelper{
     }
 
     /**
-     * Tar inn en string og gjør den om til en arrayList ved å dele den opp ved ";".
+     * Tar inn en string og gjør den om til en arrayList ved å dele den opp ved ",".
      */
     private static ArrayList<String> stringToList(final String input) {
         String[] elements = input.split(", ");
