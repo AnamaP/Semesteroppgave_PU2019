@@ -14,15 +14,6 @@ import static org.openjfx.model.logic.RegTempJobHelper.tempJobsList;
 
 public class MainAppHelper {
 
-    private static MainAppHelper instance;
-
-    public static MainAppHelper getMainAppHelper(){
-        if(instance == null){
-            instance = new MainAppHelper();
-        }
-        return instance;
-    }
-
     /**
      * Denne kjører begge load-metodene.
      */

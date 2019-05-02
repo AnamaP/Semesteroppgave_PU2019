@@ -173,7 +173,7 @@ public class ValidationHelper {
             try {
                 jobseeker = (Jobseeker) object;
             }
-            catch(NullPointerException e){
+            catch(NullPointerException | ClassCastException e){
                 jobseeker = null;
             }
             if(jobseeker != null){
@@ -184,14 +184,14 @@ public class ValidationHelper {
             try{
                 company = (Company) object;
             }
-            catch (NullPointerException e) {
+            catch (NullPointerException | ClassCastException e) {
                 company = null;
             }
             if(company != null){
                 return company.toString().split(";");
             }
         }
-        invalidInputs += "Ikke riktig formatert .jobj fil.";
+        invalidInputs += "Feil format på .jobj fil.";
         return columns;
     }
 }
