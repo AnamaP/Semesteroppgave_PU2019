@@ -10,6 +10,7 @@ import static logic.RegTempJobHelper.tempJobsList;
 
 public class ValidationChecker {
     private String invalidInputs = "";
+    private int invalidInputsAmount;
 
     // Begrunne i rapporten:
     // - Alle input felter med strenger er plassert i samme "checkStringFormat" metode med samme regex mønster,
@@ -58,6 +59,10 @@ public class ValidationChecker {
         checkJobType(jobType);
         checkWorkfields(workfields);
 
+        if(invalidInputsAmount > 5){
+            invalidInputs = "Du har ikke fylt inn flere obligatoriske felter.";
+        }
+
         return invalidInputs;
     }
 
@@ -69,6 +74,7 @@ public class ValidationChecker {
         }
         catch(InputEmptyException e){
             invalidInputs += "Feil i ett eller flere obligatoriske felt : " + e.getMessage() +"\n";
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -88,6 +94,7 @@ public class ValidationChecker {
         }
         catch (InvalidStringFormatException e) {
             invalidInputs += (String.format("%s er ugyldig : " + e.getMessage() +"\n", name));
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -107,6 +114,7 @@ public class ValidationChecker {
         }
         catch(InvalidNumberFormatException e){
             invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + "\n", zipcode));
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -126,6 +134,7 @@ public class ValidationChecker {
         }
         catch(InvalidNumberFormatException e){
             invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + "\n", phoneNo));
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -145,6 +154,7 @@ public class ValidationChecker {
         }
         catch (DuplicatePhoneNoException e) {
             invalidInputs += String.format("%s er ugyldig : " + e.getCause() +"\n", phoneNo);
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -168,6 +178,7 @@ public class ValidationChecker {
         }
         catch(InvalidEmailFormatException e){
             invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + "\n", email));
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -187,6 +198,7 @@ public class ValidationChecker {
         }
         catch(InvalidNumberFormatException e){
             invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + "\n", age));
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -206,6 +218,7 @@ public class ValidationChecker {
         }
         catch(InvalidNumberFormatException e){
             invalidInputs += (String.format("%s : er ugyldig : " + e.getMessage() + " \n",salary));
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -225,6 +238,7 @@ public class ValidationChecker {
         }
         catch(NoValueSelectedException e){
             invalidInputs += "Obs! Ingen verdier valgt : " + e.getMessage() + "\n";
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -244,6 +258,7 @@ public class ValidationChecker {
         }
         catch(NoValueSelectedException e){
             invalidInputs += "Feil i arbeidsområde : . " + e.getMessage() + "\n";
+            invalidInputsAmount++;
         }
         return false;
     }
@@ -263,6 +278,7 @@ public class ValidationChecker {
         }
         catch(NoValueSelectedException e){
             invalidInputs += "Feil i stillingstype : " + e.getMessage() + "\n";
+            invalidInputsAmount++;
         }
         return false;
     }

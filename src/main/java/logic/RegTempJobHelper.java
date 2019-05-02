@@ -19,7 +19,7 @@ public class RegTempJobHelper {
             RadioButton radioFullTime, RadioButton radioPartTime, TextField txtQualif,  TextField txtDescription,
             CheckBox cbxSales, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxEconomy, String status) {
 
-        ArrayList<String> workfields = RegWorkfieldsHelper.regWorkfields(cbxSales,cbxAdmin,cbxIt,cbxEconomy);
+        ArrayList<String> workfields = WorkfieldsHelper.regWorkfields(cbxSales,cbxAdmin,cbxIt,cbxEconomy);
 
         String jobbType = regJobType(radioFullTime, radioPartTime);
 

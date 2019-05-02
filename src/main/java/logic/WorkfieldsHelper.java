@@ -4,7 +4,7 @@ import javafx.scene.control.CheckBox;
 
 import java.util.ArrayList;
 
-public class RegWorkfieldsHelper {
+public class WorkfieldsHelper {
     public static ArrayList<String> regWorkfields(CheckBox cbxSales, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxEconomy){
 
         ArrayList<String> workfields = new ArrayList<>();
@@ -27,5 +27,18 @@ public class RegWorkfieldsHelper {
         }
 
         return workfields;
+    }
+
+    public String workfieldsToString(ArrayList workfields) {
+        String sb = "";
+        for(int i = 0; i < workfields.size(); i++){
+            if(i == workfields.size() -1){
+                sb += workfields.get(i);
+            }
+            else{
+                sb += workfields.get(i) + ", ";
+            }
+        }
+        return sb;
     }
 }
