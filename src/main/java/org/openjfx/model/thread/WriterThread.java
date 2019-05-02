@@ -1,7 +1,6 @@
-package thread;
+package org.openjfx.model.thread;
 
 public class WriterThread implements Runnable {
-
 
     @Override
     public void run(){

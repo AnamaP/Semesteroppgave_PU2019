@@ -1,11 +1,15 @@
 package org.openjfx.model.logic;
 
+import javafx.event.ActionEvent;
 import org.openjfx.model.fileHandling.CsvFileHandler;
 import org.openjfx.model.fileHandling.FileHandler;
 import org.openjfx.model.fileHandling.JobjFileHandler;
 import javafx.stage.Stage;
+import org.openjfx.model.thread.ReaderThreadStarter;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
 
 import static org.openjfx.model.logic.ValidationHelper.invalidInputs;
 
@@ -73,6 +77,7 @@ public class FileChooserHelper {
 
     }
 
+    //TODO: Ny kommentar her...!!!
     /**
      * Denne metoden tar inn en path og leser innhold fra lokal fil, sjekker at det stemmer ift validering for fil,
      * legger elementet til i arrayet og oppdatere tabellen gjennom en metode i controlleren når den kalles på.
@@ -92,6 +97,12 @@ public class FileChooserHelper {
         if (run.validateFileInpt(object, path, csvFiltype)) {
             try {
                 fileHandler.writeToDB(object, path);
+                try {
+                    System.out.println(ReaderThreadStarter.startReader(chosenpath).length);
+                }
+                catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
             } catch (FileNotFoundException e) {
                 System.err.println("Fant ikke filen du lette etter.");
             } catch (IOException e) {
@@ -123,7 +134,7 @@ public class FileChooserHelper {
     /**
      *  Denne metoden endrer/tar bort selve filtypenavnet på filen.
      *  Dette gjøres fordi den alt har filtypenavnet, ellers vil filtypenavnet lagres dobbelt.
-      */
+     */
     private static String[] getPathBase(String pathWithExtension){
         String[] editedPath = pathWithExtension.split("\\.");
         return editedPath;

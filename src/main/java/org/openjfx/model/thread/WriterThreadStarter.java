@@ -4,7 +4,7 @@ public class WriterThreadStarter {
 
     public void writerThreadStarter(Object object, String path) {
 
-        Thread threader = new Thread(new thread.WriterThread());
+        Thread threader = new Thread(new WriterThread());
         threader.start();
 
         try {
@@ -12,7 +12,6 @@ public class WriterThreadStarter {
         } catch (InterruptedException e) {
 
         }
-
 
         System.out.println("Ferdig med alle oppgaver");
     }

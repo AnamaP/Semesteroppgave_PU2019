@@ -107,16 +107,31 @@ public class ValidationHelper {
         }
     }
 
-    public boolean validateFileInpt(Object object, String path, boolean csvFilType) {
+    public boolean validateFileInpt(Object object, String path, boolean csvFileType) {
         //TODO: Om csvFiletype er false er det er jobj-fil og den burde sjekkes deretter.
         //      Det har jeg ikke fått til. Se metoden under.
 
         String[] columns;
+        if(!csvFileType){
+            columns = objectToList(object, path);
+        }
+
         columns = object.toString().split(";");
 
         System.out.println(columns.length);
-        if(columns.length == 15) {
-            if (columns[14].equals("\n") && path.equals(Paths.TEMPJOB)) {
+        if((columns.length == 15) && (path.equals(Paths.JOBSEEKER))) {
+            String phoneNo = columns[5];
+            if (uniquePhoneNo(jobseekersList, phoneNo)) {
+                ViewHelper run = new ViewHelper();
+                Jobseeker jobseeker = run.getJobseekerFromList(columns);
+                jobseekersList.add(jobseeker);
+                return true;
+            } else {
+                invalidInputs += "Jobbsøkeren er allerede registrert.";
+                return false;
+            }
+        }
+        if ((columns.length == 14) && (path.equals(Paths.TEMPJOB))) {
                 String phoneNo = columns[1];
                 if(uniquePhoneNo(tempJobsList, phoneNo)) {
                     ViewHelper run = new ViewHelper();
@@ -129,25 +144,6 @@ public class ValidationHelper {
                     return false;
                 }
             }
-            if (!(columns[14].equals("\n")) && path.equals(Paths.JOBSEEKER)) {
-                String phoneNo = columns[5];
-                if(uniquePhoneNo(jobseekersList, phoneNo)) {
-                    ViewHelper run = new ViewHelper();
-                    Jobseeker jobseeker = run.getJobseekerFromList(columns);
-                    jobseekersList.add(jobseeker);
-                    return true;
-                }
-                else{
-                    invalidInputs += "Jobbsøkeren er allerede registrert.";
-                    return false;
-                }
-            }
-            else {
-                System.out.println("Havner du her mon tro...??");
-                invalidInputs += "Feil i valgt fil.";
-                return false;
-            }
-        }
         else {
             invalidInputs += "Feil lengde på fil.";
             System.out.println(columns.length);
