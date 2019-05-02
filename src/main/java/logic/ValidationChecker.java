@@ -26,7 +26,9 @@ public class ValidationChecker {
 
 
     /**
-     * Samler inn valideringsjekker for Jobbsøkere
+     * Samler inn valideringsjekker for Jobbsøkere.
+     * For å unngå en lang liste med feilmeldinger har vi en if sjekk som overskriv alle
+     * feilmeldinger dersom det overstiger 5 stk med en felles feilmelding.
      */
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipCode, String postal,
                                           String phoneNo, String email, String age, String experience, String salary,
@@ -54,7 +56,9 @@ public class ValidationChecker {
     }
 
     /**
-     * Samler inn valideringsjekker for bedrift/stillingsutlysninger
+     * Samler inn valideringsjekker for bedrift/stillingsutlysninger.
+     * For å unngå en lang liste med feilmeldinger har vi en if sjekk som overskriv alle
+     * feilmeldinger dersom det overstiger 5 stk med en felles feilmelding.
      */
     public String inputJobAdvertCollector(String contactPerson, String phoneNo, String sector, String companyName,
                                           String industry, String address, String jobTitle, String description,
@@ -76,10 +80,6 @@ public class ValidationChecker {
         checkJobType(jobType);
         checkWorkfields(workfields);
 
-        /**
-        ** For å unngå en lang liste med samme feilmelding vil denne sjekken overskrive
-         * alle feilmeldinger dersom det overstiger 5 feilmeldinger med en felles feilmelding.
-         */
         if(invalidInputsAmount > 5){
             invalidInputs = "Flere obligatoriske felt inneholder feil tegn eller er ikke fylt ut!";
         }
