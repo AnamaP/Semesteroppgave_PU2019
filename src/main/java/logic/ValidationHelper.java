@@ -70,7 +70,7 @@ public class ValidationHelper {
 
         ValidationChecker validation = new ValidationChecker();
         invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNo, inptSector, inptCompanyName,
-                inptAddress, inptIndustry, inptJobTitle, inptDescription,inptDuration, inptSalary, inptQualif,
+                inptAddress, inptIndustry, inptJobTitle, inptDescription, inptDuration, inptSalary, inptQualif,
                 inptJobType, inptWorkfields);
 
         String content = company.toString();
@@ -118,7 +118,7 @@ public class ValidationHelper {
         if(columns.length == 15) {
             if (columns[14].equals("\n") && path.equals(Paths.TEMPJOB)) {
                 String phoneNo = columns[1];
-                if(uniquePhoneNr(tempJobsList, phoneNo)) {
+                if(uniquePhoneNo(tempJobsList, phoneNo)) {
                     ViewHelper run = new ViewHelper();
                     Company nyCompany = run.getTempJobFromList(columns);
                     tempJobsList.add(nyCompany);
@@ -131,7 +131,7 @@ public class ValidationHelper {
             }
             if (!(columns[14].equals("\n")) && path.equals(Paths.JOBSEEKER)) {
                 String phoneNo = columns[5];
-                if(uniquePhoneNr(jobseekersList, phoneNo)) {
+                if(uniquePhoneNo(jobseekersList, phoneNo)) {
                     ViewHelper run = new ViewHelper();
                     Jobseeker jobseeker = run.getJobseekerFromList(columns);
                     jobseekersList.add(jobseeker);
@@ -155,7 +155,7 @@ public class ValidationHelper {
         }
     }
 
-    private Boolean uniquePhoneNr(ArrayList arrayList, String phoneNo){
+    private Boolean uniquePhoneNo(ArrayList arrayList, String phoneNo){
         for(int i = 0; i < arrayList.size(); i++) {
             String[] row = arrayList.get(i).toString().split(";");
             for (int j = 0; j < row.length; j++) {
@@ -195,7 +195,7 @@ public class ValidationHelper {
                 return company.toString().split(";");
             }
         }
-        invalidInputs += "Ikke riktig formatert jobj-fil.";
+        invalidInputs += "Ikke riktig formatert .jobj fil.";
         return columns;
     }
 }
