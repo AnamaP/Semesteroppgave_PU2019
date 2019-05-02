@@ -40,7 +40,7 @@ public class ValidationChecker {
 
     public String inputJobAdvertCollector(String contactPerson, String phoneNo, String sector, String companyName,
                                           String industry, String address, String jobTitle, String description,
-                                          String duration, String salary, String qualif, Object workfields, String jobType) {
+                                          String duration, String salary, String qualif, String jobType, Object workfields) {
 
 
         checkStringFormat(contactPerson);
@@ -55,8 +55,8 @@ public class ValidationChecker {
         checkMandatoryInputs(duration);
         checkMandatoryInputs(qualif);
         checkSalary(salary);
-        checkWorkfields(workfields);
         checkJobType(jobType);
+        checkWorkfields(workfields);
 
         return invalidInputs;
     }
@@ -268,7 +268,8 @@ public class ValidationChecker {
     }
 
     private boolean checkIfJobTypeSelected(String jobType) throws NoValueSelectedException {
-        if(jobType.isEmpty()){
+        System.out.println(jobType);
+        if(jobType.equals("Arbeidstid ikke valgt")){
             throw new NoValueSelectedException("Stillingstype må velges!");
         }
         return true;
