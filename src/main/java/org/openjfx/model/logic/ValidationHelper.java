@@ -113,8 +113,9 @@ public class ValidationHelper {
         if(!csvFileType){
             columns = objectToList(object, path);
         }
-
-        columns = object.toString().split(";");
+        else {
+            columns = object.toString().split(";");
+        }
 
         System.out.println(columns.length);
         if((columns.length == 15) && (path.equals(Paths.JOBSEEKER))) {
