@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controllers.ViewTempJobsController">
+    <children>
+      <VBox prefHeight="38.0" prefWidth="1025.0" style="-fx-background-color: b8c4bd;">
+         <children>
+              <Label alignment="CENTER" prefHeight="30.0" prefWidth="1025.0" text="Oversikt over vikariater:">
+                  <font>
+                      <Font name="Ayuthaya" size="20.0" />
+                  </font>
+              </Label>
+         </children>
+      </VBox>
+        <Button layoutX="13.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnBack" text="Tilbake" />
+        <TableView fx:id="tvTempJobs" layoutX="12.0" layoutY="51.0" prefHeight="498.0" prefWidth="1001.0">
+            <columns>
+                <TableColumn fx:id="tcContactPerson" prefWidth="105.5" text="Kontaktperson" />
+                <TableColumn fx:id="tcPhoneNo" prefWidth="77.5" text="Tlf" />
+                <TableColumn fx:id="tcSector" prefWidth="61.0" text="Sektor" />
+                <TableColumn fx:id="tcCompanyName" prefWidth="92.5" text="Firmanavn" />
+            <TableColumn fx:id="tcAddress" prefWidth="131.5" text="Adresse" />
+                <TableColumn fx:id="tcIndustry" prefWidth="117.0" text="Bransje" />
+                <TableColumn fx:id="tcJobTitle" prefWidth="97.5" text="Stillingstittel" />
+            <TableColumn fx:id="tcJobType" prefWidth="94.5" text="Stillingstype" />
+                <TableColumn fx:id="tcWorkfields" prefWidth="170.5" text="Kategorier" />
+            <TableColumn fx:id="tcStatus" prefWidth="52.5" text="Status" />
+            </columns>
+        </TableView>
+        <Button layoutX="629.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnEdit" prefHeight="27.0" prefWidth="83.0" text="Rediger" />
+        <Button layoutX="536.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnDeleteChosenTempJob" prefHeight="27.0" prefWidth="83.0" text="Slett" />
+        <Button layoutX="348.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnDownload" prefHeight="27.0" prefWidth="83.0" text="Last ned" />
+        <Button layoutX="255.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnUpload" prefHeight="27.0" prefWidth="83.0" text="Last opp" />
+        <Button layoutX="852.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnFindJobseekers" prefHeight="27.0" prefWidth="160.0" text="Finn passende vikarer" />
+      <Button layoutX="442.0" layoutY="570.0" mnemonicParsing="false" onAction="#btnReadMore" prefHeight="27.0" prefWidth="83.0" text="Les mer" />
+      <TextField fx:id="txtFilterField" layoutX="13.0" layoutY="6.0" prefHeight="25.0" prefWidth="183.0" promptText="Filtrer her..." />
+    </children>
+</Pane>

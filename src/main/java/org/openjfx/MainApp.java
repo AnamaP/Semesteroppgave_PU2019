@@ -5,13 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import logic.MainAppHelper;
+import org.openjfx.model.logic.MainAppHelper;
 
 public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("index.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/index.fxml"));
         MainAppHelper mainStart = MainAppHelper.getMainAppHelper();
         mainStart.loadDBFromCsv();
 
