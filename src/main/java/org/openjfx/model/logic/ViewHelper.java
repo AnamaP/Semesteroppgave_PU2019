@@ -7,19 +7,18 @@ import org.openjfx.model.dataClasses.TempJob;
 import java.util.ArrayList;
 import static org.openjfx.model.logic.RegJobseekerHelper.jobseekersList;
 import static org.openjfx.model.logic.RegTempJobHelper.tempJobsList;
-import static org.openjfx.model.logic.ViewJobseekerHelper.*;
+import static org.openjfx.model.logic.ViewJobseekersHelper.*;
 import static org.openjfx.model.logic.ViewTempJobsHelper.*;
 
 public class ViewHelper{
 
     /**
-     * Denne oppdateres etter som bruker har valgt en søker / utlysning slik at man kan sortere på arbeidsområder.
+     * Oppdateres etter som bruker har valgt en søker / utlysning slik at man kan sortere på arbeidsområder.
      */
     public static ArrayList<String> chosenWorkfields;
 
     /**
-     * Denne henter inn en liste med arbeidsområder i form av en String, gjør den om til en ArrayList
-     * via stringToList og setter dem inn i chosenWorkfields.
+     * Henter inn en liste med arbeidsområder, gjør den om til en ArrayList via stringToList og setter chosenWorkfields.
      */
     public void setValgteKategorier(String workfieldsStr) {
         ArrayList<String> chosenWorkfields = ViewHelper.stringToList(workfieldsStr);
@@ -27,7 +26,7 @@ public class ViewHelper{
     }
 
     /**
-     * Tar inn en string og gjør den om til en arrayList ved å dele den opp ved ; .
+     * Tar inn en string og gjør den om til en arrayList ved å dele den opp ved ";".
      */
     private static ArrayList<String> stringToList(final String input) {
         String[] elements = input.split(", ");
@@ -39,10 +38,7 @@ public class ViewHelper{
     }
 
     /**
-     * Metoden finner hvilken rad i hvilken liste basert på et nøkkelelement.
-     * Arraylisten inneholder hele tabellen. Den deles inn i rader og det sjekkes om nøkkelen finnes i en av radene.
-     * Om den finnes, finner man ut av hvilken type objekt det er og setter den valgte raden inn i enten
-     * "chosenTempJob" eller "chosenJobseeker".
+     * Setter valgt rad.
      */
     public void findRow(ArrayList arrayList, String key, Boolean isJobseeker){
         for(int i = 0; i < arrayList.size(); i++){
@@ -62,7 +58,6 @@ public class ViewHelper{
 
     /**
      * Denne tar inn en String [] og gjør den om til en jobbsøker.
-     * Referanse og lønnskrav er valgfrie felter og settes kun om de er fylt ut.
      */
     public Jobseeker getJobseekerFromList(String [] columns){
         ArrayList<String> workfields = getWorkfields(columns);
@@ -98,9 +93,7 @@ public class ViewHelper{
     }
 
     /**
-     * Denne tar inn en String []. Arbeodsområder ligger i nest siste kolonne hos både søkerne og
-     * utlysningene så columns[columns.length -2] henter ut disse veridene. De splittes opp og legges
-     * inn i en ArrayList.
+     * Henter arbeidsområder fra en liste. Kategorier ligger nest sist i uansett type liste.
      */
     public ArrayList getWorkfields(String [] columns){
         ArrayList<String> workfields = new ArrayList<>();

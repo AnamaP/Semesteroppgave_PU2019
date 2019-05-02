@@ -12,15 +12,13 @@ import static org.openjfx.model.logic.RegTempJobHelper.tempJobsList;
 public class ViewTempJobsHelper {
 
     /**
-     * Denne oppdateres kontinuelig ettersom brukeren velger en jobbutlysning. Dette gjør at valgt utlysning kan
-     * hentes ut og brukes åp hvilken som helst side.
+     * Denne oppdateres kontinuelig ettersom brukeren velger en jobbutlysning.
      */
     public static int chosenTempJob;
 
     /**
      * Denne metoden oppretter en ObservableList tabell, henter ut alle jobbutlysningene som ligger i
-     * databasen / csv-filen, gjør dem om til objekter og legger dem inn i tabellen. Sender passende
-     * feilmelding itl bruker om noe går galt.
+     * databasen / csv-filen, gjør dem om til objekter og legger dem inn i listen.
      */
     public static ObservableList<TableTempJobs> viewTempJobs() {
         ObservableList<TableTempJobs> tempJobList = FXCollections.observableArrayList();
@@ -51,9 +49,7 @@ public class ViewTempJobsHelper {
     }
 
     /**
-     * Likt som metoden over bare at man henter ut arbeidsområdener og sjekker om de passer til de som
-     * ble satt da man valgte en jobbutlysning å sortere etter. Legger jobbsøkeren i tabellen kun om en
-     * av arbeidsområdene til utlysningen "matcher" jobbsøkerens adbeidsområder.
+     * Legger jobbsøkeren i tabellen kun om en av arbeidsområdene til utlysningen "matcher" jobbsøkerens adbeidsområder.
      */
     public static ObservableList<TableTempJobs> showResults(){
         ObservableList<TableTempJobs> tempJobList = FXCollections.observableArrayList();
@@ -92,8 +88,7 @@ public class ViewTempJobsHelper {
     }
 
     /**
-     * Denne metoden får inn en "nøkkel" og via findRow() metoden finner man riktig rad og
-     * sletter denne fra listen.
+     * Finner valgt rad og sletter denne fra listen.
      */
     public static void deleteChosenTempJob(String key) {
         ViewHelper run = new ViewHelper();
@@ -102,8 +97,7 @@ public class ViewTempJobsHelper {
     }
 
     /**
-     * Denne metoden får inn en "nøkkel" og via findRow() metoden finner man riktig rad og
-     * laster denne ned via download() metoden.
+     * Finner valgt rad og laster denne ned via download() metoden.
      */
     public static void saveTempJob(String key){
         ViewHelper run = new ViewHelper();
@@ -112,7 +106,7 @@ public class ViewTempJobsHelper {
     }
 
     /**
-     * Denne henter ut en tittel og formaterer en melding ut til bruker.
+     * Henter ut en tittel og formaterer en melding ut til bruker.
      */
     public static void readMore(String key){
         String title = ViewTempJobsHelper.readMoreTitle(key);
@@ -122,8 +116,7 @@ public class ViewTempJobsHelper {
     }
 
     /**
-     * Denne metoden får inn en "nøkkel" og via findRow() metoden finner man riktig rad og
-     * returnerer radens stillingstittel.
+     * Finner valgt rad og returnerer radens stillingstittel.
      */
     public static String readMoreTitle(String key){
         ViewHelper run = new ViewHelper();
@@ -132,8 +125,7 @@ public class ViewTempJobsHelper {
     }
 
     /**
-     * Denne metoden får inn en "nøkkel" og via findRow() metoden finner man riktig rad og
-     * returnerer tillegsinformasjon om vikariatet.
+     * Finner valgt rad og returnerer tillegsinformasjon om vikariatet.
      */
     public static String readMoreContent(String key){
         ViewHelper run = new ViewHelper();
@@ -148,8 +140,7 @@ public class ViewTempJobsHelper {
     }
 
     /**
-     * Denne metoden tar inn en tabell og henter ut valgt vikariat sitt tlfnr. Dette brukes ofte
-     * som "key" for å finne hvilken rad bruker har valgt.
+     * Denne metoden tar inn en tabell og henter ut valgt vikariat sitt tlfnr, bruker som ID.
      */
     public static String selectedPhoneNo(TableView<TableTempJobs> tvTable){
         return tvTable.getSelectionModel().getSelectedItem().getPhoneNo();

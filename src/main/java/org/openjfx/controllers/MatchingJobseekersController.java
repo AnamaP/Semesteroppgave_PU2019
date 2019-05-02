@@ -15,8 +15,8 @@ import java.util.ResourceBundle;
 
 import static org.openjfx.model.logic.FiltrationHelper.filtrateJobseekerTable;
 import static org.openjfx.model.logic.RegJobseekerHelper.jobseekersList;
-import static org.openjfx.model.logic.ViewJobseekerHelper.selectedPhoneNo;
-import static org.openjfx.model.logic.ViewJobseekerHelper.showResults;
+import static org.openjfx.model.logic.ViewJobseekersHelper.selectedPhoneNo;
+import static org.openjfx.model.logic.ViewJobseekersHelper.showResults;
 
 public class MatchingJobseekersController implements Initializable {
 

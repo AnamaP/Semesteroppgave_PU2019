@@ -9,18 +9,16 @@ import java.util.ArrayList;
 import static org.openjfx.model.logic.ViewHelper.chosenWorkfields;
 import static org.openjfx.model.logic.RegJobseekerHelper.jobseekersList;
 
-public class ViewJobseekerHelper {
+public class ViewJobseekersHelper {
 
     /**
-     * Denne oppdateres kontinuelig ettersom brukeren velger en jobbsøker. Dette gjør at valgt søker kan
-     * hentes ut og brukes på hvilken som helst side.
+     * Denne oppdateres kontinuelig ettersom brukeren velger en jobbsøker.
      */
     public static int chosenJobseeker;
 
     /**
      * Denne metoden oppretter en ObservableList tabell, henter ut alle jobbsokere som ligger i
-     * databasen / csv-filen, gjør dem om til objekter og legger dem inn i tabellen. Sender passende
-     * feilmelding itl bruker om noe går galt.
+     * databasen / csv-filen, gjør dem om til objekter og legger dem inn i listen.
      */
     public static ObservableList<TableJobseekers> showJobseekers() {
 
@@ -51,9 +49,7 @@ public class ViewJobseekerHelper {
     }
 
     /**
-     * Likt som metoden over bare at man henter ut arbeidsområder og sjekker om de passer til de som
-     * ble satt da man valgte en jobbsøker å sortere etter. Legger jobbsøkeren i tabbellen kun om den
-     * inneholder alle arbeidsområdene utlysningen ser etter.
+     * Legger jobbsøkeren i tabbellen kun om den inneholder alle arbeidsområdene utlysningen ser etter.
      */
     public static ObservableList<TableJobseekers> showResults(){
         ObservableList<TableJobseekers> showResults = FXCollections.observableArrayList();
@@ -90,8 +86,7 @@ public class ViewJobseekerHelper {
     }
 
     /**
-     * Denne metoden får inn en "nøkkel" og via findRow() metoden finner man riktig rad og
-     * sletter denne fra listen.
+     * Finner valgt rad og sletter denne fra listen.
      */
     public static void deleteChosenJobseeker(String key) {
         ViewHelper run = new ViewHelper();
@@ -100,8 +95,7 @@ public class ViewJobseekerHelper {
     }
 
     /**
-     * Denne metoden får inn en "nøkkel" og via findRow() metoden finner man riktig rad og
-     * laster denne ned via download() metoden.
+     * Finner valgt rad og laster den ned via download() metoden.
      */
     public static void saveJobseeker(String key){
         ViewHelper run = new ViewHelper();
@@ -110,12 +104,9 @@ public class ViewJobseekerHelper {
     }
 
     /**
-     * Denne metoden tar inn en tabell og henter ut valgt vikariat sitt tlfnr. Dette brukes ofte
-     * som "key" for å finne hvilken rad bruker har valgt.
+     * Henter ut tlf og finner valgt rad.
      */
     public static String selectedPhoneNo(TableView<TableJobseekers> tvTable){
         return tvTable.getSelectionModel().getSelectedItem().getPhoneNo();
     }
-
-
 }

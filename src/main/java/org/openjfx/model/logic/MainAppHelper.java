@@ -91,7 +91,6 @@ public class MainAppHelper {
         PrintWriter printWriter = new PrintWriter(fileWriter);
         for(int a = 0; a < arrayList.size(); a++) {
             printWriter.println(arrayList.get(a));
-            System.out.println("Liste: "+arrayList.get(a));
         }
         printWriter.close();
     }

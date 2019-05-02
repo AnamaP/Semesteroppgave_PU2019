@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.openjfx.model.dataClasses.Jobseeker;
 import static org.openjfx.model.logic.RegJobseekerHelper.jobseekersList;
-import static org.openjfx.model.logic.ViewJobseekerHelper.chosenJobseeker;
+import static org.openjfx.model.logic.ViewJobseekersHelper.chosenJobseeker;
 
 public class RegJobseekerController {
 

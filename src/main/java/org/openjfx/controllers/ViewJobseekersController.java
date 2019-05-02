@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 import static org.openjfx.model.logic.AlertHelper.showDeleteAlert;
 import static org.openjfx.model.logic.FiltrationHelper.filtrateJobseekerTable;
 import static org.openjfx.model.logic.RegJobseekerHelper.jobseekersList;
-import static org.openjfx.model.logic.ViewJobseekerHelper.*;
+import static org.openjfx.model.logic.ViewJobseekersHelper.*;
 
 public class ViewJobseekersController implements Initializable {
 
@@ -114,7 +114,7 @@ public class ViewJobseekersController implements Initializable {
     public void btnDownloadJobseeker(ActionEvent event) {
         try{
             String key = selectedPhoneNo(tvJobseekers);
-            ViewJobseekerHelper.saveJobseeker(key);
+            ViewJobseekersHelper.saveJobseeker(key);
         }
         catch(NullPointerException e){
             AlertHelper.showError("Du har ikke valgt en jobbsøker for nedlasting!");
@@ -138,7 +138,7 @@ public class ViewJobseekersController implements Initializable {
             if (result.get() == ButtonType.OK) {
                 // blir sletting gjennomført
                 String key = selectedPhoneNo(tvJobseekers);
-                ViewJobseekerHelper.deleteChosenJobseeker(key);
+                ViewJobseekersHelper.deleteChosenJobseeker(key);
 
                 MainAppHelper run = new MainAppHelper();
                 run.reloadJobseekersDB();

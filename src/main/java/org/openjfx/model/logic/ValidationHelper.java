@@ -16,8 +16,7 @@ public class ValidationHelper {
     public static String invalidInputs;
 
     /**
-     * Denne metoden tar inn en jobbsøker og kjører den inn i feilhåndteringsmetodene i ValidationChecker.
-     * invalidInputs vil inneholde alle feilmeldingene som måtte inntreffe.
+     * Kjører vailhåndtering på en jobbsøker. invalidInputs vil inneholde alle feilmeldingene som måtte inntreffe.
      */
     public static Boolean runJobseekerValidation(Jobseeker jobseeker){
         String inptFirstname = jobseeker.getFirstname();
@@ -49,9 +48,7 @@ public class ValidationHelper {
     }
 
     /**
-     * Likt som over, bare at denne metoden tar inn en jobbutlysning og kjører den inn i
-     * feilhåndteringsmetodene i ValidationChecker.invalidInputs vil inneholde alle feilmeldingene
-     * som måtte inntreffe. Bassert på om checkResults gikk fint skal den sende bruker til neste side.
+     * Kjører validering på et vikariat. invalidInputs vil inneholde alle feilmeldingene som måtte inntreffe.
      */
     public static boolean runTempJobValidation(Company company){
         String inptContactPerson = company.getContactPerson();
@@ -82,11 +79,9 @@ public class ValidationHelper {
     }
 
     /**
-     * Her tar sjekker metoden om invalidInputs inneholder noe:
-     * Fant feil? Feilmeldingen vises til bruker og det returneres false. Bruker blir på siden og får mulighet
-     * til å kunne rette opp i feilene som er skrevet inn før raden blir registrert.
-     * Fant ingen feil? Bruker får meldig om at alt så fint ut, objektet (her i toString() form) lagres som
-     * ny linje i csv-filen og den returnerer true.
+     * Sjekker om invalidInputs inneholder noe:
+     * Fant feil? Feilmeldingen vises til bruker og bruker blir på siden.
+     * Ingen feil? Objektet (her i toString() form) lagres til csv-fil.
      */
     private static boolean checkResults(String content, String path){
         if (!invalidInputs.isEmpty()) {
@@ -107,6 +102,9 @@ public class ValidationHelper {
         }
     }
 
+    /**
+     * Denne
+     */
     public boolean validateFileInpt(Object object, String path, boolean csvFileType) {
         //TODO: Om csvFiletype er false er det er jobj-fil og den burde sjekkes deretter.
         //      Det har jeg ikke fått til. Se metoden under.
@@ -155,7 +153,7 @@ public class ValidationHelper {
         for(int i = 0; i < arrayList.size(); i++) {
             String[] row = arrayList.get(i).toString().split(";");
             for (int j = 0; j < row.length; j++) {
-                if (row[j].equals(phoneNo)) {
+                if (row[j].equals(phoneNo) || phoneNo.isEmpty()) {
                     return false;
                 }
             }
