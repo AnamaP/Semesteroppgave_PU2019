@@ -16,7 +16,7 @@ public class RegTempJobHelper {
     public static Boolean createTempJob(
             TextField txtContactPerson, TextField txtPhoneNo, TextField txtSector, TextField txtCompanyName, TextField txtAddress,
             TextField txtIndustry, TextField txtJobTitle, TextField txtDuration, TextField txtSalary,
-            RadioButton radioFullTime, RadioButton radioPartTime, TextField txtQualif,  TextArea txtDescription,
+            RadioButton radioFullTime, RadioButton radioPartTime, TextField txtQualif,  TextField txtDescription,
             CheckBox cbxSales, CheckBox cbxAdmin, CheckBox cbxIt, CheckBox cbxEconomy, String status) {
 
         ArrayList<String> workfields = RegWorkfieldsHelper.regWorkfields(cbxSales,cbxAdmin,cbxIt,cbxEconomy);

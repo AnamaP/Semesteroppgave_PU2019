@@ -13,13 +13,10 @@ public class RegTempJobController {
 
     @FXML
     private TextField txtContactPerson, txtPhoneNo, txtSector, txtCompanyName, txtAddress, txtIndustry,
-            txtJobTitle, txtDuration, txtSalary, txtQualif;
+            txtJobTitle, txtDuration, txtSalary, txtQualif, txtDescription;
 
     @FXML
     private RadioButton radioFullTime, radioPartTime;
-
-    @FXML
-    private TextArea txtDescription;
 
     @FXML
     private CheckBox cbxSales, cbxAdmin, cbxIt, cbxEconomy;
