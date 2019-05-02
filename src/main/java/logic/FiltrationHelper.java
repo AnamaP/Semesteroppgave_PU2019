@@ -1,12 +1,12 @@
 package logic;
 
-public class FiltrationHelper {
+/**
+ * Disse to metodene sammenligner "get"-feltene for hver jobbsøker/jobbutlysning med filtertekst
+ * Returnerer true dersom filteret matcher
+ * Returnerer false dersom det skrives inn noe som ikke passer med det som står i raden i tabellen
+ */
 
-    /**
-     * Disse to metodene sammenligner "get"-feltene for hver jobbsøker/jobbutlysning med filtertekst
-     * Returnerer true dersom filteret matcher
-     * Returnerer false dersom det skrives inn noe som ikke passer med det som står i tabellen
-     */
+public class FiltrationHelper {
 
     public static Boolean filtrateTempJobTable(TableTempJobs tempJob, String lowerCaseFilter){
         if(tempJob.getContactPerson().toLowerCase().contains(lowerCaseFilter) ||
