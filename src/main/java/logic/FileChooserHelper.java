@@ -13,15 +13,22 @@ public class FileChooserHelper {
     final static int SAVE_FLAG = 1;
     final static int OPEN_FLAG = 2;
 
-
+    /**
+     * Denne metoden kalles på av dowload metoden i denne klassen som igjen kaller på formatFileChooser
+     */
     public static String saveDialog(){
         return formatFileChooser("Lagre som", SAVE_FLAG);
     }
-
+    /**
+     * Denne metoden kalles på av upload metoden i denne klassen som igjen kaller på formatFileChooser
+     */
     public static String openDialog(){
         return formatFileChooser("Last opp fil", OPEN_FLAG);
     }
 
+    /**
+     *  Denne metoden håndterer FileChooser vinduet som dukker opp ved nedlasting/opplasting.
+     */
     private static String formatFileChooser(String title, int flag){
         Stage chooserStage = new Stage();
         File selectedFile;
@@ -47,7 +54,11 @@ public class FileChooserHelper {
         return chosenpath;
     }
 
-    // Metode som sjekker hvilket filformat bruker har valgt
+    /**
+     *  Metode som henter filformat bruker har valgt:
+     *  Kaller på "getExtensionFilter" metoden som ligger i FileHandler klassen. Dersom extension(filnavnet)
+     *  inneholder ".csv" vil vil denne kjøre filhåntering for Csv, ellers vil den kjøre jobj filhåndtering.
+     */
     public static FileHandler getExtensionFilter(String chosenpath){
         FileHandler fileHandler;
         String extension = FileHandler.getExtension(chosenpath);
@@ -62,8 +73,11 @@ public class FileChooserHelper {
 
     }
 
-    // Skal lese innhold fra lokal fil, sjekke at det stemmer, legge elementet til i arrayet og oppdatere tabellen
-    // chosenpath er filen man velger til å laste opp, mens path er dit den skal
+    /**
+     * Denne metoden tar inn en path og leser innhold fra lokal fil, sjekker at det stemmer ift validering for fil,
+     * legger elementet til i arrayet og oppdatere tabellen gjennom en metode i controlleren når den kalles på.
+     * Chosenpath er filen man velger når man laste opp, mens path er dit den sendes til.
+     */
     public static void upload(String path){
         String chosenpath = openDialog();
 
@@ -89,6 +103,11 @@ public class FileChooserHelper {
         }
     }
 
+    /**
+     * Denne metoden kalles på når man trykker "Last ned" i programmet
+     * chosenpath er satt til SaveDialog, dermed vil FileChooseren vise et vindu for nedlasting og
+     * skrive objektet til fil med valgt format (.csv/.jobj).
+     */
     public static void download(Object object) {
         String chosenpath = saveDialog();
         FileHandler fileHandler = getExtensionFilter(chosenpath);
@@ -101,7 +120,10 @@ public class FileChooserHelper {
         }
     }
 
-    // metode som endrer/tar bort selve notasjonen på filformatet
+    /**
+     *  Denne metoden endrer/tar bort selve filtypenavnet på filen.
+     *  Dette gjøres fordi den alt har filtypenavnet, ellers vil filtypenavnet lagres dobbelt.
+      */
     private static String[] getPathBase(String pathWithExtension){
         String[] editedPath = pathWithExtension.split("\\.");
         return editedPath;
