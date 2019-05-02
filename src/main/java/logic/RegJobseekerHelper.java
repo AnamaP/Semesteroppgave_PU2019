@@ -68,7 +68,7 @@ public class RegJobseekerHelper {
     public static Boolean deleteChosenJobseeker(String key) {
         for(int i = 0; i < jobseekersList.size(); i++){
             String tlf = jobseekersList.get(i).getPhoneNo();
-            if(tlf.equals(key)){
+            if(tlf.equals(key)) {
                 jobseekersList.remove(i);
                 return true;
             }

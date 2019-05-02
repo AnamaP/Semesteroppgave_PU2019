@@ -1,4 +1,4 @@
-package org.openjfx;
+package org.openjfx.controller;
 
 import logic.*;
 import javafx.event.ActionEvent;

@@ -1,4 +1,4 @@
-package org.openjfx;
+package org.openjfx.controller;
 
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -6,9 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import logic.*;
@@ -49,7 +47,7 @@ public class ViewTempJobsController implements Initializable {
      *
      *  4: Denne fyller opp tabellen med jobbutlysninger.
      *
-     *  5: Her setter man ObservablaList inn i filterredData som muliggjør sortering og filtrering av data i tabellen.
+     *  5: Her setter man ObservablaList inn i filteredData som muliggjør sortering og filtrering av data i tabellen.
      *     Programmet bruker Listener til å fange opp endringer. Hvis det ikke er skrevet noe inn i filteret så skal
      *     all informasjon vises og om noe skrives inn skriver den kun ut de elementene som inneholder dette.
      *

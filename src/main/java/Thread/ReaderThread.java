@@ -1,4 +1,4 @@
-package Thread;
+package thread;
 
 import fileHandling.FileHandler;
 
@@ -13,7 +13,7 @@ public class ReaderThread<T> implements Callable<ArrayList<T>> {
     }
 
     public ArrayList<T> call(){
-        // MÅ ta inn som parametre filen jeg ønsker å lese fra
+        // MÅ ta inn som paramete filen jeg ønsker å lese fra
         FileHandler fileHandler = null;
 
         fileHandler.getExtension(chosenpath);

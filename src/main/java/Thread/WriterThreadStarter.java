@@ -1,4 +1,4 @@
-package Thread;
+package thread;
 
 public class WriterThreadStarter {
 

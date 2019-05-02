@@ -1,4 +1,4 @@
-package org.openjfx;
+package org.openjfx.controller;
 
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -13,7 +13,7 @@ import logic.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static logic.FiltrationHelper.filtrateJbseekerTable;
+import static logic.FiltrationHelper.filtrateJobseekerTable;
 import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.ViewJobseekerHelper.selectedPhoneNo;
 import static logic.ViewJobseekerHelper.showResults;
@@ -67,7 +67,7 @@ public class MatchingJobseekersController implements Initializable {
                 return true;
             }
             String lowerCaseFilter = newValue.toLowerCase();
-            if (filtrateJbseekerTable(jobseeker, lowerCaseFilter)) {
+            if (filtrateJobseekerTable(jobseeker, lowerCaseFilter)) {
                 return true;
             }
             return false;
