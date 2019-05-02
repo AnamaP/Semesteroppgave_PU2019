@@ -51,7 +51,6 @@ public class AlertHelper {
     /**
      * Alert metode som spør om bruker virkelig vil utføre slettingen
      */
-
     public static Optional<ButtonType> showDeleteAlert(String message){
         Alert question = new Alert(Alert.AlertType.CONFIRMATION);
         question.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);

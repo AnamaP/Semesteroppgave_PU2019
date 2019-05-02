@@ -16,8 +16,7 @@ import java.util.ResourceBundle;
 
 import static logic.FiltrationHelper.filtrateTempJobTable;
 import static logic.RegTempJobHelper.tempJobsList;
-import static logic.ViewTempJobsHelper.showResults;
-import static logic.ViewTempJobsHelper.selectedPhoneNo;
+import static logic.ViewTempJobsHelper.*;
 
 public class MatchingTempJobsController implements Initializable {
     @FXML
@@ -29,7 +28,6 @@ public class MatchingTempJobsController implements Initializable {
     @FXML
     private TableColumn<TableTempJobs, String> tcContactPerson, tcPhoneNo, tcSector, tcCompanyName,
             tcAddress,  tcIndustry, tcJobTitle, tcJobType, tcKWorkfields;
-
 
     /**
      * Denne metoden har følgende punkter:
@@ -89,13 +87,17 @@ public class MatchingTempJobsController implements Initializable {
     /**
      * Ved å trykke på denne knappen får brukeren opp mer informasjon om jobbutlysningen som vi ikke
      * så det nødvendig å presentere til alle tider. Dette gjorde GUI mye mer ryddig.
-     * Programmet henter ut hvilken rad bruker har valgt og henter så ut tittel og formaterer en melding.
+     * Programmet henter ut hvilken rad bruker har valgt og kjører readMore() metoden.
      * Dette vises til bruker i en allert-box. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnReadMore(ActionEvent event) {
-        ViewHelper run = new ViewHelper();
-        String key = selectedPhoneNo(tvTempJobs);
-        run.showMore(key);
+        try {
+            String key = selectedPhoneNo(tvTempJobs);
+            readMore(key);
+        }
+        catch (NullPointerException e) {
+            AlertHelper.showError("Du må velge et jobbutlysning for å lese mer!");
+        }
     }
 
     /**

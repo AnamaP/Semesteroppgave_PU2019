@@ -24,9 +24,7 @@ public class ViewJobseekerHelper {
      */
     public static ObservableList<TableJobseekers> showJobseekers() {
 
-        // Oppretter en tabell
         ObservableList<TableJobseekers> jobseekerList = FXCollections.observableArrayList();
-
         try{
             BufferedReader csvreader = new BufferedReader(new FileReader(Paths.JOBSEEKER +".csv"));
             String row;
@@ -36,9 +34,7 @@ public class ViewJobseekerHelper {
 
                 if(columns.length > 13){
                     ViewHelper run = new ViewHelper();
-                    //Henter en jobbsoker fra listen:
                     Jobseeker jobseeker = run.getJobseekerFromList(columns);
-                    //Legger søkeren til i tabellen:
                     TableJobseekers viewJobseekers = new TableJobseekers(jobseeker);
                     jobseekerList.add(viewJobseekers);
                 }
@@ -60,7 +56,6 @@ public class ViewJobseekerHelper {
      * inneholder alle arbeidsområdene utlysningen ser etter.
      */
     public static ObservableList<TableJobseekers> showResults(){
-        // Oppretter en tabell
         ObservableList<TableJobseekers> showResults = FXCollections.observableArrayList();
 
         try{
@@ -72,14 +67,10 @@ public class ViewJobseekerHelper {
 
                 if(columns.length > 14) {
                     ViewHelper run = new ViewHelper();
-                    //Henter ut en jobbsøker fra listen:
                     Jobseeker jobseeker = run.getJobseekerFromList(columns);
-                    //Henter ut jobbsokerens kategorier:
-                    ArrayList<String> workfields = run.getWorkfields(columns,13);
-                    //Finner antall felles kategorier
+                    ArrayList<String> workfields = run.getWorkfields(columns);
                     int amount = run.checkWorkfields(workfields);
 
-                    //Om søkeren har mange nok kategorier legges den til i tabellen:
                     System.out.println(columns[columns.length-1]);
                     if((amount == chosenWorkfields.size()) && (columns[columns.length-1].equals("Ledig"))){
                         TableJobseekers viewJobseekers = new TableJobseekers(jobseeker);
@@ -100,6 +91,16 @@ public class ViewJobseekerHelper {
 
     /**
      * Denne metoden får inn en "nøkkel" og via findRow() metoden finner man riktig rad og
+     * sletter denne fra listen.
+     */
+    public static void deleteChosenJobseeker(String key) {
+        ViewHelper run = new ViewHelper();
+        run.findRow(jobseekersList, key, true);
+        jobseekersList.remove(jobseekersList.get(chosenJobseeker));
+    }
+
+    /**
+     * Denne metoden får inn en "nøkkel" og via findRow() metoden finner man riktig rad og
      * laster denne ned via download() metoden.
      */
     public static void saveJobseeker(String key){
@@ -115,4 +116,6 @@ public class ViewJobseekerHelper {
     public static String selectedPhoneNo(TableView<TableJobseekers> tvTable){
         return tvTable.getSelectionModel().getSelectedItem().getPhoneNo();
     }
+
+
 }

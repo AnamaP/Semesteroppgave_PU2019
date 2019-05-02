@@ -68,7 +68,7 @@ public class ViewTempJobsHelper {
                     ViewHelper run = new ViewHelper();
                     Company tempJob = run.getTempJobFromList(columns);
 
-                    ArrayList<String> workfields = run.getWorkfields(columns, 12);
+                    ArrayList<String> workfields = run.getWorkfields(columns);
                     if (((workfields.toString().contains("Salg")) && chosenWorkfields.contains("Salg") ||
                             (workfields.toString().contains("Admin")) && chosenWorkfields.contains("Admin") ||
                             (workfields.toString().contains("It")) && chosenWorkfields.contains("It") ||
@@ -109,6 +109,16 @@ public class ViewTempJobsHelper {
         ViewHelper run = new ViewHelper();
         run.findRow(tempJobsList, key, false);
         FileChooserHelper.download(tempJobsList.get(chosenTempJob));
+    }
+
+    /**
+     * Denne henter ut en tittel og formaterer en melding ut til bruker.
+     */
+    public static void readMore(String key){
+        String title = ViewTempJobsHelper.readMoreTitle(key);
+        String message = ViewTempJobsHelper.readMoreContent(key);
+
+        AlertHelper.showMoreInfo(title,message);
     }
 
     /**

@@ -138,16 +138,12 @@ public class ViewJobseekersController implements Initializable {
             if (result.get() == ButtonType.OK) {
                 // blir sletting gjennomført
                 String key = selectedPhoneNo(tvJobseekers);
-                Boolean deleted = RegJobseekerHelper.deleteChosenJobseeker(key);
+                ViewJobseekerHelper.deleteChosenJobseeker(key);
 
-                if (deleted) {
-                    MainAppHelper run = new MainAppHelper();
-                    run.reloadJobseekersDB();
-                }
+                MainAppHelper run = new MainAppHelper();
+                run.reloadJobseekersDB();
+
                 NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
-            }
-            else {
-                // avbryter slettingen
             }
         }
         catch(NullPointerException e){

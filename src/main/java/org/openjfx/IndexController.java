@@ -34,6 +34,5 @@ public class IndexController {
      */
     public void btnViewTempJobs(ActionEvent event) {
         NavigationHelper.changePage("/org/openjfx/viewTempJobs.fxml",event);
-
     }
 }

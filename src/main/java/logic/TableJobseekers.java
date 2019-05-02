@@ -13,11 +13,9 @@ public class TableJobseekers {
     private final SimpleStringProperty phoneNo;
     private final SimpleStringProperty email;
     private final SimpleStringProperty age;
-    private final SimpleStringProperty salary;
     private final SimpleStringProperty education;
     private final SimpleStringProperty study;
     private final SimpleStringProperty experience;
-    private final SimpleStringProperty reference;
     private final SimpleStringProperty workfields;
     private final SimpleStringProperty status;
 
@@ -30,11 +28,9 @@ public class TableJobseekers {
         this.phoneNo = new SimpleStringProperty(jobseeker.getPhoneNo());
         this.email = new SimpleStringProperty(jobseeker.getEmail());
         this.age = new SimpleStringProperty(jobseeker.getAge());
-        this.salary = new SimpleStringProperty(jobseeker.getSalary());
         this.education = new SimpleStringProperty(jobseeker.getCv().getEducation());
         this.study = new SimpleStringProperty(jobseeker.getCv().getStudy());
         this.experience = new SimpleStringProperty(jobseeker.getCv().getExperience());
-        this.reference = new SimpleStringProperty(jobseeker.getCv().getReference());
         this.workfields = new SimpleStringProperty(jobseeker.getCv().getWorkfields());
         this.status = new SimpleStringProperty(jobseeker.getStatus());
     }
@@ -91,9 +87,6 @@ public class TableJobseekers {
     public SimpleStringProperty ageProperty() {
         return age;
     }
-    public SimpleStringProperty salaryProperty() {
-        return salary;
-    }
     public SimpleStringProperty educationProperty() {
         return education;
     }
@@ -102,9 +95,6 @@ public class TableJobseekers {
     }
     public SimpleStringProperty experienceProperty() {
         return experience;
-    }
-    public SimpleStringProperty referenceProperty() {
-        return reference;
     }
     public SimpleStringProperty workfieldsProperty() {
         return workfields;

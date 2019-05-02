@@ -123,17 +123,13 @@ public class ViewTempJobsController implements Initializable {
     /**
      * Ved å trykke på denne knappen får brukeren opp mer informasjon om jobbutlysningen som vi ikke
      * så det nødvendig å presentere til alle tider. Dette gjorde GUI mye mer ryddig.
-     * Programmet henter ut hvilken rad bruker har valgt og henter så ut tittel og formaterer en melding.
+     * Programmet henter ut hvilken rad bruker har valgt og kjører readMore() metoden.
      * Dette vises til bruker i en allert-box. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnReadMore(ActionEvent event) {
         try {
             String key = selectedPhoneNo(tvTempJobs);
-
-            String title = ViewTempJobsHelper.readMoreTitle(key);
-            String message = ViewTempJobsHelper.readMoreContent(key);
-
-            AlertHelper.showMoreInfo(title, message);
+            readMore(key);
         }
         catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et jobbutlysning for å lese mer!");

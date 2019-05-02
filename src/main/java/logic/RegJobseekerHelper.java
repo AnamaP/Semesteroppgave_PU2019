@@ -11,8 +11,18 @@ import static logic.ValidationHelper.runJobseekerValidation;
 
 public class RegJobseekerHelper {
 
+    /**
+     * Denne listen settes hver gang programmet starter opp og inneholder en kopi av alle jobbsøkerne som finnes
+     * i databasen. Når man sletter eller endrer en søker vil endringen skje her først og så overskriver
+     * denne listen det som ligger i databasen.
+     */
     public static ArrayList<Jobseeker> jobseekersList = new ArrayList<>();
 
+    /**
+     * Oppretter en jobbsøker bassert på hva bruker har skrevet inn. Sender dette igjennom en runJobseekerValidation()
+     * som blir false om noen av valideringene finner noe feil i det som er skrevet inn. Om søkeren ble registrert
+     * returnerer den true.
+     */
     public static boolean newSeeker(TextField txtFirstName, TextField txtLastName, TextField txtAddress, TextField txtZipCode,
                                       TextField txtPostal, TextField txtPhoneNo, TextField txtEmail, TextField txtAge,
                                       ComboBox choiseEducation, ComboBox choiseStudy, TextField txtExperience,
@@ -45,14 +55,23 @@ public class RegJobseekerHelper {
         return false;
     }
 
+    /**
+     * Henter ut hvilken utdanning bruker har valgt, kjører readComboBxValue og returnere innholdet som en string.
+     */
     public static String education(ComboBox choiseEducation){
         return readComboBxValue(choiseEducation);
     }
 
+    /**
+     * Henter ut hvilken studieretning bruker har valgt, kjører readComboBxValue og returner innholdet som en String.
+     */
     public static String study(ComboBox choiseStudy) {
         return readComboBxValue(choiseStudy);
     }
 
+    /**
+     * Sjekker at bruker har valgt en verdi.
+     */
     private static String readComboBxValue(ComboBox comboBox){
         String choise;
         try{
@@ -63,16 +82,5 @@ public class RegJobseekerHelper {
         }
         System.out.println(choise);
         return choise;
-    }
-
-    public static Boolean deleteChosenJobseeker(String key) {
-        for(int i = 0; i < jobseekersList.size(); i++){
-            String tlf = jobseekersList.get(i).getPhoneNo();
-            if(tlf.equals(key)) {
-                jobseekersList.remove(i);
-                return true;
-            }
-        }
-        return false;
     }
 }

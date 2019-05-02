@@ -10,9 +10,18 @@ import static logic.ValidationHelper.runTempJobValidation;
 
 public class RegTempJobHelper {
 
+    /**
+     * Denne listen settes hver gang programmet starter opp og inneholder en kopi av alle jobbutlysningene som
+     * finnes i databasen. Når man sletter eller endrer en utlysning vil endringen skje her først og så
+     * overskriver denne listen det som ligger i databasen.
+     */
     public static ArrayList<Company> tempJobsList = new ArrayList<>();
 
-
+    /**
+     * Oppretter en jobbutlysning bassert på hva bruker har skrevet inn. Sender dette igjennom en runTempJobValidation()
+     * som blir false om noen av valideringene finner noe feil i det som er skrevet inn. Om utlysningen ble registrert
+     * returnerer den true.
+     */
     public static Boolean createTempJob(
             TextField txtContactPerson, TextField txtPhoneNo, TextField txtSector, TextField txtCompanyName, TextField txtAddress,
             TextField txtIndustry, TextField txtJobTitle, TextField txtDuration, TextField txtSalary,
@@ -36,6 +45,9 @@ public class RegTempJobHelper {
         return false;
     }
 
+    /**
+     * Henter ut hvilken radio-knapp bruker har valgt og returner innholdet som en String.
+     */
     private static String regJobType(RadioButton radioFullTime, RadioButton radioPartTime) {
 
         String jobType = "Arbeidstid ikke valgt";
