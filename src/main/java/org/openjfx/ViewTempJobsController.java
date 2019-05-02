@@ -1,4 +1,4 @@
-package org.openjfx.controller;
+package org.openjfx;
 
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;

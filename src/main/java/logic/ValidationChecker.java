@@ -64,7 +64,6 @@ public class ValidationChecker {
                                           String industry, String address, String jobTitle, String description,
                                           String duration, String salary, String qualif, String jobType, Object workfields) {
 
-
         checkStringFormat(contactPerson);
         checkPhoneNo(phoneNo);
         checkDuplicatePhoneNo(tempJobsList, phoneNo);

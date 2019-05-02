@@ -5,21 +5,21 @@ import classes.Jobseeker;
 
 public class TableJobseekers {
 
-    private final SimpleStringProperty firstname; //0
-    private final SimpleStringProperty lastname;// 1
-    private final SimpleStringProperty address;//2
-    private final SimpleStringProperty zipcode;//3
-    private final SimpleStringProperty postal;//4
-    private final SimpleStringProperty phoneNo;//5
-    private final SimpleStringProperty email;//6
-    private final SimpleStringProperty age;//7
-    private final SimpleStringProperty salary;//8
-    private final SimpleStringProperty education;//9
-    private final SimpleStringProperty study;//10
-    private final SimpleStringProperty experience; //11
-    private final SimpleStringProperty reference; //12
-    private final SimpleStringProperty workfields;//13, 14, 15
-    private final SimpleStringProperty status; //16
+    private final SimpleStringProperty firstname;
+    private final SimpleStringProperty lastname;
+    private final SimpleStringProperty address;
+    private final SimpleStringProperty zipcode;
+    private final SimpleStringProperty postal;
+    private final SimpleStringProperty phoneNo;
+    private final SimpleStringProperty email;
+    private final SimpleStringProperty age;
+    private final SimpleStringProperty salary;
+    private final SimpleStringProperty education;
+    private final SimpleStringProperty study;
+    private final SimpleStringProperty experience;
+    private final SimpleStringProperty reference;
+    private final SimpleStringProperty workfields;
+    private final SimpleStringProperty status;
 
     public TableJobseekers(Jobseeker jobseeker) {
         this.firstname = new SimpleStringProperty(jobseeker.getFirstname());
@@ -53,9 +53,6 @@ public class TableJobseekers {
     }
     public String getPhoneNo() {
         return phoneNo.get();
-    }
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo.set(phoneNo);
     }
     public String getWorkfields() {
         return workfields.get();

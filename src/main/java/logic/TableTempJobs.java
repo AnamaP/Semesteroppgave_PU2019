@@ -15,7 +15,6 @@ public class TableTempJobs {
     private final SimpleStringProperty workfields;
     private final SimpleStringProperty status;
 
-    // en toVikariat metode som koverterer all data her til en Company
     public TableTempJobs(Company company){
         this.contactPerson = new SimpleStringProperty(company.getContactPerson());
         this.phoneNo = new SimpleStringProperty(company.getPhoneNo());
