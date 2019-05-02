@@ -86,31 +86,32 @@ public class FileChooserHelper {
     public static void upload(String path){
         String chosenpath = openDialog();
 
-        FileHandler fileHandler = getExtensionFilter(chosenpath);
-        Object object = fileHandler.readFromFile(getPathBase(chosenpath)[0]);
-        boolean csvFiltype = true;
-        if(getPathBase(chosenpath)[1].equals("jobj")){
-            csvFiltype = false;
-        }
+        if(chosenpath.split("\\.").length > 1) {
+            FileHandler fileHandler = getExtensionFilter(chosenpath);
+            Object object = fileHandler.readFromFile(getPathBase(chosenpath)[0]);
+            boolean csvFiltype = true;
 
-        ValidationHelper run = new ValidationHelper();
-        if (run.validateFileInpt(object, path, csvFiltype)) {
-            try {
-                fileHandler.writeToDB(object, path);
-                try {
-                    System.out.println(ReaderThreadStarter.startReader(chosenpath).length);
-                }
-                catch (InterruptedException | ExecutionException e) {
-                    e.printStackTrace();
-                }
-            } catch (FileNotFoundException e) {
-                System.err.println("Fant ikke filen du lette etter.");
-            } catch (IOException e) {
-                System.err.println("Kunne ikke lese filen du lette etter. Årsak : " + e.getCause());
+            if (getPathBase(chosenpath)[1].equals("jobj")) {
+                csvFiltype = false;
             }
-        }
-        else {
-            AlertHelper.showError(invalidInputs);
+
+            ValidationHelper run = new ValidationHelper();
+            if (run.validateFileInpt(object, path, csvFiltype)) {
+                try {
+                    fileHandler.writeToDB(object, path);
+                    try {
+                        System.out.println(ReaderThreadStarter.startReader(chosenpath).length);
+                    } catch (InterruptedException | ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                } catch (FileNotFoundException e) {
+                    System.err.println("Fant ikke filen du lette etter.");
+                } catch (IOException e) {
+                    System.err.println("Kunne ikke lese filen du lette etter. Årsak : " + e.getCause());
+                }
+            } else {
+                AlertHelper.showError(invalidInputs);
+            }
         }
     }
 
