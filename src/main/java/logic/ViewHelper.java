@@ -5,6 +5,7 @@ import classes.Cv;
 import classes.Jobseeker;
 import classes.TempJob;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static logic.RegJobseekerHelper.jobseekersList;
@@ -100,6 +101,15 @@ public class ViewHelper{
         }
         System.out.println(amount);
         return amount;
+    }
+
+    public boolean isAvailable(ArrayList arrayList, int row){
+        String [] check = arrayList.get(row).toString().split(";");
+        System.out.println(check[check.length-1]);
+        if(check[check.length-1].equals("Ledig")){
+            return true;
+        }
+        return false;
     }
 
     public void employ(){

@@ -191,8 +191,15 @@ public class ViewJobseekersController implements Initializable {
 
             String key = selectedPhoneNo(tvJobseekers);
             run.findRow(jobseekersList, key, true);
+            System.out.println(run.isAvailable(jobseekersList, chosenJobseeker));
 
-            NavigationHelper.changePage("/org/openjfx/matchTempJobs.fxml", event);
+            if(run.isAvailable(jobseekersList, chosenJobseeker)){
+                NavigationHelper.changePage("/org/openjfx/matchTempJobs.fxml", event);
+            }
+            else{
+                AlertHelper.showError("Jobbsøkeren er i arbeid. Veld en ledig jobbsøker før du går videre.");
+            }
+
         }
         catch(NullPointerException e){
             AlertHelper.showError("Du må velge en jobbsøker for å finne passende vikariat!");

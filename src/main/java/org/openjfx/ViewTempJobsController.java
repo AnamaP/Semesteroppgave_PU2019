@@ -20,7 +20,9 @@ import java.util.ResourceBundle;
 
 import static logic.AlertHelper.showDeleteAlert;
 import static logic.FiltrationHelper.filtrateTempJobTable;
+import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.RegTempJobHelper.tempJobsList;
+import static logic.ViewJobseekerHelper.chosenJobseeker;
 import static logic.ViewTempJobsHelper.*;
 
 public class ViewTempJobsController implements Initializable {
@@ -216,7 +218,12 @@ public class ViewTempJobsController implements Initializable {
             String key = selectedPhoneNo(tvTempJobs);
             run.findRow(tempJobsList, key, false);
 
-            NavigationHelper.changePage("/org/openjfx/matchJobseekers.fxml", event);
+            if(run.isAvailable(tempJobsList, chosenTempJob)){
+                NavigationHelper.changePage("/org/openjfx/matchJobseekers.fxml", event);
+            }
+            else {
+                AlertHelper.showError("Vikariatet er besatt. Veld et ledig vikariat før du går videre.");
+            }
         }
         catch (NullPointerException e) {
             AlertHelper.showError("Du må velge et jobbutlysning for å finne passende jobbsøker!");
