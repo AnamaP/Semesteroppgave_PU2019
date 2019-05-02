@@ -32,7 +32,7 @@ public class ValidationHelper {
         String inptSalary = jobseeker.getSalary();
         String inptEducation = jobseeker.getCv().getEducation();
         String inptStudy = jobseeker.getCv().getStudy();
-        String inptWorkfields = jobseeker.getCv().workfieldsToString();
+        String inptWorkfields = jobseeker.getCv().getWorkfields();
 
         ValidationChecker validation = new ValidationChecker();
         invalidInputs = validation.inputJobseekerCollector(inptFirstname, inptLastname, inptAddress, inptZipcode,
@@ -66,7 +66,7 @@ public class ValidationHelper {
         String inptSalary = company.getTempJob().getSalary();
         String inptDescription = company.getTempJob().getDescription();
         String inptJobType = company.getTempJob().getJobType();
-        String inptWorkfields = company.getTempJob().workfieldsToString();
+        String inptWorkfields = company.getTempJob().getWorkfields();
 
         ValidationChecker validation = new ValidationChecker();
         invalidInputs = validation.inputJobAdvertCollector(inptContactPerson, inptPhoneNo, inptSector, inptCompanyName,

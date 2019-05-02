@@ -35,7 +35,7 @@ public class TableJobseekers {
         this.study = new SimpleStringProperty(jobseeker.getCv().getStudy());
         this.experience = new SimpleStringProperty(jobseeker.getCv().getExperience());
         this.reference = new SimpleStringProperty(jobseeker.getCv().getReference());
-        this.workfields = new SimpleStringProperty(jobseeker.getCv().workfieldsToString());
+        this.workfields = new SimpleStringProperty(jobseeker.getCv().getWorkfields());
         this.status = new SimpleStringProperty(jobseeker.getStatus());
     }
 

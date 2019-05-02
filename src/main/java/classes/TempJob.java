@@ -3,6 +3,8 @@ package classes;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import static logic.WorkfieldsHelper.workfieldsToString;
+
 public class TempJob implements Serializable {
     private static final long serialVersionUID = 1;
 
@@ -48,27 +50,15 @@ public class TempJob implements Serializable {
     public String getQualif() {
         return qualif;
     }
-    public ArrayList<String> getWorkfields() {
-        return workfields;
-    }
     public String getStatus() {
         return status;
     }
-
-    public String workfieldsToString() {
-        String sb = "";
-        for(int i = 0; i < workfields.size(); i++){
-            if(i == workfields.size() -1){
-                sb += workfields.get(i);
-            }
-            else{
-                sb += workfields.get(i) + ", ";
-            }
-        }
-        return sb;
+    public String getWorkfields() {
+        return workfieldsToString(workfields);
     }
 
     public String toString(){
-        return jobTitle +";"+ jobType +";"+ description +";"+ duration +";"+ salary +";"+ qualif +";"+ workfieldsToString()+";"+status;
+        return jobTitle +";"+ jobType +";"+ description +";"+ duration +";"+
+                salary +";"+ qualif +";"+ workfieldsToString(workfields)+";"+status;
     }
 }

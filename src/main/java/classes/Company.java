@@ -47,10 +47,7 @@ public class Company implements Serializable {
     }
 
     public String toString(){
-        String out = "";
-        out += contactPerson +";"+ phoneNo +";"+ sector +";"+ companyName +";"+ address +";"+ industry +";"+ tempJob.toString();
-        return out;
+        return contactPerson +";"+ phoneNo +";"+ sector +";"+ companyName +";"
+                + address +";"+ industry +";"+ tempJob.toString();
     }
-
-
 }

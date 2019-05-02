@@ -3,6 +3,8 @@ package classes;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import static logic.WorkfieldsHelper.workfieldsToString;
+
 public class Cv implements Serializable {
     private static final long serialVersionUID = 1;
 
@@ -23,15 +25,6 @@ public class Cv implements Serializable {
     public void setReference(String reference){
         this.reference = reference;
     }
-    public void setEducation(String education) {
-        this.education = education;
-    }
-    public void setStudy(String study) {
-        this.study = study;
-    }
-    public void setExperience(String experience) {
-        this.experience = experience;
-    }
     public void setWorkfields(ArrayList<String> workfields) {
         this.workfields = workfields;
     }
@@ -47,21 +40,11 @@ public class Cv implements Serializable {
     public String getReference() {
         return reference;
     }
-
-    public String workfieldsToString() {
-        String sb = "";
-        for(int i = 0; i < workfields.size(); i++){
-            if(i == workfields.size() -1){
-                sb += workfields.get(i);
-            }
-            else{
-                sb += workfields.get(i) + ", ";
-            }
-        }
-        return sb;
+    public String getWorkfields() {
+        return workfieldsToString(workfields);
     }
 
     public String toString(){
-        return education +";"+ study +";"+ experience +";"+ reference +";"+ workfieldsToString();
+        return education +";"+ study +";"+ experience +";"+ reference +";"+ workfieldsToString(workfields);
     }
 }

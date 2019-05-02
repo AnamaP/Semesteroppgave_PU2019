@@ -29,7 +29,7 @@ public class WorkfieldsHelper {
         return workfields;
     }
 
-    public String workfieldsToString(ArrayList workfields) {
+    public static String workfieldsToString(ArrayList workfields) {
         String sb = "";
         for(int i = 0; i < workfields.size(); i++){
             if(i == workfields.size() -1){

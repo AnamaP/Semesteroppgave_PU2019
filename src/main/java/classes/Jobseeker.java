@@ -6,8 +6,8 @@ public class Jobseeker extends Person {
     private String status;
 
 
-    public Jobseeker(String firstname, String lastname, String adderss, String zipCode, String postal, String tlf,
-                     String email, String age, Cv cv, String status) {
+    public Jobseeker(String firstname, String lastname, String adderss, String zipCode,
+                     String postal, String tlf, String email, String age, Cv cv, String status) {
         super(firstname, lastname, adderss, zipCode, postal, tlf, email, age);
         this.cv = cv;
         this.salary = "";
