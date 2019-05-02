@@ -13,7 +13,7 @@ import static org.openjfx.model.logic.ValidationHelper.invalidInputs;
 
 public class FileChooserHelper {
     /**
-     * vi hgar brukt flag for å vise forskjell på om det er åpne eller lagre
+     * Bruker FLAG for å vise forskjell på om det er åpne eller lagre
      */
     final static int SAVE_FLAG = 1;
     final static int OPEN_FLAG = 2;
@@ -25,7 +25,7 @@ public class FileChooserHelper {
         return formatFileChooser("Lagre som", SAVE_FLAG);
     }
     /**
-     * Denne metoden kalles på av upload metoden i denne klassen som igjen kaller på formatFileChooser
+     * Denne metoden viser Åpne vinduet
      */
     public static String openDialog(){
         return formatFileChooser("Last opp fil", OPEN_FLAG);
@@ -64,9 +64,7 @@ public class FileChooserHelper {
     }
 
     /**
-     *  Metode som henter filformat bruker har valgt:
-     *  Kaller på "getExtensionFilter" metoden som ligger i FileHandler klassen. Dersom extension(filnavnet)
-     *  inneholder ".csv" vil vil denne kjøre filhåntering for Csv, ellers vil den kjøre jobj filhåndtering.
+     *  Metode som henter filformat bruker har valgt
      */
     public static FileHandler getExtensionFilter(String chosenpath){
         FileHandler fileHandler;
@@ -82,16 +80,10 @@ public class FileChooserHelper {
 
     }
 
-    //TODO: Ny kommentar her...!!!
-    /**
-     * Denne metoden tar inn en path og leser innhold fra lokal fil, sjekker at det stemmer ift validering for fil,
-     * legger elementet til i arrayet og oppdatere tabellen gjennom en metode i controlleren når den kalles på.
-     * Chosenpath er filen man velger når man laste opp, mens path er dit den sendes til.
-     */
+    //TODO: Thread metode (what to do??)
     /**
      *  Denne metoden åpner dialogvinduet, leser filen som er valgt og skriver til fil dersom den
-     *  den er kommer igjennom valideringen.
-     *  Dersom ikke godkjent validering vil en feilmld til bruker vises.
+     *  den kommer igjennom valideringen. Dersom det ikke er godkjent validering vil en feilmld til bruker vises.
      */
     public static void upload(String toPath){
         String chosenpath = openDialog();
@@ -106,13 +98,15 @@ public class FileChooserHelper {
         if(chosenpath.split("\\.").length > 1) {
             FileHandler fileHandler = getExtensionFilter(chosenpath);
             Object object = fileHandler.readFromFile(splitPathIntoBaseAndExtension(chosenpath)[0]);
-            boolean csvFiltype = true;
+
+            // Henter ut filtype
+            boolean isCsvFiltype = true;
             if (splitPathIntoBaseAndExtension(chosenpath)[1].equals("jobj")) {
-                csvFiltype = false;
+                isCsvFiltype = false;
             }
 
             ValidationHelper run = new ValidationHelper();
-            if (run.validateFileInpt(object, toPath, csvFiltype)) {
+            if (run.validateFileInpt(object, toPath, isCsvFiltype)) {
                 try {
                     fileHandler.writeToDB(object, toPath);
                 } catch (FileNotFoundException e) {
@@ -127,9 +121,7 @@ public class FileChooserHelper {
     }
 
     /**
-     * Denne metoden laster ned valgt objekt.
-     * chosenpath er satt til SaveDialog, dermed vil FileChooseren vise et vindu for nedlasting og
-     * skrive objektet til fil med valgt format (.csv/.jobj).
+     * Denne metoden viser vindu for nedlasting og skriver objektet til fil med valgt format (.csv/.jobj).
      */
     public static void download(Object object) {
         String chosenpath = saveDialog();

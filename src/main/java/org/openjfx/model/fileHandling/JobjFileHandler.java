@@ -2,7 +2,14 @@ package org.openjfx.model.fileHandling;
 
 import java.io.*;
 
+/**
+ * Konkret klasse som representerer lagring og innlesing til jobj filformat
+ */
 public class JobjFileHandler extends FileHandler {
+
+    /**
+     * Metode som leser fra fil
+     */
     @Override
     public Object readFromFile(String path) {
         try(FileInputStream fileInput = new FileInputStream(path+".jobj");
@@ -19,6 +26,9 @@ public class JobjFileHandler extends FileHandler {
         return null;
     }
 
+    /**
+     * Metode som skriver til fil
+     */
     @Override
     public void writeToFile(Object object, String path) throws IOException {
         try(FileOutputStream fileOutput = new FileOutputStream(path);
@@ -30,6 +40,9 @@ public class JobjFileHandler extends FileHandler {
         }
     }
 
+    /**
+     * Metode som skriver til databasen og setter filformatet til csv
+     */
     public void writeToDB(Object object, String path) throws IOException {
         FileHandler fileHandler = new CsvFileHandler();
         fileHandler.writeToFile(object, path+".csv");

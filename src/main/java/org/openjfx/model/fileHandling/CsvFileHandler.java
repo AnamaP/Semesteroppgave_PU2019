@@ -2,15 +2,18 @@ package org.openjfx.model.fileHandling;
 
 import java.io.*;
 
+/**
+ * Konkret klasse som representerer lagring og innlesing til csv filformat
+ */
 public class CsvFileHandler extends FileHandler {
 
-    // TODO: Metode for validering
 
+    /**
+     * Metode som leser fra fil
+     */
     @Override
     public Object readFromFile(String path) {
         String content = "";
-
-        // TODO: en metode som kaller på validering av filen man forsøker å laste opp (null, tlf) - at formateringen er tilnærmet riktig (int)
 
         try(RandomAccessFile readFile = new RandomAccessFile(path+".csv", "r")){
             String row;
@@ -27,7 +30,9 @@ public class CsvFileHandler extends FileHandler {
         return content;
     }
 
-
+    /**
+     * Metode som skriver til fil
+     */
     @Override
     public void writeToFile(Object object, String path) throws IOException {
         PrintWriter writer = null;
@@ -45,6 +50,9 @@ public class CsvFileHandler extends FileHandler {
         }
     }
 
+    /**
+     * Metode som skriver til databasen og setter filformatet til csv
+     */
     @Override
     public void writeToDB(Object object, String path) throws IOException {
         writeToFile(object, path+".csv");

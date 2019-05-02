@@ -8,16 +8,14 @@ import static org.openjfx.model.logic.RegTempJobHelper.tempJobsList;
 
 /**
  * Feilhåndtering for registrering/redigering av nye jobbsøkere og stillingsutlysninger :
- *  To public metoder som "samler inn" og kaller på private valideringssjekker - metodene kalles på i "ValidationHelper"
- *  som gjør en sjekk på om innholdet i metoden står tom eller inneholder feilmeldinger. Disse feilmld vil i såfall
- *  vises for bruker i en Alert box.
+ *  To public metoder som "samler inn" og kaller på private valideringssjekker. Dersom feil i input kastes
+ *  egendefinerte exception og bruker får passende feilmelding.
  *
- *  Metodene kaster egendefinerte exeptions.
- *
- *  Input felter som ikke har noen "påvirkning" på programmet blir kun sjekket for at de ikke står tomme, og der det kun
- *  skal stå strenger så har vi en metode som validerer dette. Mens felt som er avhengige av et spesielt regex mønster
- *  (f.eks epost, tlfnr og checkBox) er det laget egne metodesjekker for. Tlf nr benyttes for eksempel som id for å få
- *  tak i objekter ifm skriv til fil og ansettelse, derfor viktig at det er på et spesifikt format og ikke registreres dobbelt.
+ *  Input felter som ikke har noen "påvirkning" på programmet blir kun sjekket for at de ikke står tomme.
+ *  Der det kun skal stå strenger har vi en metode som validerer dette. Felt som er avhengige av et spesielt regex
+ *  mønster (f.eks epost, tlfnr, checkBox..) er det laget egne metodesjekker for.
+ *  Tlf nr benyttes for eksempel som id for å få tak i objekter ifm skriv til fil og ansettelse, derfor viktig at
+ *  det er unikt og på et spesifikt format.
  */
 
 public class ValidationChecker {
@@ -27,8 +25,6 @@ public class ValidationChecker {
 
     /**
      * Samler inn valideringsjekker for Jobbsøkere.
-     * For å unngå en lang liste med feilmeldinger har vi en if sjekk som overskriv alle
-     * feilmeldinger dersom det overstiger 5 stk med en felles feilmelding.
      */
     public String inputJobseekerCollector(String firstname, String lastname, String address, String zipCode, String postal,
                                           String phoneNo, String email, String age, String experience, String salary,
@@ -48,6 +44,8 @@ public class ValidationChecker {
         checkValue(education, study);
         checkWorkfields(workfields);
 
+        // For å unngå lang liste med feilmld har vi en if sjekk som overskriv alle
+        // feilmld dersom det overstiger 5 stk med en felles feilmld.
         if(invalidInputsAmount > 5){
             invalidInputs = "Flere obligatoriske felt inneholder feil tegn eller er ikke fylt ut!";
         }
@@ -57,8 +55,6 @@ public class ValidationChecker {
 
     /**
      * Samler inn valideringsjekker for bedrift/stillingsutlysninger.
-     * For å unngå en lang liste med feilmeldinger har vi en if sjekk som overskriv alle
-     * feilmeldinger dersom det overstiger 5 stk med en felles feilmelding.
      */
     public String inputJobAdvertCollector(String contactPerson, String phoneNo, String sector, String companyName,
                                           String industry, String address, String jobTitle, String description,
@@ -79,6 +75,8 @@ public class ValidationChecker {
         checkJobType(jobType);
         checkWorkfields(workfields);
 
+        // For å unngå lang liste med feilmld har vi en if sjekk som overskriv alle
+        // feilmld dersom det overstiger 5 stk med en felles feilmld.
         if(invalidInputsAmount > 5){
             invalidInputs = "Flere obligatoriske felt inneholder feil tegn eller er ikke fylt ut!";
         }
@@ -100,7 +98,7 @@ public class ValidationChecker {
     }
 
     /**
-     * Metode som sjekker at diverse input felt ikke står tomme (ikke avhengige av et regex mønster)
+     * Metode som sjekker at diverse input felt ikke står tomme
      */
     private boolean checkValidMandatoryInputs(String text) throws InputEmptyException {
         if(text.isEmpty()){
@@ -123,7 +121,7 @@ public class ValidationChecker {
     }
 
     /**
-     * Regex validering for input som kun skal bestå av strenger (noen tegn tillates)
+     * Regex validering for strenger (noen tegn tillates)
      */
     private boolean checkValidStringFormat(String string) throws InvalidStringFormatException {
         if (!Pattern.matches("[a-zæøåA-ZÆØÅ_\\p{Space}\\-\\.]+", string) || string.isEmpty()) {
@@ -192,8 +190,7 @@ public class ValidationChecker {
     }
 
     /**
-     * Denne metoden vil gi en feilmld til bruker hvis tlf som forsøkes å registreres er likt et tlfnr som allerede
-     * ligger i ArrayListen (i databasen). På denne måten forhindrer vi duplikate verdier.
+     * Metoden gir en feilmld til bruker hvis tlfnr som forsøkes å registreres allerede er registrert. 
      */
     private boolean checkIfDuplicatePhoneNo(ArrayList arrayList, String phoneNo) throws DuplicatePhoneNoException {
         for (int i = 0; i < arrayList.size()-1; i++) {
