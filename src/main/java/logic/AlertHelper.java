@@ -37,7 +37,7 @@ public class AlertHelper {
         moreInfo.setContentText(message);
         moreInfo.showAndWait();
     }
-
+    // Alert metode som spør om bruker virkelig vil utføre slettingen
     public static Optional<ButtonType> showDeleteAlert(String message){
         Alert question = new Alert(Alert.AlertType.CONFIRMATION);
         question.setHeaderText("Er du sikker på at du vil slette : ");
@@ -45,18 +45,5 @@ public class AlertHelper {
         Optional<ButtonType> result = question.showAndWait();
         return result;
     }
-
-    /*public static void showQuestion(String message){
-        Alert question = new Alert(Alert.AlertType.CONFIRMATION);
-        question.setHeaderText("Er du sikker på at du vil slette : ");
-        question.setContentText(message+" ?");
-
-        Optional<ButtonType> result = question.showAndWait();
-        if (result.get() == ButtonType.OK){
-            // ... user chose OK
-        } else {
-            // ... user chose CANCEL or closed the dialog
-        }
-    }*/
 
 }
