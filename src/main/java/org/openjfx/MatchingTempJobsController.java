@@ -30,23 +30,39 @@ public class MatchingTempJobsController implements Initializable {
     private TableColumn<TableTempJobs, String> tcContactPerson, tcPhoneNo, tcSector, tcCompanyName,
             tcAddress,  tcIndustry, tcJobTitle, tcJobType, tcKWorkfields;
 
+
+    /**
+     * Denne metoden har følgende punkter:
+     *
+     *  1: Om listen står tom vil denne meldingen gis til bruker. Dette skjer om filtreringen ikke finner noen
+     *     matcher eller om man ikke finner noen matcher til en valgt jobbsøker.
+     *
+     *  2: setTempJobsTable initialiserer kolonnene.
+     *
+     *  3: Denne fyller opp tabellen med jobbutlysninger.
+     *
+     *  4: Her setter man ObservablaList inn i filterredData som muliggjør sortering og filtrering av data i tabellen.
+     *     Programmet bruker Listener til å fange opp endringer. Hvis det ikke er skrevet noe inn i filteret så skal
+     *     all informasjon vises og om noe skrives inn skriver den kun ut de elementene som inneholder dette.
+     *
+     *  5: Legger sortert og filtrert liste inn i tabellen.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        // 1:
         tvTempJobs.setPlaceholder(new Label("Det er dessverre ingen aktuelle vikariater som oppfyller dine kriterier "));
 
+        // 2:
         SetTableHelper run = new SetTableHelper();
         run.setTempJobsTable(tcContactPerson, tcPhoneNo, tcSector, tcCompanyName,
                 tcAddress,  tcIndustry, tcJobTitle, tcJobType, tcKWorkfields);
 
+        // 3:
         tvTempJobs.setItems(ViewTempJobsHelper.showResults());
 
-        // Muliggjør sortering og filtrering av data i tabellen.
+        // 4:
         FilteredList<TableTempJobs> filteredData = new FilteredList<>(showResults(), p -> true);
-
-        // Bruker Listener til å fange opp endringer.
         txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(tempJob -> {
-            // Hvis det ikke er skrevet noe inn i filteret så skal all informasjon vises.
             if (newValue == null || newValue.isEmpty()) {
                 return true;
             }
@@ -57,21 +73,35 @@ public class MatchingTempJobsController implements Initializable {
             return false;
         }));
 
+        // 5:
         SortedList<TableTempJobs> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tvTempJobs.comparatorProperty());
         tvTempJobs.setItems(sortedData);
     }
 
+    /**
+     * Sender bruker tilbake til menysiden.
+     */
     public void btnBack(ActionEvent event) {
         NavigationHelper.changePage("/org/openjfx/viewJobseekers.fxml", event);
     }
 
+    /**
+     * Ved å trykke på denne knappen får brukeren opp mer informasjon om jobbutlysningen som vi ikke
+     * så det nødvendig å presentere til alle tider. Dette gjorde GUI mye mer ryddig.
+     * Programmet henter ut hvilken rad bruker har valgt og henter så ut tittel og formaterer en melding.
+     * Dette vises til bruker i en allert-box. Om ingen rad er valgt vil bruker få en meldig om dette.
+     */
     public void btnReadMore(ActionEvent event) {
         ViewHelper run = new ViewHelper();
         String key = selectedPhoneNo(tvTempJobs);
         run.showMore(key);
     }
 
+    /**
+     * Ved å trykke på denne knappen finner programmet valgt rad og via emplot() finner den frem valgt jobbsøker og
+     * setter nye verdier i "Status" til Ansatt / Besatt.
+     */
     public void btnEmploy(ActionEvent event) {
         ViewHelper run = new ViewHelper();
         String key = selectedPhoneNo(tvTempJobs);

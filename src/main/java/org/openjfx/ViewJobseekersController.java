@@ -36,7 +36,6 @@ public class ViewJobseekersController implements Initializable {
 
     /**
      * Denne metoden har følgende punkter:
-     *
      *  1: Om listen står tom vil denne meldingen gis til bruker. Dette skjer om filtreringen ikke finner noen
      *     matcher eller om man ikke finner noen matcher til en valgt jobbutlysning.
      *
@@ -99,7 +98,9 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Sender bruker tilbake til menysiden.
+     * Om denne knappen blir trykket kjører programmet upload-metoden via FilChoserHelper-klassen.
+     * JOBSEEKER sier hvor den opplastede jobbsøkeren skal lagres. Å kjøre changePage til
+     * siden man er på gjør at siden reloader.
      */
     public void btnUploadJobseeker(ActionEvent event){
         FileChooserHelper.upload(Paths.JOBSEEKER);
@@ -107,7 +108,8 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Sender bruker tilbake til menysiden.
+     * Om denne knappen blir trykket finner hvilken jobbutlysning som bruker har valgt og kjører den
+     * igjennom slett-metoden. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnDownloadJobseeker(ActionEvent event) {
         try{
@@ -120,7 +122,11 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Sender bruker tilbake til menysiden.
+     * Om man trykker på denne knappen henter programmet ut den valgte jobbsøkers's navn og
+     * spør deg i en alert box om du virkelig ønsker å slette søkeren med denne tittelen.
+     * Om bruker trykker "Ok" vil programmet hente ut en nøkkel som gjør at slette-metoden vet hvilken
+     * jobbsøker den skal fjerne fra jobbsøker-listen. Etter sletting oppdaterer programmet csv-filen
+     * og reloader siden. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnDeleteJobseeker(ActionEvent event) {
         String message;
@@ -150,7 +156,11 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Sender bruker tilbake til menysiden.
+     * Det skjer følgende ting når denne knappen trykkes:
+     * Først henter programmet ut tlfnr fra valgt jobbsøker. Dette nummeret brukes for å finne ut av hvilken rad
+     * valgt jobbsøker er i listen av søkere, dette skjer i findRow-metoden. Etter dette opprettes det en
+     * ny "stage" bassert på regJobseeker-FXML'en. Har kjøres setData()-metoden som setter verdiene til den valgte
+     * jobbsøkeren inn i tekstfeltene i FXML'en. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnEditJobseeker(ActionEvent event) {
         try{
@@ -158,7 +168,6 @@ public class ViewJobseekersController implements Initializable {
             ViewHelper run = new ViewHelper();
             run.findRow(jobseekersList, key, true);
 
-            // Load FXML
             URL url = getClass().getResource("/org/openjfx/regJobseeker.fxml");
             FXMLLoader loader = new FXMLLoader(url);
             Parent parent = null;
@@ -181,7 +190,11 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Sender bruker tilbake til menysiden.
+     * Om man trykker på denne knappen henter programmet ut valgte arbeidsområder fra jobbsøkeren
+     * og setter dem til chosenWorkfields. findRow()-metoden finner hvilken rad den valgte utlysningen
+     * er i listen og setter det nummeret til chosenJobseeker. Dette gjør at man kan filtrere hvilke
+     * jobbutøysninger som skal vises i resultater og om det opprettes et arbeidsforhold så får man tak i
+     * hvilken søker som ble valgt her via chosenJobseeker. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnFindTempJob(ActionEvent event) {
         try {
@@ -191,7 +204,6 @@ public class ViewJobseekersController implements Initializable {
 
             String key = selectedPhoneNo(tvJobseekers);
             run.findRow(jobseekersList, key, true);
-            System.out.println(run.isAvailable(jobseekersList, chosenJobseeker));
 
             if(run.isAvailable(jobseekersList, chosenJobseeker)){
                 NavigationHelper.changePage("/org/openjfx/matchTempJobs.fxml", event);
@@ -199,7 +211,6 @@ public class ViewJobseekersController implements Initializable {
             else{
                 AlertHelper.showError("Jobbsøkeren er i arbeid. Veld en ledig jobbsøker før du går videre.");
             }
-
         }
         catch(NullPointerException e){
             AlertHelper.showError("Du må velge en jobbsøker for å finne passende vikariat!");

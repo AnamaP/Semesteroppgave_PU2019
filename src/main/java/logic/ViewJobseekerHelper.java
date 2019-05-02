@@ -4,17 +4,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import classes.Jobseeker;
 import javafx.scene.control.TableView;
-
 import java.io.*;
 import java.util.ArrayList;
-
 import static logic.ViewHelper.chosenWorkfields;
 import static logic.RegJobseekerHelper.jobseekersList;
 
 public class ViewJobseekerHelper {
 
+    /**
+     * Denne oppdateres kontinuelig ettersom brukeren velger en jobbsøker. Dette gjør at valgt søker kan
+     * hentes ut og brukes på hvilken som helst side.
+     */
     public static int chosenJobseeker;
 
+    /**
+     * Denne metoden oppretter en ObservableList tabell, henter ut alle jobbsokere som ligger i
+     * databasen / csv-filen, gjør dem om til objekter og legger dem inn i tabellen. Sender passende
+     * feilmelding itl bruker om noe går galt.
+     */
     public static ObservableList<TableJobseekers> showJobseekers() {
 
         // Oppretter en tabell
@@ -47,6 +54,11 @@ public class ViewJobseekerHelper {
         return jobseekerList;
     }
 
+    /**
+     * Likt som metoden over bare at man henter ut arbeidsområder og sjekker om de passer til de som
+     * ble satt da man valgte en jobbsøker å sortere etter. Legger jobbsøkeren i tabbellen kun om den
+     * inneholder alle arbeidsområdene utlysningen ser etter.
+     */
     public static ObservableList<TableJobseekers> showResults(){
         // Oppretter en tabell
         ObservableList<TableJobseekers> showResults = FXCollections.observableArrayList();
@@ -86,12 +98,20 @@ public class ViewJobseekerHelper {
         return showResults;
     }
 
+    /**
+     * Denne metoden får inn en "nøkkel" og via findRow() metoden finner man riktig rad og
+     * laster denne ned via download() metoden.
+     */
     public static void saveJobseeker(String key){
         ViewHelper run = new ViewHelper();
         run.findRow(jobseekersList, key, true);
         FileChooserHelper.download(jobseekersList.get(chosenJobseeker));
     }
 
+    /**
+     * Denne metoden tar inn en tabell og henter ut valgt vikariat sitt tlfnr. Dette brukes ofte
+     * som "key" for å finne hvilken rad bruker har valgt.
+     */
     public static String selectedPhoneNo(TableView<TableJobseekers> tvTable){
         return tvTable.getSelectionModel().getSelectedItem().getPhoneNo();
     }

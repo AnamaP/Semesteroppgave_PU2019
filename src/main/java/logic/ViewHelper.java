@@ -4,10 +4,7 @@ import classes.Company;
 import classes.Cv;
 import classes.Jobseeker;
 import classes.TempJob;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
 import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.RegTempJobHelper.tempJobsList;
 import static logic.ViewJobseekerHelper.*;

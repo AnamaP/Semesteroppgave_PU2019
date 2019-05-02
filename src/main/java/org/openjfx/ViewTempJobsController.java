@@ -20,9 +20,7 @@ import java.util.ResourceBundle;
 
 import static logic.AlertHelper.showDeleteAlert;
 import static logic.FiltrationHelper.filtrateTempJobTable;
-import static logic.RegJobseekerHelper.jobseekersList;
 import static logic.RegTempJobHelper.tempJobsList;
-import static logic.ViewJobseekerHelper.chosenJobseeker;
 import static logic.ViewTempJobsHelper.*;
 
 public class ViewTempJobsController implements Initializable {
@@ -39,7 +37,6 @@ public class ViewTempJobsController implements Initializable {
 
     /**
      * Denne metoden har følgende punkter:
-     *
      *  1: Om listen står tom vil denne meldingen gis til bruker. Dette skjer om filtreringen ikke finner noen
      *     matcher eller om man ikke finner noen matcher til en valgt jobbsøker.
      *
@@ -47,7 +44,7 @@ public class ViewTempJobsController implements Initializable {
      *
      *  3: "status" skal kun vises her i view og ikke når man får listen opp som et resultat etter å ha valgt
      *     en jobbsøker. Siden det kun skal komme opp "ledige" jobbutlysninger uansett, så vil dette være overflødig. Det å
-     *     initialisere denne kolonnen utenfor metoden gjør at vi kan kalle på samme metode i kontrolleren hvor programmet
+     *     initialisere denne kolonnen utenfor metoden gjør at vi kan kalle på samme metode i kontrolleren der programmet
      *     viser resultater.
      *
      *  4: Denne fyller opp tabellen med jobbutlysninger.
@@ -103,7 +100,7 @@ public class ViewTempJobsController implements Initializable {
 
     /**
      * Om denne knappen blir trykket kjører programmet upload-metoden via FilChoserHelper-klassen.
-     * TEMPJOB sier hvor den opplastede jobbutlysningen skal lagres. Ved å kjøre changePage til
+     * TEMPJOB sier hvor den opplastede jobbutlysningen skal lagres. Å kjøre changePage til
      * siden man er på gjør at siden reloader.
      */
     public void btnUpload(ActionEvent event) {
@@ -147,7 +144,7 @@ public class ViewTempJobsController implements Initializable {
 
     /**
      * Om man trykker på denne knappen henter programmet ut den valgte jobbutlysning's tittel og
-     * spør deg i en allert-box om du virkelig ønsker å slette utlysningen med denne tittelen.
+     * spør deg i en alert box om du virkelig ønsker å slette utlysningen med denne tittelen.
      * Om bruker trykker "Ok" vil programmet hente ut en nøkkel som gjør at slette-metoden vet hvilken
      * utlysningn den skal fjerne fra jobbutlysnings-listen. Etter sletting oppdaterer programmet csv-filen
      * og reloader siden. Om ingen rad er valgt vil bruker få en meldig om dette.
@@ -178,7 +175,7 @@ public class ViewTempJobsController implements Initializable {
      * Først henter programmet ut tlfnr fra valgt jobbutlysning. Dette nummeret brukes for å finne ut av hvilken rad
      * valgt jobbutlysningen er i listen av utlysninger, dette skjer i findRow-metoden. Etter dette opprettes det en
      * ny "stage" bassert på regTempJob-FXML'en. Har kjøres setData()-metoden som setter verdiene til jobbutlysningen
-     * inn i tekst-feltene i FXML'en. Om ingen rad er valgt vil bruker få en meldig om dette.
+     * inn i tekstfeltene i FXML'en. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnEdit(ActionEvent event) throws IOException {
         try {
