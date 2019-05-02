@@ -13,7 +13,9 @@ public class AlertHelper {
         this.message = message;
     }
 
-    // Alert metode for feilmeldinger
+    /**
+     * Alert metode for feilmeldinger
+     */
     public static void showError(String message) {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
@@ -23,7 +25,9 @@ public class AlertHelper {
         error.showAndWait();
     }
 
-    // Alert metode for vellykket registrering
+    /**
+     Alert metode for vellykket registrering
+      */
     public static void showConfirmation(){
         Alert confirm = new Alert(Alert.AlertType.INFORMATION);
         confirm.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
@@ -32,7 +36,9 @@ public class AlertHelper {
         confirm.showAndWait();
     }
 
-    // Alert metode for visning av mer info i "OversiktVikariater"
+    /**
+     * Alert metode for visning av mer info i "OversiktVikariater"
+     */
     public static void showMoreInfo(String title, String message){
         Alert moreInfo = new Alert(Alert.AlertType.INFORMATION);
         moreInfo.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
@@ -41,7 +47,11 @@ public class AlertHelper {
         moreInfo.setContentText(message);
         moreInfo.showAndWait();
     }
-    // Alert metode som spør om bruker virkelig vil utføre slettingen
+
+    /**
+     * Alert metode som spør om bruker virkelig vil utføre slettingen
+     */
+
     public static Optional<ButtonType> showDeleteAlert(String message){
         Alert question = new Alert(Alert.AlertType.CONFIRMATION);
         question.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
