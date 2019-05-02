@@ -116,7 +116,7 @@ public class ViewTempJobsController implements Initializable {
             String key = selectedPhoneNo(tvTempJobs);
             ViewTempJobsHelper.saveTempJob(key);
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException e) { // TODO : Denne må håndteres med egendefinert avvik
             AlertHelper.showError("Du må velge et jobbutlysning for å kunne laste ned!");
         }
     }
@@ -132,7 +132,7 @@ public class ViewTempJobsController implements Initializable {
             String key = selectedPhoneNo(tvTempJobs);
             readMore(key);
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException e) { // TODO : MÅ håndeteres med egendefinert avvik
             AlertHelper.showError("Du må velge et jobbutlysning for å lese mer!");
         }
     }
@@ -160,7 +160,7 @@ public class ViewTempJobsController implements Initializable {
                 NavigationHelper.changePage("/org/openjfx/view/viewTempJobs.fxml", event);
             }
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException e) { // TODO: MÅ håndteres med egendefinert avvik
             AlertHelper.showError("Du må velge et jobbutlysning for å kunne slette det!");
         }
     }
@@ -172,7 +172,7 @@ public class ViewTempJobsController implements Initializable {
      * ny "stage" bassert på regTempJob-FXML'en. Har kjøres setData()-metoden som setter verdiene til jobbutlysningen
      * inn i tekstfeltene i FXML'en. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
-    public void btnEdit(ActionEvent event) throws IOException {
+    public void btnEdit(ActionEvent event) throws IOException { // TODO: Håndteres med egendefinert avvik?
         try {
             String key = selectedPhoneNo(tvTempJobs);
             ViewHelper run = new ViewHelper();
@@ -189,7 +189,7 @@ public class ViewTempJobsController implements Initializable {
             Scene scene = new Scene(parent);
             stage.setScene(scene);
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException e) { // TODO : Må håndteres med egendefinert avvik
             AlertHelper.showError("Du må velge et jobbutlysning for å kunne redigere!");
         }
     }
@@ -217,7 +217,7 @@ public class ViewTempJobsController implements Initializable {
                 AlertHelper.showError("Vikariatet er besatt. Veld et ledig vikariat før du går videre.");
             }
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException e) { // TODO: MÅ håndteres med egendefinert avvik
             AlertHelper.showError("Du må velge et jobbutlysning for å finne passende jobbsøker!");
         }
     }

@@ -77,7 +77,7 @@ public class RegJobseekerHelper {
         try{
             choise = comboBox.getSelectionModel().getSelectedItem().toString();
         }
-        catch(NullPointerException nope){
+        catch(NullPointerException e){ // TODO: Må hånderes med egendefinert avvik
             choise = "not selected";
         }
         System.out.println(choise);

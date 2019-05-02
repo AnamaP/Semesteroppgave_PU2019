@@ -6,7 +6,7 @@ import java.io.*;
  * Konkret klasse som representerer lagring og innlesing til csv filformat
  */
 public class CsvFileHandler extends FileHandler {
-
+// TODO: PathNotFoundException, InvalidPathException og håndtere de andre metodene
 
     /**
      * Metode som leser fra fil

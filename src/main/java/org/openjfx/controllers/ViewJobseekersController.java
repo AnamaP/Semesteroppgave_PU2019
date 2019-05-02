@@ -116,7 +116,7 @@ public class ViewJobseekersController implements Initializable {
             String key = selectedPhoneNo(tvJobseekers);
             ViewJobseekersHelper.saveJobseeker(key);
         }
-        catch(NullPointerException e){
+        catch(NullPointerException e){ // TODO : MÅ håndteres med egendefinert avvik
             AlertHelper.showError("Du har ikke valgt en jobbsøker for nedlasting!");
         }
     }
@@ -146,7 +146,7 @@ public class ViewJobseekersController implements Initializable {
                 NavigationHelper.changePage("/org/openjfx/view/viewJobseekers.fxml", event);
             }
         }
-        catch(NullPointerException e){
+        catch(NullPointerException e){ // TODO: Må håndteres med egendefinert avvik
             AlertHelper.showError("Du må velge en jobbsøker for å kunne slette!");
         }
     }
@@ -169,7 +169,7 @@ public class ViewJobseekersController implements Initializable {
             Parent parent = null;
             try {
                 parent = loader.load();
-            } catch (IOException e) {
+            } catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
                 e.printStackTrace();
             }
             RegJobseekerController controller = loader.getController();
@@ -180,7 +180,7 @@ public class ViewJobseekersController implements Initializable {
             Scene scene = new Scene(parent);
             stage.setScene(scene);
         }
-        catch(NullPointerException e){
+        catch(NullPointerException e){ // TODO : MÅ håndteres med egendefinert avvik
             AlertHelper.showError("Du må velge en jobbsøker for å kunne redigere!");
         }
     }
@@ -208,7 +208,7 @@ public class ViewJobseekersController implements Initializable {
                 AlertHelper.showError("Jobbsøkeren er i arbeid. Veld en ledig jobbsøker før du går videre.");
             }
         }
-        catch(NullPointerException e){
+        catch(NullPointerException e){ // TODO ; MÅ håndteres med egendefinert avvik
             AlertHelper.showError("Du må velge en jobbsøker for å finne passende vikariat!");
         }
     }

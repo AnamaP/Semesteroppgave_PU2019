@@ -95,7 +95,7 @@ public class MatchingTempJobsController implements Initializable {
             String key = selectedPhoneNo(tvTempJobs);
             readMore(key);
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException e) { // TODO: Denne må håndteres med egendefinert avvik
             AlertHelper.showError("Du må velge et jobbutlysning for å lese mer!");
         }
     }

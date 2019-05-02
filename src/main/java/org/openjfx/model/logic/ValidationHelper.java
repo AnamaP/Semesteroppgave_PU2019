@@ -12,6 +12,8 @@ import static org.openjfx.model.logic.RegJobseekerHelper.jobseekersList;
 import static org.openjfx.model.logic.RegTempJobHelper.tempJobsList;
 
 public class ValidationHelper {
+    // TODO : NullpointerException kan ikke brukes! må erstattes med egendefinerte avvik,
+    // samt håndtere de andre sjekkene med excpetion!
 
     public static String invalidInputs;
 
@@ -95,7 +97,7 @@ public class ValidationHelper {
             try {
                 csvFileHandler.writeToDB(content, path);
             }
-            catch (IOException e) {
+            catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
                 e.printStackTrace();
             }
             return true;
@@ -172,7 +174,7 @@ public class ValidationHelper {
             try {
                 jobseeker = (Jobseeker) object;
             }
-            catch(NullPointerException | ClassCastException e){
+            catch(NullPointerException | ClassCastException e){ // TODO: Må håndteres med egendefinert avvik
                 jobseeker = null;
             }
             if(jobseeker != null){
@@ -183,7 +185,7 @@ public class ValidationHelper {
             try{
                 company = (Company) object;
             }
-            catch (NullPointerException | ClassCastException e) {
+            catch (NullPointerException | ClassCastException e) { // TODO : Må håndteres med egendefinert avvik
                 company = null;
             }
             if(company != null){

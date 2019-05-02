@@ -85,7 +85,7 @@ public class MainAppHelper {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(path, false);
-        } catch (IOException e) {
+        } catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
             e.printStackTrace();
         }
         PrintWriter printWriter = new PrintWriter(fileWriter);

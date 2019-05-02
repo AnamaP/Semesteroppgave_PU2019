@@ -42,7 +42,7 @@ public class ViewJobseekersHelper {
         catch(FileNotFoundException e){
             System.err.println("showJobseekers() : Finner ikke filen du leter etter");
         }
-        catch(IOException e){
+        catch(IOException e){ // TODO: Håndteres med egendefinert avvik?
             System.err.println("showJobseekers() : Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
         return jobseekerList;
@@ -76,10 +76,10 @@ public class ViewJobseekersHelper {
             }
             csvreader.close();
         }
-        catch(FileNotFoundException e){
+        catch(FileNotFoundException e){ // TODO: Håndteres med egendefinert avvik?
             System.err.println("VisResultat() : Finner ikke filen du leter etter");
         }
-        catch(IOException e){
+        catch(IOException e){ // TODO: Håndteres med egendefinert avvik?
             System.err.println("VisResultat() : Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
         return showResults;

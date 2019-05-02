@@ -28,8 +28,8 @@ public class NavigationHelper {
             stage.setScene(scene);
             stage.centerOnScreen();
         }
-        catch (IOException io) {
-            io.printStackTrace();
+        catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
+            e.printStackTrace();
         }
     }
 }

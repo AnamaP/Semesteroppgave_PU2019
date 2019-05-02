@@ -57,7 +57,7 @@ public class FileChooserHelper {
         try {
             chosenpath = selectedFile.toString();
         }
-        catch (NullPointerException e){
+        catch (NullPointerException e){ // TODO: Ersatte Nullpointer med egendefinert avvik
             chosenpath = "";
         }
         return chosenpath;
@@ -109,9 +109,9 @@ public class FileChooserHelper {
             if (run.validateFileInpt(object, toPath, isCsvFiltype)) {
                 try {
                     fileHandler.writeToDB(object, toPath);
-                } catch (FileNotFoundException e) {
+                } catch (FileNotFoundException e) { // TODO: Ersatte med egendefinert avvik
                     System.err.println("Fant ikke filen du lette etter.");
-                } catch (IOException e) {
+                } catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
                     System.err.println("Kunne ikke lese filen du lette etter. Årsak : " + e.getCause());
                 }
             } else {
@@ -130,7 +130,7 @@ public class FileChooserHelper {
         try {
             fileHandler.writeToFile(object, chosenpath);
         }
-        catch (IOException e) {
+        catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
             e.printStackTrace();
         }
     }
