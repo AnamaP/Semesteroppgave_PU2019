@@ -96,17 +96,18 @@ public class FileChooserHelper {
     /**
      *  Denne metoden åpner dialogvinduet, leser filen som er valgt og skriver til fil dersom den
      *  den kommer igjennom valideringen. Dersom det ikke er godkjent validering vil en feilmld til bruker vises.
+     *  Prøvde å implementere bruk av Thread her, men denne delen av programmet ble vi ikke helt ferdig med.
      */
     public static void upload(String toPath){
         String fromPath = openDialog();
 
+        // Tråd:
         try {
             System.out.println(ReaderThreadStarter.startReader(fromPath).length);
         }
         catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-
 
         if(fromPath.split("\\.").length > 1) {
             FileHandler fileHandler = getExtensionFilter(fromPath);
@@ -120,13 +121,9 @@ public class FileChooserHelper {
 
             ValidationHelper run = new ValidationHelper();
             if (run.validateFileInpt(object, toPath, isCsvFiltype)) {
-                try {
-                    fileHandler.writeToDB(object, toPath);
-                } catch (FileNotFoundException e) {
-                    AlertHelper.showError("Fant ikke filen.");
-                } catch (IOException e) {
-                    AlertHelper.showError("Kunne ikke lese filen. Årsak : " + e.getCause());
-                }
+                MainAppHelper runer = new MainAppHelper();
+                runer.reloadJobseekersDB();
+                runer.reloadTempJobsDB();
             }
             else {
                 AlertHelper.showError(invalidInputs);
