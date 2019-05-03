@@ -42,9 +42,7 @@ public class ViewJobseekersController implements Initializable {
      *  2: setTempJobsTable initialiserer kolonnene.
      *
      *  3: "status" skal kun vises her i view og ikke når man får listen opp som et resultat etter å ha valgt
-     *     en jobbutlysning. Siden det kun skal komme opp "ledige" jobbutlysninger uansett, så vil dette være overflødig.
-     *     Det å initialisere denne kolonnen utenfor metoden gjør at vi kan kalle på samme metode i kontrolleren
-     *     hvor programmet kun viser resultater.
+     *     en jobbutlysning. Siden det kun skal komme opp "ledige" jobbutlysninger uansett.
      *
      *  4: Denne fyller opp tabellen med jobbsøkere.
      *
@@ -98,9 +96,7 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Om denne knappen blir trykket kjører programmet upload-metoden via FilChoserHelper-klassen.
-     * JOBSEEKER sier hvor den opplastede jobbsøkeren skal lagres. Å kjøre changePage til
-     * siden man er på gjør at siden reloader.
+     * Kjører FileChooserHelper sin upload og reloader siden.
      */
     public void btnUploadJobseeker(ActionEvent event){
         FileChooserHelper.upload(Paths.JOBSEEKER);
@@ -127,10 +123,8 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Om man trykker på denne knappen henter programmet ut den valgte jobbsøkers's navn og
-     * spør deg i en alert box om du virkelig ønsker å slette søkeren med denne tittelen.
-     * Om bruker trykker "Ok" vil programmet hente ut en nøkkel som gjør at slette-metoden vet hvilken
-     * jobbsøker den skal fjerne fra jobbsøker-listen. Etter sletting oppdaterer programmet csv-filen
+     * Henter ut valgt jobbsøker og spør bruker om hen er sikker på at hen vil slette.
+     * Utfører slettingen og bruker trykker "ok". Etter sletting oppdaterer programmet csv-filen
      * og reloader siden. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnDeleteJobseeker(ActionEvent event){

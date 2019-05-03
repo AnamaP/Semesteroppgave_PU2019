@@ -85,10 +85,7 @@ public class MatchingTempJobsController implements Initializable {
     }
 
     /**
-     * Ved å trykke på denne knappen får brukeren opp mer informasjon om jobbutlysningen som vi ikke
-     * så det nødvendig å presentere til alle tider. Dette gjorde GUI mye mer ryddig.
-     * Programmet henter ut hvilken rad bruker har valgt og kjører readMore() metoden.
-     * Dette vises til bruker i en allert-box. Om ingen rad er valgt vil bruker få en meldig om dette.
+     * Henter ut hvilken rad bruker har valgt og kjører readMore() metoden.
      */
     public void btnReadMore(ActionEvent event) {
         try {
@@ -101,8 +98,7 @@ public class MatchingTempJobsController implements Initializable {
     }
 
     /**
-     * Ved å trykke på denne knappen finner programmet valgt rad og via emplot() finner den frem valgt jobbsøker og
-     * setter nye verdier i "Status" til Ansatt / Besatt.
+     * Henter ut valgt utlysning og kjører employ.
      */
     public void btnEmploy(ActionEvent event){
         ViewHelper run = new ViewHelper();

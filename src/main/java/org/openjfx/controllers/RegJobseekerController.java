@@ -25,17 +25,12 @@ public class RegJobseekerController {
     private static boolean shouldUpdate = false;
 
     /**
-     * I metoden under går man igjennom 3 stadier:
-     *
-     * 1: Om man kommer fra registrering ønsker man at den gamle versjonen av jobbsøkeren skal slettes
-     *    og erstattes slik at kun den nye versjonen blir registrert. Her kjørers også reloadJobseekersDB som setter
-     *    det nå oppdaterte arrayet inn i csv-filen og overskriver det som ligger der, slik at det ikke finnes en
-     *    gammel versjon av jobbsøkeren i csv-filen lenger.
+     * 1: Om man kommer fra redigering ønsker man at den gamle versjonen av jobbsøkeren skal slettes
+     *    og erstattes om shouldUpdate er true. Oppdaterer csv via reloadJobseekeresDB().
      *
      * 2: Oppretter en ny jobbsøker bassert på hva bruker har skrevet inn.
      *
-     * 3: Her kjører den en test på at det brukeren har skrevet inn er gyldige verdier og sender deg videre til
-     *    en ny side om det du skriver inn er "godkjent".
+     * 3: Validerer det bruker har skrevet inn og sender deg videre til en ny side om den er "godkjent".
      */
     public void btnRegJobseeker(ActionEvent event) {
         // 1

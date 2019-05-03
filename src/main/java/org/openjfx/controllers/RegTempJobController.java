@@ -24,14 +24,10 @@ public class RegTempJobController {
     private boolean shouldUpdate = false;
 
     /**
-     * I metoden under går man igjennom 3 stadier:
+     * 1: Om man kommer fra redigering ønsker man at den gamle versjonen av utlysningen skal slettes
+     *    og erstattes om shouldUpdate er true. Oppdaterer csv via reloadTempJobsDB().
      *
-     * 1: Oppretter en ny utlysning bassert på hva bruker har skrevet inn.
-     *
-     * 2: Om man kommer fra registrering ønsker man at den gamle versjonen av jobbutlysningen skal slettes
-     *    og erstattes etter at den nye versjonen er blitt registrert. Her kjørers også reloadTempJobsDB som setter
-     *    det nå oppdaterte arrayet inn i csv-filen og overskriver det som ligger der, slik at det ikke finnes en
-     *    gammel versjon av jobbutlysningen i csv-filen lenger.
+     * 2: Oppretter en ny utlysning bassert på hva bruker har skrevet inn.
      *
      * 3: Her kjører den en test på at det brukeren har skrevet inn er gyldige verdier og sender deg videre til
      *    en ny side om det du skriver inn er "godkjent".

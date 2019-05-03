@@ -98,23 +98,23 @@ public class FileChooserHelper {
      *  den kommer igjennom valideringen. Dersom det ikke er godkjent validering vil en feilmld til bruker vises.
      */
     public static void upload(String toPath){
-        String chosenpath = openDialog();
+        String fromPath = openDialog();
 
         try {
-            System.out.println(ReaderThreadStarter.startReader(chosenpath).length);
+            System.out.println(ReaderThreadStarter.startReader(fromPath).length);
         }
         catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
 
-        if(chosenpath.split("\\.").length > 1) {
-            FileHandler fileHandler = getExtensionFilter(chosenpath);
-            Object object = fileHandler.readFromFile(splitPathIntoBaseAndExtension(chosenpath)[0]);
+        if(fromPath.split("\\.").length > 1) {
+            FileHandler fileHandler = getExtensionFilter(fromPath);
+            Object object = fileHandler.readFromFile(splitPathIntoBaseAndExtension(fromPath)[0]);
 
             // Henter ut filtype
             boolean isCsvFiltype = true;
-            if (splitPathIntoBaseAndExtension(chosenpath)[1].equals("jobj")) {
+            if (splitPathIntoBaseAndExtension(fromPath)[1].equals("jobj")) {
                 isCsvFiltype = false;
             }
 
@@ -138,11 +138,11 @@ public class FileChooserHelper {
      * Denne metoden viser vindu for nedlasting og skriver objektet til fil med valgt format (.csv/.jobj).
      */
     public static void download(Object object) {
-        String chosenpath = saveDialog();
-        FileHandler fileType = getExtensionFilter(chosenpath);
+        String chosenSavePath = saveDialog();
+        FileHandler fileType = getExtensionFilter(chosenSavePath);
 
         try {
-            fileType.writeToFile(object, chosenpath);
+            fileType.writeToFile(object, chosenSavePath);
         }
         catch (IOException e) {
             AlertHelper.showError("Fikk ikke til nedlastningen. Feilmelding :" + e.getCause());
