@@ -68,20 +68,26 @@ public class FileChooserHelper {
      *  Metode som henter filformat bruker har valgt
      */
     public static FileHandler getExtensionFilter(String chosenpath) {
-        FileHandler fileHandler;
+        FileHandler fileHandler = null;
+        String out = "";
         String extension = null;
         try {
             extension = FileHandler.getExtension(chosenpath);
-        } catch (PathNotFoundException e) {
-            AlertHelper.showError("Finner ikke filtypen!");
+        }
+        catch (PathNotFoundException e) {
+            out = "Finner ikke filtypen!";
         }
 
         if(extension.equals(".csv")){
             fileHandler = new CsvFileHandler();
         }
-        else{
+        if(extension.equals(".jobj")){
             fileHandler = new JobjFileHandler();
         }
+        if(extension.isEmpty()){
+            out = "Avsluttet nedlasting.";
+        }
+        AlertHelper.showError(out);
         return fileHandler;
 
     }
@@ -118,11 +124,12 @@ public class FileChooserHelper {
                 try {
                     fileHandler.writeToDB(object, toPath);
                 } catch (FileNotFoundException e) {
-                    System.err.println("Fant ikke filen du lette etter.");
+                    AlertHelper.showError("Fant ikke filen.");
                 } catch (IOException e) {
-                    System.err.println("Kunne ikke lese filen du lette etter. Årsak : " + e.getCause());
+                    AlertHelper.showError("Kunne ikke lese filen. Årsak : " + e.getCause());
                 }
-            } else {
+            }
+            else {
                 AlertHelper.showError(invalidInputs);
             }
         }
@@ -133,14 +140,14 @@ public class FileChooserHelper {
      */
     public static void download(Object object) {
         String chosenpath = saveDialog();
-        FileHandler fileHandler = null;
+        FileHandler fileHandler;
         fileHandler = getExtensionFilter(chosenpath);
 
         try {
             fileHandler.writeToFile(object, chosenpath);
         }
         catch (IOException e) {
-            e.printStackTrace();
+            AlertHelper.showError("Fikk ikke til nedlastningen. Feilmelding :" + e.getCause());
         }
     }
 

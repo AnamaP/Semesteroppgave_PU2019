@@ -112,12 +112,17 @@ public class ViewJobseekersController implements Initializable {
      * igjennom slett-metoden. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnDownloadJobseeker(ActionEvent event) {
+        String out = "empty";
+        String key = null;
         try{
-            String key = selectedPhoneNo(tvJobseekers);
+            key = selectedPhoneNo(tvJobseekers);
             ViewJobseekersHelper.saveJobseeker(key);
         }
-        catch(NullPointerException e){ // TODO : MÅ håndteres med egendefinert avvik
-            AlertHelper.showError("Du har ikke valgt en jobbsøker for nedlasting!");
+        catch(NullPointerException e){
+            out = "Du har ikke valgt en jobbsøker for nedlasting!";
+        }
+        if(key == null){
+            AlertHelper.showError(out);
         }
     }
 
