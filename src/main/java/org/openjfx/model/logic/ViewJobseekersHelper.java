@@ -97,7 +97,7 @@ public class ViewJobseekersHelper {
     /**
      * Finner valgt rad og laster den ned via download() metoden.
      */
-    public static void saveJobseeker(String key){
+    public static void downloadJobseeker(String key){
         ViewHelper run = new ViewHelper();
         run.findRow(jobseekersList, key, true);
         FileChooserHelper.download(jobseekersList.get(chosenJobseeker));

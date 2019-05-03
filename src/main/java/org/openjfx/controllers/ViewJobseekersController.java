@@ -116,7 +116,7 @@ public class ViewJobseekersController implements Initializable {
         String key = null;
         try{
             key = selectedPhoneNo(tvJobseekers);
-            ViewJobseekersHelper.saveJobseeker(key);
+            ViewJobseekersHelper.downloadJobseeker(key);
         }
         catch(NullPointerException e){
             out = "Du har ikke valgt en jobbsøker for nedlasting!";

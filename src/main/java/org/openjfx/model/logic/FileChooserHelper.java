@@ -109,9 +109,7 @@ public class FileChooserHelper {
 
 
         if(chosenpath.split("\\.").length > 1) {
-            FileHandler fileHandler = null;
-            fileHandler = getExtensionFilter(chosenpath);
-
+            FileHandler fileHandler = getExtensionFilter(chosenpath);
             Object object = fileHandler.readFromFile(splitPathIntoBaseAndExtension(chosenpath)[0]);
 
             // Henter ut filtype
@@ -141,8 +139,7 @@ public class FileChooserHelper {
      */
     public static void download(Object object) {
         String chosenpath = saveDialog();
-        FileHandler fileHandler;
-        fileHandler = getExtensionFilter(chosenpath);
+        FileHandler fileHandler = getExtensionFilter(chosenpath);
 
         try {
             fileHandler.writeToFile(object, chosenpath);
