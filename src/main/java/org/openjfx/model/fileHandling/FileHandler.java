@@ -1,5 +1,7 @@
 package org.openjfx.model.fileHandling;
 
+import org.openjfx.model.exceptions.PathNotFoundException;
+
 import java.io.IOException;
 
 /**
@@ -15,13 +17,13 @@ public abstract class FileHandler {
     /**
      * Denne metoden henter extension fra filen
      */
-    public static String getExtension(String chosenpath) throws NullPointerException{
+    public static String getExtension(String chosenpath) throws PathNotFoundException{
         String extension;
         try {
             extension = chosenpath.substring(chosenpath.lastIndexOf("."));
         }
-        catch (NullPointerException e){
-            extension = "";
+        catch (StringIndexOutOfBoundsException e){
+            throw new PathNotFoundException("Finner ingen valgt fil");
         }
         return extension;
     }

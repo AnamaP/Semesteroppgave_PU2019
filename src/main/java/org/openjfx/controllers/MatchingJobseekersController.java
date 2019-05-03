@@ -61,8 +61,8 @@ public class MatchingJobseekersController implements Initializable {
         tvJobseekers.setItems(showResults());
 
         // 4:
-        FilteredList<TableJobseekers> filteredData = new FilteredList<>(showResults(), p -> true);
-        txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(jobseeker -> {
+        FilteredList<TableJobseekers> filteredContent = new FilteredList<>(showResults(), p -> true);
+        txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredContent.setPredicate(jobseeker -> {
             if (newValue == null || newValue.isEmpty()) {
                 return true;
             }
@@ -74,9 +74,9 @@ public class MatchingJobseekersController implements Initializable {
         }));
 
         // 5:
-        SortedList<TableJobseekers> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(tvJobseekers.comparatorProperty());
-        tvJobseekers.setItems(sortedData);
+        SortedList<TableJobseekers> sortedContent = new SortedList<>(filteredContent);
+        sortedContent.comparatorProperty().bind(tvJobseekers.comparatorProperty());
+        tvJobseekers.setItems(sortedContent);
     }
 
     /**

@@ -71,8 +71,8 @@ public class ViewJobseekersController implements Initializable {
         tvJobseekers.setItems(showJobseekers());
 
         // 5:
-        FilteredList<TableJobseekers> filteredData = new FilteredList<>(showJobseekers(), p -> true);
-        txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(jobseeker -> {
+        FilteredList<TableJobseekers> filteredContent = new FilteredList<>(showJobseekers(), p -> true);
+        txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredContent.setPredicate(jobseeker -> {
             if (newValue == null || newValue.isEmpty()) {
                 return true;
             }
@@ -84,9 +84,9 @@ public class ViewJobseekersController implements Initializable {
         }));
 
         // 6:
-        SortedList<TableJobseekers> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(tvJobseekers.comparatorProperty());
-        tvJobseekers.setItems(sortedData);
+        SortedList<TableJobseekers> sortedContent = new SortedList<>(filteredContent);
+        sortedContent.comparatorProperty().bind(tvJobseekers.comparatorProperty());
+        tvJobseekers.setItems(sortedContent);
     }
 
     /**

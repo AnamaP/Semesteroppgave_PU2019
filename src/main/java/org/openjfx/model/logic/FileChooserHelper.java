@@ -1,5 +1,6 @@
 package org.openjfx.model.logic;
 
+import org.openjfx.model.exceptions.PathNotFoundException;
 import org.openjfx.model.fileHandling.CsvFileHandler;
 import org.openjfx.model.fileHandling.FileHandler;
 import org.openjfx.model.fileHandling.JobjFileHandler;
@@ -57,7 +58,7 @@ public class FileChooserHelper {
         try {
             chosenpath = selectedFile.toString();
         }
-        catch (NullPointerException e){ // TODO: Ersatte Nullpointer med egendefinert avvik
+        catch (NullPointerException e){
             chosenpath = "";
         }
         return chosenpath;
@@ -66,9 +67,14 @@ public class FileChooserHelper {
     /**
      *  Metode som henter filformat bruker har valgt
      */
-    public static FileHandler getExtensionFilter(String chosenpath){
+    public static FileHandler getExtensionFilter(String chosenpath) {
         FileHandler fileHandler;
-        String extension = FileHandler.getExtension(chosenpath);
+        String extension = null;
+        try {
+            extension = FileHandler.getExtension(chosenpath);
+        } catch (PathNotFoundException e) {
+            AlertHelper.showError("Finner ikke filtypen!");
+        }
 
         if(extension.equals(".csv")){
             fileHandler = new CsvFileHandler();
@@ -80,7 +86,6 @@ public class FileChooserHelper {
 
     }
 
-    //TODO: Thread metode (what to do??)
     /**
      *  Denne metoden åpner dialogvinduet, leser filen som er valgt og skriver til fil dersom den
      *  den kommer igjennom valideringen. Dersom det ikke er godkjent validering vil en feilmld til bruker vises.
@@ -95,8 +100,11 @@ public class FileChooserHelper {
             e.printStackTrace();
         }
 
+
         if(chosenpath.split("\\.").length > 1) {
-            FileHandler fileHandler = getExtensionFilter(chosenpath);
+            FileHandler fileHandler = null;
+            fileHandler = getExtensionFilter(chosenpath);
+
             Object object = fileHandler.readFromFile(splitPathIntoBaseAndExtension(chosenpath)[0]);
 
             // Henter ut filtype
@@ -109,9 +117,9 @@ public class FileChooserHelper {
             if (run.validateFileInpt(object, toPath, isCsvFiltype)) {
                 try {
                     fileHandler.writeToDB(object, toPath);
-                } catch (FileNotFoundException e) { // TODO: Ersatte med egendefinert avvik
+                } catch (FileNotFoundException e) {
                     System.err.println("Fant ikke filen du lette etter.");
-                } catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
+                } catch (IOException e) {
                     System.err.println("Kunne ikke lese filen du lette etter. Årsak : " + e.getCause());
                 }
             } else {
@@ -125,12 +133,13 @@ public class FileChooserHelper {
      */
     public static void download(Object object) {
         String chosenpath = saveDialog();
-        FileHandler fileHandler = getExtensionFilter(chosenpath);
+        FileHandler fileHandler = null;
+        fileHandler = getExtensionFilter(chosenpath);
 
         try {
             fileHandler.writeToFile(object, chosenpath);
         }
-        catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

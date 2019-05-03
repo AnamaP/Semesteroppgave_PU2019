@@ -48,7 +48,7 @@ public class ViewTempJobsController implements Initializable {
      *
      *  4: Denne fyller opp tabellen med jobbutlysninger.
      *
-     *  5: Her setter man ObservablaList inn i filteredData som muliggjør filtrering av data i tabellen.
+     *  5: Her setter man ObservablaList inn i filteredContent som muliggjør filtrering av data i tabellen.
      *     Programmet bruker Listener til å fange opp endringer. Hvis det ikke er skrevet noe inn i filteret så skal
      *     all informasjon vises og om noe skrives inn skriver den kun ut de elementene som inneholder dette.
      *
@@ -71,8 +71,8 @@ public class ViewTempJobsController implements Initializable {
         tvTempJobs.setItems(viewTempJobs());
 
         // 5:
-        FilteredList<TableTempJobs> filteredData = new FilteredList<>(viewTempJobs(), p -> true);
-        txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(tempJob -> {
+        FilteredList<TableTempJobs> filteredContent = new FilteredList<>(viewTempJobs(), p -> true);
+        txtFilterField.textProperty().addListener((observable, oldValue, newValue) -> filteredContent.setPredicate(tempJob -> {
             if (newValue == null || newValue.isEmpty()) {
                 return true;
             }
@@ -84,9 +84,9 @@ public class ViewTempJobsController implements Initializable {
         }));
 
         // 6:
-        SortedList<TableTempJobs> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(tvTempJobs.comparatorProperty());
-        tvTempJobs.setItems(sortedData);
+        SortedList<TableTempJobs> sortedContent = new SortedList<>(filteredContent);
+        sortedContent.comparatorProperty().bind(tvTempJobs.comparatorProperty());
+        tvTempJobs.setItems(sortedContent);
     }
 
     /**

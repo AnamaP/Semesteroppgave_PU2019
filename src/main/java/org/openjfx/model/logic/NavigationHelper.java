@@ -28,7 +28,7 @@ public class NavigationHelper {
             stage.setScene(scene);
             stage.centerOnScreen();
         }
-        catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
+        catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
     }
