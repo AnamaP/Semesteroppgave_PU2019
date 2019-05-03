@@ -41,7 +41,7 @@ public class MatchingJobseekersController implements Initializable {
      *
      *  3: Denne fyller opp tabellen med jobbsøkere.
      *
-     *  4: Her setter man ObservablaList inn i filterredData som muliggjør sortering og filtrering av data i tabellen.
+     *  4: Her setter man ObservablaList inn i filterredData som muliggjør filtrering av data i tabellen.
      *     Programmet bruker Listener til å fange opp endringer. Hvis det ikke er skrevet noe inn i filteret så skal
      *     all informasjon vises og om noe skrives inn skriver den kun ut de elementene som inneholder dette.
      *

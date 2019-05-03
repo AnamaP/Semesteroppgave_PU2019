@@ -48,7 +48,7 @@ public class ViewTempJobsController implements Initializable {
      *
      *  4: Denne fyller opp tabellen med jobbutlysninger.
      *
-     *  5: Her setter man ObservablaList inn i filteredData som muliggjør sortering og filtrering av data i tabellen.
+     *  5: Her setter man ObservablaList inn i filteredData som muliggjør filtrering av data i tabellen.
      *     Programmet bruker Listener til å fange opp endringer. Hvis det ikke er skrevet noe inn i filteret så skal
      *     all informasjon vises og om noe skrives inn skriver den kun ut de elementene som inneholder dette.
      *
