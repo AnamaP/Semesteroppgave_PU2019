@@ -35,9 +35,7 @@ public class ViewTempJobsController implements Initializable {
                                                tcIndustry, tcJobTitle, tcJobType, tcWorkfields, tcStatus;
 
     /**
-     * Denne metoden har følgende punkter:
-     *  1: Om listen står tom vil denne meldingen gis til bruker. Dette skjer om filtreringen ikke finner noen
-     *     matcher eller om man ikke finner noen matcher til en valgt jobbsøker.
+     * 1: Om listen står tom vil denne meldingen gis til bruker.
      *
      *  2: setTempJobsTable initialiserer kolonnene.
      *
@@ -98,9 +96,7 @@ public class ViewTempJobsController implements Initializable {
     }
 
     /**
-     * Om denne knappen blir trykket kjører programmet upload-metoden via FilChoserHelper-klassen.
-     * TEMPJOB sier hvor den opplastede jobbutlysningen skal lagres. Å kjøre changePage til
-     * siden man er på gjør at siden reloader.
+     * Kjører FileChooserHelper sin upload og reloader siden.
      */
     public void btnUpload(ActionEvent event) {
         FileChooserHelper.upload(Paths.TEMPJOB);
@@ -108,8 +104,7 @@ public class ViewTempJobsController implements Initializable {
     }
 
     /**
-     * Om denne knappen blir trykket finner hvilken jobbutlysning som bruker har valgt og kjører den
-     * igjennom slett-metoden. Om ingen rad er valgt vil bruker få en meldig om dette.
+     * Finner valgt jobbutlysning og kjører downloadTempJob-metoden. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnDownload(ActionEvent event) {
         String out = "empty";
@@ -143,10 +138,8 @@ public class ViewTempJobsController implements Initializable {
     }
 
     /**
-     * Om man trykker på denne knappen henter programmet ut den valgte jobbutlysning's tittel og
-     * spør deg i en alert box om du virkelig ønsker å slette utlysningen med denne tittelen.
-     * Om bruker trykker "Ok" vil programmet hente ut en nøkkel som gjør at slette-metoden vet hvilken
-     * utlysningn den skal fjerne fra jobbutlysnings-listen. Etter sletting oppdaterer programmet csv-filen
+     * Henter ut valgt jobbutlysning og spør bruker om hen er sikker på at hen vil slette.
+     * Utfører slettingen og bruker trykker "ok". Etter sletting oppdaterer programmet csv-filen
      * og reloader siden. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnDeleteChosenTempJob(ActionEvent event) {
@@ -171,11 +164,8 @@ public class ViewTempJobsController implements Initializable {
     }
 
     /**
-     * Det skjer følgende ting når denne knappen trykkes:
-     * Først henter programmet ut tlfnr fra valgt jobbutlysning. Dette nummeret brukes for å finne ut av hvilken rad
-     * valgt jobbutlysningen er i listen av utlysninger, dette skjer i findRow-metoden. Etter dette opprettes det en
-     * ny "stage" bassert på regTempJob-FXML'en. Har kjøres setData()-metoden som setter verdiene til jobbutlysningen
-     * inn i tekstfeltene i FXML'en. Om ingen rad er valgt vil bruker få en meldig om dette.
+     * Finner valgt rad og oppretter det en ny "stage" bassert på regTempJob-FXML'en. Kjører
+     * setData()-metoden som setter verdiene til den valgte jobbutlysningen inn i tekstfeltene i FXML'en.
      */
     public void btnEdit(ActionEvent event) throws IOException {
         try {
@@ -200,11 +190,8 @@ public class ViewTempJobsController implements Initializable {
     }
 
     /**
-     * Om man trykker på denne knappen henter programmet ut valgte arbeidsområder fra jobbutlysningen
-     * og setter dem til chosenWorkfields. findRow()-metoden finner hvilken rad den valgte utlysningen
-     * er i listen og setter det nummeret til chosenTempJob. Dette gjør at man kan filtrere hvilke
-     * jobbsøkrer som skal vises i resultater og om det opprettes et arbeidsforhold så får man tak i
-     * hvilken utlysning som ble valgt her. Om ingen rad er valgt vil bruker få en meldig om dette.
+     * Setter chosenWorkfields og chosenJobseeker via findRow() bassert på valgt jobbutlysning.
+     * Finner passende, ledige jobbsøkere.
      */
     public void btnFindJobseekers(ActionEvent event) {
         try {

@@ -35,9 +35,7 @@ public class ViewJobseekersController implements Initializable {
                                          tcEmail, tcAge, tcEducation, tcStudy, tcExperience, tcWorkfields, tcStatus;
 
     /**
-     * Denne metoden har følgende punkter:
-     *  1: Om listen står tom vil denne meldingen gis til bruker. Dette skjer om filtreringen ikke finner noen
-     *     matcher eller om man ikke finner noen matcher til en valgt jobbutlysning.
+     * 1: Om listen står tom vil denne meldingen gis til bruker.
      *
      *  2: setTempJobsTable initialiserer kolonnene.
      *
@@ -104,8 +102,7 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Om denne knappen blir trykket finner hvilken jobbutlysning som bruker har valgt og kjører den
-     * igjennom slett-metoden. Om ingen rad er valgt vil bruker få en meldig om dette.
+     * Finner valgt jobbsøker og kjører downloadJobseeker-metoden. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
     public void btnDownloadJobseeker(ActionEvent event) {
         String out = "empty";
@@ -151,11 +148,8 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Det skjer følgende ting når denne knappen trykkes:
-     * Først henter programmet ut tlfnr fra valgt jobbsøker. Dette nummeret brukes for å finne ut av hvilken rad
-     * valgt jobbsøker er i listen av søkere, dette skjer i findRow-metoden. Etter dette opprettes det en
-     * ny "stage" bassert på regJobseeker-FXML'en. Har kjøres setData()-metoden som setter verdiene til den valgte
-     * jobbsøkeren inn i tekstfeltene i FXML'en. Om ingen rad er valgt vil bruker få en meldig om dette.
+     * Finner valgt rad og oppretter det en ny "stage" bassert på regJobseeker-FXML'en. Kjører
+     * setData()-metoden som setter verdiene til den valgte jobbsøkeren inn i tekstfeltene i FXML'en.
      */
     public void btnEditJobseeker(ActionEvent event) {
         try{
@@ -185,11 +179,8 @@ public class ViewJobseekersController implements Initializable {
     }
 
     /**
-     * Om man trykker på denne knappen henter programmet ut valgte arbeidsområder fra jobbsøkeren
-     * og setter dem til chosenWorkfields. findRow()-metoden finner hvilken rad den valgte utlysningen
-     * er i listen og setter det nummeret til chosenJobseeker. Dette gjør at man kan filtrere hvilke
-     * jobbutlysninger som skal vises i resultatet og om det opprettes et arbeidsforhold så får man tak i
-     * hvilken søker som ble valgt her via chosenJobseeker. Om ingen rad er valgt vil bruker få en meldig om dette.
+     * Setter chosenWorkfields og chosenJobseeker via findRow() bassert på valgt jobbsøker.
+     * Finner passende, ledige jobbsøkere.
      */
     public void btnFindTempJob(ActionEvent event) {
         try {
