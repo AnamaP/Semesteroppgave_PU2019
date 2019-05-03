@@ -105,12 +105,10 @@ public class ValidationHelper {
     }
 
     /**
-     * Denne
+     * Denne tar inn det opplastede objektet, sjekker om det er formatert riktig eller registrert fra
+     * før og registrerer. Om filen er en jobj-fil (csvFileType = false) så kjøres den først igjennom object to list.
      */
     public boolean validateFileInpt(Object object, String path, boolean csvFileType) {
-        //TODO: Om csvFiletype er false er det er jobj-fil og den burde sjekkes deretter.
-        //      Det har jeg ikke fått til. Se metoden under.
-
         String[] columns;
         if(!csvFileType){
             columns = objectToList(object, path);
@@ -119,39 +117,49 @@ public class ValidationHelper {
             columns = object.toString().split(";");
         }
 
-        System.out.println(columns.length);
+        // Sjekker om det var mulig å gjøre dem om til en liste
+        if(columns.length == 1){
+            return false;
+        }
+
+        // Om bruker prøver å lagre til jobbsøker-listen, sjekkes det om det er en jobbsøker:
         if((columns.length == 15) && (path.equals(Paths.JOBSEEKER))) {
             String phoneNo = columns[5];
             if (uniquePhoneNo(jobseekersList, phoneNo)) {
                 ViewHelper run = new ViewHelper();
-                Jobseeker jobseeker = run.getJobseekerFromList(columns);
-                jobseekersList.add(jobseeker);
-                return true;
-            } else {
-                invalidInputs += "Jobbsøkeren er allerede registrert.";
-                return false;
-            }
-        }
-        if ((columns.length == 14) && (path.equals(Paths.TEMPJOB))) {
-                String phoneNo = columns[1];
-                if(uniquePhoneNo(tempJobsList, phoneNo)) {
-                    ViewHelper run = new ViewHelper();
-                    Company nyCompany = run.getTempJobFromList(columns);
-                    tempJobsList.add(nyCompany);
+                Jobseeker newJobseeker = run.getJobseekerFromList(columns);
+                if(runJobseekerValidation(newJobseeker)){
+                    jobseekersList.add(newJobseeker);
                     return true;
                 }
-                else{
-                    invalidInputs += "Jobbutlysningen er allerede registrert.";
-                    return false;
-                }
             }
-        else {
-            invalidInputs += "Feil lengde på fil.";
-            System.out.println(columns.length);
+            invalidInputs = "Jobbsøkeren er allerede registrert.";
             return false;
         }
+
+        // Om bruker prøver å lagre til vikariat-listen, sjekkes det om det er et vikariat
+        if ((columns.length == 14) && (path.equals(Paths.TEMPJOB))) {
+            String phoneNo = columns[1];
+            if(uniquePhoneNo(tempJobsList, phoneNo)) {
+                ViewHelper run = new ViewHelper();
+                Company newCompany = run.getTempJobFromList(columns);
+                if (runTempJobValidation(newCompany)){
+                    tempJobsList.add(newCompany);
+                    return true;
+                }
+            }
+            invalidInputs = "Vikariatet er allerede registrert.";
+            return false;
+        }
+
+        invalidInputs = "Feil antall kolonner i fil.";
+        System.out.println(columns.length);
+        return false;
     }
 
+    /**
+     * Sjekker om tlf er registrert fra før.
+     */
     private Boolean uniquePhoneNo(ArrayList arrayList, String phoneNo){
         for(int i = 0; i < arrayList.size(); i++) {
             String[] row = arrayList.get(i).toString().split(";");
@@ -164,35 +172,38 @@ public class ValidationHelper {
         return true;
     }
 
-    //TODO: Prøver å finne ut av om objektet er en jobbsøker eller et vikariat, men fikk det ikke til..!!
+    /**
+     * Tar inn et jobj-objekt og gjør det om til en Strting [].
+     */
     private String [] objectToList(Object object, String path){
         String [] columns = {};
         Jobseeker jobseeker;
         Company company;
 
-        if(path == Paths.JOBSEEKER){
+        if(path.equals(Paths.JOBSEEKER)){
             try {
                 jobseeker = (Jobseeker) object;
             }
-            catch(NullPointerException | ClassCastException e){ // TODO: Må håndteres med egendefinert avvik
+            catch(ClassCastException e){
                 jobseeker = null;
             }
             if(jobseeker != null){
                 return jobseeker.toString().split(";");
             }
         }
-        if(path == Paths.TEMPJOB){
+
+        if(path.equals(Paths.TEMPJOB)){
             try{
                 company = (Company) object;
             }
-            catch (NullPointerException | ClassCastException e) { // TODO : Må håndteres med egendefinert avvik
+            catch (ClassCastException e) {
                 company = null;
             }
             if(company != null){
                 return company.toString().split(";");
             }
         }
-        invalidInputs += "Feil format på .jobj fil.";
+        invalidInputs = "Feil format på .jobj fil.";
         return columns;
     }
 }
