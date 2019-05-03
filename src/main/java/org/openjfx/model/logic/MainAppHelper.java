@@ -23,10 +23,7 @@ public class MainAppHelper {
     }
 
     /**
-     * Denne metoden henter ut alle jobbsøkere fra csv-filen og legger dem inn i en ArrayList.
-     * Dette gjør at man har en "kopi" av listen tilgjengelig som kan forandres, før man samkjører
-     * den med csv-filen. Csv-filen fungerer litt som en database / back up. getJobseekerFromList lager
-     * en jobseeker utifra en oppgitt String [].
+     * Henter ut alle jobbsøkere fra csv-filen og legger dem inn i en ArrayList.
      */
     public void loadJobseekerCsv(){
         CsvFileHandler test = new CsvFileHandler();
@@ -46,10 +43,7 @@ public class MainAppHelper {
     }
 
     /**
-     * Denne metoden henter ut alle jobbutlysningene fra csv-filen og legger dem inn i en ArrayList.
-     * Dette gjør at man har en "kopi" av listen tilgjengelig som kan forandres, før man samkjører
-     * den med csv-filen. Csv-filen fungerer litt som en database / back up.
-     * getTempJobFromList, tar inn en String [] og returnerer et Company.
+     * Henter ut alle jobbutlysningene fra csv-filen og legger dem inn i en ArrayList.
      */
     public void loadTempJobCsv(){
         CsvFileHandler handler = new CsvFileHandler();
@@ -77,15 +71,13 @@ public class MainAppHelper {
     }
 
     /**
-     * Denne metoden tar alt som ligger i en ArrayList (enten en liste med jobbsøkere eller jobbutlysninger) og
-     * skriver den inn i en csv-fil. Her er append satt til false slik at listen i filen vil bli fullstendig oppdatert.
-     * Denne brukes hver gang en rad i en av listene endres eller slettes.
+     * Tar alt som ligger i en ArrayList og skriver den inn i en csv-fil, overskriver / oppdaterer det som ligger der.
      */
     private void reloadDatabase(String path, ArrayList arrayList){
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(path, false);
-        } catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
+        } catch (IOException e) {
             e.printStackTrace();
         }
         PrintWriter printWriter = new PrintWriter(fileWriter);

@@ -133,8 +133,10 @@ public class ValidationHelper {
                     return true;
                 }
             }
-            invalidInputs = "Jobbsøkeren er allerede registrert.";
-            return false;
+            else {
+                invalidInputs = "Jobbsøkeren er allerede registrert.";
+                return false;
+            }
         }
 
         // Om bruker prøver å lagre til vikariat-listen, sjekkes det om det er et vikariat
@@ -147,6 +149,7 @@ public class ValidationHelper {
                     tempJobsList.add(newCompany);
                     return true;
                 }
+                return false;
             }
             invalidInputs = "Vikariatet er allerede registrert.";
             return false;
