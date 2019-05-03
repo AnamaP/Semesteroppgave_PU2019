@@ -87,9 +87,10 @@ public class FileChooserHelper {
         if(extension.isEmpty()){
             out = "Avsluttet nedlasting.";
         }
-        AlertHelper.showError(out);
+        if(out != "") {
+            AlertHelper.showError(out);
+        }
         return fileHandler;
-
     }
 
     /**
