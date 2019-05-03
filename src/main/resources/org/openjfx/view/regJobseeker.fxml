@@ -53,15 +53,15 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Epost: *" GridPane.rowIndex="6" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alder: *" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lønnskrav:" GridPane.rowIndex="8" />
-            <TextField fx:id="txtFirstname" prefHeight="2.0" prefWidth="42.0" GridPane.columnIndex="1" />
-            <TextField fx:id="txtLastname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtZipcode" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txtPostal" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="txtPhoneNo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="txtEmail" prefHeight="0.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="txtAge" prefHeight="41.0" prefWidth="117.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="txtSalary" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="txtFirstname" prefHeight="2.0" prefWidth="42.0" promptText="Kari" GridPane.columnIndex="1" />
+            <TextField fx:id="txtLastname" promptText="Normann" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtAddress" promptText="Oslo veien 2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtZipcode" promptText="0379" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtPostal" promptText="Oslo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtPhoneNo" promptText="22334455" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtEmail" prefHeight="0.0" prefWidth="116.0" promptText="kari@test.no" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="txtAge" prefHeight="41.0" prefWidth="117.0" promptText="34" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="txtSalary" promptText="ex: 100 000" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
       <Text fill="#000000cf" layoutX="342.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ønskede arbeidsområder: *" wrappingWidth="248.79995117187502">
