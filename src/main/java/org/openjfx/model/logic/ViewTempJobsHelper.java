@@ -42,7 +42,7 @@ public class ViewTempJobsHelper {
         catch(FileNotFoundException e){
             System.err.println("Får ikke lastet inn data");
         }
-        catch(IOException e){ // TODO: Håndteres med egendefinert avvik?
+        catch(IOException e){
             System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
         return tempJobList;
@@ -81,7 +81,7 @@ public class ViewTempJobsHelper {
         catch(FileNotFoundException e){
             System.err.println("Finner ikke filen du leter etter");
         }
-        catch(IOException e){ // TODO: Håndteres med egendefinert avvik?
+        catch(IOException e){
             System.err.println("Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
         return tempJobList;

@@ -80,7 +80,7 @@ public class MatchingTempJobsController implements Initializable {
     /**
      * Sender bruker tilbake til menysiden.
      */
-    public void btnBack(ActionEvent event) {
+    public void btnBack(ActionEvent event){
         NavigationHelper.changePage("/org/openjfx/view/viewJobseekers.fxml", event);
     }
 
@@ -95,7 +95,7 @@ public class MatchingTempJobsController implements Initializable {
             String key = selectedPhoneNo(tvTempJobs);
             readMore(key);
         }
-        catch (NullPointerException e) { // TODO: Denne må håndteres med egendefinert avvik
+        catch (NullPointerException e){
             AlertHelper.showError("Du må velge et jobbutlysning for å lese mer!");
         }
     }
@@ -104,7 +104,7 @@ public class MatchingTempJobsController implements Initializable {
      * Ved å trykke på denne knappen finner programmet valgt rad og via emplot() finner den frem valgt jobbsøker og
      * setter nye verdier i "Status" til Ansatt / Besatt.
      */
-    public void btnEmploy(ActionEvent event) {
+    public void btnEmploy(ActionEvent event){
         ViewHelper run = new ViewHelper();
         String key = selectedPhoneNo(tvTempJobs);
         run.findRow(tempJobsList, key, false);
