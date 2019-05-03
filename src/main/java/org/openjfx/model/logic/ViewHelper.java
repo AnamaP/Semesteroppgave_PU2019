@@ -114,7 +114,6 @@ public class ViewHelper{
                 amount++;
             }
         }
-        System.out.println(amount);
         return amount;
     }
 
@@ -123,7 +122,6 @@ public class ViewHelper{
      */
     public boolean isAvailable(ArrayList arrayList, int row){
         String [] check = arrayList.get(row).toString().split(";");
-        System.out.println(check[check.length-1]);
         if(check[check.length-1].equals("Ledig")){
             return true;
         }

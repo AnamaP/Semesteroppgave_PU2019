@@ -42,7 +42,7 @@ public class ViewJobseekersHelper {
         catch(FileNotFoundException e){
             System.err.println("showJobseekers() : Finner ikke filen du leter etter");
         }
-        catch(IOException e){ // TODO: Håndteres med egendefinert avvik?
+        catch(IOException e){
             System.err.println("showJobseekers() : Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
         return jobseekerList;
@@ -67,7 +67,6 @@ public class ViewJobseekersHelper {
                     ArrayList<String> workfields = run.getWorkfields(columns);
                     int amount = run.checkWorkfields(workfields);
 
-                    System.out.println(columns[columns.length-1]);
                     if((amount == chosenWorkfields.size()) && (columns[columns.length-1].equals("Ledig"))){
                         TableJobseekers viewJobseekers = new TableJobseekers(jobseeker);
                         showResults.add(viewJobseekers);
@@ -76,10 +75,10 @@ public class ViewJobseekersHelper {
             }
             csvreader.close();
         }
-        catch(FileNotFoundException e){ // TODO: Håndteres med egendefinert avvik?
+        catch(FileNotFoundException e){
             System.err.println("VisResultat() : Finner ikke filen du leter etter");
         }
-        catch(IOException e){ // TODO: Håndteres med egendefinert avvik?
+        catch(IOException e){
             System.err.println("VisResultat() : Klarer ikke å lese fra ønsket fil. Feilmelding : " + e.getCause());
         }
         return showResults;

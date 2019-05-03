@@ -6,7 +6,6 @@ import java.io.*;
  * Konkret klasse som representerer lagring og innlesing til jobj filformat
  */
 public class JobjFileHandler extends FileHandler {
-// TODO: PathNotFoundException, InvalidPathException og håndtere de andre metodene
 
     /**
      * Metode som leser fra fil

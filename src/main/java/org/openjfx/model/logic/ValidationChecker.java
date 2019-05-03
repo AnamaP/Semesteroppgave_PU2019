@@ -195,7 +195,6 @@ public class ValidationChecker {
     private boolean checkIfDuplicatePhoneNo(ArrayList arrayList, String phoneNo) throws DuplicatePhoneNoException {
         for (int i = 0; i < arrayList.size()-1; i++) {
             String [] row = arrayList.get(i).toString().split(";");
-            System.out.println(row[1] + " " + row[5]);
             if (row[1].equals(phoneNo) || row[5].equals(phoneNo)) {
                 throw new DuplicatePhoneNoException("Telefonnr finnes allerede i databasen.");
             }
@@ -335,7 +334,6 @@ public class ValidationChecker {
      * Metode som sjekker for om jobbtype er valgt
      */
     private boolean checkIfJobTypeSelected(String jobType) throws NoValueSelectedException {
-        System.out.println(jobType);
         if(jobType.equals("Arbeidstid ikke valgt")){
             throw new NoValueSelectedException("Heltid eller deltid må velges!");
         }

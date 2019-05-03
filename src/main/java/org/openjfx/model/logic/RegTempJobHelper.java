@@ -58,7 +58,6 @@ public class RegTempJobHelper {
         if(radioPartTime.isSelected()){
             jobType = "Deltid";
         }
-
         return jobType;
     }
 }

@@ -133,7 +133,7 @@ public class ViewJobseekersController implements Initializable {
      * jobbsøker den skal fjerne fra jobbsøker-listen. Etter sletting oppdaterer programmet csv-filen
      * og reloader siden. Om ingen rad er valgt vil bruker få en meldig om dette.
      */
-    public void btnDeleteJobseeker(ActionEvent event) {
+    public void btnDeleteJobseeker(ActionEvent event){
         String message;
         try{
             message = tvJobseekers.getSelectionModel().getSelectedItem().getFirstname();
@@ -151,7 +151,7 @@ public class ViewJobseekersController implements Initializable {
                 NavigationHelper.changePage("/org/openjfx/view/viewJobseekers.fxml", event);
             }
         }
-        catch(NullPointerException e){ // TODO: Må håndteres med egendefinert avvik
+        catch(NullPointerException e){
             AlertHelper.showError("Du må velge en jobbsøker for å kunne slette!");
         }
     }
@@ -174,7 +174,7 @@ public class ViewJobseekersController implements Initializable {
             Parent parent = null;
             try {
                 parent = loader.load();
-            } catch (IOException e) { // TODO: Håndteres med egendefinert avvik?
+            } catch (IOException e){
                 e.printStackTrace();
             }
             RegJobseekerController controller = loader.getController();
@@ -185,7 +185,7 @@ public class ViewJobseekersController implements Initializable {
             Scene scene = new Scene(parent);
             stage.setScene(scene);
         }
-        catch(NullPointerException e){ // TODO : MÅ håndteres med egendefinert avvik
+        catch(NullPointerException e){
             AlertHelper.showError("Du må velge en jobbsøker for å kunne redigere!");
         }
     }
@@ -213,7 +213,7 @@ public class ViewJobseekersController implements Initializable {
                 AlertHelper.showError("Jobbsøkeren er i arbeid. Veld en ledig jobbsøker før du går videre.");
             }
         }
-        catch(NullPointerException e){ // TODO ; MÅ håndteres med egendefinert avvik
+        catch(NullPointerException e){
             AlertHelper.showError("Du må velge en jobbsøker for å finne passende vikariat!");
         }
     }

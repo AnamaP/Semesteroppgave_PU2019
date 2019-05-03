@@ -12,8 +12,6 @@ public abstract class FileHandler {
     public abstract void writeToFile(Object person, String path) throws IOException;
     public abstract void writeToDB(Object object, String path) throws IOException;
 
-    // TODO: PathNotFoundException, InvalidPathException og håndtere de andre metodene, Nullpointer må erstattes
-
     /**
      * Denne metoden henter extension fra filen
      */

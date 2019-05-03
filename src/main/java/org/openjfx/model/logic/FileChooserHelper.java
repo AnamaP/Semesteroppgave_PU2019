@@ -139,10 +139,10 @@ public class FileChooserHelper {
      */
     public static void download(Object object) {
         String chosenpath = saveDialog();
-        FileHandler fileHandler = getExtensionFilter(chosenpath);
+        FileHandler fileType = getExtensionFilter(chosenpath);
 
         try {
-            fileHandler.writeToFile(object, chosenpath);
+            fileType.writeToFile(object, chosenpath);
         }
         catch (IOException e) {
             AlertHelper.showError("Fikk ikke til nedlastningen. Feilmelding :" + e.getCause());

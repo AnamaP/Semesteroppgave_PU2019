@@ -12,8 +12,6 @@ import static org.openjfx.model.logic.RegJobseekerHelper.jobseekersList;
 import static org.openjfx.model.logic.RegTempJobHelper.tempJobsList;
 
 public class ValidationHelper {
-    // TODO : NullpointerException kan ikke brukes! må erstattes med egendefinerte avvik,
-    // samt håndtere de andre sjekkene med excpetion!
 
     public static String invalidInputs;
 
@@ -156,7 +154,6 @@ public class ValidationHelper {
         }
 
         invalidInputs = "Feil antall kolonner i fil.";
-        System.out.println(columns.length);
         return false;
     }
 
