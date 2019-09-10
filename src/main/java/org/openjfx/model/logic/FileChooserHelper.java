@@ -94,8 +94,8 @@ public class FileChooserHelper {
     }
 
     /**
-     *  Denne metoden åpner dialogvinduet, leser filen som er valgt og skriver til fil dersom den
-     *  den kommer igjennom valideringen. Dersom det ikke er godkjent validering vil en feilmld til bruker vises.
+     *  Denne metoden åpner dialogvinduet, leser filen som er valgt og legger den til i listen, for så å oppdatere DB.
+     *  Dersom det ikke er godkjent validering vil en feilmld til bruker vises.
      *  Prøvde å implementere bruk av Thread her, men denne delen av programmet ble vi ikke helt ferdig med.
      */
     public static void upload(String toPath){
